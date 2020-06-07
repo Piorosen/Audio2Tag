@@ -1,0 +1,3 @@
+[submodule "dependency/SwiftCueParser"]
+	path = dependency/SwiftCueParser
+	url = https://github.com/Piorosen/SwiftCueParser.git
