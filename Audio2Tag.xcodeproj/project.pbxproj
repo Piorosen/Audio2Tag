@@ -11,6 +11,7 @@
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
 		6248F243249CE9250084720E /* CueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6248F242249CE9250084720E /* CueSheet */; };
+		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
 		62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC0F72488C43F007F8281 /* AppDelegate.swift */; };
 		62DDC0FA2488C43F007F8281 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC0F92488C43F007F8281 /* ContentView.swift */; };
 		62DDC0FC2488C440007F8281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FB2488C440007F8281 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
 				6248F243249CE9250084720E /* CueSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,6 +190,7 @@
 			name = Audio2Tag;
 			packageProductDependencies = (
 				6248F242249CE9250084720E /* CueSheet */,
+				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -263,6 +266,7 @@
 			mainGroup = 62DDC0EB2488C43F007F8281;
 			packageReferences = (
 				6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */,
+				62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */,
 			);
 			productRefGroup = 62DDC0F52488C43F007F8281 /* Products */;
 			projectDirPath = "";
@@ -652,6 +656,14 @@
 				minimumVersion = 1.0.2;
 			};
 		};
+		62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/Swift-MusicBrainz.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -659,6 +671,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */;
 			productName = CueSheet;
+		};
+		62A75610249FE016006A86EC /* Swift-MusicBrainz */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */;
+			productName = "Swift-MusicBrainz";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "Swift-MusicBrainz",
+        "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
+        "state": {
+          "branch": null,
+          "revision": "528c354c1822f0e8921170cd0f79b730b57a7d67",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "CueSheet",
         "repositoryURL": "https://github.com/Piorosen/SwiftCueParser.git",
         "state": {
