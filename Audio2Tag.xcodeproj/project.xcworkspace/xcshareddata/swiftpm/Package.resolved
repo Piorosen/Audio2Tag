@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CueSheet",
+        "repositoryURL": "https://github.com/Piorosen/SwiftCueParser.git",
+        "state": {
+          "branch": null,
+          "revision": "2389ec8a8bbf0f3ed00f5a92f840a48a0a68d230",
+          "version": "1.0.9"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -10,8 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        TabView {
+            CueView().tabItem {
+                Text("Trim Cue")
+            }
+            
+        }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
