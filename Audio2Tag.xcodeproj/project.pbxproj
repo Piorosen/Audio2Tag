@@ -12,6 +12,9 @@
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
 		6248F243249CE9250084720E /* CueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6248F242249CE9250084720E /* CueSheet */; };
 		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
+		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
+		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
+		62CFC22324A066C200506646 /* TagMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22224A066C200506646 /* TagMainModel.swift */; };
 		62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC0F72488C43F007F8281 /* AppDelegate.swift */; };
 		62DDC0FA2488C43F007F8281 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC0F92488C43F007F8281 /* ContentView.swift */; };
 		62DDC0FC2488C440007F8281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FB2488C440007F8281 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		62CFC21E24A066A800506646 /* TagMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainView.swift; sourceTree = "<group>"; };
+		62CFC22024A066B400506646 /* TagMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainViewModel.swift; sourceTree = "<group>"; };
+		62CFC22224A066C200506646 /* TagMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainModel.swift; sourceTree = "<group>"; };
 		62DDC0F42488C43F007F8281 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DDC0F72488C43F007F8281 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62DDC0F92488C43F007F8281 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +115,50 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		62CFC21924A0666400506646 /* Cue Split */ = {
+			isa = PBXGroup;
+			children = (
+				624AC467248CCFEA007C9D41 /* Model */,
+				624AC466248CCFE4007C9D41 /* ViewModel */,
+				624AC465248CCFDE007C9D41 /* View */,
+			);
+			path = "Cue Split";
+			sourceTree = "<group>";
+		};
+		62CFC21A24A0667200506646 /* Audio Tag */ = {
+			isa = PBXGroup;
+			children = (
+				62CFC21D24A0669600506646 /* View */,
+				62CFC21C24A0668C00506646 /* ViewModel */,
+				62CFC21B24A0668800506646 /* Model */,
+			);
+			path = "Audio Tag";
+			sourceTree = "<group>";
+		};
+		62CFC21B24A0668800506646 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62CFC22224A066C200506646 /* TagMainModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62CFC21C24A0668C00506646 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				62CFC22024A066B400506646 /* TagMainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		62CFC21D24A0669600506646 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				62CFC21E24A066A800506646 /* TagMainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		62DDC0EB2488C43F007F8281 = {
 			isa = PBXGroup;
 			children = (
@@ -132,9 +182,8 @@
 		62DDC0F62488C43F007F8281 /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
-				624AC467248CCFEA007C9D41 /* Model */,
-				624AC466248CCFE4007C9D41 /* ViewModel */,
-				624AC465248CCFDE007C9D41 /* View */,
+				62CFC21A24A0667200506646 /* Audio Tag */,
+				62CFC21924A0666400506646 /* Cue Split */,
 				62DDC0F72488C43F007F8281 /* AppDelegate.swift */,
 				62DDC0F92488C43F007F8281 /* ContentView.swift */,
 				62DDC0FB2488C440007F8281 /* Assets.xcassets */,
@@ -315,7 +364,10 @@
 				6248F23E249CD71E0084720E /* CueModel.swift in Sources */,
 				6248F23C249CD7160084720E /* CueViewModel.swift in Sources */,
 				6248F240249CD7390084720E /* CueView.swift in Sources */,
+				62CFC21F24A066A800506646 /* TagMainView.swift in Sources */,
 				62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */,
+				62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */,
+				62CFC22324A066C200506646 /* TagMainModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
