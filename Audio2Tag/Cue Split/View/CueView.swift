@@ -27,6 +27,19 @@ struct CueView: View {
             }.frame(maxWidth: .infinity, minHeight: 30)
             HStack {
                 ProgressBar(value: self.$progress)
+                Button(action: {
+                    
+                    
+                }) {
+                    Text("Cue Open")
+                }
+                Button(action: {
+                    
+                    
+                }) {
+                    Text("Cue Open")
+                }
+                
             }.frame(maxWidth: .infinity, maxHeight: 10)
                 .padding(10)
             
