@@ -37,7 +37,7 @@ public final class AVAudioFileConverter {
         
         asset.loadValuesAsynchronously(forKeys: ["tracks"], completionHandler: {
             var localError:NSError?
-            let success = (self.asset.statusOfValue(forKey: "tracks", error: &localError) == AVKeyValueStatus.loaded)
+            var success = (self.asset.statusOfValue(forKey: "tracks", error: &localError) == AVKeyValueStatus.loaded)
             // Check for success of loading the assets tracks.
             
             for i in self.outputURL {

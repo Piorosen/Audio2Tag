@@ -14,7 +14,7 @@ import AVFoundation
 
 
 class CueViewModel : ObservableObject {
-    @Published var cueTitle = CueViewInfoModel()
+    @Published var cueTitle = CueInfoModel()
     @Published var listOfCue = [CueModel]()
     
     

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
+    @State var progress:Float = 0.2
     
     var body: some View {
         VStack {
@@ -24,6 +25,12 @@ struct CueView: View {
                 Text("장르 : \(self.viewModel.cueTitle.genre)")
                 Spacer()
             }.frame(maxWidth: .infinity, minHeight: 30)
+            HStack {
+                ProgressBar(value: self.$progress)
+            }.frame(maxWidth: .infinity, maxHeight: 10)
+                .padding(10)
+            
+            
             List (self.viewModel.listOfCue) { item in
                 HStack {
                     VStack {
@@ -34,7 +41,7 @@ struct CueView: View {
                     Text("Length of Music : \(item.duration)")
                     Text("Length of Index : \(item.interval)")
                 }
-            }
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
             
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
