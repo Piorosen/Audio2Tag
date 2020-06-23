@@ -12,6 +12,8 @@ struct CueModel : Identifiable {
     var id = UUID()
     
     var fileName: String
+    var artist: String
+    
     var duration: Double
     var interval: Double
 }
