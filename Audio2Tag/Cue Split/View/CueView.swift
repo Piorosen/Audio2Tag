@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
-    @State var progress:Float = 0.2
+    
     
     var body: some View {
         VStack {
@@ -20,39 +20,39 @@ struct CueView: View {
                 Spacer()
                 Text("바코드 : \(self.viewModel.cueTitle.barcode)")
                 Spacer()
+                
                 Text("평균 비트레이트 : \(self.viewModel.cueTitle.avgBitrate)")
                 Spacer()
                 Text("장르 : \(self.viewModel.cueTitle.genre)")
                 Spacer()
             }.frame(maxWidth: .infinity, minHeight: 30)
             HStack {
-                ProgressBar(value: self.$progress)
+                ProgressBar(value: self.$viewModel.progress)
                 Button(action: {
-                    
-                    
+                    self.viewModel.onOpenFile()
                 }) {
                     Text("Cue Open")
                 }
                 Button(action: {
-                    
+                    self.viewModel.onSplitFile()
                     
                 }) {
-                    Text("Cue Open")
+                    Text("Cue Split")
                 }
                 
             }.frame(maxWidth: .infinity, maxHeight: 10)
                 .padding(10)
             
-            
             List (self.viewModel.listOfCue) { item in
                 HStack {
+                    Text("\(item.index)")
                     VStack {
                         Text("Title \(item.fileName)")
                         Text("Artist \(item.artist)")
                     }
                     Spacer()
-                    Text("Length of Music : \(item.duration)")
-                    Text("Length of Index : \(item.interval)")
+                    Text("Length of Music : \(String(format: "%.2f 초", item.duration))")
+                    Text("Length of Index : \(String(format: "%.2f 초", item.interval))")
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
             
@@ -63,7 +63,6 @@ struct CueView: View {
                 item.loadItem(forTypeIdentifier: (kUTTypeFileURL as String), options: nil) {item, error in
                     guard let data = item as? Data, let url = URL(dataRepresentation: data, relativeTo: nil) else { return }
                     
-                    self.viewModel.onParsingFile(url: url)
                     
                     print(url.path)
                 }

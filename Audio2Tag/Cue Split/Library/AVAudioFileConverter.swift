@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 
 public final class AVAudioFileConverter {
-    var rwAudioSerializationQueue: DispatchQueue!
     var asset:AVAsset!
     var assetReader:AVAssetReader!
     var assetReaderAudioOutput:AVAssetReaderTrackOutput!
@@ -25,11 +24,10 @@ public final class AVAudioFileConverter {
         
     }
     
-    public func convert() {
+    public func convert(uiCallback: @escaping (Float) -> Void) {
         let rwAudioSerializationQueueDescription = " rw audio serialization queue"
         // Create the serialization queue to use for reading and writing the audio data.
-        rwAudioSerializationQueue = DispatchQueue(label: rwAudioSerializationQueueDescription)
-        assert(rwAudioSerializationQueue != nil, "Failed to initialize Dispatch Queue")
+        
         
         asset = AVAsset(url: inputURL)
         assert(asset != nil, "Error creating AVAsset from input URL")
@@ -40,17 +38,20 @@ public final class AVAudioFileConverter {
             var success = (self.asset.statusOfValue(forKey: "tracks", error: &localError) == AVKeyValueStatus.loaded)
             // Check for success of loading the assets tracks.
             
-            for i in self.outputURL {
+            for i in self.outputURL.indices {
                 if (success) {
-                    success = self.setupAssetReaderAndAssetWriter(url: i.url)
+                    success = self.setupAssetReaderAndAssetWriter(url: self.outputURL[i].url)
                 }
+                
                 if (success) {
-                    success = self.startAssetReaderAndWriter(range: i.range)
+                    success = self.startAssetReaderAndWriter(range: self.outputURL[i].range)
                     
                 } else {
                     print("Failed to start Asset Reader and Writer")
                 }
-                sleep(1)
+                DispatchQueue.main.async {
+                    uiCallback(Float(self.outputURL.count) / Float(i))
+                }
             }
         })
     }
@@ -102,7 +103,7 @@ public final class AVAudioFileConverter {
             ]
             
             assetWriterAudioInput = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: outputSettings)
-            assert(rwAudioSerializationQueue != nil, "Failed to initialize AVAssetWriterInput")
+            
             assetWriter.add(assetWriterAudioInput)
             
         }
@@ -111,6 +112,7 @@ public final class AVAudioFileConverter {
     }
     
     func startAssetReaderAndWriter(range: CMTimeRange) -> Bool {
+        let delay = DispatchSemaphore(value: 0)
         print("STARTING ASSET WRITER")
         
         assetReader.timeRange = range
@@ -121,8 +123,7 @@ public final class AVAudioFileConverter {
         //    assetWriter.endSession(atSourceTime: CMTime(seconds: 1000, preferredTimescale: 1))
         //    assetWriter.endSession(atSourceTime: CMTime(seconds: 100, preferredTimescale: 1))
         
-        assetWriterAudioInput.requestMediaDataWhenReady(on: rwAudioSerializationQueue, using: {
-            
+        assetWriterAudioInput.requestMediaDataWhenReady(on: DispatchQueue.main) {
             while(self.assetWriterAudioInput.isReadyForMoreMediaData ) {
                 var sampleBuffer = self.assetReaderAudioOutput.copyNextSampleBuffer()
                 if(sampleBuffer != nil) {
@@ -132,12 +133,15 @@ public final class AVAudioFileConverter {
                     self.assetWriterAudioInput.markAsFinished()
                     self.assetReader.cancelReading()
                     self.assetWriter.finishWriting {
+                        delay.signal()
                         print("Asset Writer Finished Writing")
                     }
                     break
                 }
             }
-        })
+        }
+        
+        delay.wait()
         return true
     }
 }

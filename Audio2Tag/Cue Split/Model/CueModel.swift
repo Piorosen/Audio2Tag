@@ -11,6 +11,7 @@ import Foundation
 struct CueModel : Identifiable {
     var id = UUID()
     
+    var index:Int
     var fileName: String
     var artist: String
     

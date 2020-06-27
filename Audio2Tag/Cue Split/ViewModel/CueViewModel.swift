@@ -13,61 +13,110 @@ import AVFoundation
 
 
 
-class CueViewModel : ObservableObject {
+final class CueViewModel : ObservableObject {
     @Published var cueTitle = CueInfoModel()
     @Published var listOfCue = [CueModel]()
+    @Published var progress:Float = 0
     
+    var pathOfMusic = URL(fileURLWithPath: String())
     
-    func onParsingFile(url:URL?) {
+    private func setCueSheet(sheet:CueSheet) {
+        cueTitle.albumName = sheet.meta["TITLE"] ?? "None"
+        cueTitle.barcode = sheet.rem["CATALOG"] ?? "None"
+        cueTitle.genre = sheet.rem["GENRE"] ?? "None"
+        cueTitle.avgBitrate = AVAudioFormat.init().sampleRate
+        
+        for (idx, item) in sheet.file.tracks.enumerated() {
+            let dur = item.duration ?? 0
+            let interval = item.interval ?? 0
+            
+            self.listOfCue.append(CueModel(index: idx + 1, fileName: item.title, artist: item.performer, duration: dur, interval: interval))
+        }
+    }
+    
+    private func onParsingFile(url:URL?, music:URL?) {
         let parser = CueSheetParser()
         self.listOfCue.removeAll()
         
-        if let list = parser.Load(path: url) {
-            let fileName = url!.deletingLastPathComponent().appendingPathComponent(list.file.fileName)
-            
-            
-            let lengthOfMusic = CMTimeGetSeconds(AVURLAsset(url: fileName).duration)
-            
-            // calc Index Time
-            for index in list.file.tracks.indices {
-                var dur = 0.0
-                let lastIndex = list.file.tracks[index].index.count - 1
+        
+        
+        if let url = url, let music = music {
+            pathOfMusic = music
+            if let cueSheet = parser.loadFile(pathOfMusic: music, pathOfCue: url) {
+                setCueSheet(sheet: cueSheet)
+            }
+        }else if let url = url {
+            if let cueSheet = parser.Load(path: url) {
+                // check can i accessable file?
+                let musicUrl = url.deletingLastPathComponent().appendingPathComponent(cueSheet.file.fileName)
                 
-                if index != list.file.tracks.count - 1 {
-                    let me = list.file.tracks[index].index[lastIndex].indexTime.frames
-                    let next = list.file.tracks[index + 1].index[0].indexTime.frames
-                    dur = Double((next - me)) / 75
+                pathOfMusic = musicUrl
+                
+                if FileManager.default.isReadableFile(atPath: musicUrl.path) {
+                    if let cueSheetFile = parser.loadFile(pathOfMusic: musicUrl, pathOfCue: url) {
+                        setCueSheet(sheet: cueSheetFile)
+                    }
                 }else {
-                    let me = list.file.tracks[index].index[lastIndex].indexTime.seconds
-                    dur = lengthOfMusic - me
+                    setCueSheet(sheet: cueSheet)
                 }
-                
-                var interval = 0.0
-                
-                if list.file.tracks[index].index.count != 0 {
-                    let shortCut = list.file.tracks[index].index
-                    interval = Double(shortCut.last!.indexTime.frames - shortCut.first!.indexTime.frames) / 75
-                }
-                
-                DispatchQueue.main.async {
-                    self.listOfCue.append(CueModel(fileName: list.file.tracks[index].title, artist: list.file.tracks[index].performer, duration: dur, interval: interval))
+            }
+        }
+        
+        return
+    }
+    
+    func onOpenFile() {
+        let panel = NSOpenPanel()
+        panel.allowsMultipleSelection = true
+        
+        panel.begin { (result) -> Void in
+            if result == .OK {
+                if panel.urls.count == 2 {
+                    if let item = panel.urls.firstIndex(where: { $0.pathExtension.lowercased() == "cue" }) {
+                        self.onParsingFile(url: panel.urls[item], music: panel.urls[item == 0 ? 1 : 0])
+                    }
+                }else if panel.urls.count == 1 {
+                    if let item = panel.urls.first(where: { $0.pathExtension.lowercased() == "cue" }) {
+                        self.onParsingFile(url: item, music: nil)
+                    }
                 }
             }
         }
     }
     
-    func onOpenFile() {
+    func onGetDirectory(complete: @escaping (URL) -> Void) {
         let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
         panel.begin { (result) -> Void in
             if result == .OK {
-                self.onParsingFile(url: panel.url)
+                var isDir = ObjCBool(true)
+                
+                if let url = panel.url {
+                    if FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir) {
+                        complete(url)
+                    }
+                }
             }
         }
     }
     
     func onSplitFile() {
-    
+        onGetDirectory { url in
+            var list = [(URL, CMTimeRange)]()
+            
+            var time = 0.0
+            for item in self.listOfCue {
+                
+                list.append((url.appendingPathComponent("\(item.index). \(item.fileName).flac"), CMTimeRange(start: CMTime(seconds: time, preferredTimescale: 1), duration: CMTime(seconds: item.duration, preferredTimescale: 1))))
+                time += item.duration + item.interval
+            }
+            let av = AVAudioFileConverter(inputFileURL: self.pathOfMusic, outputFileURL: list)
+            av!.convert { per in
+                self.progress = per
+            }
+        }
     }
 }
+
 
