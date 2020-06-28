@@ -34,9 +34,7 @@ public final class AVAudioFileConverter {
         assert(asset != nil, "Error creating AVAsset from input URL")
         //    print("Output file path -> ", outputURL.absoluteString)
         
-        let delay = DispatchSemaphore(value: 0)
-        
-        asset.loadValuesAsynchronously(forKeys: ["tracks"], completionHandler: {
+        asset.loadValuesAsynchronously(forKeys: ["tracks"]) {
             var localError:NSError?
             var success = (self.asset.statusOfValue(forKey: "tracks", error: &localError) == AVKeyValueStatus.loaded)
             // Check for success of loading the assets tracks.
@@ -47,18 +45,20 @@ public final class AVAudioFileConverter {
                 }
                 
                 if (success) {
-                    success = self.startAssetReaderAndWriter(range: self.outputURL[i].range)
+                    success = self.startAssetReaderAndWriter(range: self.outputURL[i].range) { p in
+                        let index = Float(i) / Float(self.outputURL.count)
+                        let size = Float(1) / Float(self.outputURL.count) * p
+                        callback(index + size)
+                    }
                     
                 } else {
                     print("Failed to start Asset Reader and Writer")
                 }
-                DispatchQueue.main.async {
-                    callback(Float(self.outputURL.count) / Float(i))
-                }
             }
-            delay.signal()
-        })
-        delay.wait()
+            
+        }
+        
+        print("finished")
     }
     
     func setupAssetReaderAndAssetWriter(url:URL) -> Bool {
@@ -116,7 +116,7 @@ public final class AVAudioFileConverter {
         return true
     }
     
-    func startAssetReaderAndWriter(range: CMTimeRange) -> Bool {
+    func startAssetReaderAndWriter(range: CMTimeRange, percentCallback: @escaping (Float) -> Void) -> Bool {
         let delay = DispatchSemaphore(value: 0)
         print("STARTING ASSET WRITER")
         
@@ -131,7 +131,14 @@ public final class AVAudioFileConverter {
         assetWriterAudioInput.requestMediaDataWhenReady(on: DispatchQueue.main) {
             while(self.assetWriterAudioInput.isReadyForMoreMediaData ) {
                 var sampleBuffer = self.assetReaderAudioOutput.copyNextSampleBuffer()
+                
                 if(sampleBuffer != nil) {
+                    let timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer!)
+                    let timeSecond = CMTimeGetSeconds(timeStamp - range.start)
+                    
+                    let per = timeSecond / CMTimeGetSeconds(range.duration)
+                    percentCallback(Float(per))
+                    
                     self.assetWriterAudioInput.append(sampleBuffer!)
                     sampleBuffer = nil
                 } else {
@@ -144,6 +151,8 @@ public final class AVAudioFileConverter {
                     break
                 }
             }
+            
+            percentCallback(1)
         }
         
         delay.wait()

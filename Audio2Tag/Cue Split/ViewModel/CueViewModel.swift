@@ -115,6 +115,7 @@ final class CueViewModel : ObservableObject {
             
             av!.convert{ per in
                 self.progress = per
+                print(per)
             }
         }
     }
