@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
         "state": {
           "branch": null,
-          "revision": "528c354c1822f0e8921170cd0f79b730b57a7d67",
-          "version": "1.0.0"
+          "revision": "af7672fb9a9b834fe17a938e7084f99f009ccfa4",
+          "version": "1.0.1"
         }
       },
       {
@@ -15,8 +15,17 @@
         "repositoryURL": "https://github.com/Piorosen/SwiftCueParser.git",
         "state": {
           "branch": null,
-          "revision": "2389ec8a8bbf0f3ed00f5a92f840a48a0a68d230",
-          "version": "1.0.9"
+          "revision": "e6e8cf42c9416545d579ee636d8d27329c3d79ee",
+          "version": "1.0.11"
+        }
+      },
+      {
+        "package": "XMLParsing",
+        "repositoryURL": "https://github.com/ShawnMoore/XMLParsing.git",
+        "state": {
+          "branch": null,
+          "revision": "2b77a8078d9695aac1a0e5806768e819025174c3",
+          "version": "0.0.3"
         }
       }
     ]

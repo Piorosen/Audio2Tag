@@ -14,6 +14,15 @@ struct ContentView: View {
             CueView().tabItem {
                 Text("Trim Cue")
             }
+            CueView().tabItem {
+                Text("Convert")
+            }
+            CueView().tabItem {
+                Text("Tagging")
+            }
+            CueView().tabItem {
+                Text("Setting")
+            }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
