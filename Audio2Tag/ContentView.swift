@@ -14,13 +14,13 @@ struct ContentView: View {
             CueView().tabItem {
                 Text("Trim Cue")
             }
-            CueView().tabItem {
+            EmptyView().tabItem {
                 Text("Convert")
             }
-            CueView().tabItem {
+            EmptyView().tabItem {
                 Text("Tagging")
             }
-            CueView().tabItem {
+            EmptyView().tabItem {
                 Text("Setting")
             }
             
