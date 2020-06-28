@@ -24,7 +24,7 @@ final class CueViewModel : ObservableObject {
         cueTitle.albumName = sheet.meta["TITLE"] ?? "None"
         cueTitle.barcode = sheet.rem["CATALOG"] ?? "None"
         cueTitle.genre = sheet.rem["GENRE"] ?? "None"
-        cueTitle.avgBitrate = AVAudioFormat.init().sampleRate
+        cueTitle.avgBitrate = sheet.info?.format.sampleRate ?? 0.0
         
         for (idx, item) in sheet.file.tracks.enumerated() {
             let dur = item.duration ?? 0
@@ -34,7 +34,7 @@ final class CueViewModel : ObservableObject {
         }
     }
     
-    private func onParsingFile(url:URL?, music:URL?) {
+    public func onParsingFile(url:URL?, music:URL?) {
         let parser = CueSheetParser()
         self.listOfCue.removeAll()
         

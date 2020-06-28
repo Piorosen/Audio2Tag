@@ -34,7 +34,7 @@ public final class AVAudioFileConverter {
         assert(asset != nil, "Error creating AVAsset from input URL")
         //    print("Output file path -> ", outputURL.absoluteString)
         
-        let delay = DispatchSemaphore(value: 1)
+        let delay = DispatchSemaphore(value: 0)
         
         asset.loadValuesAsynchronously(forKeys: ["tracks"], completionHandler: {
             var localError:NSError?
