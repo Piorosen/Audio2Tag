@@ -112,7 +112,8 @@ final class CueViewModel : ObservableObject {
                 time += item.duration + item.interval
             }
             let av = AVAudioFileConverter(inputFileURL: self.pathOfMusic, outputFileURL: list)
-            av!.convert { per in
+            
+            av!.convert{ per in
                 self.progress = per
             }
         }

@@ -24,7 +24,8 @@ public final class AVAudioFileConverter {
         
     }
     
-    public func convert(uiCallback: @escaping (Float) -> Void) {
+    public func convert(callback: @escaping (Float) -> Void) {
+        
         let rwAudioSerializationQueueDescription = " rw audio serialization queue"
         // Create the serialization queue to use for reading and writing the audio data.
         
@@ -32,6 +33,8 @@ public final class AVAudioFileConverter {
         asset = AVAsset(url: inputURL)
         assert(asset != nil, "Error creating AVAsset from input URL")
         //    print("Output file path -> ", outputURL.absoluteString)
+        
+        let delay = DispatchSemaphore(value: 1)
         
         asset.loadValuesAsynchronously(forKeys: ["tracks"], completionHandler: {
             var localError:NSError?
@@ -50,10 +53,12 @@ public final class AVAudioFileConverter {
                     print("Failed to start Asset Reader and Writer")
                 }
                 DispatchQueue.main.async {
-                    uiCallback(Float(self.outputURL.count) / Float(i))
+                    callback(Float(self.outputURL.count) / Float(i))
                 }
             }
+            delay.signal()
         })
+        delay.wait()
     }
     
     func setupAssetReaderAndAssetWriter(url:URL) -> Bool {
