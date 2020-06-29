@@ -26,7 +26,7 @@ public final class AVAudioFileConverter {
     
     public func convert(callback: @escaping (Float) -> Void) {
         
-        let rwAudioSerializationQueueDescription = " rw audio serialization queue"
+//        let rwAudioSerializationQueueDescription = " rw audio serialization queue"
         // Create the serialization queue to use for reading and writing the audio data.
         
         

@@ -11,8 +11,7 @@
 		621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163A24A22A4900095DDC /* CueInfoModel.swift */; };
 		621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163D24A22BE000095DDC /* ProgressBar.swift */; };
 		6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BB24A8A9090034A16E /* UPCH-20520 */; };
-		6237C6BF24A8A9090034A16E /* FLAC+CUE+LOG in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */; };
-		6237C6C024A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */; };
+		6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */; };
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
@@ -26,7 +25,7 @@
 		62DDC0FC2488C440007F8281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FB2488C440007F8281 /* Assets.xcassets */; };
 		62DDC0FF2488C440007F8281 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FE2488C440007F8281 /* Preview Assets.xcassets */; };
 		62DDC1022488C440007F8281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC1002488C440007F8281 /* Main.storyboard */; };
-		62DDC10E2488C440007F8281 /* Audio2TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* Audio2TagTests.swift */; };
+		62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* CueSplitTest.swift */; };
 		62DDC1192488C440007F8281 /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC1182488C440007F8281 /* Audio2TagUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +51,7 @@
 		621C163A24A22A4900095DDC /* CueInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoModel.swift; sourceTree = "<group>"; };
 		621C163D24A22BE000095DDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		6237C6BB24A8A9090034A16E /* UPCH-20520 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UPCH-20520"; sourceTree = "<group>"; };
-		6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "FLAC+CUE+LOG"; sourceTree = "<group>"; };
-		6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition}"; sourceTree = "<group>"; };
+		6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "RADWIMPS - 君の名は。"; sourceTree = "<group>"; };
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
@@ -69,7 +67,7 @@
 		62DDC1032488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DDC1042488C440007F8281 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
 		62DDC1092488C440007F8281 /* Audio2TagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		62DDC10D2488C440007F8281 /* Audio2TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagTests.swift; sourceTree = "<group>"; };
+		62DDC10D2488C440007F8281 /* CueSplitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSplitTest.swift; sourceTree = "<group>"; };
 		62DDC10F2488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DDC1142488C440007F8281 /* Audio2TagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DDC1182488C440007F8281 /* Audio2TagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagUITests.swift; sourceTree = "<group>"; };
@@ -122,8 +120,7 @@
 		6237C6BA24A8A5210034A16E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */,
-				6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */,
+				6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */,
 				6237C6BB24A8A9090034A16E /* UPCH-20520 */,
 			);
 			path = Resources;
@@ -248,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				6237C6BA24A8A5210034A16E /* Resources */,
-				62DDC10D2488C440007F8281 /* Audio2TagTests.swift */,
+				62DDC10D2488C440007F8281 /* CueSplitTest.swift */,
 				62DDC10F2488C440007F8281 /* Info.plist */,
 			);
 			path = Audio2TagTests;
@@ -385,9 +382,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6237C6C024A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} in Resources */,
 				6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */,
-				6237C6BF24A8A9090034A16E /* FLAC+CUE+LOG in Resources */,
+				6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62DDC10E2488C440007F8281 /* Audio2TagTests.swift in Sources */,
+				62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
