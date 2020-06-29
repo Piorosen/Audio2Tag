@@ -1,0 +1,157 @@
+﻿Exact Audio Copy V1.3 from 2. September 2016
+
+EAC extraction logfile from 18. July 2019, 19:49
+
+RADWIMPS / 天気の子
+
+Used drive  : MATSHITADVD-RAM UJ8G6   Adapter: 1  ID: 0
+
+Read mode               : Secure
+Utilize accurate stream : Yes
+Defeat audio cache      : Yes
+Make use of C2 pointers : No
+
+Read offset correction                      : 103
+Overread into Lead-In and Lead-Out          : No
+Fill up missing offset samples with silence : Yes
+Delete leading and trailing silent blocks   : No
+Null samples used in CRC calculations       : Yes
+Used interface                              : Native Win32 interface for Win NT & 2000
+
+Used output format              : User Defined Encoder
+Selected bitrate                : 896 kBit/s
+Quality                         : High
+Add ID3 tag                     : No
+Command line compressor         : D:\Program\foobar2000\encoders\flac.exe
+Additional command line options : -8 -V -T "ARTIST=%artist%" -T "TITLE=%title%" -T "ALBUM=%albumtitle%" -T "DATE=%year%" -T "TRACKNUMBER=%tracknr%" -T "GENRE=%genre%" -T "COMMENT=%comment%" -T "BAND=%albuminterpret%" -T "ALBUMARTIST=%albuminterpret%" -T "COMPOSER=%composer%" %haslyrics%--tag-from-file=LYRICS="%lyricsfile%"%haslyrics% -T "DISCNUMBER=%cdnumber%" -T "TOTALDISCS=%totalcds%" -T "TOTALTRACKS=%numtracks%" %hascover%--picture="%coverfile%"%hascover% %source% -o %dest%
+
+
+TOC of the extracted CD
+
+     Track |   Start  |  Length  | Start sector | End sector 
+    ---------------------------------------------------------
+        1  |  0:00.00 |  0:41.55 |         0    |     3129   
+        2  |  0:41.55 |  0:48.65 |      3130    |     6794   
+        3  |  1:30.45 |  1:49.44 |      6795    |    15013   
+        4  |  3:20.14 |  0:53.56 |     15014    |    19044   
+        5  |  4:13.70 |  1:03.36 |     19045    |    23805   
+        6  |  5:17.31 |  2:37.06 |     23806    |    35586   
+        7  |  7:54.37 |  1:47.62 |     35587    |    43673   
+        8  |  9:42.24 |  2:13.43 |     43674    |    53691   
+        9  | 11:55.67 |  0:59.50 |     53692    |    58166   
+       10  | 12:55.42 |  3:42.54 |     58167    |    74870   
+       11  | 16:38.21 |  1:19.59 |     74871    |    80854   
+       12  | 17:58.05 |  2:36.12 |     80855    |    92566   
+       13  | 20:34.17 |  3:04.72 |     92567    |   106438   
+       14  | 23:39.14 |  2:40.60 |    106439    |   118498   
+       15  | 26:19.74 |  3:11.74 |    118499    |   132897   
+       16  | 29:31.73 |  1:36.50 |    132898    |   140147   
+       17  | 31:08.48 |  1:37.03 |    140148    |   147425   
+       18  | 32:45.51 |  1:18.68 |    147426    |   153343   
+       19  | 34:04.44 |  1:22.51 |    153344    |   159544   
+       20  | 35:27.20 |  2:33.25 |    159545    |   171044   
+       21  | 38:00.45 |  1:08.04 |    171045    |   176148   
+       22  | 39:08.49 |  0:52.02 |    176149    |   180050   
+       23  | 40:00.51 |  2:45.22 |    180051    |   192447   
+       24  | 42:45.73 |  3:01.45 |    192448    |   206067   
+       25  | 45:47.43 |  0:59.13 |    206068    |   210505   
+       26  | 46:46.56 |  2:23.67 |    210506    |   221297   
+       27  | 49:10.48 |  2:30.49 |    221298    |   232596   
+       28  | 51:41.22 |  3:08.05 |    232597    |   246701   
+       29  | 54:49.27 |  0:44.44 |    246702    |   250045   
+       30  | 55:33.71 |  4:18.28 |    250046    |   269423   
+       31  | 59:52.24 |  6:54.35 |    269424    |   300508   
+
+
+Range status and errors
+
+Selected range
+
+     Filename H:\CD\UPCH-20520\UPCH-20520.wav
+
+     Peak level 100.0 %
+     Extraction speed 4.4 X
+     Range quality 100.0 %
+     Copy CRC F4F7944B
+     Copy OK
+
+No errors occurred
+
+ 
+AccurateRip summary
+ 
+Track  1  not present in database
+Track  2  not present in database
+Track  3  not present in database
+Track  4  not present in database
+Track  5  not present in database
+Track  6  not present in database
+Track  7  not present in database
+Track  8  not present in database
+Track  9  not present in database
+Track 10  not present in database
+Track 11  not present in database
+Track 12  not present in database
+Track 13  not present in database
+Track 14  not present in database
+Track 15  not present in database
+Track 16  not present in database
+Track 17  not present in database
+Track 18  not present in database
+Track 19  not present in database
+Track 20  not present in database
+Track 21  not present in database
+Track 22  not present in database
+Track 23  not present in database
+Track 24  not present in database
+Track 25  not present in database
+Track 26  not present in database
+Track 27  not present in database
+Track 28  not present in database
+Track 29  not present in database
+Track 30  not present in database
+Track 31  not present in database
+ 
+None of the tracks are present in the AccurateRip database
+
+End of status report
+
+---- CUETools DB Plugin V2.1.6
+
+[CTDB TOCID: AKQIKKEbczAhT_R3rAkVfevk7gA-] found
+Submit result: AKQIKKEbczAhT_R3rAkVfevk7gA- has been confirmed
+Track | CTDB Status
+  1   | (8/8) Accurately ripped
+  2   | (8/8) Accurately ripped
+  3   | (8/8) Accurately ripped
+  4   | (8/8) Accurately ripped
+  5   | (8/8) Accurately ripped
+  6   | (8/8) Accurately ripped
+  7   | (8/8) Accurately ripped
+  8   | (8/8) Accurately ripped
+  9   | (8/8) Accurately ripped
+ 10   | (8/8) Accurately ripped
+ 11   | (8/8) Accurately ripped
+ 12   | (8/8) Accurately ripped
+ 13   | (8/8) Accurately ripped
+ 14   | (8/8) Accurately ripped
+ 15   | (8/8) Accurately ripped
+ 16   | (8/8) Accurately ripped
+ 17   | (8/8) Accurately ripped
+ 18   | (8/8) Accurately ripped
+ 19   | (8/8) Accurately ripped
+ 20   | (8/8) Accurately ripped
+ 21   | (8/8) Accurately ripped
+ 22   | (8/8) Accurately ripped
+ 23   | (8/8) Accurately ripped
+ 24   | (8/8) Accurately ripped
+ 25   | (8/8) Accurately ripped
+ 26   | (8/8) Accurately ripped
+ 27   | (8/8) Accurately ripped
+ 28   | (8/8) Accurately ripped
+ 29   | (8/8) Accurately ripped
+ 30   | (8/8) Accurately ripped
+ 31   | (8/8) Accurately ripped
+
+
+==== Log checksum 739AE38A17CBC914CA0C797A0F8A7F995804810786E1E3283EEC1946CA28BE46 ====

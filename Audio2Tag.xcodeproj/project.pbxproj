@@ -10,6 +10,9 @@
 		621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163824A228EB00095DDC /* AVAudioFileConverter.swift */; };
 		621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163A24A22A4900095DDC /* CueInfoModel.swift */; };
 		621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163D24A22BE000095DDC /* ProgressBar.swift */; };
+		6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BB24A8A9090034A16E /* UPCH-20520 */; };
+		6237C6BF24A8A9090034A16E /* FLAC+CUE+LOG in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */; };
+		6237C6C024A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */; };
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
@@ -48,6 +51,9 @@
 		621C163824A228EB00095DDC /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
 		621C163A24A22A4900095DDC /* CueInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoModel.swift; sourceTree = "<group>"; };
 		621C163D24A22BE000095DDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		6237C6BB24A8A9090034A16E /* UPCH-20520 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UPCH-20520"; sourceTree = "<group>"; };
+		6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "FLAC+CUE+LOG"; sourceTree = "<group>"; };
+		6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition}"; sourceTree = "<group>"; };
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
@@ -111,6 +117,16 @@
 				621C163D24A22BE000095DDC /* ProgressBar.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		6237C6BA24A8A5210034A16E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6237C6BC24A8A9090034A16E /* FLAC+CUE+LOG */,
+				6237C6BD24A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} */,
+				6237C6BB24A8A9090034A16E /* UPCH-20520 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		624AC465248CCFDE007C9D41 /* View */ = {
@@ -231,6 +247,7 @@
 		62DDC10C2488C440007F8281 /* Audio2TagTests */ = {
 			isa = PBXGroup;
 			children = (
+				6237C6BA24A8A5210034A16E /* Resources */,
 				62DDC10D2488C440007F8281 /* Audio2TagTests.swift */,
 				62DDC10F2488C440007F8281 /* Info.plist */,
 			);
@@ -368,6 +385,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237C6C024A8A9090034A16E /* Imagine Dragons - Evolve (2017) [FLAC] {Deluxe Edition} in Resources */,
+				6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */,
+				6237C6BF24A8A9090034A16E /* FLAC+CUE+LOG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
