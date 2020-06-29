@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CueSheet
+import SwiftCueSheet
 import Cocoa
 import AVFoundation
 
@@ -38,15 +38,13 @@ final class CueViewModel : ObservableObject {
         let parser = CueSheetParser()
         self.listOfCue.removeAll()
         
-        
-        
         if let url = url, let music = music {
             pathOfMusic = music
             if let cueSheet = parser.loadFile(pathOfMusic: music, pathOfCue: url) {
                 setCueSheet(sheet: cueSheet)
             }
         }else if let url = url {
-            if let cueSheet = parser.Load(path: url) {
+            if let cueSheet = parser.load(path: url) {
                 // check can i accessable file?
                 let musicUrl = url.deletingLastPathComponent().appendingPathComponent(cueSheet.file.fileName)
                 

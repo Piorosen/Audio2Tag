@@ -12,11 +12,11 @@
       },
       {
         "package": "SwiftCueSheet",
-        "repositoryURL": "https://github.com/Piorosen/SwiftCueParser.git",
+        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet.git",
         "state": {
           "branch": null,
-          "revision": "cfefb54be242dc1bcbb6ddb296bf2273ef0a1b10",
-          "version": "1.1.0"
+          "revision": "6c601c1c004e519c0756da3b4bd5a79c9b25382f",
+          "version": null
         }
       },
       {

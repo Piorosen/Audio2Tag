@@ -10,12 +10,13 @@
 		621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163824A228EB00095DDC /* AVAudioFileConverter.swift */; };
 		621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163A24A22A4900095DDC /* CueInfoModel.swift */; };
 		621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163D24A22BE000095DDC /* ProgressBar.swift */; };
+		6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227AF2624A9F67900B7B630 /* CueItemView.swift */; };
 		6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BB24A8A9090034A16E /* UPCH-20520 */; };
 		6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */; };
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
-		6248F243249CE9250084720E /* CueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6248F242249CE9250084720E /* CueSheet */; };
+		628E9CC324A9FBF800ADD6F3 /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */; };
 		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
 		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
 		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
@@ -50,6 +51,7 @@
 		621C163824A228EB00095DDC /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
 		621C163A24A22A4900095DDC /* CueInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoModel.swift; sourceTree = "<group>"; };
 		621C163D24A22BE000095DDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		6227AF2624A9F67900B7B630 /* CueItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueItemView.swift; sourceTree = "<group>"; };
 		6237C6BB24A8A9090034A16E /* UPCH-20520 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UPCH-20520"; sourceTree = "<group>"; };
 		6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "RADWIMPS - 君の名は。"; sourceTree = "<group>"; };
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
@@ -79,8 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				628E9CC324A9FBF800ADD6F3 /* SwiftCueSheet in Frameworks */,
 				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
-				6248F243249CE9250084720E /* CueSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +119,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6227AF2824A9F71500B7B630 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6237C6BA24A8A5210034A16E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				6248F23F249CD7390084720E /* CueView.swift */,
+				6227AF2624A9F67900B7B630 /* CueItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +213,7 @@
 				62DDC10C2488C440007F8281 /* Audio2TagTests */,
 				62DDC1172488C440007F8281 /* Audio2TagUITests */,
 				62DDC0F52488C43F007F8281 /* Products */,
+				6227AF2824A9F71500B7B630 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -277,8 +288,8 @@
 			);
 			name = Audio2Tag;
 			packageProductDependencies = (
-				6248F242249CE9250084720E /* CueSheet */,
 				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
+				628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -353,8 +364,8 @@
 			);
 			mainGroup = 62DDC0EB2488C43F007F8281;
 			packageReferences = (
-				6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */,
 				62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */,
+				628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
 			);
 			productRefGroup = 62DDC0F52488C43F007F8281 /* Products */;
 			projectDirPath = "";
@@ -404,6 +415,7 @@
 				62DDC0FA2488C43F007F8281 /* ContentView.swift in Sources */,
 				621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */,
 				6248F23E249CD71E0084720E /* CueModel.swift in Sources */,
+				6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */,
 				6248F23C249CD7160084720E /* CueViewModel.swift in Sources */,
 				6248F240249CD7390084720E /* CueView.swift in Sources */,
 				62CFC21F24A066A800506646 /* TagMainView.swift in Sources */,
@@ -747,12 +759,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */ = {
+		628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Piorosen/SwiftCueParser.git";
+			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				kind = revision;
+				revision = 6c601c1c004e519c0756da3b4bd5a79c9b25382f;
 			};
 		};
 		62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */ = {
@@ -766,10 +778,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6248F242249CE9250084720E /* CueSheet */ = {
+		628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */;
-			productName = CueSheet;
+			package = 628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
+			productName = SwiftCueSheet;
 		};
 		62A75610249FE016006A86EC /* Swift-MusicBrainz */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -44,16 +44,7 @@ struct CueView: View {
                 .padding(10)
             
             List (self.viewModel.listOfCue) { item in
-                HStack {
-                    Text("\(item.index)")
-                    VStack {
-                        Text("Title \(item.fileName)")
-                        Text("Artist \(item.artist)")
-                    }
-                    Spacer()
-                    Text("Length of Music : \(String(format: "%.2f 초", item.duration))")
-                    Text("Length of Index : \(String(format: "%.2f 초", item.interval))")
-                }
+                CueItemView(item: item)
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
             
             
