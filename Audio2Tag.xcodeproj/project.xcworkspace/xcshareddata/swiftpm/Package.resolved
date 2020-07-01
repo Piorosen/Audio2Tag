@@ -12,11 +12,29 @@
       },
       {
         "package": "SwiftCueSheet",
-        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet.git",
+        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet",
         "state": {
           "branch": null,
           "revision": "6c601c1c004e519c0756da3b4bd5a79c9b25382f",
-          "version": null
+          "version": "1.1.1"
+        }
+      },
+      {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup.git",
+        "state": {
+          "branch": null,
+          "revision": "11da8c685ddde2d519fad04a7daf8485bbbc773e",
+          "version": "1.7.5"
+        }
+      },
+      {
+        "package": "SwiftVgmdb",
+        "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb.git",
+        "state": {
+          "branch": null,
+          "revision": "2ce4b6794c0f5d313d9865835e9d32ed69b5f4d6",
+          "version": "1.0.0"
         }
       },
       {

@@ -16,7 +16,8 @@
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
-		628E9CC324A9FBF800ADD6F3 /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */; };
+		626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261124ACBE64003EDB7C /* SwiftVgmdb */; };
+		626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261424ACC010003EDB7C /* SwiftCueSheet */; };
 		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
 		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
 		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
@@ -81,7 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				628E9CC324A9FBF800ADD6F3 /* SwiftCueSheet in Frameworks */,
+				626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */,
+				626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */,
 				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +291,8 @@
 			name = Audio2Tag;
 			packageProductDependencies = (
 				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
-				628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */,
+				626B261124ACBE64003EDB7C /* SwiftVgmdb */,
+				626B261424ACC010003EDB7C /* SwiftCueSheet */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -365,7 +368,8 @@
 			mainGroup = 62DDC0EB2488C43F007F8281;
 			packageReferences = (
 				62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */,
-				628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
+				626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
+				626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
 			);
 			productRefGroup = 62DDC0F52488C43F007F8281 /* Products */;
 			projectDirPath = "";
@@ -759,12 +763,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */ = {
+		626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet.git";
+			repositoryURL = "https://github.com/Piorosen/SwiftVgmdb.git";
 			requirement = {
-				kind = revision;
-				revision = 6c601c1c004e519c0756da3b4bd5a79c9b25382f;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
 			};
 		};
 		62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */ = {
@@ -778,9 +790,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		628E9CC224A9FBF800ADD6F3 /* SwiftCueSheet */ = {
+		626B261124ACBE64003EDB7C /* SwiftVgmdb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 628E9CC124A9FBF800ADD6F3 /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
+			package = 626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */;
+			productName = SwiftVgmdb;
+		};
+		626B261424ACC010003EDB7C /* SwiftCueSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
 			productName = SwiftCueSheet;
 		};
 		62A75610249FE016006A86EC /* Swift-MusicBrainz */ = {
