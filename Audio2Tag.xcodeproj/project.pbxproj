@@ -20,7 +20,6 @@
 		626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261124ACBE64003EDB7C /* SwiftVgmdb */; };
 		626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261424ACC010003EDB7C /* SwiftCueSheet */; };
 		629B0D7824B0716D00C6DC99 /* TagListInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */; };
-		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
 		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
 		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
 		62CFC22324A066C200506646 /* TagMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22224A066C200506646 /* TagMainModel.swift */; };
@@ -32,6 +31,8 @@
 		62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* CueSplitTest.swift */; };
 		62DDC1192488C440007F8281 /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC1182488C440007F8281 /* Audio2TagUITests.swift */; };
 		62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB674D24B0B1C900181CFD /* ID3TagEditor */; };
+		62EB675024B0BEB300181CFD /* SwiftMusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */; };
+		62EB675224B0BF8400181CFD /* TagSearchModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EB675124B0BF8400181CFD /* TagSearchModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		62DDC1142488C440007F8281 /* Audio2TagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DDC1182488C440007F8281 /* Audio2TagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagUITests.swift; sourceTree = "<group>"; };
 		62DDC11A2488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62EB675124B0BF8400181CFD /* TagSearchModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +89,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62EB675024B0BEB300181CFD /* SwiftMusicBrainz in Frameworks */,
 				626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */,
 				626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */,
-				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
 				62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +221,7 @@
 				62CFC21E24A066A800506646 /* TagMainView.swift */,
 				629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */,
 				62061AEA24B0319E009A6935 /* TagElementView.swift */,
+				62EB675124B0BF8400181CFD /* TagSearchModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,10 +309,10 @@
 			);
 			name = Audio2Tag;
 			packageProductDependencies = (
-				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
 				626B261124ACBE64003EDB7C /* SwiftVgmdb */,
 				626B261424ACC010003EDB7C /* SwiftCueSheet */,
 				62EB674D24B0B1C900181CFD /* ID3TagEditor */,
+				62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -449,6 +452,7 @@
 				62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */,
 				62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */,
 				621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */,
+				62EB675224B0BF8400181CFD /* TagSearchModalView.swift in Sources */,
 				621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */,
 				62CFC22324A066C200506646 /* TagMainModel.swift in Sources */,
 			);
@@ -831,15 +835,15 @@
 			package = 626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
 			productName = SwiftCueSheet;
 		};
-		62A75610249FE016006A86EC /* Swift-MusicBrainz */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */;
-			productName = "Swift-MusicBrainz";
-		};
 		62EB674D24B0B1C900181CFD /* ID3TagEditor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
 			productName = ID3TagEditor;
+		};
+		62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */;
+			productName = SwiftMusicBrainz;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

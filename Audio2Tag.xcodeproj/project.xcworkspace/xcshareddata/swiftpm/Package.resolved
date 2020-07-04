@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "Swift-MusicBrainz",
+        "package": "SwiftMusicBrainz",
         "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
         "state": {
           "branch": null,
-          "revision": "af7672fb9a9b834fe17a938e7084f99f009ccfa4",
-          "version": "1.0.1"
+          "revision": "a45920a0402f3fe7d44850f7ff093c25bc91f4eb",
+          "version": "1.0.3"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb.git",
         "state": {
           "branch": null,
-          "revision": "2ce4b6794c0f5d313d9865835e9d32ed69b5f4d6",
-          "version": "1.0.0"
+          "revision": "2558e1102c21ae8697977e028fd1075a6002edf5",
+          "version": "1.0.2"
         }
       },
       {

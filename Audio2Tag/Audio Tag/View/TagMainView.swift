@@ -12,15 +12,30 @@ struct TagMainView : View{
     @ObservedObject var viewModel = TagMainViewModel()
     @State var isActive = false
     
-    var body :some View{
-        NavigationView {
+    var body :some View {
+        VStack {
+            HStack {
+                Button(action: self.viewModel.openFile) {
+                    Text("Open")
+                }
+                
+                Button(action: self.viewModel.runTagging) {
+                    Text("Tagging")
+                }
+                Button(action: self.viewModel.downloadFreeDB) {
+                    Text("FreeDB")
+                }
+                Button(action: { self.isActive = true; self.viewModel.downloadVgmDB() }) {
+                    Text("VgmDB")
+                }.sheet(isPresented: self.$isActive) {
+                    TagSearchModalView()
+                }
+                
+                Spacer()
+            }
+            
             HStack {
                 ScrollView {
-                    Button(action: {
-                        self.viewModel.make()
-                    }) {
-                        Text("Make")
-                    }
                     VStack {
                         TagElementView("Artist", text: self.$viewModel.artist)
                         TagElementView("Album", text: self.$viewModel.album)
@@ -36,15 +51,18 @@ struct TagMainView : View{
                         TagElementView("DiscNum", text: self.$viewModel.discNum)
                     }
                 }.frame(maxWidth: 250, maxHeight: .infinity)
-                List {
-                    Section(header: Text("id")) {
-                        ForEach (0..<self.viewModel.item.count, id: \.self) { index in
-                            NavigationLink(destination: TagListInformationView(item: self.$viewModel.item[index])) {
-                                Text("\(self.viewModel.item[index].title)")
+                
+                NavigationView {
+                    List {
+                        Section(header: Text("id")) {
+                            ForEach (0..<self.viewModel.item.count, id: \.self) { index in
+                                NavigationLink(destination: TagListInformationView(item: self.$viewModel.item[index])) {
+                                    Text("\(self.viewModel.item[index].directory)")
+                                }
                             }
                         }
                     }
-                }   
+                }
             }
         }.frame(maxWidth:.infinity,maxHeight:.infinity)
     }
