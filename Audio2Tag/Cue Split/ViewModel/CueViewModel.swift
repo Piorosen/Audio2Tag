@@ -38,6 +38,8 @@ final class CueViewModel : ObservableObject {
         let parser = CueSheetParser()
         self.listOfCue.removeAll()
         
+        
+        
         if let url = url, let music = music {
             pathOfMusic = music
             if let cueSheet = parser.loadFile(pathOfMusic: music, pathOfCue: url) {

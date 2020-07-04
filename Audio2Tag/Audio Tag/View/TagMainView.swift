@@ -1,21 +1,56 @@
 //
-//  TagMainView.swift
-//  Audio2Tag
+//TagMainView.swift
+//Audio2Tag
 //
-//  Created by Aoikazto on 2020/06/22.
-//  Copyright © 2020 Aoikazto. All rights reserved.
+//CreatedbyAoikaztoon2020/06/22.
+//Copyright©2020Aoikazto.Allrightsreserved.
 //
 
 import SwiftUI
 
-struct TagMainView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct TagMainView : View{
+    @ObservedObject var viewModel = TagMainViewModel()
+    @State var isActive = false
+    
+    var body :some View{
+        HStack {
+            ScrollView {
+                Button(action: {
+                    self.viewModel.make()
+                }) {
+                    Text("Make")
+                }
+                VStack {
+                    TagElementView("Artist", text: self.$viewModel.artist)
+                    TagElementView("Album", text: self.$viewModel.album)
+                    TagElementView("Year", text: self.$viewModel.year)
+                    TagElementView("Track", text: self.$viewModel.track)
+                    TagElementView("Genre", text: self.$viewModel.genre)
+                    TagElementView("Comment", text: self.$viewModel.comment)
+                    TagElementView("Directory", text: self.$viewModel.directory)
+                    TagElementView("AlbumArtist", text: self.$viewModel.albumArtist)
+                    TagElementView("Composer", text: self.$viewModel.composer)
+                    TagElementView("DiscNum", text: self.$viewModel.discNum)
+                }
+            }.frame(maxWidth: 250, maxHeight: .infinity)
+            
+            NavigationView {
+                List {
+                    Section(header: Text("id")) {
+                        ForEach (0..<self.viewModel.item.count, id: \.self) { index in
+                            NavigationLink(destination: TagListInformationView(item: self.viewModel.item[index])) {
+                                Text("\(self.viewModel.item[index].title)")
+                            }
+                        }
+                    }
+                }   
+            }
+        }.frame(maxWidth:.infinity,maxHeight:.infinity)
     }
 }
 
-struct TagMainView_Previews: PreviewProvider {
-    static var previews: some View {
+struct TagMainView_Previews: PreviewProvider{
+    static var previews: some View{
         TagMainView()
     }
 }

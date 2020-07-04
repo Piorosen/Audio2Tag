@@ -14,7 +14,7 @@ struct ContentView: View {
             CueView().tabItem {
                 Text("Trim Cue")
             }
-            EmptyView().tabItem {
+            TagMainView().tabItem {
                 Text("Convert")
             }
             EmptyView().tabItem {

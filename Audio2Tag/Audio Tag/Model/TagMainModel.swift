@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct TagMainModel : Identifiable {
+    let id = UUID()
+    var index:Int
+    var title:String
+    var directory:String
+    var fileName:String    
+}
