@@ -9,11 +9,13 @@
 import SwiftUI
 
 struct TagListInformationView: View {
-    var item: TagMainModel
-    
+    @Binding var item: TagMainModel
     
     var body: some View {
-            Text("\(item.id)")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack {
+            TagElementView("File Name", text: self.$item.fileName)
+            TagElementView("Title", text: self.$item.title)
+            TagElementView("Directory", text: self.$item.directory)
+        }.frame(maxWidth: 250, maxHeight: .infinity, alignment: .top)
     }
 }

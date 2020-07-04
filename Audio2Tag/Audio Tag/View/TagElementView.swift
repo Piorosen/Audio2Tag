@@ -13,11 +13,12 @@ struct TagElementView: View {
         self.name = name
         self._text = text
     }
-    
+
     let name:String
     @Binding var text: String
+    
     var body: some View {
-        VStack (alignment: .leading){
+        VStack (alignment: .leading) {
             Text(name)
             TextField(name, text: self.$text)
         }.padding(5)
