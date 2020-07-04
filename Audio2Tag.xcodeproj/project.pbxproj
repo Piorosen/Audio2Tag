@@ -31,6 +31,7 @@
 		62DDC1022488C440007F8281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC1002488C440007F8281 /* Main.storyboard */; };
 		62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* CueSplitTest.swift */; };
 		62DDC1192488C440007F8281 /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC1182488C440007F8281 /* Audio2TagUITests.swift */; };
+		62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB674D24B0B1C900181CFD /* ID3TagEditor */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 				626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */,
 				626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */,
 				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
+				62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +309,7 @@
 				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
 				626B261124ACBE64003EDB7C /* SwiftVgmdb */,
 				626B261424ACC010003EDB7C /* SwiftCueSheet */,
+				62EB674D24B0B1C900181CFD /* ID3TagEditor */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -387,6 +390,7 @@
 				62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */,
 				626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
 				626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
+				62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */,
 			);
 			productRefGroup = 62DDC0F52488C43F007F8281 /* Products */;
 			projectDirPath = "";
@@ -806,6 +810,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chicio/ID3TagEditor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -823,6 +835,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */;
 			productName = "Swift-MusicBrainz";
+		};
+		62EB674D24B0B1C900181CFD /* ID3TagEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
+			productName = ID3TagEditor;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
