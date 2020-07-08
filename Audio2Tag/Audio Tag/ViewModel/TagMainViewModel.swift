@@ -9,8 +9,6 @@
 import Foundation
 import SwiftUI
 import ID3TagEditor
-import SwiftVgmdb
-import SwiftMusicBrainz
 
 extension TagMainModel {
     static func make(index:Int, url:URL) -> TagMainModel? {
@@ -68,6 +66,7 @@ class TagMainViewModel : ObservableObject {
     }
     
     func downloadVgmDB() {
+        
         
         
         

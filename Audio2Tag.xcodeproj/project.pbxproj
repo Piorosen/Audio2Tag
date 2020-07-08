@@ -19,6 +19,7 @@
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
 		626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261124ACBE64003EDB7C /* SwiftVgmdb */; };
 		626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261424ACC010003EDB7C /* SwiftCueSheet */; };
+		6293978E24B2CBD70047F702 /* TagSearchModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */; };
 		629B0D7824B0716D00C6DC99 /* TagListInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */; };
 		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
 		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
@@ -63,6 +64,7 @@
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchModalViewModel.swift; sourceTree = "<group>"; };
 		629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListInformationView.swift; sourceTree = "<group>"; };
 		62CFC21E24A066A800506646 /* TagMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainView.swift; sourceTree = "<group>"; };
 		62CFC22024A066B400506646 /* TagMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainViewModel.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				62CFC22024A066B400506646 /* TagMainViewModel.swift */,
+				6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				62DDC0FA2488C43F007F8281 /* ContentView.swift in Sources */,
 				621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */,
 				6248F23E249CD71E0084720E /* CueModel.swift in Sources */,
+				6293978E24B2CBD70047F702 /* TagSearchModalViewModel.swift in Sources */,
 				6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */,
 				6248F23C249CD7160084720E /* CueViewModel.swift in Sources */,
 				629B0D7824B0716D00C6DC99 /* TagListInformationView.swift in Sources */,
