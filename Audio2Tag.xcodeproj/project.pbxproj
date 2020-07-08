@@ -7,11 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62061AEB24B0319E009A6935 /* TagElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62061AEA24B0319E009A6935 /* TagElementView.swift */; };
+		621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163824A228EB00095DDC /* AVAudioFileConverter.swift */; };
+		621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163A24A22A4900095DDC /* CueInfoModel.swift */; };
+		621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621C163D24A22BE000095DDC /* ProgressBar.swift */; };
+		6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227AF2624A9F67900B7B630 /* CueItemView.swift */; };
+		6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BB24A8A9090034A16E /* UPCH-20520 */; };
+		6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */; };
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
-		6248F243249CE9250084720E /* CueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6248F242249CE9250084720E /* CueSheet */; };
-		62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62A75610249FE016006A86EC /* Swift-MusicBrainz */; };
+		626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261124ACBE64003EDB7C /* SwiftVgmdb */; };
+		626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 626B261424ACC010003EDB7C /* SwiftCueSheet */; };
+		6293978E24B2CBD70047F702 /* TagSearchModalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */; };
+		629B0D7824B0716D00C6DC99 /* TagListInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */; };
 		62CFC21F24A066A800506646 /* TagMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC21E24A066A800506646 /* TagMainView.swift */; };
 		62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22024A066B400506646 /* TagMainViewModel.swift */; };
 		62CFC22324A066C200506646 /* TagMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CFC22224A066C200506646 /* TagMainModel.swift */; };
@@ -20,8 +29,11 @@
 		62DDC0FC2488C440007F8281 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FB2488C440007F8281 /* Assets.xcassets */; };
 		62DDC0FF2488C440007F8281 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC0FE2488C440007F8281 /* Preview Assets.xcassets */; };
 		62DDC1022488C440007F8281 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DDC1002488C440007F8281 /* Main.storyboard */; };
-		62DDC10E2488C440007F8281 /* Audio2TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* Audio2TagTests.swift */; };
+		62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC10D2488C440007F8281 /* CueSplitTest.swift */; };
 		62DDC1192488C440007F8281 /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DDC1182488C440007F8281 /* Audio2TagUITests.swift */; };
+		62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB674D24B0B1C900181CFD /* ID3TagEditor */; };
+		62EB675024B0BEB300181CFD /* SwiftMusicBrainz in Frameworks */ = {isa = PBXBuildFile; productRef = 62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */; };
+		62EB675224B0BF8400181CFD /* TagSearchModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EB675124B0BF8400181CFD /* TagSearchModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +54,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62061AEA24B0319E009A6935 /* TagElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagElementView.swift; sourceTree = "<group>"; };
+		621C163824A228EB00095DDC /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
+		621C163A24A22A4900095DDC /* CueInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoModel.swift; sourceTree = "<group>"; };
+		621C163D24A22BE000095DDC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		6227AF2624A9F67900B7B630 /* CueItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueItemView.swift; sourceTree = "<group>"; };
+		6237C6BB24A8A9090034A16E /* UPCH-20520 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UPCH-20520"; sourceTree = "<group>"; };
+		6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "RADWIMPS - 君の名は。"; sourceTree = "<group>"; };
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchModalViewModel.swift; sourceTree = "<group>"; };
+		629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListInformationView.swift; sourceTree = "<group>"; };
 		62CFC21E24A066A800506646 /* TagMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainView.swift; sourceTree = "<group>"; };
 		62CFC22024A066B400506646 /* TagMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainViewModel.swift; sourceTree = "<group>"; };
 		62CFC22224A066C200506646 /* TagMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMainModel.swift; sourceTree = "<group>"; };
@@ -57,11 +78,12 @@
 		62DDC1032488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DDC1042488C440007F8281 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
 		62DDC1092488C440007F8281 /* Audio2TagTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		62DDC10D2488C440007F8281 /* Audio2TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagTests.swift; sourceTree = "<group>"; };
+		62DDC10D2488C440007F8281 /* CueSplitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSplitTest.swift; sourceTree = "<group>"; };
 		62DDC10F2488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DDC1142488C440007F8281 /* Audio2TagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DDC1182488C440007F8281 /* Audio2TagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagUITests.swift; sourceTree = "<group>"; };
 		62DDC11A2488C440007F8281 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62EB675124B0BF8400181CFD /* TagSearchModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +91,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62A75611249FE016006A86EC /* Swift-MusicBrainz in Frameworks */,
-				6248F243249CE9250084720E /* CueSheet in Frameworks */,
+				62EB675024B0BEB300181CFD /* SwiftMusicBrainz in Frameworks */,
+				626B261524ACC010003EDB7C /* SwiftCueSheet in Frameworks */,
+				626B261224ACBE64003EDB7C /* SwiftVgmdb in Frameworks */,
+				62EB674E24B0B1C900181CFD /* ID3TagEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,10 +115,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62061AE924B03083009A6935 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		621C163724A228E000095DDC /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				621C163824A228EB00095DDC /* AVAudioFileConverter.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		621C163C24A22BD600095DDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				621C163D24A22BE000095DDC /* ProgressBar.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6227AF2824A9F71500B7B630 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6237C6BA24A8A5210034A16E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */,
+				6237C6BB24A8A9090034A16E /* UPCH-20520 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		624AC465248CCFDE007C9D41 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				6248F23F249CD7390084720E /* CueView.swift */,
+				6227AF2624A9F67900B7B630 /* CueItemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -111,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				6248F23D249CD71E0084720E /* CueModel.swift */,
+				621C163A24A22A4900095DDC /* CueInfoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +183,7 @@
 		62CFC21924A0666400506646 /* Cue Split */ = {
 			isa = PBXGroup;
 			children = (
+				621C163724A228E000095DDC /* Library */,
 				624AC467248CCFEA007C9D41 /* Model */,
 				624AC466248CCFE4007C9D41 /* ViewModel */,
 				624AC465248CCFDE007C9D41 /* View */,
@@ -128,9 +194,9 @@
 		62CFC21A24A0667200506646 /* Audio Tag */ = {
 			isa = PBXGroup;
 			children = (
-				62CFC21D24A0669600506646 /* View */,
-				62CFC21C24A0668C00506646 /* ViewModel */,
 				62CFC21B24A0668800506646 /* Model */,
+				62CFC21C24A0668C00506646 /* ViewModel */,
+				62CFC21D24A0669600506646 /* View */,
 			);
 			path = "Audio Tag";
 			sourceTree = "<group>";
@@ -147,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				62CFC22024A066B400506646 /* TagMainViewModel.swift */,
+				6293978D24B2CBD70047F702 /* TagSearchModalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -155,6 +222,9 @@
 			isa = PBXGroup;
 			children = (
 				62CFC21E24A066A800506646 /* TagMainView.swift */,
+				629B0D7724B0716D00C6DC99 /* TagListInformationView.swift */,
+				62061AEA24B0319E009A6935 /* TagElementView.swift */,
+				62EB675124B0BF8400181CFD /* TagSearchModalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +236,7 @@
 				62DDC10C2488C440007F8281 /* Audio2TagTests */,
 				62DDC1172488C440007F8281 /* Audio2TagUITests */,
 				62DDC0F52488C43F007F8281 /* Products */,
+				6227AF2824A9F71500B7B630 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +253,8 @@
 		62DDC0F62488C43F007F8281 /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				62061AE924B03083009A6935 /* Resources */,
+				621C163C24A22BD600095DDC /* View */,
 				62CFC21A24A0667200506646 /* Audio Tag */,
 				62CFC21924A0666400506646 /* Cue Split */,
 				62DDC0F72488C43F007F8281 /* AppDelegate.swift */,
@@ -206,7 +279,8 @@
 		62DDC10C2488C440007F8281 /* Audio2TagTests */ = {
 			isa = PBXGroup;
 			children = (
-				62DDC10D2488C440007F8281 /* Audio2TagTests.swift */,
+				6237C6BA24A8A5210034A16E /* Resources */,
+				62DDC10D2488C440007F8281 /* CueSplitTest.swift */,
 				62DDC10F2488C440007F8281 /* Info.plist */,
 			);
 			path = Audio2TagTests;
@@ -238,8 +312,10 @@
 			);
 			name = Audio2Tag;
 			packageProductDependencies = (
-				6248F242249CE9250084720E /* CueSheet */,
-				62A75610249FE016006A86EC /* Swift-MusicBrainz */,
+				626B261124ACBE64003EDB7C /* SwiftVgmdb */,
+				626B261424ACC010003EDB7C /* SwiftCueSheet */,
+				62EB674D24B0B1C900181CFD /* ID3TagEditor */,
+				62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */,
 			);
 			productName = Audio2Tag;
 			productReference = 62DDC0F42488C43F007F8281 /* Audio2Tag.app */;
@@ -287,6 +363,9 @@
 		62DDC0EC2488C43F007F8281 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					Image,
+				);
 				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = Aoikazto;
@@ -314,8 +393,10 @@
 			);
 			mainGroup = 62DDC0EB2488C43F007F8281;
 			packageReferences = (
-				6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */,
 				62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */,
+				626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
+				626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
+				62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */,
 			);
 			productRefGroup = 62DDC0F52488C43F007F8281 /* Products */;
 			projectDirPath = "";
@@ -343,6 +424,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */,
+				6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,12 +444,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DDC0FA2488C43F007F8281 /* ContentView.swift in Sources */,
+				621C163E24A22BE000095DDC /* ProgressBar.swift in Sources */,
 				6248F23E249CD71E0084720E /* CueModel.swift in Sources */,
+				6293978E24B2CBD70047F702 /* TagSearchModalViewModel.swift in Sources */,
+				6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */,
 				6248F23C249CD7160084720E /* CueViewModel.swift in Sources */,
+				629B0D7824B0716D00C6DC99 /* TagListInformationView.swift in Sources */,
 				6248F240249CD7390084720E /* CueView.swift in Sources */,
+				62061AEB24B0319E009A6935 /* TagElementView.swift in Sources */,
 				62CFC21F24A066A800506646 /* TagMainView.swift in Sources */,
 				62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */,
 				62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */,
+				621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */,
+				62EB675224B0BF8400181CFD /* TagSearchModalView.swift in Sources */,
+				621C163B24A22A4900095DDC /* CueInfoModel.swift in Sources */,
 				62CFC22324A066C200506646 /* TagMainModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62DDC10E2488C440007F8281 /* Audio2TagTests.swift in Sources */,
+				62DDC10E2488C440007F8281 /* CueSplitTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +638,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -556,6 +648,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Audio2Tag/Audio2Tag.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Audio2Tag/Preview Content\"";
@@ -570,6 +663,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -700,12 +794,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */ = {
+		626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Piorosen/SwiftCueParser.git";
+			repositoryURL = "https://github.com/Piorosen/SwiftVgmdb.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.0.0;
+			};
+		};
+		626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
 			};
 		};
 		62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */ = {
@@ -716,18 +818,36 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chicio/ID3TagEditor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6248F242249CE9250084720E /* CueSheet */ = {
+		626B261124ACBE64003EDB7C /* SwiftVgmdb */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6248F241249CE9250084720E /* XCRemoteSwiftPackageReference "SwiftCueParser" */;
-			productName = CueSheet;
+			package = 626B261024ACBE64003EDB7C /* XCRemoteSwiftPackageReference "SwiftVgmdb" */;
+			productName = SwiftVgmdb;
 		};
-		62A75610249FE016006A86EC /* Swift-MusicBrainz */ = {
+		626B261424ACC010003EDB7C /* SwiftCueSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 626B261324ACC010003EDB7C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
+			productName = SwiftCueSheet;
+		};
+		62EB674D24B0B1C900181CFD /* ID3TagEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62EB674C24B0B1C900181CFD /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
+			productName = ID3TagEditor;
+		};
+		62EB674F24B0BEB300181CFD /* SwiftMusicBrainz */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62A7560F249FE016006A86EC /* XCRemoteSwiftPackageReference "Swift-MusicBrainz" */;
-			productName = "Swift-MusicBrainz";
+			productName = SwiftMusicBrainz;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -2,21 +2,57 @@
   "object": {
     "pins": [
       {
-        "package": "Swift-MusicBrainz",
-        "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
+        "package": "ID3TagEditor",
+        "repositoryURL": "https://github.com/chicio/ID3TagEditor",
         "state": {
           "branch": null,
-          "revision": "528c354c1822f0e8921170cd0f79b730b57a7d67",
-          "version": "1.0.0"
+          "revision": "4adad2ca9277456cb16d74b8336320e685be6c5e",
+          "version": "3.2.0"
         }
       },
       {
-        "package": "CueSheet",
-        "repositoryURL": "https://github.com/Piorosen/SwiftCueParser.git",
+        "package": "SwiftMusicBrainz",
+        "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
         "state": {
           "branch": null,
-          "revision": "2389ec8a8bbf0f3ed00f5a92f840a48a0a68d230",
-          "version": "1.0.9"
+          "revision": "a45920a0402f3fe7d44850f7ff093c25bc91f4eb",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "SwiftCueSheet",
+        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet",
+        "state": {
+          "branch": null,
+          "revision": "1da363c6aa3772ff97fb81df298a877da56997ba",
+          "version": "1.1.3"
+        }
+      },
+      {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup.git",
+        "state": {
+          "branch": null,
+          "revision": "11da8c685ddde2d519fad04a7daf8485bbbc773e",
+          "version": "1.7.5"
+        }
+      },
+      {
+        "package": "SwiftVgmdb",
+        "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb.git",
+        "state": {
+          "branch": null,
+          "revision": "92d86d1d52adfd918e5b1ee9db2b4c1172a95326",
+          "version": "1.0.4"
+        }
+      },
+      {
+        "package": "XMLParsing",
+        "repositoryURL": "https://github.com/ShawnMoore/XMLParsing.git",
+        "state": {
+          "branch": null,
+          "revision": "2b77a8078d9695aac1a0e5806768e819025174c3",
+          "version": "0.0.3"
         }
       }
     ]
