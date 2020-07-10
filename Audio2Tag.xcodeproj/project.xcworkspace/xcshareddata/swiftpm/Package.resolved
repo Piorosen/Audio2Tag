@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "SwiftMusicBrainz",
-        "repositoryURL": "https://github.com/Piorosen/Swift-MusicBrainz.git",
-        "state": {
-          "branch": null,
-          "revision": "a45920a0402f3fe7d44850f7ff093c25bc91f4eb",
-          "version": "1.0.3"
-        }
-      },
-      {
         "package": "SwiftCueSheet",
         "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet",
         "state": {
@@ -39,20 +30,11 @@
       },
       {
         "package": "SwiftVgmdb",
-        "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb.git",
+        "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb",
         "state": {
           "branch": null,
           "revision": "92d86d1d52adfd918e5b1ee9db2b4c1172a95326",
           "version": "1.0.4"
-        }
-      },
-      {
-        "package": "XMLParsing",
-        "repositoryURL": "https://github.com/ShawnMoore/XMLParsing.git",
-        "state": {
-          "branch": null,
-          "revision": "2b77a8078d9695aac1a0e5806768e819025174c3",
-          "version": "0.0.3"
         }
       }
     ]

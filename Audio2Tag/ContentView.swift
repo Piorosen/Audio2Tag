@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Audio2Tag
 //
-//  Created by Aoikazto on 2020/06/04.
+//  Created by Aoikazto on 2020/07/10.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
@@ -12,22 +12,20 @@ struct ContentView: View {
     var body: some View {
         TabView {
             CueView().tabItem {
-                Text("Trim Cue")
+                Text("Cue")
             }
-            TagMainView().tabItem {
-                Text("Convert")
+            TagView().tabItem {
+                Text("Tag")
             }
-            EmptyView().tabItem {
-                Text("Tagging")
+            FileView().tabItem {
+                Text("File")
             }
-            EmptyView().tabItem {
+            SettingView().tabItem {
                 Text("Setting")
             }
-            
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
