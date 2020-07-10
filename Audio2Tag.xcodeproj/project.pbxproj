@@ -18,6 +18,10 @@
 		626F5CD324B81EA900945523 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 626F5CD224B81EA900945523 /* SwiftVgmdb */; };
 		626F5CD624B81EC900945523 /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 626F5CD524B81EC900945523 /* SwiftCueSheet */; };
 		626F5CD924B81F2E00945523 /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 626F5CD824B81F2E00945523 /* ID3TagEditor */; };
+		626F5CE924B8217C00945523 /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CE824B8217C00945523 /* CueView.swift */; };
+		626F5CEB24B8219700945523 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEA24B8219700945523 /* TagView.swift */; };
+		626F5CED24B8219D00945523 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEC24B8219D00945523 /* FileView.swift */; };
+		626F5CEF24B821A300945523 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEE24B821A300945523 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,11 @@
 		626F5CBF24B81E5B00945523 /* Audio2TagUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Audio2TagUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CC324B81E5B00945523 /* Audio2TagUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagUITests.swift; sourceTree = "<group>"; };
 		626F5CC524B81E5B00945523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		626F5CDA24B81F8900945523 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
+		626F5CE824B8217C00945523 /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		626F5CEA24B8219700945523 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		626F5CEC24B8219D00945523 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
+		626F5CEE24B821A300945523 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +114,11 @@
 		626F5CA024B81E5B00945523 /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				626F5CDE24B8202F00945523 /* Setting Manage */,
+				626F5CDD24B8202300945523 /* File Manage */,
+				626F5CDC24B81FEE00945523 /* Tag Manage */,
+				626F5CDB24B81FE500945523 /* Cue Manage */,
+				626F5CDA24B81F8900945523 /* Audio2Tag.entitlements */,
 				626F5CA124B81E5B00945523 /* AppDelegate.swift */,
 				626F5CA324B81E5B00945523 /* SceneDelegate.swift */,
 				626F5CA524B81E5B00945523 /* ContentView.swift */,
@@ -140,6 +154,86 @@
 				626F5CC524B81E5B00945523 /* Info.plist */,
 			);
 			path = Audio2TagUITests;
+			sourceTree = "<group>";
+		};
+		626F5CDB24B81FE500945523 /* Cue Manage */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CE324B8205F00945523 /* ViewModel */,
+				626F5CE224B8205B00945523 /* Model */,
+				626F5CE124B8205800945523 /* View */,
+			);
+			path = "Cue Manage";
+			sourceTree = "<group>";
+		};
+		626F5CDC24B81FEE00945523 /* Tag Manage */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CE524B8216000945523 /* View */,
+			);
+			path = "Tag Manage";
+			sourceTree = "<group>";
+		};
+		626F5CDD24B8202300945523 /* File Manage */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CE624B8216600945523 /* View */,
+			);
+			path = "File Manage";
+			sourceTree = "<group>";
+		};
+		626F5CDE24B8202F00945523 /* Setting Manage */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CE724B8216A00945523 /* View */,
+			);
+			path = "Setting Manage";
+			sourceTree = "<group>";
+		};
+		626F5CE124B8205800945523 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CE824B8217C00945523 /* CueView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		626F5CE224B8205B00945523 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		626F5CE324B8205F00945523 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		626F5CE524B8216000945523 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CEA24B8219700945523 /* TagView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		626F5CE624B8216600945523 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CEC24B8219D00945523 /* FileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		626F5CE724B8216A00945523 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				626F5CEE24B821A300945523 /* SettingView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +379,11 @@
 			files = (
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
+				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
+				626F5CED24B8219D00945523 /* FileView.swift in Sources */,
+				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
+				626F5CEB24B8219700945523 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Audio2Tag/Audio2Tag.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Audio2Tag/Preview Content\"";
 				DEVELOPMENT_TEAM = 5Q488G86T2;
@@ -461,8 +560,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -470,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Audio2Tag/Audio2Tag.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Audio2Tag/Preview Content\"";
 				DEVELOPMENT_TEAM = 5Q488G86T2;
@@ -481,8 +583,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
