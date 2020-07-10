@@ -17,35 +17,8 @@ extension VDTrack {
 
 struct TagSearchModalView: View {
     @Environment(\.presentationMode) private var mode
-    @ObservedObject var viewModel = testViewModel()
+    @ObservedObject var viewModel = TagSearchModalViewModel()
     
-    class testViewModel : ObservableObject {
-        @Published var isActive:Bool = false
-        @Published var payback:VDTrack = VDTrack.instance()
-        
-        @Published var title = String()
-        @Published var discNum = String()
-        @Published var barcode = String()
-        @Published var composer = String()
-        @Published var artist = String()
-        @Published var publisher = String()
-        
-        func next() {
-            isActive = true
-        }
-
-        func makeQuary() -> VDSearchAnnotation {
-            let title = self.title
-            let discNum = self.discNum
-            let barcode = self.barcode
-            let composer = [self.composer]
-            let artist = [self.artist]
-            let publisher = [self.publisher]
-            
-            return VDSearchAnnotation(title: title, discNum: discNum, barcode: barcode, composer: composer, artist: artist, publisher: publisher)
-        }
-        
-    }
     
     
     func close() {
@@ -77,20 +50,17 @@ struct TagSearchModalView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
 //            .background(Color.red)
             
-            
             HStack {
                 Spacer()
                 Button(action: self.viewModel.next) {
                     Text("Next")
-                }.sheet(isPresented: self.$viewModel.isActive) {
-                    TagSearchAlbumModalView(sender: self.viewModel.makeQuary(), payback: self.$viewModel.payback)
+                }.sheet(isPresented: self.$viewModel.isActivity) {
+                    TagSearchAlbumModalView(sender: self.viewModel.param, ret: self.$viewModel.payback).animation(.spring())
                 }
                 Button(action: self.close) {
                     Text("Close")
                 }
             }.padding(.top, 10)
-//                .background(Color.black)
-            
         }
         .padding(10)
         .frame(width: 500, height: 250)

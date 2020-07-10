@@ -9,10 +9,20 @@
 import SwiftUI
 import SwiftVgmdb
 
+struct TagSearchAlbumModalModel : Identifiable {
+    let id = UUID()
+    let item: VDAlbum
+}
+
 struct TagSearchAlbumModalView: View {
     @Environment(\.presentationMode) private var mode
-    let sender: VDSearchAnnotation
+    let sender: [TagSearchAlbumModalModel]
     @Binding var payback: VDTrack
+    
+    init(sender: [VDAlbum], ret: Binding<VDTrack>) {
+        self.sender = sender.map { item in TagSearchAlbumModalModel(item: item) }
+        self._payback = ret
+    }
     
     func close() {
             mode.wrappedValue.dismiss()
@@ -22,7 +32,10 @@ struct TagSearchAlbumModalView: View {
     
     var body: some View {
         VStack{
-            
+            List (sender) { value in
+                
+                Text("\(value.item.albumTitle)")
+            }
             Button(action: self.close) {
                 Text("dismiss")
             }

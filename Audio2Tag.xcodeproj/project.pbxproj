@@ -14,6 +14,7 @@
 		6227AF2724A9F67900B7B630 /* CueItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227AF2624A9F67900B7B630 /* CueItemView.swift */; };
 		6237C6BE24A8A9090034A16E /* UPCH-20520 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BB24A8A9090034A16E /* UPCH-20520 */; };
 		6237C6BF24A8A9090034A16E /* RADWIMPS - 君の名は。 in Resources */ = {isa = PBXBuildFile; fileRef = 6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */; };
+		623A8E9524B81D8F00FCBFA2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623A8E9424B81D8F00FCBFA2 /* ActivityIndicator.swift */; };
 		6248F23C249CD7160084720E /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23B249CD7160084720E /* CueViewModel.swift */; };
 		6248F23E249CD71E0084720E /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23D249CD71E0084720E /* CueModel.swift */; };
 		6248F240249CD7390084720E /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248F23F249CD7390084720E /* CueView.swift */; };
@@ -66,6 +67,7 @@
 		6227AF2624A9F67900B7B630 /* CueItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueItemView.swift; sourceTree = "<group>"; };
 		6237C6BB24A8A9090034A16E /* UPCH-20520 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "UPCH-20520"; sourceTree = "<group>"; };
 		6237C6BC24A8A9090034A16E /* RADWIMPS - 君の名は。 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "RADWIMPS - 君の名は。"; sourceTree = "<group>"; };
+		623A8E9424B81D8F00FCBFA2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		6248F23B249CD7160084720E /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6248F23D249CD71E0084720E /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		6248F23F249CD7390084720E /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				621C163D24A22BE000095DDC /* ProgressBar.swift */,
+				623A8E9424B81D8F00FCBFA2 /* ActivityIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				62CFC21F24A066A800506646 /* TagMainView.swift in Sources */,
 				62DDC0F82488C43F007F8281 /* AppDelegate.swift in Sources */,
 				62DCFD4C24B5F3430028A569 /* SearchAlbumView.swift in Sources */,
+				623A8E9524B81D8F00FCBFA2 /* ActivityIndicator.swift in Sources */,
 				62CFC22124A066B400506646 /* TagMainViewModel.swift in Sources */,
 				621C163924A228EB00095DDC /* AVAudioFileConverter.swift in Sources */,
 				62EB675224B0BF8400181CFD /* SearchView.swift in Sources */,
