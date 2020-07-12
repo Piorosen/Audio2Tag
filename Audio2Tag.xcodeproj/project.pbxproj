@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5A24BB0EE3008010CE /* CueViewModel.swift */; };
+		620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
 		626F5CA624B81E5B00945523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA524B81E5B00945523 /* ContentView.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		620EDF5A24BB0EE3008010CE /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
+		620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserView.swift; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626F5CA324B81E5B00945523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620EDF5C24BB148F008010CE /* Representation */ = {
+			isa = PBXGroup;
+			children = (
+				620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */,
+			);
+			path = Representation;
+			sourceTree = "<group>";
+		};
 		626F5C9524B81E5B00945523 = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +189,7 @@
 		626F5CDD24B8202300945523 /* File Manage */ = {
 			isa = PBXGroup;
 			children = (
+				620EDF5C24BB148F008010CE /* Representation */,
 				626F5CE624B8216600945523 /* View */,
 			);
 			path = "File Manage";
@@ -208,6 +221,7 @@
 		626F5CE324B8205F00945523 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				620EDF5A24BB0EE3008010CE /* CueViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -380,9 +394,11 @@
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
+				620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */,
 				626F5CED24B8219D00945523 /* FileView.swift in Sources */,
 				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
+				620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */,
 				626F5CEB24B8219700945523 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

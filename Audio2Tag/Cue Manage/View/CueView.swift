@@ -9,8 +9,24 @@
 import SwiftUI
 
 struct CueView: View {
+    @ObservedObject var viewModel = CueViewModel()
+
+    let list = [1,2,3,4,5,6,7,8,9,0]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        NavigationView {
+            List(list, id: \.self) { item in
+                
+                Text("\(item)")
+                
+            }.navigationBarTitle("Tracks")
+            .navigationBarItems(trailing: Group {
+                Button(action: self.viewModel.addItem) {
+                    Text("+")
+                }
+            }).sheet(isPresented: self.$viewModel.isDocumentShow, content: self.viewModel.showDocument)
+        }
     }
 }
 
