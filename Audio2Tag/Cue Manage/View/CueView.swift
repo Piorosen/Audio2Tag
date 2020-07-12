@@ -17,15 +17,15 @@ struct CueView: View {
         
         NavigationView {
             List(list, id: \.self) { item in
-                
                 Text("\(item)")
-                
-            }.navigationBarTitle("Tracks")
+            }
+            .sheet(isPresented: self.$viewModel.isDocumentShow, content: self.viewModel.showDocument)
+            .navigationBarTitle("Tracks")
             .navigationBarItems(trailing: Group {
                 Button(action: self.viewModel.addItem) {
                     Text("+")
                 }
-            }).sheet(isPresented: self.$viewModel.isDocumentShow, content: self.viewModel.showDocument)
+            })
         }
     }
 }
