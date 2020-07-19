@@ -48,8 +48,9 @@ struct CueView: View {
                 }
             }, trailing: Group {
                 Button(action: self.viewModel.addItem) {
-                    Text("+")
+                    Image(systemName: "plus")
                 }
+                .padding(10)
             })
             .sheet(isPresented: self.$viewModel.isDocumentShow) {
                 DocumentPicker()
