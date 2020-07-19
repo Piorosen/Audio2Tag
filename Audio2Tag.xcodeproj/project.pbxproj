@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5A24BB0EE3008010CE /* CueViewModel.swift */; };
+		620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */; };
+		620EDF6A24BB212D008010CE /* 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 620EDF6924BB212D008010CE /* 2.txt */; };
+		620EDF6C24BB2136008010CE /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 620EDF6B24BB2136008010CE /* 1.txt */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
 		626F5CA624B81E5B00945523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA524B81E5B00945523 /* ContentView.swift */; };
@@ -22,6 +26,7 @@
 		626F5CEB24B8219700945523 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEA24B8219700945523 /* TagView.swift */; };
 		626F5CED24B8219D00945523 /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEC24B8219D00945523 /* FileView.swift */; };
 		626F5CEF24B821A300945523 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEE24B821A300945523 /* SettingView.swift */; };
+		62BDB00C24C41B2200832EA2 /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 62BDB00B24C41B2200832EA2 /* cue.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		620EDF5A24BB0EE3008010CE /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
+		620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserView.swift; sourceTree = "<group>"; };
+		620EDF6924BB212D008010CE /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2.txt; sourceTree = "<group>"; };
+		620EDF6B24BB2136008010CE /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.txt; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626F5CA324B81E5B00945523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +70,7 @@
 		626F5CEA24B8219700945523 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		626F5CEC24B8219D00945523 /* FileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		626F5CEE24B821A300945523 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		62BDB00B24C41B2200832EA2 /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +101,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		620EDF5C24BB148F008010CE /* Representation */ = {
+			isa = PBXGroup;
+			children = (
+				620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */,
+			);
+			path = Representation;
+			sourceTree = "<group>";
+		};
+		620EDF6824BB2120008010CE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				62BDB00B24C41B2200832EA2 /* cue.png */,
+				620EDF6B24BB2136008010CE /* 1.txt */,
+				620EDF6924BB212D008010CE /* 2.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		626F5C9524B81E5B00945523 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +142,7 @@
 		626F5CA024B81E5B00945523 /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				620EDF6824BB2120008010CE /* Resources */,
 				626F5CDE24B8202F00945523 /* Setting Manage */,
 				626F5CDD24B8202300945523 /* File Manage */,
 				626F5CDC24B81FEE00945523 /* Tag Manage */,
@@ -177,6 +206,7 @@
 		626F5CDD24B8202300945523 /* File Manage */ = {
 			isa = PBXGroup;
 			children = (
+				620EDF5C24BB148F008010CE /* Representation */,
 				626F5CE624B8216600945523 /* View */,
 			);
 			path = "File Manage";
@@ -208,6 +238,7 @@
 		626F5CE324B8205F00945523 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				620EDF5A24BB0EE3008010CE /* CueViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -352,7 +383,10 @@
 			files = (
 				626F5CAE24B81E5B00945523 /* LaunchScreen.storyboard in Resources */,
 				626F5CAB24B81E5B00945523 /* Preview Assets.xcassets in Resources */,
+				620EDF6C24BB2136008010CE /* 1.txt in Resources */,
+				62BDB00C24C41B2200832EA2 /* cue.png in Resources */,
 				626F5CA824B81E5B00945523 /* Assets.xcassets in Resources */,
+				620EDF6A24BB212D008010CE /* 2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,9 +414,11 @@
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
+				620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */,
 				626F5CED24B8219D00945523 /* FileView.swift in Sources */,
 				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
+				620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */,
 				626F5CEB24B8219700945523 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
