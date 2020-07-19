@@ -43,8 +43,18 @@ struct CueView: View {
             }
             .navigationBarTitle("Cue Info")
             .navigationBarItems(leading: Group {
-                Button(action: self.viewModel.testMakeItem) {
+                Button(action: self.viewModel.splitFile) {
                     Text("Make")
+                }.alert(isPresented: self.$viewModel.isSplitPresented) {
+                    Alert(title: Text("파일 분리"),
+                          message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                          primaryButton: .cancel(Text("취소")),
+                          secondaryButton: .default(Text("확인"), action: self.viewModel.alertOK))
+                }.sheet(isPresented: self.$viewModel.isFolderShow) {
+                    DocumentPicker(isFolderPicker: true)
+                    .onSelectFile { url in
+                        self.viewModel.splitStart(url: url)
+                    }
                 }
             }, trailing: Group {
                 Button(action: self.viewModel.addItem) {
@@ -53,7 +63,7 @@ struct CueView: View {
                 .padding(10)
             })
             .sheet(isPresented: self.$viewModel.isDocumentShow) {
-                DocumentPicker()
+                DocumentPicker(isFolderPicker: false)
                 .onSelectFiles { urls in
                     self.viewModel.loadItem(url: urls)
                     
