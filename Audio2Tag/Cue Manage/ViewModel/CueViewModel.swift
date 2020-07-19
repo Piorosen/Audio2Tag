@@ -7,16 +7,52 @@
 //
 
 import SwiftUI
+import SwiftCueSheet
 
+struct trackModel : Identifiable {
+    let id = UUID()
+    let track: Track
+}
+struct remModel : Identifiable {
+    let id = UUID()
+    let value: (key:String, value:String)
+}
+struct metaModel : Identifiable {
+    let id = UUID()
+    let value: (key:String, value:String)
+}
 
 class CueViewModel : ObservableObject {
     
     @Published var isDocumentShow = false
+    @Published var metaData = [metaModel]()
+    @Published var remData = [remModel]()
     
-    func addItem() -> Void {
+    @Published var fileName = String()
+    @Published var fileExt = String()
+    @Published var track = [trackModel]()
+    
+    func addItem() {
         isDocumentShow = true
     }
     
+    func loadItem(url: URL) {
+        guard let cue = CueSheetParser().load(path: url) else {
+            return
+        }
+        
+        for (key, value) in cue.rem {
+            remData.append(remModel(value: (key, value)))
+        }
+        for (key, value) in cue.meta {
+            metaData.append(metaModel(value: (key, value)))
+        }
+        
+        fileName = cue.file.fileName
+        fileExt = cue.file.fileType
+        
+        track = cue.file.tracks.map( { t in trackModel(track: t)})
+    }
     
     func testMakeItem() -> Void {
         let t1 = Bundle.main.path(forResource: "1.txt", ofType: nil)!
@@ -31,7 +67,7 @@ class CueViewModel : ObservableObject {
         try? a2?.write(to: url.appendingPathComponent("2.cue"), atomically: true, encoding: .utf8)
         
         
-//        print(item1.count)
+        //        print(item1.count)
         
     }
 }

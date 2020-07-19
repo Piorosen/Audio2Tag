@@ -11,13 +11,35 @@ import SwiftUI
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
     
-    let list = [1,2,3,4,5,6,7,8,9,0]
-    
     var body: some View {
         
         NavigationView {
-            List(list, id: \.self) { item in
-                Text("\(item)")
+            List {
+                Section(header: Text("Meta")) {
+                    ForEach (self.viewModel.metaData) { meta in
+                        HStack {
+                            Text(meta.value.key)
+                            Spacer()
+                            Text(meta.value.value)
+                        }
+                    }
+                }
+                Section(header: Text("Rem")) {
+                    ForEach (self.viewModel.remData) { meta in
+                        HStack {
+                            Text(meta.value.key)
+                            Spacer()
+                            Text(meta.value.value)
+                        }
+                    }
+                }
+                Section(header: Text("File")) {
+                    Text(self.viewModel.fileName)
+                    ForEach (self.viewModel.track) { track in
+                        Text(track.track.title)
+                    }
+                }
+                
             }
             .navigationBarTitle("Tracks")
             .navigationBarItems(leading: Group {
@@ -31,7 +53,7 @@ struct CueView: View {
             })
             .sheet(isPresented: self.$viewModel.isDocumentShow) {
                 DocumentPicker().onSelectFile { url in
-                    print(url)
+                    self.viewModel.loadItem(url: url)
                 }
             }
         }
