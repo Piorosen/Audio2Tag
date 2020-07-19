@@ -33,27 +33,30 @@ struct CueView: View {
                         }
                     }
                 }
-                Section(header: Text("File")) {
-                    Text(self.viewModel.fileName)
-                    ForEach (self.viewModel.track) { track in
-                        Text(track.track.title)
+                Section(header: Text("File : \(self.viewModel.fileName)")) {
+                    ForEach (0..<self.viewModel.track.count, id: \.self) { index in
+                        NavigationLink(destination: CueDetailTrackView(self.viewModel.track[index])) {
+                            Text("\(index + 1) : \(self.viewModel.track[index].track.title)")
+                        }
                     }
                 }
-                
             }
-            .navigationBarTitle("Tracks")
+            .navigationBarTitle("Cue Info")
             .navigationBarItems(leading: Group {
                 Button(action: self.viewModel.testMakeItem) {
                     Text("Make")
                 }
             }, trailing: Group {
                 Button(action: self.viewModel.addItem) {
-                    Text("+")
+                    Image(systemName: "plus")
                 }
+                .padding(10)
             })
             .sheet(isPresented: self.$viewModel.isDocumentShow) {
-                DocumentPicker().onSelectFile { url in
-                    self.viewModel.loadItem(url: url)
+                DocumentPicker()
+                .onSelectFiles { urls in
+                    self.viewModel.loadItem(url: urls)
+                    
                 }
             }
         }

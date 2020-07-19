@@ -46,7 +46,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: ["com.aoikazto.Auido2Tag.cue"], in: .open)
+        let picker = UIDocumentPickerViewController(documentTypes: ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio)], in: .open)
         
         picker.allowsMultipleSelection = true
         picker.delegate = context.coordinator
