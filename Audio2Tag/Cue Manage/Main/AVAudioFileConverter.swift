@@ -24,7 +24,7 @@ public final class AVAudioFileConverter {
         
     }
     
-    public func convert(callback: @escaping (Float) -> Void) {
+    public func convert(callback: @escaping (Float) -> Void, completeHandler:  @escaping () -> Void) {
         
 //        let rwAudioSerializationQueueDescription = " rw audio serialization queue"
         // Create the serialization queue to use for reading and writing the audio data.
@@ -55,7 +55,7 @@ public final class AVAudioFileConverter {
                     print("Failed to start Asset Reader and Writer")
                 }
             }
-            
+            completeHandler()
         }
         
         print("finished")
@@ -134,7 +134,7 @@ public final class AVAudioFileConverter {
         //    assetWriter.endSession(atSourceTime: CMTime(seconds: 1000, preferredTimescale: 1))
         //    assetWriter.endSession(atSourceTime: CMTime(seconds: 100, preferredTimescale: 1))
         
-        assetWriterAudioInput.requestMediaDataWhenReady(on: DispatchQueue.main) {
+        assetWriterAudioInput.requestMediaDataWhenReady(on: DispatchQueue(label: "gogogo")) {
             while(self.assetWriterAudioInput.isReadyForMoreMediaData ) {
                 var sampleBuffer = self.assetReaderAudioOutput.copyNextSampleBuffer()
                 

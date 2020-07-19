@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftCueSheet
 import CoreMedia
 import ID3TagEditor
+import AVFoundation
 
 struct trackModel : Identifiable {
     let id = UUID()
@@ -74,11 +75,14 @@ class CueViewModel : ObservableObject {
             return nil
         }
     }
+    var cue:CueSheet? = nil
     
     func loadItem(url: [URL]) {
         guard let cue = getCueSheet(url) else {
             return
         }
+        self.cue = cue
+        
         remData.removeAll()
         metaData.removeAll()
         
@@ -128,11 +132,62 @@ class CueViewModel : ObservableObject {
                 print(r)
                 data.append((u, r))
             }
-            AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { percent in
-                print(percent)
+            let p = DispatchSemaphore(value: 0)
+            AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert(callback: { f in print(f) }) {
+                p.signal()
+            }
+            p.wait()
+            
+            tagging(urls: data.map({ (u, r) in u }), sheet: cue!)
+            test(urls: data.map({ (u, r) in u }))
+        }
+        
+    }
+    
+    func tagging(urls:[URL], sheet:CueSheet) {
+        let def = ID3Tag(version: .version3, frames: [
+            .Album: ID3FrameWithStringContent(content: sheet.meta["TITLE"] ?? ""),
+            .AlbumArtist: ID3FrameWithStringContent(content: sheet.meta["PERFORMER"] ?? ""),
+            .Genre: ID3FrameWithStringContent(content: sheet.rem["GENRE"] ?? ""),
+            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
+            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
+        ])
+        
+        
+        for i in urls.indices {
+            var p = DispatchSemaphore(value: 0)
+            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
+            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
+            assetExport?.outputFileType = AVFileType.m4a
+            assetExport?.outputURL = output
+            assetExport?.exportAsynchronously{
+                p.signal()
+            }
+            p.wait()
+            
+            var copy = ID3Tag(version: def.properties.version, frames: def.frames)
+            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
+            copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
+            copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
+            print(urls[i].deletingPathExtension().appendingPathExtension("m4a").path)
+            do {
+                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("m4a").path)
+            }catch (let result) {
+                print(result)
             }
         }
     }
+    
+    func test(urls:[URL]) {
+        for url in urls {
+            let output = url.deletingPathExtension().appendingPathExtension("m4a")
+            let result = try? ID3TagEditor().read(from: output.path)
+            print((result?.frames[.Title] as?  ID3FrameWithStringContent)?.content ?? "")
+            print((result?.frames[.Artist] as? ID3FrameWithStringContent)?.content ?? "")
+            print((result?.frames[.Album] as? ID3FrameWithStringContent)?.content ?? "")
+        }
+    }
+    
     
     //    func testMakeItem() -> Void {
     //        let cues = Bundle.main.paths(forResourcesOfType: "cue", inDirectory: nil)
