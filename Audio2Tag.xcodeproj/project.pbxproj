@@ -26,6 +26,7 @@
 		626F5CEF24B821A300945523 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEE24B821A300945523 /* SettingView.swift */; };
 		6271B4A924C44BAF006667EC /* CueDetailTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271B4A824C44BAF006667EC /* CueDetailTrackView.swift */; };
 		6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */; };
+		629230F924C4A7DB0064F63B /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */; };
 		62BDB00C24C41B2200832EA2 /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 62BDB00B24C41B2200832EA2 /* cue.png */; };
 		62FB713D24C4526600F6FACD /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */; };
 		62FB713E24C4526600F6FACD /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */; };
@@ -75,6 +76,7 @@
 		626F5CEE24B821A300945523 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		6271B4A824C44BAF006667EC /* CueDetailTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailTrackView.swift; sourceTree = "<group>"; };
 		6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
+		629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
 		62BDB00B24C41B2200832EA2 /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
 		62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
 		62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			children = (
 				620EDF5A24BB0EE3008010CE /* CueViewModel.swift */,
 				626F5CE824B8217C00945523 /* CueView.swift */,
+				629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
 				620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */,
+				629230F924C4A7DB0064F63B /* AVAudioFileConverter.swift in Sources */,
 				626F5CEB24B8219700945523 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

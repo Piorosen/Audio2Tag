@@ -26,6 +26,7 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
 }
 
 struct DocumentPicker : UIViewControllerRepresentable {
+    let isFolderPicker: Bool
     var oneFile: ((URL) -> Void)? = nil
     var multiFile: (([URL]) -> Void)? = nil
     
@@ -46,7 +47,9 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio)], in: .open)
+        let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker ?
+            [String(kUTTypeFolder)] :
+            ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio)], in: .open)
         
         picker.allowsMultipleSelection = true
         picker.delegate = context.coordinator

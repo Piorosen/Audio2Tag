@@ -8,6 +8,8 @@
 
 import SwiftUI
 import SwiftCueSheet
+import CoreMedia
+
 
 struct trackModel : Identifiable {
     let id = UUID()
@@ -23,8 +25,10 @@ struct metaModel : Identifiable {
 }
 
 class CueViewModel : ObservableObject {
-    
+    @Published var isSplitPresented = false
     @Published var isDocumentShow = false
+    @Published var isFolderShow = false
+    
     @Published var metaData = [metaModel]()
     @Published var remData = [remModel]()
     
@@ -32,18 +36,22 @@ class CueViewModel : ObservableObject {
     @Published var fileExt = String()
     @Published var track = [trackModel]()
     
+    
+    
     func addItem() {
         isDocumentShow = true
     }
     
     
     func getCueSheet(_ url: [URL]) -> CueSheet? {
+        fileURL = nil
+        
         if url.count == 1 {
             let parser = CueSheetParser()
             guard let item = parser.loadFile(cue: url[0]) else {
                 return nil
             }
-
+            
             return parser.calcTime(sheet: item, lengthOfMusic: 0)
         }
         else if url.count == 2 {
@@ -59,7 +67,8 @@ class CueViewModel : ObservableObject {
                 return nil
             }
             
-            return CueSheetParser().loadFile(pathOfMusic: url[abs(cueIndex - 1)], pathOfCue: url[cueIndex])
+            fileURL = url[abs(cueIndex - 1)]
+            return CueSheetParser().loadFile(pathOfMusic: fileURL!, pathOfCue: url[cueIndex])
         }
         else {
             return nil
@@ -92,26 +101,59 @@ class CueViewModel : ObservableObject {
         track = cue.file.tracks.map( { t in trackModel(track: t)})
     }
     
-    func testMakeItem() -> Void {
-        let cues = Bundle.main.paths(forResourcesOfType: "cue", inDirectory: nil)
-        let wavs = Bundle.main.paths(forResourcesOfType: "wav", inDirectory: nil)
-        
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        
-        for item in cues {
-            let file = try? String(contentsOfFile: item)
-            let last = URL(fileURLWithPath: item).lastPathComponent
-            try? file?.write(to: url.appendingPathComponent(last), atomically: false, encoding: .utf8)
-        }
-        
-        for file in wavs {
-            let last = URL(fileURLWithPath: file).lastPathComponent
-            
-            try? FileManager.default.copyItem(at: URL(fileURLWithPath: file), to: url.appendingPathComponent(last))
-        }
-        
-        //        print(item1.count)
-        
+    func splitFile() -> Void {
+        isSplitPresented = true
     }
+    
+    var fileURL:URL?
+    func alertOK() -> Void {
+        print("split Start")
+        self.isFolderShow = true
+    }
+    
+    func splitStart(url: URL) -> Void {
+        print(url)
+        if let fileUrl = fileURL {
+            
+            
+            var data = [(URL, CMTimeRange)]()
+            for item in self.track {
+                print(item.track.startTime!.seconds / 100)
+                let u = url.appendingPathComponent("\(item.track.title).wav")
+                if FileManager.default.fileExists(atPath: u.path) {
+                    try? FileManager.default.removeItem(at: u)
+                }
+                let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
+                print(u)
+                print(r)
+                data.append((u, r))
+            }
+            AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { percent in
+                print(percent)
+            }
+        }
+    }
+    
+    //    func testMakeItem() -> Void {
+    //        let cues = Bundle.main.paths(forResourcesOfType: "cue", inDirectory: nil)
+    //        let wavs = Bundle.main.paths(forResourcesOfType: "wav", inDirectory: nil)
+    //
+    //        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    //
+    //        for item in cues {
+    //            let file = try? String(contentsOfFile: item)
+    //            let last = URL(fileURLWithPath: item).lastPathComponent
+    //            try? file?.write(to: url.appendingPathComponent(last), atomically: false, encoding: .utf8)
+    //        }
+    //
+    //        for file in wavs {
+    //            let last = URL(fileURLWithPath: file).lastPathComponent
+    //
+    //            try? FileManager.default.copyItem(at: URL(fileURLWithPath: file), to: url.appendingPathComponent(last))
+    //        }
+    //
+    //        //        print(item1.count)
+    //
+    //    }
 }
 
