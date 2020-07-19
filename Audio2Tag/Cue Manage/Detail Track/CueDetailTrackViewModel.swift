@@ -19,6 +19,7 @@ class CueDetailTrackViewModel : ObservableObject {
     let startTime: String
     let endTime:String
     let waitTime: String
+    let durTime: String
     
     static func makeTime(_ time: Double) -> String {
         let min = Int(time / 60)
@@ -40,11 +41,23 @@ class CueDetailTrackViewModel : ObservableObject {
         }
         rem = tmp
         
-        let s = CMTimeGetSeconds(item.track.startTime!) / 10000
-        
-        startTime = CueDetailTrackViewModel.makeTime(s)
-        endTime = CueDetailTrackViewModel.makeTime(s + item.track.duration!)
-        waitTime = CueDetailTrackViewModel.makeTime(item.track.interval ?? 0)
+        if let cmStartTime = item.track.startTime,
+            let cmDuration = item.track.duration,
+            let cmInterval = item.track.interval
+        {
+            let s = CMTimeGetSeconds(cmStartTime) / 100
+            
+            startTime = CueDetailTrackViewModel.makeTime(s)
+            endTime = CueDetailTrackViewModel.makeTime(s + cmDuration)
+            waitTime = CueDetailTrackViewModel.makeTime(cmInterval)
+            durTime = CueDetailTrackViewModel.makeTime(cmDuration)
+        }
+        else {
+            startTime = CueDetailTrackViewModel.makeTime(0)
+            endTime = CueDetailTrackViewModel.makeTime(0)
+            waitTime = CueDetailTrackViewModel.makeTime(0)
+            durTime = CueDetailTrackViewModel.makeTime(0)
+        }
     }
     
 }

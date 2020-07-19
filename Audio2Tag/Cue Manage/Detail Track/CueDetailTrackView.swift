@@ -78,6 +78,11 @@ struct CueDetailTrackView: View {
                         Spacer()
                         Text(self.viewModel.waitTime)
                     }
+                    HStack {
+                        Text("Duration Time")
+                        Spacer()
+                        Text(self.viewModel.durTime)
+                    }
                 }
                 
             }.navigationBarTitle("Track Info")
