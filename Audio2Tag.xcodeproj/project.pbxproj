@@ -28,11 +28,6 @@
 		6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */; };
 		629230F924C4A7DB0064F63B /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */; };
 		62BDB00C24C41B2200832EA2 /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 62BDB00B24C41B2200832EA2 /* cue.png */; };
-		62FB713D24C4526600F6FACD /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */; };
-		62FB713E24C4526600F6FACD /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */; };
-		62FB713F24C4526600F6FACD /* RADWIMPS - 君の名は。.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */; };
-		62FB714024C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
-		62FB714124C4526600F6FACD /* Faithless - Live in Berlin.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,11 +73,6 @@
 		6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
 		629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
 		62BDB00B24C41B2200832EA2 /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
-		62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
-		62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
-		62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RADWIMPS - 君の名は。.cue"; sourceTree = "<group>"; };
-		62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
-		62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Faithless - Live in Berlin.cue"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,11 +114,6 @@
 		620EDF6824BB2120008010CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
-				62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */,
-				62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */,
-				62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */,
-				62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */,
 				62BDB00B24C41B2200832EA2 /* cue.png */,
 			);
 			path = Resources;
@@ -391,15 +376,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62FB713E24C4526600F6FACD /* MYTH&ROID - HYDRA.wav in Resources */,
-				62FB713F24C4526600F6FACD /* RADWIMPS - 君の名は。.cue in Resources */,
-				62FB714024C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
-				62FB713D24C4526600F6FACD /* MYTH&ROID - HYDRA.cue in Resources */,
 				626F5CAE24B81E5B00945523 /* LaunchScreen.storyboard in Resources */,
 				626F5CAB24B81E5B00945523 /* Preview Assets.xcassets in Resources */,
 				62BDB00C24C41B2200832EA2 /* cue.png in Resources */,
 				626F5CA824B81E5B00945523 /* Assets.xcassets in Resources */,
-				62FB714124C4526600F6FACD /* Faithless - Live in Berlin.cue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

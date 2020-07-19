@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftCueSheet
 import CoreMedia
-
+import ID3TagEditor
 
 struct trackModel : Identifiable {
     let id = UUID()
@@ -156,4 +156,3 @@ class CueViewModel : ObservableObject {
     //
     //    }
 }
-
