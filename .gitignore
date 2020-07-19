@@ -89,3 +89,7 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+*.cue
+Audio2Tag/Resources/1.txt
+Audio2Tag/Resources/2.txt
+*.wav
