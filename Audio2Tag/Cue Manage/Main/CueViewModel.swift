@@ -12,31 +12,50 @@ import CoreMedia
 import ID3TagEditor
 import AVFoundation
 
-struct trackModel : Identifiable {
-    let id = UUID()
-    let track: Track
-}
 
-struct remModel : Identifiable {
-    let id = UUID()
-    let value: (key:String, value:String)
-}
-struct metaModel : Identifiable {
-    let id = UUID()
-    let value: (key:String, value:String)
-}
 
 class CueViewModel : ObservableObject {
     @Published var cueFileInfo = CueFileInfoModel(meta: [metaModel](), rem: [remModel](), track: [trackModel](), fileName: "", fileExt: "")
     
-    @Published var isSplitPresented = false
-    @Published var isDocumentShow = false
-    @Published var isFolderShow = false
-    @Published var isProgressShow = false
+    // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
+    @Published var openAlert = false
+    @Published var openSheet = false
     
-    func addItem() {
-        isDocumentShow = true
+    private var cueSearchDocument = false
+    private var splitStatusView = false
+    private var splitFolderDocumnet = false
+    private var alertSplitView = false
+    
+    private func openNewSheet() {
+        openSheet = true
+        cueSearchDocument = false
+        splitStatusView = false
+        splitFolderDocumnet = false
     }
+    
+    private func openNewAlert() {
+        openSheet = true
+        alertSplitView = false
+    }
+    
+    func openCueSearchDocument() {
+        openNewSheet()
+        cueSearchDocument = true
+    }
+    func openSplitStatusView() {
+        openNewSheet()
+        splitStatusView = true
+    }
+    func openSplitFolderDocument() {
+        openNewSheet()
+        splitFolderDocumnet = true
+    }
+    
+    func openAlertSplitView() {
+        openNewAlert()
+        alertSplitView = true
+    }
+    
     
     
     func getCueSheet(_ url: [URL]) -> CueSheet? {
@@ -70,14 +89,10 @@ class CueViewModel : ObservableObject {
             return nil
         }
     }
-    var cue:CueSheet? = nil
-    
     func loadItem(url: [URL]) {
         guard let cue = getCueSheet(url) else {
             return
         }
-        self.cue = cue
-        
         var meta = [metaModel]()
         var rem = [remModel]()
         
@@ -93,23 +108,18 @@ class CueViewModel : ObservableObject {
                 meta.append(data)
             }   
         }
+        let track = cue.file.tracks.map({ t in trackModel(track: t) })
         
-        cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: cue.file.tracks.map( { t in trackModel(track: t)}), fileName: cue.file.fileName, fileExt: cue.file.fileType)
+        cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: track, fileName: cue.file.fileName, fileExt: cue.file.fileType)
     }
     
-    func splitFile() -> Void {
-        isSplitPresented = true
-    }
+    
     
     var fileURL:URL?
-    func alertOK() -> Void {
-        print("split Start")
-        self.isFolderShow = true
-    }
+    
     
     func splitStart(url: URL) -> Void {
         print(url)
-        isProgressShow = true
         DispatchQueue.global().async {
             if let fileUrl = self.fileURL {
                 var data = [(URL, CMTimeRange)]()
@@ -130,78 +140,45 @@ class CueViewModel : ObservableObject {
                 }
                 p.wait()
                 
-                self.tagging(urls: data.map({ (u, r) in u }), sheet: self.cue!)
-                self.test(urls: data.map({ (u, r) in u }))
+//                self.tagging(urls: data.map({ (u, r) in u }), sheet: self.cue!)
             }
             
         }
         
     }
     
-    func tagging(urls:[URL], sheet:CueSheet) {
-        let def = ID3Tag(version: .version3, frames: [
-            .Album: ID3FrameWithStringContent(content: sheet.meta["TITLE"] ?? ""),
-            .AlbumArtist: ID3FrameWithStringContent(content: sheet.meta["PERFORMER"] ?? ""),
-            .Genre: ID3FrameWithStringContent(content: sheet.rem["GENRE"] ?? ""),
-            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
-            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
-        ])
-        
-        
-        for i in urls.indices {
-//            var p = DispatchSemaphore(value: 0)
-//            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
-//            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
-//            assetExport?.outputFileType = AVFileType.m4a
-//            assetExport?.outputURL = output
-//            assetExport?.exportAsynchronously{
-//                p.signal()
+//    func tagging(urls:[URL], sheet:CueSheet) {
+//        let def = ID3Tag(version: .version3, frames: [
+//            .Album: ID3FrameWithStringContent(content: sheet.meta["TITLE"] ?? ""),
+//            .AlbumArtist: ID3FrameWithStringContent(content: sheet.meta["PERFORMER"] ?? ""),
+//            .Genre: ID3FrameWithStringContent(content: sheet.rem["GENRE"] ?? ""),
+//            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
+//            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
+//        ])
+//
+//
+//        for i in urls.indices {
+////            var p = DispatchSemaphore(value: 0)
+////            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
+////            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
+////            assetExport?.outputFileType = AVFileType.m4a
+////            assetExport?.outputURL = output
+////            assetExport?.exportAsynchronously{
+////                p.signal()
+////            }
+////            p.wait()
+//
+//            let copy = ID3Tag(version: def.properties.version, frames: def.frames)
+//            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
+//            copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
+//            copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
+//            print(urls[i].deletingPathExtension().appendingPathExtension("wav").path)
+//            do {
+//                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("wav").path)
+//            }catch (let result) {
+//                print(result)
 //            }
-//            p.wait()
-            
-            var copy = ID3Tag(version: def.properties.version, frames: def.frames)
-            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
-            copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
-            copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
-            print(urls[i].deletingPathExtension().appendingPathExtension("wav").path)
-            do {
-                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("wav").path)
-            }catch (let result) {
-                print(result)
-            }
-        }
-    }
+//        }
+//    }
     
-    func test(urls:[URL]) {
-        for url in urls {
-            let output = url.deletingPathExtension().appendingPathExtension("m4a")
-            let result = try? ID3TagEditor().read(from: output.path)
-            print((result?.frames[.Title] as?  ID3FrameWithStringContent)?.content ?? "")
-            print((result?.frames[.Artist] as? ID3FrameWithStringContent)?.content ?? "")
-            print((result?.frames[.Album] as? ID3FrameWithStringContent)?.content ?? "")
-        }
-    }
-    
-    
-    //    func testMakeItem() -> Void {
-    //        let cues = Bundle.main.paths(forResourcesOfType: "cue", inDirectory: nil)
-    //        let wavs = Bundle.main.paths(forResourcesOfType: "wav", inDirectory: nil)
-    //
-    //        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    //
-    //        for item in cues {
-    //            let file = try? String(contentsOfFile: item)
-    //            let last = URL(fileURLWithPath: item).lastPathComponent
-    //            try? file?.write(to: url.appendingPathComponent(last), atomically: false, encoding: .utf8)
-    //        }
-    //
-    //        for file in wavs {
-    //            let last = URL(fileURLWithPath: file).lastPathComponent
-    //
-    //            try? FileManager.default.copyItem(at: URL(fileURLWithPath: file), to: url.appendingPathComponent(last))
-    //        }
-    //
-    //        //        print(item1.count)
-    //
-    //    }
 }

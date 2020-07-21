@@ -14,6 +14,7 @@
 		622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2024C69741006473E6 /* SplitMusicModel.swift */; };
 		622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2324C69D53006473E6 /* CueFileInfoView.swift */; };
 		622CAA2624C69D8F006473E6 /* CueFileInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */; };
+		622CAA2824C6A169006473E6 /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2724C6A169006473E6 /* CueModel.swift */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
 		626F5CA624B81E5B00945523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA524B81E5B00945523 /* ContentView.swift */; };
@@ -60,6 +61,7 @@
 		622CAA2024C69741006473E6 /* SplitMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
 		622CAA2324C69D53006473E6 /* CueFileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
 		622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoModel.swift; sourceTree = "<group>"; };
+		622CAA2724C6A169006473E6 /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626F5CA324B81E5B00945523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				620EDF5A24BB0EE3008010CE /* CueViewModel.swift */,
 				626F5CE824B8217C00945523 /* CueView.swift */,
 				629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */,
+				622CAA2724C6A169006473E6 /* CueModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
+				622CAA2824C6A169006473E6 /* CueModel.swift in Sources */,
 				622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,

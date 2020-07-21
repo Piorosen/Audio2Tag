@@ -83,7 +83,7 @@ struct CueDetailTrackView: View {
                     Text(self.viewModel.durTime)
                 }
             }
-            
+
         }.navigationBarTitle("Track Info")
     }
 }
