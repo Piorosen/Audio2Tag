@@ -30,7 +30,7 @@ class CueViewModel : ObservableObject {
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     @Published var openAlert = false
     @Published var openSheet = false
-    @State var test = [(name:String, status:Float)]()
+    @Published var test = [splitMusicModel]()
     var sheet = sheetType.none
     var alert = alertType.none
     
@@ -63,7 +63,7 @@ class CueViewModel : ObservableObject {
             return Alert(title: Text("Error!"))
         }
     }
-    func makeSheet() -> AnyView {
+    func makeSheet(event: Binding<[splitMusicModel]>) -> AnyView {
         switch sheet {
         case .cueSearchDocument:
             return AnyView(DocumentPicker(isFolderPicker: false).onSelectFiles{ urls in
@@ -74,7 +74,7 @@ class CueViewModel : ObservableObject {
                 self.splitStart(url: url)
             })
         case .splitStatusView:
-            return AnyView(SplitMusicView(bind: self.$test))
+            return AnyView(SplitMusicView(bind: event))
             
         default:
             return AnyView(EmptyView().background(Color.red))
@@ -141,9 +141,12 @@ class CueViewModel : ObservableObject {
     }
     
     func splitStart(url: URL) -> Void {
+        openSplitStatusView()
+        
+        self.test = [splitMusicModel]()
         DispatchQueue.global().async {
             if let fileUrl = self.fileURL {
-                //            self.test = [(name:String, status:Float)]()
+                
                 var data = [(URL, CMTimeRange)]()
                 for (index, item) in self.cueFileInfo.track.enumerated() {
                     let u = url.appendingPathComponent("\(item.track.trackNum). \(item.track.title).wav")
@@ -151,16 +154,20 @@ class CueViewModel : ObservableObject {
                         try? FileManager.default.removeItem(at: u)
                     }
                     let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-                    
-                    //                self.test.append((item.track.title, 0))
+                    DispatchQueue.main.sync {
+                        self.test.append(splitMusicModel(name: item.track.title, status: 0))
+                    }
                     
                     data.append((u, r))
                 }
                 
                 
                 AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
-                    //                self.test[index].status = own
-                    print("\(index) : \(own) : \(total)")
+                    DispatchQueue.main.sync {
+                        self.test[index].status = own
+                        print("\(index) : \(own) : \(total)")
+                    }
+
                 }
             }
         }

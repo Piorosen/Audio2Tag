@@ -8,13 +8,23 @@
 
 import SwiftUI
 
+struct splitMusicModel : Identifiable {
+    let id = UUID()
+    let name: String
+    var status: Float
+}
+
 struct SplitMusicView: View {
-    @Binding var bind: [(name:String, status:Float)]
+    @Binding var bind: [splitMusicModel]
     
     var body: some View {
-        List(bind, id: \.self.name) { value in
-            Text("\(value.name) : \(String(format: "%.0f", value.status * 100))")
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        Group {
+            Text("asdfasdf")
+            List(bind, id: \.self.name) { value in
+                Text("\(value.name) : \(String(format: "%.0f", value.status * 100))")
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        
     }
 }
 
