@@ -9,15 +9,12 @@
 import SwiftUI
 
 struct CueFileInfoView: View {
-    @Binding metaData: [metaModel]
-    @Binding remData: [remModel]
-    @Binding trackData: [trackModel]
-    
+    @Binding var fileInfo: CueFileInfoModel
     
     var body: some View {
         List {
             Section(header: Text("Meta")) {
-                ForEach (self.viewModel.metaData) { meta in
+                ForEach (self.fileInfo.meta) { meta in
                     HStack {
                         Text(meta.value.key)
                         Spacer()
@@ -26,7 +23,7 @@ struct CueFileInfoView: View {
                 }
             }
             Section(header: Text("Rem")) {
-                ForEach (self.viewModel.remData) { meta in
+                ForEach (self.fileInfo.rem) { meta in
                     HStack {
                         Text(meta.value.key)
                         Spacer()
@@ -34,19 +31,13 @@ struct CueFileInfoView: View {
                     }
                 }
             }
-            Section(header: Text("File : \(self.viewModel.fileName)")) {
-                ForEach (0..<self.viewModel.track.count, id: \.self) { index in
-                    NavigationLink(destination: CueDetailTrackView(self.viewModel.track[index])) {
-                        Text("\(index + 1) : \(self.viewModel.track[index].track.title)")
+            Section(header: Text("File : \(self.fileInfo.fileName)")) {
+                ForEach (self.fileInfo.track) { track in
+                    NavigationLink(destination: CueDetailTrackView(track)) {
+                        Text("\(track.track.trackNum) : \(track.track.title)")
                     }
                 }
             }
         }
-    }
-}
-
-struct CueFileInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CueFileInfoView()
     }
 }

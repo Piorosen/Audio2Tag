@@ -27,19 +27,12 @@ struct metaModel : Identifiable {
 }
 
 class CueViewModel : ObservableObject {
+    @Published var cueFileInfo = CueFileInfoModel(meta: [metaModel](), rem: [remModel](), track: [trackModel](), fileName: "", fileExt: "")
+    
     @Published var isSplitPresented = false
     @Published var isDocumentShow = false
     @Published var isFolderShow = false
     @Published var isProgressShow = false
-    
-    @Published var metaData = [metaModel]()
-    @Published var remData = [remModel]()
-    
-    @Published var fileName = String()
-    @Published var fileExt = String()
-    @Published var track = [trackModel]()
-    
-    
     
     func addItem() {
         isDocumentShow = true
@@ -85,26 +78,23 @@ class CueViewModel : ObservableObject {
         }
         self.cue = cue
         
-        remData.removeAll()
-        metaData.removeAll()
+        var meta = [metaModel]()
+        var rem = [remModel]()
         
         for (key, value) in cue.rem {
             let data = remModel(value: (key, value))
             if data.value.value != String() {
-                remData.append(data)
+                rem.append(data)
             }
         }
         for (key, value) in cue.meta {
             let data = metaModel(value: (key, value))
             if data.value.value != String() {
-                metaData.append(data)
+                meta.append(data)
             }   
         }
         
-        fileName = cue.file.fileName
-        fileExt = cue.file.fileType
-        
-        track = cue.file.tracks.map( { t in trackModel(track: t)})
+        cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: cue.file.tracks.map( { t in trackModel(track: t)}), fileName: cue.file.fileName, fileExt: cue.file.fileType)
     }
     
     func splitFile() -> Void {
@@ -123,7 +113,7 @@ class CueViewModel : ObservableObject {
         DispatchQueue.global().async {
             if let fileUrl = self.fileURL {
                 var data = [(URL, CMTimeRange)]()
-                for item in self.track {
+                for item in self.cueFileInfo.track {
                     print(item.track.startTime!.seconds / 100)
                     let u = url.appendingPathComponent("\(item.track.title).wav")
                     if FileManager.default.fileExists(atPath: u.path) {

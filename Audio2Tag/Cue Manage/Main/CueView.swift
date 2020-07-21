@@ -14,7 +14,8 @@ struct CueView: View {
     var body: some View {
         
         NavigationView {
-            CueFileInfoView()
+            CueFileInfoView(fileInfo: self.$viewModel.cueFileInfo)
+                
             .navigationBarTitle("Cue Info")
             .navigationBarItems(leading: Group {
                 Button(action: self.viewModel.splitFile) {
