@@ -41,72 +41,41 @@ public final class AVAudioFileConverter {
                     let _ = Float(i) / Float(self.outputURL.count)
                     let size = Float(1) / Float(self.outputURL.count) * p
                     sum[i] = size
-                    callback(i, size, sum.reduce(0, +))
-                }
-                
+                    callback(i, p, sum.reduce(0, +))
+                }   
             }
         }
     }
     
     func startAssetReaderAndWriter(value: (url:URL, range:CMTimeRange), percentCallback: @escaping (Float) -> Void) -> Bool {
-        let assetReader = try? AVAssetReader(asset: asset)
-        let assetWriter = try? AVAssetWriter(outputURL: value.url, fileType: .wav)
+        guard let assetReader = try? AVAssetReader(asset: asset) else { return false }
+        guard let assetWriter = try? AVAssetWriter(outputURL: value.url, fileType: .wav) else { return false }
+        guard let assetAudioTrack = asset.tracks(withMediaType: .audio).first else { return false }
+        guard let outputSettings = (try? AVAudioFile(forReading: inputURL))?.fileFormat.settings else { return false }
         
-        var assetAudioTrack:AVAssetTrack? = nil
-        let audioTracks = asset.tracks(withMediaType: .audio)
+        let assetReaderAudioOutput = AVAssetReaderTrackOutput(track: assetAudioTrack, outputSettings: [AVFormatIDKey:Int(kAudioFormatLinearPCM)])
+        assetReader.add(assetReaderAudioOutput)
         
-        if (audioTracks.count > 0) {
-            assetAudioTrack = audioTracks[0]
-        }
+        let assetWriterAudioInput = AVAssetWriterInput(mediaType: .audio, outputSettings: outputSettings)
+        assetWriter.add(assetWriterAudioInput)
         
-        guard let file = try? AVAudioFile(forReading: inputURL) else {
-            return false
-        }
-        let outputSettings = file.fileFormat.settings
+        assetReader.timeRange = value.range
+        assetWriter.startWriting()
+        assetReader.startReading()
+        assetWriter.startSession(atSourceTime: .zero)
         
-        if (assetAudioTrack == nil) {
-            return false
-        }
-        
-        let assetReaderAudioOutput = AVAssetReaderTrackOutput(track: assetAudioTrack!, outputSettings: [AVFormatIDKey:Int(kAudioFormatLinearPCM)])
-        
-        assetReader!.add(assetReaderAudioOutput)
-        
-        let assetWriterAudioInput = AVAssetWriterInput(mediaType: AVMediaType.audio, outputSettings: outputSettings)
-        
-        assetWriter!.add(assetWriterAudioInput)
-        
-        
-        // MARK: - ga
-        let delay = DispatchSemaphore(value: 0)
-        print("STARTING ASSET WRITER")
-        
-        assetReader!.timeRange = value.range
-        
-        assetWriter!.startWriting()
-        assetReader!.startReading()
-        assetWriter!.startSession(atSourceTime: CMTime.zero)
-        //    assetWriter.endSession(atSourceTime: CMTime(seconds: 1000, preferredTimescale: 1))
-        //    assetWriter.endSession(atSourceTime: CMTime(seconds: 100, preferredTimescale: 1))
-        
-        assetWriterAudioInput.requestMediaDataWhenReady(on: DispatchQueue(label: "gogogo")) {
+        assetWriterAudioInput.requestMediaDataWhenReady(on: dispatch) {
             while(assetWriterAudioInput.isReadyForMoreMediaData ) {
-                var sampleBuffer = assetReaderAudioOutput.copyNextSampleBuffer()
-                
-                if(sampleBuffer != nil) {
-                    let timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer!)
+                if let sampleBuffer = assetReaderAudioOutput.copyNextSampleBuffer() {
+                    let timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
                     let timeSecond = CMTimeGetSeconds(timeStamp - value.range.start)
-                    
                     let per = timeSecond / CMTimeGetSeconds(value.range.duration)
                     percentCallback(Float(per))
-                    
-                    assetWriterAudioInput.append(sampleBuffer!)
-                    sampleBuffer = nil
-                } else {
+                    assetWriterAudioInput.append(sampleBuffer)
+                }else {
                     assetWriterAudioInput.markAsFinished()
-                    assetReader!.cancelReading()
-                    assetWriter!.finishWriting {
-                        delay.signal()
+                    assetReader.cancelReading()
+                    assetWriter.finishWriting {
                         print("Asset Writer Finished Writing")
                     }
                     break
@@ -115,8 +84,6 @@ public final class AVAudioFileConverter {
             
             percentCallback(1)
         }
-        
-        delay.wait()
         return true
     }
 }
