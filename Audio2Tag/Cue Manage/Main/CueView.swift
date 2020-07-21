@@ -14,46 +14,25 @@ struct CueView: View {
     var body: some View {
         
         NavigationView {
-            List {
-                Section(header: Text("Meta")) {
-                    ForEach (self.viewModel.metaData) { meta in
-                        HStack {
-                            Text(meta.value.key)
-                            Spacer()
-                            Text(meta.value.value)
-                        }
-                    }
-                }
-                Section(header: Text("Rem")) {
-                    ForEach (self.viewModel.remData) { meta in
-                        HStack {
-                            Text(meta.value.key)
-                            Spacer()
-                            Text(meta.value.value)
-                        }
-                    }
-                }
-                Section(header: Text("File : \(self.viewModel.fileName)")) {
-                    ForEach (0..<self.viewModel.track.count, id: \.self) { index in
-                        NavigationLink(destination: CueDetailTrackView(self.viewModel.track[index])) {
-                            Text("\(index + 1) : \(self.viewModel.track[index].track.title)")
-                        }
-                    }
-                }
-            }
+            CueFileInfoView()
             .navigationBarTitle("Cue Info")
             .navigationBarItems(leading: Group {
                 Button(action: self.viewModel.splitFile) {
                     Text("Make")
                 }.alert(isPresented: self.$viewModel.isSplitPresented) {
-                    Alert(title: Text("파일 분리"),
-                          message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
-                          primaryButton: .cancel(Text("취소")),
-                          secondaryButton: .default(Text("확인"), action: self.viewModel.alertOK))
+                    if self.viewModel.cue != nil {
+                        return Alert(title: Text("파일 분리"),
+                        message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                        primaryButton: .cancel(Text("취소")),
+                        secondaryButton: .default(Text("확인"), action: self.viewModel.alertOK))
+                    }else {
+                        return Alert(title: Text("오류"),
+                                     message: Text("아직 Cue File을 읽지 않은 상태 입니다."))
+                    }
                 }.sheet(isPresented: self.$viewModel.isFolderShow) {
                     DocumentPicker(isFolderPicker: true)
-                    .onSelectFile { url in
-                        self.viewModel.splitStart(url: url)
+                     .onSelectFile { url in
+                         self.viewModel.splitStart(url: url)
                     }
                 }
             }, trailing: Group {
@@ -66,7 +45,6 @@ struct CueView: View {
                 DocumentPicker(isFolderPicker: false)
                 .onSelectFiles { urls in
                     self.viewModel.loadItem(url: urls)
-                    
                 }
             }
         }

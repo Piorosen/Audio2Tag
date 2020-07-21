@@ -49,7 +49,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker ?
             [String(kUTTypeFolder)] :
-            ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio)], in: .open)
+            ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)
         
         picker.allowsMultipleSelection = true
         picker.delegate = context.coordinator

@@ -16,6 +16,7 @@ struct trackModel : Identifiable {
     let id = UUID()
     let track: Track
 }
+
 struct remModel : Identifiable {
     let id = UUID()
     let value: (key:String, value:String)
@@ -29,6 +30,7 @@ class CueViewModel : ObservableObject {
     @Published var isSplitPresented = false
     @Published var isDocumentShow = false
     @Published var isFolderShow = false
+    @Published var isProgressShow = false
     
     @Published var metaData = [metaModel]()
     @Published var remData = [remModel]()
@@ -58,7 +60,7 @@ class CueViewModel : ObservableObject {
         else if url.count == 2 {
             var cueIndex = -1
             for index in url.indices {
-                if url[index].pathExtension.lowercased() == "cue" {
+                if url[index].pathExtension.lowercased() == "cue" || url[index].pathExtension.lowercased() == "txt" {
                     cueIndex = index
                     break
                 }
@@ -117,29 +119,31 @@ class CueViewModel : ObservableObject {
     
     func splitStart(url: URL) -> Void {
         print(url)
-        if let fileUrl = fileURL {
-            
-            
-            var data = [(URL, CMTimeRange)]()
-            for item in self.track {
-                print(item.track.startTime!.seconds / 100)
-                let u = url.appendingPathComponent("\(item.track.title).wav")
-                if FileManager.default.fileExists(atPath: u.path) {
-                    try? FileManager.default.removeItem(at: u)
+        isProgressShow = true
+        DispatchQueue.global().async {
+            if let fileUrl = self.fileURL {
+                var data = [(URL, CMTimeRange)]()
+                for item in self.track {
+                    print(item.track.startTime!.seconds / 100)
+                    let u = url.appendingPathComponent("\(item.track.title).wav")
+                    if FileManager.default.fileExists(atPath: u.path) {
+                        try? FileManager.default.removeItem(at: u)
+                    }
+                    let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
+                    print(u)
+                    print(r)
+                    data.append((u, r))
                 }
-                let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-                print(u)
-                print(r)
-                data.append((u, r))
+                let p = DispatchSemaphore(value: 0)
+                AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert(callback: { f in print(f) }) {
+                    p.signal()
+                }
+                p.wait()
+                
+                self.tagging(urls: data.map({ (u, r) in u }), sheet: self.cue!)
+                self.test(urls: data.map({ (u, r) in u }))
             }
-            let p = DispatchSemaphore(value: 0)
-            AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert(callback: { f in print(f) }) {
-                p.signal()
-            }
-            p.wait()
             
-            tagging(urls: data.map({ (u, r) in u }), sheet: cue!)
-            test(urls: data.map({ (u, r) in u }))
         }
         
     }
@@ -155,23 +159,23 @@ class CueViewModel : ObservableObject {
         
         
         for i in urls.indices {
-            var p = DispatchSemaphore(value: 0)
-            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
-            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
-            assetExport?.outputFileType = AVFileType.m4a
-            assetExport?.outputURL = output
-            assetExport?.exportAsynchronously{
-                p.signal()
-            }
-            p.wait()
+//            var p = DispatchSemaphore(value: 0)
+//            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
+//            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
+//            assetExport?.outputFileType = AVFileType.m4a
+//            assetExport?.outputURL = output
+//            assetExport?.exportAsynchronously{
+//                p.signal()
+//            }
+//            p.wait()
             
             var copy = ID3Tag(version: def.properties.version, frames: def.frames)
             copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
             copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
             copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
-            print(urls[i].deletingPathExtension().appendingPathExtension("m4a").path)
+            print(urls[i].deletingPathExtension().appendingPathExtension("wav").path)
             do {
-                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("m4a").path)
+                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("wav").path)
             }catch (let result) {
                 print(result)
             }
