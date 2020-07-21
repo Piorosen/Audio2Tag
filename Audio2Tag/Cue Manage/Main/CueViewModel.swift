@@ -30,7 +30,7 @@ class CueViewModel : ObservableObject {
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     @Published var openAlert = false
     @Published var openSheet = false
-    
+    @State var test = [(name:String, status:Float)]()
     var sheet = sheetType.none
     var alert = alertType.none
     
@@ -56,9 +56,9 @@ class CueViewModel : ObservableObject {
         switch self.alert {
         case .alertSplitView:
             return Alert(title: Text("파일 분리"),
-                        message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
-                        primaryButton: .cancel(Text("취소")),
-                        secondaryButton: .default(Text("확인"), action: openSplitFolderDocument))
+                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                         primaryButton: .cancel(Text("취소")),
+                         secondaryButton: .default(Text("확인"), action: openSplitFolderDocument))
         case .none:
             return Alert(title: Text("Error!"))
         }
@@ -73,6 +73,9 @@ class CueViewModel : ObservableObject {
             return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
                 self.splitStart(url: url)
             })
+        case .splitStatusView:
+            return AnyView(SplitMusicView(bind: self.$test))
+            
         default:
             return AnyView(EmptyView().background(Color.red))
         }
@@ -137,33 +140,28 @@ class CueViewModel : ObservableObject {
         cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: track, fileName: cue.file.fileName, fileExt: cue.file.fileType)
     }
     
-    
-    
-    
     func splitStart(url: URL) -> Void {
-//        print(url)
         DispatchQueue.global().async {
             if let fileUrl = self.fileURL {
+                //            self.test = [(name:String, status:Float)]()
                 var data = [(URL, CMTimeRange)]()
-                for item in self.cueFileInfo.track {
-                    print(item.track.startTime!.seconds / 100)
-                    let u = url.appendingPathComponent("\(item.track.title).wav")
+                for (index, item) in self.cueFileInfo.track.enumerated() {
+                    let u = url.appendingPathComponent("\(item.track.trackNum). \(item.track.title).wav")
                     if FileManager.default.fileExists(atPath: u.path) {
                         try? FileManager.default.removeItem(at: u)
                     }
                     let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-//                    print(u)
-//                    print(r)
+                    
+                    //                self.test.append((item.track.title, 0))
+                    
                     data.append((u, r))
                 }
                 
-                let p = DispatchSemaphore(value: 0)
+                
                 AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
+                    //                self.test[index].status = own
                     print("\(index) : \(own) : \(total)")
                 }
-                p.wait()
-                
-                //                self.tagging(urls: data.map({ (u, r) in u }), sheet: self.cue!)
             }
         }
     }

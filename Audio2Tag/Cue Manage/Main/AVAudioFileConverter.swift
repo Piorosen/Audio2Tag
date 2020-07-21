@@ -25,8 +25,6 @@ public final class AVAudioFileConverter {
         outputURL = outputFileURL
         asset = AVAsset(url: inputURL)
         
-        var localError:NSError?
-        if asset.statusOfValue(forKey: "tracks", error: &localError) != AVKeyValueStatus.loaded { return nil }
         guard let file = try? AVAudioFile(forReading: inputURL) else { return nil }
         guard let tracks = asset.tracks(withMediaType: AVMediaType.audio).first else { return nil }
         
@@ -38,11 +36,16 @@ public final class AVAudioFileConverter {
         asset.loadValuesAsynchronously(forKeys: ["tracks"]) {
             var progress = [Float](repeating: 0, count: self.outputURL.count)
             for i in self.outputURL.indices {
+                var localError:NSError?
+                var success = self.asset.statusOfValue(forKey: "tracks", error: &localError) == AVKeyValueStatus.loaded
+                assert(success, "Ha..")
+                
+                
                 let result = self.startAssetReaderAndWriter(value: self.outputURL[i]) { [i] p in
                     progress[i] = Float(1) / Float(self.outputURL.count) * p
                     callback(i, p, progress.reduce(0, +))
                 }
-                assert(result, "Error")
+                print("\(result)")
             }
         }
     }

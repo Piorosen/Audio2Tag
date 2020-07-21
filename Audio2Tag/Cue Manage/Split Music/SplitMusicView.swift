@@ -9,15 +9,12 @@
 import SwiftUI
 
 struct SplitMusicView: View {
+    @Binding var bind: [(name:String, status:Float)]
+    
     var body: some View {
-        VStack {
-            EmptyView()
+        List(bind, id: \.self.name) { value in
+            Text("\(value.name) : \(String(format: "%.0f", value.status * 100))")
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-struct SplitMusicView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplitMusicView()
-    }
-}
