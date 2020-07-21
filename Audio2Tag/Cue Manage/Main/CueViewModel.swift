@@ -54,10 +54,14 @@ class CueViewModel : ObservableObject {
     
     func makeAlert() -> Alert {
         switch self.alert {
-        case .alertSplitView: return Alert(title: Text("hi"))
-        case .none: return Alert(title: Text("BANG"))
+        case .alertSplitView:
+            return Alert(title: Text("파일 분리"),
+                        message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                        primaryButton: .cancel(Text("취소")),
+                        secondaryButton: .default(Text("확인"), action: openSplitFolderDocument))
+        case .none:
+            return Alert(title: Text("Error!"))
         }
-        
     }
     func makeSheet() -> AnyView {
         switch sheet {
@@ -66,7 +70,9 @@ class CueViewModel : ObservableObject {
                 let _ = self.loadItem(url: urls)
             })
         case .splitFolderDocument:
-            return AnyView(DocumentPicker(isFolderPicker: true))
+            return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
+                self.splitStart(url: url)
+            })
         default:
             return AnyView(EmptyView().background(Color.red))
         }
@@ -106,6 +112,7 @@ class CueViewModel : ObservableObject {
             return nil
         }
     }
+    
     func loadItem(url: [URL]) {
         guard let cue = getCueSheet(url) else {
             return
@@ -134,7 +141,7 @@ class CueViewModel : ObservableObject {
     
     
     func splitStart(url: URL) -> Void {
-        print(url)
+//        print(url)
         DispatchQueue.global().async {
             if let fileUrl = self.fileURL {
                 var data = [(URL, CMTimeRange)]()
@@ -145,21 +152,20 @@ class CueViewModel : ObservableObject {
                         try? FileManager.default.removeItem(at: u)
                     }
                     let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-                    print(u)
-                    print(r)
+//                    print(u)
+//                    print(r)
                     data.append((u, r))
                 }
+                
                 let p = DispatchSemaphore(value: 0)
-                AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert(callback: { f in print(f) }) {
-                    p.signal()
+                AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
+                    print("\(index) : \(own) : \(total)")
                 }
                 p.wait()
                 
                 //                self.tagging(urls: data.map({ (u, r) in u }), sheet: self.cue!)
             }
-            
         }
-        
     }
     
     //    func tagging(urls:[URL], sheet:CueSheet) {
@@ -170,18 +176,7 @@ class CueViewModel : ObservableObject {
     //            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
     //            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
     //        ])
-    //
-    //
-    //        for i in urls.indices {
-    ////            var p = DispatchSemaphore(value: 0)
-    ////            let output = urls[i].deletingPathExtension().appendingPathExtension("m4a")
-    ////            var assetExport = AVAssetExportSession(asset: AVAsset(url: urls[i]), presetName: AVAssetExportPresetAppleM4A)
-    ////            assetExport?.outputFileType = AVFileType.m4a
-    ////            assetExport?.outputURL = output
-    ////            assetExport?.exportAsynchronously{
-    ////                p.signal()
-    ////            }
-    ////            p.wait()
+    
     //
     //            let copy = ID3Tag(version: def.properties.version, frames: def.frames)
     //            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
