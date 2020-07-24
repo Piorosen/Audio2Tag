@@ -164,8 +164,10 @@ class CueViewModel : ObservableObject {
                 
                 AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
                     DispatchQueue.main.sync {
-                        self.test[index].status = own
-                        print("\(index) : \(own) : \(total)")
+                        if self.test[index].status != Int(own * 100) {
+                            self.test[index].status = Int(own * 100)
+                            print("\(index) : \(own) : \(total) : \(Int(own * 100))")
+                        }
                     }
 
                 }

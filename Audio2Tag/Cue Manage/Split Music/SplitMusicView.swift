@@ -11,7 +11,7 @@ import SwiftUI
 struct splitMusicModel : Identifiable {
     let id = UUID()
     let name: String
-    var status: Float
+    var status: Int
 }
 
 struct SplitMusicView: View {
@@ -21,7 +21,7 @@ struct SplitMusicView: View {
         Group {
             Text("asdfasdf")
             List(bind, id: \.self.name) { value in
-                Text("\(value.name) : \(String(format: "%.0f", value.status * 100))")
+                Text("\(value.name) : \(String(format: "%d", value.status))")
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         

@@ -9,16 +9,14 @@
 import Foundation
 import AVFoundation
 
-public final class AVAudioFileConverter {
+public final class AVAudioSpliter {
     let asset:AVAsset
-    
     let inputURL:URL
     let outputSettings: [String:Any]
     let outputURL:[(url:URL, range:CMTimeRange)]
     
     let dispatch = DispatchQueue(label: "split Music")
     let track: AVAssetTrack
-    
     
     public init?(inputFileURL: URL, outputFileURL: [(url:URL, range:CMTimeRange)]) {
         inputURL = inputFileURL
@@ -38,9 +36,8 @@ public final class AVAudioFileConverter {
             
             for i in self.outputURL.indices {
                 let _ = self.startAssetReaderAndWriter(value: self.outputURL[i]) { [i] p in
-                    let _ = Float(i) / Float(self.outputURL.count)
-                    let size = Float(1) / Float(self.outputURL.count) * p
-                    sum[i] = size
+//                    let _ = Float(i) / Float(self.outputURL.count)
+                    sum[i] = Float(1) / Float(self.outputURL.count) * p
                     callback(i, p, sum.reduce(0, +))
                 }   
             }
@@ -69,20 +66,20 @@ public final class AVAudioFileConverter {
                 if let sampleBuffer = assetReaderAudioOutput.copyNextSampleBuffer() {
                     let timeStamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
                     let timeSecond = CMTimeGetSeconds(timeStamp - value.range.start)
+                    
                     let per = timeSecond / CMTimeGetSeconds(value.range.duration)
                     percentCallback(Float(per))
+                    
                     assetWriterAudioInput.append(sampleBuffer)
-                }else {
+                } else {
                     assetWriterAudioInput.markAsFinished()
                     assetReader.cancelReading()
                     assetWriter.finishWriting {
-                        print("Asset Writer Finished Writing")
+                        percentCallback(1)
                     }
                     break
                 }
             }
-            
-            percentCallback(1)
         }
         return true
     }
