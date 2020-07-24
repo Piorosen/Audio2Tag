@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5A24BB0EE3008010CE /* CueViewModel.swift */; };
 		620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */; };
+		622CAA1D24C6972B006473E6 /* SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA1C24C6972B006473E6 /* SplitMusicView.swift */; };
+		622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */; };
+		622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2024C69741006473E6 /* SplitMusicModel.swift */; };
+		622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2324C69D53006473E6 /* CueFileInfoView.swift */; };
+		622CAA2624C69D8F006473E6 /* CueFileInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */; };
+		622CAA2824C6A169006473E6 /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2724C6A169006473E6 /* CueModel.swift */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
 		626F5CA624B81E5B00945523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA524B81E5B00945523 /* ContentView.swift */; };
@@ -26,13 +32,8 @@
 		626F5CEF24B821A300945523 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CEE24B821A300945523 /* SettingView.swift */; };
 		6271B4A924C44BAF006667EC /* CueDetailTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271B4A824C44BAF006667EC /* CueDetailTrackView.swift */; };
 		6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */; };
-		629230F924C4A7DB0064F63B /* AVAudioFileConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */; };
+		629230F924C4A7DB0064F63B /* AVAudioSpliter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629230F824C4A7DB0064F63B /* AVAudioSpliter.swift */; };
 		62BDB00C24C41B2200832EA2 /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 62BDB00B24C41B2200832EA2 /* cue.png */; };
-		62FB713D24C4526600F6FACD /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */; };
-		62FB713E24C4526600F6FACD /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */; };
-		62FB713F24C4526600F6FACD /* RADWIMPS - 君の名は。.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */; };
-		62FB714024C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
-		62FB714124C4526600F6FACD /* Faithless - Live in Berlin.cue in Resources */ = {isa = PBXBuildFile; fileRef = 62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,12 @@
 /* Begin PBXFileReference section */
 		620EDF5A24BB0EE3008010CE /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserView.swift; sourceTree = "<group>"; };
+		622CAA1C24C6972B006473E6 /* SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicView.swift; sourceTree = "<group>"; };
+		622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicViewModel.swift; sourceTree = "<group>"; };
+		622CAA2024C69741006473E6 /* SplitMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
+		622CAA2324C69D53006473E6 /* CueFileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
+		622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoModel.swift; sourceTree = "<group>"; };
+		622CAA2724C6A169006473E6 /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626F5CA324B81E5B00945523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,13 +83,8 @@
 		626F5CEE24B821A300945523 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		6271B4A824C44BAF006667EC /* CueDetailTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailTrackView.swift; sourceTree = "<group>"; };
 		6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
-		629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioFileConverter.swift; sourceTree = "<group>"; };
+		629230F824C4A7DB0064F63B /* AVAudioSpliter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVAudioSpliter.swift; sourceTree = "<group>"; };
 		62BDB00B24C41B2200832EA2 /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
-		62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
-		62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
-		62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RADWIMPS - 君の名は。.cue"; sourceTree = "<group>"; };
-		62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
-		62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Faithless - Live in Berlin.cue"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,14 +126,28 @@
 		620EDF6824BB2120008010CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				62FB713B24C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
-				62FB713C24C4526600F6FACD /* Faithless - Live in Berlin.cue */,
-				62FB713824C4526100F6FACD /* MYTH&ROID - HYDRA.cue */,
-				62FB713924C4526600F6FACD /* MYTH&ROID - HYDRA.wav */,
-				62FB713A24C4526600F6FACD /* RADWIMPS - 君の名は。.cue */,
 				62BDB00B24C41B2200832EA2 /* cue.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		622CAA1B24C69706006473E6 /* Split Music */ = {
+			isa = PBXGroup;
+			children = (
+				622CAA1C24C6972B006473E6 /* SplitMusicView.swift */,
+				622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */,
+				622CAA2024C69741006473E6 /* SplitMusicModel.swift */,
+			);
+			path = "Split Music";
+			sourceTree = "<group>";
+		};
+		622CAA2224C69D2E006473E6 /* FileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				622CAA2324C69D53006473E6 /* CueFileInfoView.swift */,
+				622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */,
+			);
+			path = FileInfo;
 			sourceTree = "<group>";
 		};
 		626F5C9524B81E5B00945523 = {
@@ -203,6 +219,9 @@
 		626F5CDB24B81FE500945523 /* Cue Manage */ = {
 			isa = PBXGroup;
 			children = (
+				627F26A624CB29AF00858350 /* Library */,
+				622CAA2224C69D2E006473E6 /* FileInfo */,
+				622CAA1B24C69706006473E6 /* Split Music */,
 				6271B4AB24C44BFB006667EC /* Detail Track */,
 				6271B4AA24C44BEA006667EC /* Main */,
 			);
@@ -263,7 +282,7 @@
 			children = (
 				620EDF5A24BB0EE3008010CE /* CueViewModel.swift */,
 				626F5CE824B8217C00945523 /* CueView.swift */,
-				629230F824C4A7DB0064F63B /* AVAudioFileConverter.swift */,
+				622CAA2724C6A169006473E6 /* CueModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -275,6 +294,14 @@
 				6271B4AC24C44C8C006667EC /* CueDetailTrackViewModel.swift */,
 			);
 			path = "Detail Track";
+			sourceTree = "<group>";
+		};
+		627F26A624CB29AF00858350 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				629230F824C4A7DB0064F63B /* AVAudioSpliter.swift */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,15 +418,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62FB713E24C4526600F6FACD /* MYTH&ROID - HYDRA.wav in Resources */,
-				62FB713F24C4526600F6FACD /* RADWIMPS - 君の名は。.cue in Resources */,
-				62FB714024C4526600F6FACD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
-				62FB713D24C4526600F6FACD /* MYTH&ROID - HYDRA.cue in Resources */,
 				626F5CAE24B81E5B00945523 /* LaunchScreen.storyboard in Resources */,
 				626F5CAB24B81E5B00945523 /* Preview Assets.xcassets in Resources */,
 				62BDB00C24C41B2200832EA2 /* cue.png in Resources */,
 				626F5CA824B81E5B00945523 /* Assets.xcassets in Resources */,
-				62FB714124C4526600F6FACD /* Faithless - Live in Berlin.cue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,16 +447,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
+				622CAA2824C6A169006473E6 /* CueModel.swift in Sources */,
+				622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
+				622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */,
 				620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */,
 				626F5CED24B8219D00945523 /* FileView.swift in Sources */,
+				622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */,
+				622CAA1D24C6972B006473E6 /* SplitMusicView.swift in Sources */,
 				6271B4A924C44BAF006667EC /* CueDetailTrackView.swift in Sources */,
 				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
 				6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */,
+				622CAA2624C69D8F006473E6 /* CueFileInfoModel.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
 				620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */,
-				629230F924C4A7DB0064F63B /* AVAudioFileConverter.swift in Sources */,
+				629230F924C4A7DB0064F63B /* AVAudioSpliter.swift in Sources */,
 				626F5CEB24B8219700945523 /* TagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

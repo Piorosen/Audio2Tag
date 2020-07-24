@@ -9,41 +9,82 @@
 import SwiftUI
 import SwiftCueSheet
 import CoreMedia
+import ID3TagEditor
+import AVFoundation
 
+enum sheetType {
+    case none
+    case cueSearchDocument
+    case splitStatusView
+    case splitFolderDocument
+}
 
-struct trackModel : Identifiable {
-    let id = UUID()
-    let track: Track
-}
-struct remModel : Identifiable {
-    let id = UUID()
-    let value: (key:String, value:String)
-}
-struct metaModel : Identifiable {
-    let id = UUID()
-    let value: (key:String, value:String)
+enum alertType {
+    case none
+    case alertSplitView
 }
 
 class CueViewModel : ObservableObject {
-    @Published var isSplitPresented = false
-    @Published var isDocumentShow = false
-    @Published var isFolderShow = false
+    @Published var cueFileInfo = CueFileInfoModel(meta: [metaModel](), rem: [remModel](), track: [trackModel](), fileName: "", fileExt: "")
     
-    @Published var metaData = [metaModel]()
-    @Published var remData = [remModel]()
+    // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
+    @Published var openAlert = false
+    @Published var openSheet = false
+    @Published var test = [splitMusicModel]()
+    var sheet = sheetType.none
+    var alert = alertType.none
     
-    @Published var fileName = String()
-    @Published var fileExt = String()
-    @Published var track = [trackModel]()
-    
-    
-    
-    func addItem() {
-        isDocumentShow = true
+    func openCueSearchDocument() {
+        sheet = .cueSearchDocument
+        openSheet = true
+    }
+    func openSplitStatusView() {
+        sheet = .splitStatusView
+        openSheet = true
+    }
+    func openSplitFolderDocument() {
+        sheet = .splitFolderDocument
+        openSheet = true
     }
     
+    func openAlertSplitView() {
+        alert = .alertSplitView
+        openAlert = true
+    }
     
-    func getCueSheet(_ url: [URL]) -> CueSheet? {
+    func makeAlert() -> Alert {
+        switch self.alert {
+        case .alertSplitView:
+            return Alert(title: Text("파일 분리"),
+                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                         primaryButton: .cancel(Text("취소")),
+                         secondaryButton: .default(Text("확인"), action: openSplitFolderDocument))
+        case .none:
+            return Alert(title: Text("Error!"))
+        }
+    }
+    func makeSheet(event: Binding<[splitMusicModel]>) -> AnyView {
+        switch sheet {
+        case .cueSearchDocument:
+            return AnyView(DocumentPicker(isFolderPicker: false).onSelectFiles{ urls in
+                let _ = self.loadItem(url: urls)
+            })
+        case .splitFolderDocument:
+            return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
+                self.splitStart(url: url)
+            })
+        case .splitStatusView:
+            return AnyView(SplitMusicView(bind: event))
+            
+        default:
+            return AnyView(EmptyView().background(Color.red))
+        }
+    }
+    // MARK: -
+    
+    var fileURL:URL?
+    
+    private func getCueSheet(_ url: [URL]) -> CueSheet? {
         fileURL = nil
         
         if url.count == 1 {
@@ -57,7 +98,7 @@ class CueViewModel : ObservableObject {
         else if url.count == 2 {
             var cueIndex = -1
             for index in url.indices {
-                if url[index].pathExtension.lowercased() == "cue" {
+                if url[index].pathExtension.lowercased() == "cue" || url[index].pathExtension.lowercased() == "txt" {
                     cueIndex = index
                     break
                 }
@@ -79,81 +120,82 @@ class CueViewModel : ObservableObject {
         guard let cue = getCueSheet(url) else {
             return
         }
-        remData.removeAll()
-        metaData.removeAll()
+        var meta = [metaModel]()
+        var rem = [remModel]()
         
         for (key, value) in cue.rem {
             let data = remModel(value: (key, value))
             if data.value.value != String() {
-                remData.append(data)
+                rem.append(data)
             }
         }
         for (key, value) in cue.meta {
             let data = metaModel(value: (key, value))
             if data.value.value != String() {
-                metaData.append(data)
+                meta.append(data)
             }   
         }
+        let track = cue.file.tracks.map({ t in trackModel(track: t) })
         
-        fileName = cue.file.fileName
-        fileExt = cue.file.fileType
-        
-        track = cue.file.tracks.map( { t in trackModel(track: t)})
-    }
-    
-    func splitFile() -> Void {
-        isSplitPresented = true
-    }
-    
-    var fileURL:URL?
-    func alertOK() -> Void {
-        print("split Start")
-        self.isFolderShow = true
+        cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: track, fileName: cue.file.fileName, fileExt: cue.file.fileType)
     }
     
     func splitStart(url: URL) -> Void {
-        print(url)
-        if let fileUrl = fileURL {
-            
-            
-            var data = [(URL, CMTimeRange)]()
-            for item in self.track {
-                print(item.track.startTime!.seconds / 100)
-                let u = url.appendingPathComponent("\(item.track.title).wav")
-                if FileManager.default.fileExists(atPath: u.path) {
-                    try? FileManager.default.removeItem(at: u)
+        openSplitStatusView()
+        
+        self.test = [splitMusicModel]()
+        DispatchQueue.global().async {
+            if let fileUrl = self.fileURL {
+                
+                var data = [(URL, CMTimeRange)]()
+                for (index, item) in self.cueFileInfo.track.enumerated() {
+                    let u = url.appendingPathComponent("\(item.track.trackNum). \(item.track.title).wav")
+                    if FileManager.default.fileExists(atPath: u.path) {
+                        try? FileManager.default.removeItem(at: u)
+                    }
+                    let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
+                    DispatchQueue.main.sync {
+                        self.test.append(splitMusicModel(name: item.track.title, status: 0))
+                    }
+                    
+                    data.append((u, r))
                 }
-                let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-                print(u)
-                print(r)
-                data.append((u, r))
-            }
-            AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { percent in
-                print(percent)
+                
+                
+                AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
+                    DispatchQueue.main.sync {
+                        if self.test[index].status != Int(own * 100) {
+                            self.test[index].status = Int(own * 100)
+                            print("\(index) : \(own) : \(total) : \(Int(own * 100))")
+                        }
+                    }
+
+                }
             }
         }
     }
     
-    //    func testMakeItem() -> Void {
-    //        let cues = Bundle.main.paths(forResourcesOfType: "cue", inDirectory: nil)
-    //        let wavs = Bundle.main.paths(forResourcesOfType: "wav", inDirectory: nil)
+    //    func tagging(urls:[URL], sheet:CueSheet) {
+    //        let def = ID3Tag(version: .version3, frames: [
+    //            .Album: ID3FrameWithStringContent(content: sheet.meta["TITLE"] ?? ""),
+    //            .AlbumArtist: ID3FrameWithStringContent(content: sheet.meta["PERFORMER"] ?? ""),
+    //            .Genre: ID3FrameWithStringContent(content: sheet.rem["GENRE"] ?? ""),
+    //            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
+    //            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
+    //        ])
+    
     //
-    //        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    //
-    //        for item in cues {
-    //            let file = try? String(contentsOfFile: item)
-    //            let last = URL(fileURLWithPath: item).lastPathComponent
-    //            try? file?.write(to: url.appendingPathComponent(last), atomically: false, encoding: .utf8)
+    //            let copy = ID3Tag(version: def.properties.version, frames: def.frames)
+    //            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
+    //            copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
+    //            copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
+    //            print(urls[i].deletingPathExtension().appendingPathExtension("wav").path)
+    //            do {
+    //                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("wav").path)
+    //            }catch (let result) {
+    //                print(result)
+    //            }
     //        }
-    //
-    //        for file in wavs {
-    //            let last = URL(fileURLWithPath: file).lastPathComponent
-    //
-    //            try? FileManager.default.copyItem(at: URL(fileURLWithPath: file), to: url.appendingPathComponent(last))
-    //        }
-    //
-    //        //        print(item1.count)
-    //
     //    }
+    
 }
-
