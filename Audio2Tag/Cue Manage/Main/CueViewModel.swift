@@ -25,32 +25,52 @@ enum alertType {
 }
 
 class CueViewModel : ObservableObject {
-    @Published var cueFileInfo = CueFileInfoModel(meta: [metaModel](), rem: [remModel](), track: [trackModel](), fileName: "", fileExt: "")
+    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
+    
+    // MARK: - 버튼 클릭 이벤트
+    func navigationLeadingButton() {
+        if cueSheetModel.musicUrl == nil {
+            openNone()
+        } else {
+            openAlertSplitView()
+        }
+    }
+    
+    func navigationTrailingButton() {
+        openCueSearchDocument()
+    }
+    
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     @Published var openAlert = false
     @Published var openSheet = false
     @Published var test = [splitMusicModel]()
+    
     var sheet = sheetType.none
     var alert = alertType.none
     
-    func openCueSearchDocument() {
+    private func openCueSearchDocument() {
         sheet = .cueSearchDocument
         openSheet = true
     }
-    func openSplitStatusView() {
+    private func openSplitStatusView() {
         sheet = .splitStatusView
         openSheet = true
     }
-    func openSplitFolderDocument() {
+    private func openSplitFolderDocument() {
         sheet = .splitFolderDocument
         openSheet = true
     }
     
-    func openAlertSplitView() {
+    private func openAlertSplitView() {
         alert = .alertSplitView
         openAlert = true
     }
+    private func openNone() {
+        alert = .none
+        openAlert = true
+    }
+    
     
     func makeAlert() -> Alert {
         switch self.alert {
@@ -60,10 +80,12 @@ class CueViewModel : ObservableObject {
                          primaryButton: .cancel(Text("취소")),
                          secondaryButton: .default(Text("확인"), action: openSplitFolderDocument))
         case .none:
-            return Alert(title: Text("Error!"))
+            return Alert(title: Text("오류"),
+                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
+                         dismissButton: .cancel(Text("확인")))
         }
     }
-    func makeSheet(event: Binding<[splitMusicModel]>) -> AnyView {
+    func makeSheet() -> AnyView {
         switch sheet {
         case .cueSearchDocument:
             return AnyView(DocumentPicker(isFolderPicker: false).onSelectFiles{ urls in
@@ -71,29 +93,30 @@ class CueViewModel : ObservableObject {
             })
         case .splitFolderDocument:
             return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
+                self.openSplitStatusView()
                 self.splitStart(url: url)
             })
         case .splitStatusView:
-            return AnyView(SplitMusicView(bind: event))
+            //            return AnyView(SplitMusicView(bind: event))
+            return AnyView(EmptyView().background(Color.red))
             
         default:
             return AnyView(EmptyView().background(Color.red))
         }
     }
+    
     // MARK: -
     
-    var fileURL:URL?
-    
-    private func getCueSheet(_ url: [URL]) -> CueSheet? {
-        fileURL = nil
-        
+    private func getCueSheet(_ url: [URL]) -> CueSheetModel? {
+        let parser = CueSheetParser()
         if url.count == 1 {
-            let parser = CueSheetParser()
             guard let item = parser.loadFile(cue: url[0]) else {
                 return nil
             }
             
-            return parser.calcTime(sheet: item, lengthOfMusic: 0)
+            let sheet = parser.calcTime(sheet: item, lengthOfMusic: 0)
+            
+            return CueSheetModel(cueSheet: sheet, cueUrl: url[0], musicUrl: nil)
         }
         else if url.count == 2 {
             var cueIndex = -1
@@ -108,8 +131,13 @@ class CueViewModel : ObservableObject {
                 return nil
             }
             
-            fileURL = url[abs(cueIndex - 1)]
-            return CueSheetParser().loadFile(pathOfMusic: fileURL!, pathOfCue: url[cueIndex])
+            let musicUrl = url[abs(cueIndex - 1)]
+            let cueUrl = url[cueIndex]
+            guard let sheet = parser.loadFile(pathOfMusic: musicUrl, pathOfCue: cueUrl) else {
+                return nil
+            }
+            
+            return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
         }
         else {
             return nil
@@ -117,85 +145,58 @@ class CueViewModel : ObservableObject {
     }
     
     func loadItem(url: [URL]) {
-        guard let cue = getCueSheet(url) else {
-            return
+        if let cue = getCueSheet(url) {
+            cueSheetModel = cue
         }
-        var meta = [metaModel]()
-        var rem = [remModel]()
         
-        for (key, value) in cue.rem {
-            let data = remModel(value: (key, value))
-            if data.value.value != String() {
-                rem.append(data)
-            }
+        if cueSheetModel.musicUrl == nil {
+            alert = .none
+        }else {
+            alert = .alertSplitView
         }
-        for (key, value) in cue.meta {
-            let data = metaModel(value: (key, value))
-            if data.value.value != String() {
-                meta.append(data)
-            }   
-        }
-        let track = cue.file.tracks.map({ t in trackModel(track: t) })
-        
-        cueFileInfo = CueFileInfoModel(meta: meta, rem: rem, track: track, fileName: cue.file.fileName, fileExt: cue.file.fileType)
     }
+    
     
     func splitStart(url: URL) -> Void {
-        openSplitStatusView()
+        // 1번 더 체크 함.
+        if cueSheetModel.musicUrl == nil {
+            return
+        }
         
-        self.test = [splitMusicModel]()
+        guard let musicUrl = cueSheetModel.cueUrl else {
+            return
+        }
+        guard let cueSheet = cueSheetModel.cueSheet else {
+            return
+        }
+        
         DispatchQueue.global().async {
-            if let fileUrl = self.fileURL {
+            var data = [(URL, CMTimeRange)]()
+            for item in cueSheet.file.tracks {
+                let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
                 
-                var data = [(URL, CMTimeRange)]()
-                for (index, item) in self.cueFileInfo.track.enumerated() {
-                    let u = url.appendingPathComponent("\(item.track.trackNum). \(item.track.title).wav")
-                    if FileManager.default.fileExists(atPath: u.path) {
-                        try? FileManager.default.removeItem(at: u)
-                    }
-                    let r = CMTimeRange(start: CMTime(seconds: item.track.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.track.duration!, preferredTimescale: 1))
-                    DispatchQueue.main.sync {
-                        self.test.append(splitMusicModel(name: item.track.title, status: 0))
-                    }
-                    
-                    data.append((u, r))
+                // 기존에 이미 있는 파일 지움.
+                if FileManager.default.fileExists(atPath: u.path) {
+                    try? FileManager.default.removeItem(at: u)
                 }
                 
+                let r = CMTimeRange(start: CMTime(seconds: item.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.duration!, preferredTimescale: 1))
+                DispatchQueue.main.sync {
+                    self.test.append(splitMusicModel(name: item.title, status: 0))
+                }
                 
-                AVAudioFileConverter(inputFileURL: fileUrl, outputFileURL: data)?.convert { index, own, total in
-                    DispatchQueue.main.sync {
-                        if self.test[index].status != Int(own * 100) {
-                            self.test[index].status = Int(own * 100)
-                            print("\(index) : \(own) : \(total) : \(Int(own * 100))")
-                        }
+                data.append((u, r))
+            }
+            
+            
+            AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
+                DispatchQueue.main.sync {
+                    if self.test[index].status != Int(own * 100) {
+                        self.test[index].status = Int(own * 100)
+                        print("\(index) : \(own) : \(total) : \(Int(own * 100))")
                     }
-
                 }
             }
         }
     }
-    
-    //    func tagging(urls:[URL], sheet:CueSheet) {
-    //        let def = ID3Tag(version: .version3, frames: [
-    //            .Album: ID3FrameWithStringContent(content: sheet.meta["TITLE"] ?? ""),
-    //            .AlbumArtist: ID3FrameWithStringContent(content: sheet.meta["PERFORMER"] ?? ""),
-    //            .Genre: ID3FrameWithStringContent(content: sheet.rem["GENRE"] ?? ""),
-    //            .RecordingDateTime: ID3FrameWithStringContent(content: sheet.rem["DATE"] ?? ""),
-    //            .Composer: ID3FrameWithStringContent(content: sheet.rem["COMPOSER"] ?? ""),
-    //        ])
-    
-    //
-    //            let copy = ID3Tag(version: def.properties.version, frames: def.frames)
-    //            copy.frames[.Title] = ID3FrameWithStringContent(content: sheet.file.tracks[i].title)
-    //            copy.frames[.Artist] = ID3FrameWithStringContent(content: sheet.file.tracks[i].performer)
-    //            copy.frames[.Composer] = ID3FrameWithStringContent(content: sheet.file.tracks[i].rem["COMPOSER"] ?? "")
-    //            print(urls[i].deletingPathExtension().appendingPathExtension("wav").path)
-    //            do {
-    //                try ID3TagEditor().write(tag: copy, to: urls[i].deletingPathExtension().appendingPathExtension("wav").path)
-    //            }catch (let result) {
-    //                print(result)
-    //            }
-    //        }
-    //    }
-    
 }

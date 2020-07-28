@@ -12,7 +12,7 @@ import SwiftUI
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
     
-    init(_ item: trackModel) {
+    init(_ item: TrackModel) {
         viewModel = CueDetailTrackViewModel(item: item)
     }
     

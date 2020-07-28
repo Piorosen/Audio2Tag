@@ -13,15 +13,15 @@ struct CueView: View {
     
     var body: some View {
         NavigationView {
-            CueFileInfoView(fileInfo: self.$viewModel.cueFileInfo)
-                .sheet(isPresented: self.$viewModel.openSheet) { self.viewModel.makeSheet(event: self.$viewModel.test) }
+            CueFileInfoView(fileInfo: self.$viewModel.cueSheetModel)
+                .sheet(isPresented: self.$viewModel.openSheet) { self.viewModel.makeSheet() }
             .alert(isPresented: self.$viewModel.openAlert) { self.viewModel.makeAlert() }
             .navigationBarTitle("Cue Info")
             .navigationBarItems(
             leading:
-                Button(action: self.viewModel.openAlertSplitView) { Text("Make") },
+                Button(action: self.viewModel.navigationLeadingButton) { Text("Make") },
             trailing:
-                Button(action: self.viewModel.openCueSearchDocument) { Image(systemName: "plus") }
+                Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "plus") }
             )
         }
     }

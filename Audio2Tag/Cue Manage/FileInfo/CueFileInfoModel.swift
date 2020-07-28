@@ -7,14 +7,3 @@
 //
 
 import Foundation
-
-struct CueFileInfoModel : Identifiable {
-    let id = UUID()
-    
-    var meta: [metaModel]
-    var rem: [remModel]
-    var track: [trackModel]
-    
-    var fileName: String
-    var fileExt: String
-}

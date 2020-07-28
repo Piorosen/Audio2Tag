@@ -13,8 +13,8 @@ import CoreMedia
 
 
 class CueDetailTrackViewModel : ObservableObject {
-    let item: trackModel
-    let rem: [remModel]
+    let item: TrackModel
+    let rem: [RemModel]
     
     let startTime: String
     let endTime:String
@@ -28,13 +28,13 @@ class CueDetailTrackViewModel : ObservableObject {
         return String(format: "%dm, %ds, %dms", min, second, ms)
     }
     
-    init(item: trackModel) {
+    init(item: TrackModel) {
         self.item = item
         
-        var tmp = [remModel]()
+        var tmp = [RemModel]()
         for (key, value) in item.track.rem {
             
-            let data = remModel(value: (key, value))
+            let data = RemModel(value: (key, value))
             if data.value.value != String() {
                 tmp.append(data)
             }
