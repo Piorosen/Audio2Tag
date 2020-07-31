@@ -7,12 +7,45 @@
 //
 
 import SwiftUI
+import CoreMedia
 
 struct CueFileInfoView: View {
     @Binding var fileInfo: CueSheetModel
     
+    
+    func musicInfo() -> AnyView {
+        guard let info = fileInfo.cueSheet?.info else {
+            return AnyView(EmptyView())
+        }
+        if fileInfo.musicUrl == nil {
+            return AnyView(EmptyView())
+        }
+        
+        
+        return AnyView(Section(header: Text("Music")) {
+            HStack {
+                Text("음원 길이")
+                Spacer()
+                Text("\(CueDetailTrackViewModel.makeTime(CMTimeGetSeconds(info.lengthOfAudio)))")
+            }
+            HStack {
+                Text("채널 수")
+                Spacer()
+                Text("\(info.format.channelCount)")
+            }
+            HStack {
+                Text("샘플 레이트")
+                Spacer()
+                Text("\(Int(info.format.sampleRate))")
+            }
+        })
+        
+        
+    }
+    
     var body: some View {
         List {
+            musicInfo()
             Section(header: Text("Meta")) {
                 ForEach (self.fileInfo.rem) { meta in
                     HStack {
