@@ -55,13 +55,13 @@ struct CueView: View {
             leading:
                 Button(action: self.viewModel.navigationLeadingButton) {
                     if self.viewModel.sheet == .splitStatusView {
-                        Text("Show")
+                        Image(systemName: "doc.on.doc")
                     } else {
-                        Text("Make")
+                        Image(systemName: "play")
                     }
                 },
             trailing:
-                Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "plus") }
+                Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "folder.badge.plus") }
             )
         }
     }

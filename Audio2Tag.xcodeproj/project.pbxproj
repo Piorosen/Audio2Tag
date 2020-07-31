@@ -13,7 +13,6 @@
 		622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */; };
 		622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2024C69741006473E6 /* SplitMusicModel.swift */; };
 		622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2324C69D53006473E6 /* CueFileInfoView.swift */; };
-		622CAA2624C69D8F006473E6 /* CueFileInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */; };
 		622CAA2824C6A169006473E6 /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2724C6A169006473E6 /* CueModel.swift */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
@@ -60,7 +59,6 @@
 		622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicViewModel.swift; sourceTree = "<group>"; };
 		622CAA2024C69741006473E6 /* SplitMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
 		622CAA2324C69D53006473E6 /* CueFileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
-		622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoModel.swift; sourceTree = "<group>"; };
 		622CAA2724C6A169006473E6 /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				622CAA2324C69D53006473E6 /* CueFileInfoView.swift */,
-				622CAA2524C69D8F006473E6 /* CueFileInfoModel.swift */,
 			);
 			path = FileInfo;
 			sourceTree = "<group>";
@@ -459,7 +456,6 @@
 				6271B4A924C44BAF006667EC /* CueDetailTrackView.swift in Sources */,
 				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
 				6271B4AD24C44C8C006667EC /* CueDetailTrackViewModel.swift in Sources */,
-				622CAA2624C69D8F006473E6 /* CueFileInfoModel.swift in Sources */,
 				626F5CA624B81E5B00945523 /* ContentView.swift in Sources */,
 				620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */,
 				629230F924C4A7DB0064F63B /* AVAudioSpliter.swift in Sources */,
