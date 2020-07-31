@@ -30,7 +30,10 @@ class CueViewModel : ObservableObject {
     
     // MARK: - 버튼 클릭 이벤트
     func navigationLeadingButton() {
-        if cueSheetModel.musicUrl == nil {
+        if sheet == .splitStatusView {
+            openSplitStatusView()
+        }
+        else if cueSheetModel.musicUrl == nil {
             openNone()
         } else {
             openAlertSplitView()
@@ -150,13 +153,17 @@ class CueViewModel : ObservableObject {
             splitStatus.append(.init(name: item.title, status: 0))
         }
         
-        let count = 10
+        let count = 5
         AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
             DispatchQueue.main.sync {
                 let p = Int(own * 100)
-                if (p / count) <  (self.splitStatus[index].status / count) {
+                if (p / count) >  (self.splitStatus[index].status / count) {
                     self.splitStatus[index].status = p
                 }
+            }
+            
+            if total == 1 {
+                self.sheet = .none
             }
         }
     }

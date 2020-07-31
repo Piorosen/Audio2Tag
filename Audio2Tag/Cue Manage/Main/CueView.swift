@@ -53,7 +53,13 @@ struct CueView: View {
             .navigationBarTitle("Cue Info")
             .navigationBarItems(
             leading:
-                Button(action: self.viewModel.navigationLeadingButton) { Text("Make") },
+                Button(action: self.viewModel.navigationLeadingButton) {
+                    if self.viewModel.sheet == .splitStatusView {
+                        Text("Show")
+                    } else {
+                        Text("Make")
+                    }
+                },
             trailing:
                 Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "plus") }
             )
