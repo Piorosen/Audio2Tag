@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct splitMusicModel : Identifiable {
+struct SplitMusicModel : Identifiable {
     let id = UUID()
     let name: String
     var status: Int
 }
 
 struct SplitMusicView: View {
-    @Binding var bind: [splitMusicModel]
+    @Binding var bind: [SplitMusicModel]
     
     var body: some View {
         Group {

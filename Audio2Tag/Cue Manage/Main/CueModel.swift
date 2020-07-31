@@ -25,33 +25,29 @@ struct MetaModel : Identifiable {
 }
 
 struct CueSheetModel : Identifiable {
+    init(cueSheet:CueSheet? = nil, cueUrl:URL? = nil, musicUrl:URL? = nil) {
+        self.cueSheet = cueSheet
+        self.cueUrl = cueUrl
+        self.musicUrl = musicUrl
+        
+        if let sheet = self.cueSheet {
+            rem = sheet.rem.map { k, v in RemModel(value: (k,v))}
+            meta = sheet.meta.map { k, v in MetaModel(value: (k,v))}
+            tracks = sheet.file.tracks.map { t in TrackModel(track: t) }
+        }
+        else {
+            rem = [RemModel]()
+            meta = [MetaModel]()
+            tracks = [TrackModel]()
+        }
+    }
+    
     let id = UUID()
     let cueSheet: CueSheet?
     let cueUrl: URL?
     let musicUrl: URL?
     
-    var rem: [RemModel] {
-        get {
-            guard let cueSheet = cueSheet else {
-                return [RemModel]()
-            }
-            return cueSheet.rem.map { k, v in RemModel(value: (k,v))}
-        }
-    }
-    var meta: [MetaModel] {
-        get {
-            guard let cueSheet = cueSheet else {
-                return [MetaModel]()
-            }
-            return cueSheet.meta.map { k, v in MetaModel(value: (k,v))}
-        }
-    }
-    var tracks: [TrackModel] {
-        get {
-            guard let cueSheet = cueSheet else {
-                return [TrackModel]()
-            }
-            return cueSheet.file.tracks.map { t in TrackModel(track: t) }
-        }
-    }
+    let rem: [RemModel]
+    let meta: [MetaModel]
+    let tracks: [TrackModel]
 }
