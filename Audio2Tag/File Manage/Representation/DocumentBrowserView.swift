@@ -29,8 +29,8 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
 struct DocumentPicker : UIViewControllerRepresentable {
     let isFolderPicker: Bool = false
     let allowMultipleSelection = false
-    var oneFile: ((URL) -> Void) = { _ in }
-    var multiFile: (([URL]) -> Void) = { _ in }
+    fileprivate var oneFile: ((URL) -> Void) = { _ in }
+    fileprivate var multiFile: (([URL]) -> Void) = { _ in }
     
     
     func onSelectFile(completeHanlder: @escaping (URL) -> Void) -> DocumentPicker {
@@ -38,6 +38,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
         copy.oneFile = completeHanlder
         return copy
     }
+    
     func onSelectFiles(completeHanlder: @escaping ([URL]) -> Void) -> DocumentPicker {
         var copy = self
         copy.multiFile = completeHanlder
@@ -58,11 +59,9 @@ struct DocumentPicker : UIViewControllerRepresentable {
         
         return picker
     }
-    
-    
+        
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
         
     }
-    
     
 }
