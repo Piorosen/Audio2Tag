@@ -13,9 +13,9 @@ import ID3TagEditor
 import AVFoundation
 
 class CueViewModel : ObservableObject {
-    
-//    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
-//    @Published var splitStatus = [SplitMusicModel]()
+    // MARK: - View와 Binding할 변수 및 객체.
+    // 메인 화면의 List에 출력할 데이터.
+    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
     
     // MARK: - 버튼 클릭 이벤트
     func navigationLeadingButton() {
@@ -25,6 +25,7 @@ class CueViewModel : ObservableObject {
     func navigationTrailingButton() {
         
     }
+    
     
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
