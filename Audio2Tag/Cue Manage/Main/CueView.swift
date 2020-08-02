@@ -37,7 +37,7 @@ struct CueView: View {
                             DocumentPicker()
                                 .setConfig(folderPicker: true)
                                 .onSelectFile { url in
-                                    
+                                    self.viewModel.musicOfSplit(url: url)
                             }
                         }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
                         Button(action: self.viewModel.navigationLeadingDivideStatusButton){
