@@ -33,7 +33,7 @@ class CueViewModel : ObservableObject {
     
     private func getCueSheet(_ url: [URL]) -> CueSheetModel? {
         let parser = CueSheetParser()
-        
+        // url이 1개 일 경우 Cue Sheet 파일 분리 기능을 이용함.
         if url.count == 1 {
             guard let item = parser.loadFile(cue: url[0]) else {
                 return nil
@@ -42,7 +42,11 @@ class CueViewModel : ObservableObject {
             
             return CueSheetModel(cueSheet: sheet, cueUrl: url[0], musicUrl: nil)
         }
+        // url이 2개 인 경우 Cue Sheet와 음원이 같이 있다고 판단함.
         else if url.count == 2 {
+            // Cue 란 확장자를 가진 파일 탐색.
+            
+            // TODO: Cue Sheet 파일이 2개가 선택이 된 경우를 처리 해야함.
             var cueIndex = -1
             for index in url.indices {
                 if url[index].pathExtension.lowercased() == "cue" || url[index].pathExtension.lowercased() == "txt" {
@@ -50,11 +54,12 @@ class CueViewModel : ObservableObject {
                     break
                 }
             }
-            
+            // cue 파일이 없음.
             if cueIndex == -1 {
                 return nil
             }
             
+            // 다른 파일이 곧 cue Sheet라 파악이 가능함.
             let musicUrl = url[abs(cueIndex - 1)]
             let cueUrl = url[cueIndex]
             guard let sheet = parser.loadFile(pathOfMusic: musicUrl, pathOfCue: cueUrl) else {
@@ -63,15 +68,12 @@ class CueViewModel : ObservableObject {
             
             return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
         }
+        // 그 외에는 오류로 처리를 하지 않음.
         else {
             return nil
         }
     }
     
-    func loadItem(url: [URL]) {
-
-        
-    }
     
     
 //    func splitStart(url: URL) -> Void {
