@@ -28,9 +28,7 @@ struct CueView: View {
 //    func makeSheet() -> AnyView {
 //        switch viewModel.sheet {
 //        case .cueSearchDocument:
-//            return AnyView(DocumentPicker(isFolderPicker: false).onSelectFiles{ urls in
-//                let _ = self.viewModel.loadItem(url: urls)
-//            })
+//            return AnyView()
 //        case .splitFolderDocument:
 //            return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
 //                self.viewModel.openSplitStatusView()
@@ -57,11 +55,26 @@ struct CueView: View {
                     }
                     Button(action: self.viewModel.navigationLeadingDivideStatusButton){
                         Image(systemName: "doc.on.doc")
+                    }.sheet(isPresented: self.$viewModel.showFolderSelection) {
+                        DocumentPicker()
+                            .setConfig(folderPicker: true)
+                            .onSelectFile { url in
+//                                let _ = self.viewModel.loadItem(url: urls)
+                            }
                     }
                 }
                 ,
             trailing:
-                Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "folder.badge.plus") }
+                Button(action: self.viewModel.navigationTrailingButton) {
+                    Image(systemName: "folder.badge.plus")
+                }.sheet(isPresented: self.$viewModel.showFilesSelection) {
+                    DocumentPicker()
+                        .setConfig(folderPicker: false, allowMultiple: true)
+                        .onSelectFile { url in
+                            
+                        }
+                }
+                
             )
         }
     }

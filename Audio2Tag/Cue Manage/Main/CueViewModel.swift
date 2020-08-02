@@ -16,6 +16,8 @@ class CueViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
+    @Published var showFolderSelection = false
+    @Published var showFilesSelection = false
     
     // MARK: - 버튼 클릭 이벤트
     
@@ -23,18 +25,18 @@ class CueViewModel : ObservableObject {
     func navigationLeadingDivdeMusicButton() {
         // 분리 작업할 폴더 열람 및 파일 분리 작업.
         
+        
     }
     func navigationLeadingDivideStatusButton() {
         // 분리하고 있는 파일 상태 바 표시 하는 시트 보여 주기.
-        
+        showFolderSelection = true
     }
     
     // Navigation의 오른쪽 버튼 클릭.
     func navigationTrailingButton() {
        // Cue Sheet와 Music파일 선택 하는 창 표시.
-        
+        showFilesSelection = true
     }
-    
     
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
