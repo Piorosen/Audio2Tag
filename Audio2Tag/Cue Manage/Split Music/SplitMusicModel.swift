@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct SplitMusicModel : Identifiable {
+    let id = UUID()
+    let name: String
+    var status: Int
+}
