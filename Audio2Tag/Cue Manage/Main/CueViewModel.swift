@@ -18,11 +18,20 @@ class CueViewModel : ObservableObject {
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
     
     // MARK: - 버튼 클릭 이벤트
-    func navigationLeadingButton() {
+    
+    // Navigation의 왼쪽 버튼 클릭.
+    func navigationLeadingDivdeMusicButton() {
+        // 분리 작업할 폴더 열람 및 파일 분리 작업.
+        
+    }
+    func navigationLeadingDivideStatusButton() {
+        // 분리하고 있는 파일 상태 바 표시 하는 시트 보여 주기.
         
     }
     
+    // Navigation의 오른쪽 버튼 클릭.
     func navigationTrailingButton() {
+       // Cue Sheet와 Music파일 선택 하는 창 표시.
         
     }
     
