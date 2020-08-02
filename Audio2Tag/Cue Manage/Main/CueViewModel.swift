@@ -13,8 +13,9 @@ import ID3TagEditor
 import AVFoundation
 
 class CueViewModel : ObservableObject {
-    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
-    @Published var splitStatus = [SplitMusicModel]()
+    
+//    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
+//    @Published var splitStatus = [SplitMusicModel]()
     
     // MARK: - 버튼 클릭 이벤트
     func navigationLeadingButton() {
@@ -32,6 +33,7 @@ class CueViewModel : ObservableObject {
     
     private func getCueSheet(_ url: [URL]) -> CueSheetModel? {
         let parser = CueSheetParser()
+        
         if url.count == 1 {
             guard let item = parser.loadFile(cue: url[0]) else {
                 return nil
@@ -67,56 +69,45 @@ class CueViewModel : ObservableObject {
     }
     
     func loadItem(url: [URL]) {
-        if let cue = getCueSheet(url) {
-            cueSheetModel = cue
-        }
+
         
-        if cueSheetModel.musicUrl == nil {
-            alert = .none
-        }else {
-            alert = .alertSplitView
-        }
     }
     
     
-    func splitStart(url: URL) -> Void {
-        // 1번 더 체크 함.
-        guard let musicUrl = cueSheetModel.musicUrl else {
-            return
-        }
-        guard let cueSheet = cueSheetModel.cueSheet else {
-            return
-        }
-        
-        splitStatus.removeAll()
-        
-        var data = [(URL, CMTimeRange)]()
-        for item in cueSheet.file.tracks {
-            let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
-            
-            // 기존에 이미 있는 파일 지움.
-            if FileManager.default.fileExists(atPath: u.path) {
-                try? FileManager.default.removeItem(at: u)
-            }
-            
-            let r = CMTimeRange(start: CMTime(seconds: item.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.duration!, preferredTimescale: 1))
-            
-            data.append((u, r))
-            splitStatus.append(.init(name: item.title, status: 0))
-        }
-        
-        let count = 5
-        AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
-            DispatchQueue.main.sync {
-                let p = Int(own * 100)
-                if (p / count) >  (self.splitStatus[index].status / count) {
-                    self.splitStatus[index].status = p
-                }
-            }
-            
-            if total == 1 {
-                self.sheet = .none
-            }
-        }
-    }
+//    func splitStart(url: URL) -> Void {
+//        // 1번 더 체크 함.
+//        guard let musicUrl = cueSheetModel.musicUrl else {
+//            return
+//        }
+//        guard let cueSheet = cueSheetModel.cueSheet else {
+//            return
+//        }
+//        
+////        splitStatus.removeAll()
+//        
+//        var data = [(URL, CMTimeRange)]()
+//        for item in cueSheet.file.tracks {
+//            let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
+//            
+//            // 기존에 이미 있는 파일 지움.
+//            if FileManager.default.fileExists(atPath: u.path) {
+//                try? FileManager.default.removeItem(at: u)
+//            }
+//            
+//            let r = CMTimeRange(start: CMTime(seconds: item.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.duration!, preferredTimescale: 1))
+//            
+//            data.append((u, r))
+//            splitStatus.append(.init(name: item.title, status: 0))
+//        }
+//        
+//        let count = 5
+//        AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
+//            DispatchQueue.main.sync {
+//                let p = Int(own * 100)
+//                if (p / count) >  (self.splitStatus[index].status / count) {
+//                    self.splitStatus[index].status = p
+//                }
+//            }
+//        }
+//    }
 }
