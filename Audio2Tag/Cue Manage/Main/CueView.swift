@@ -12,7 +12,7 @@ struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
     
     func makeAlert() -> Alert {
-        if self.viewModel.cueSheetModel.musicUrl != nil {
+        if viewModel.cueSheetModel.musicUrl != nil {
             return Alert(title: Text("파일 분리"),
                          message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
                          primaryButton: .cancel(Text("취소")),
