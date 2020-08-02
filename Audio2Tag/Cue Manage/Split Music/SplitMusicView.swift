@@ -8,24 +8,7 @@
 
 import SwiftUI
 
-struct SplitMusicModel : Identifiable {
-    let id = UUID()
-    let name: String
-    var status: Int
-}
-//}
-//
-//struct ProgressView : UIViewRepresentable {
-//    @Binding var data
-//    init(status: Binding<Int>) {
-//
-//    }
-//
-//    func makeUIView(context: Context) -> some UIView {
-//        var i = UIProgressView()
-//    }
-//
-//}
+
 
 struct SplitMusicView: View {
     @Binding var bind: [SplitMusicModel]
