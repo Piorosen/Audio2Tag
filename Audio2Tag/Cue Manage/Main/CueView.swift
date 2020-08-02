@@ -16,7 +16,7 @@ struct CueView: View {
             return Alert(title: Text("파일 분리"),
                          message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
                          primaryButton: .cancel(Text("취소")),
-                         secondaryButton: .default(Text("확인")))
+                         secondaryButton: .default(Text("확인"), action: { self.viewModel.showFolderSelection = true }))
         } else {
             return Alert(title: Text("오류"),
                          message: Text("Cue File과 음원 파일을 선택해 주세요."),
