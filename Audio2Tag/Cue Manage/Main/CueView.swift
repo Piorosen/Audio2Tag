@@ -53,9 +53,15 @@ struct CueView: View {
             .navigationBarTitle("Cue Info")
             .navigationBarItems(
             leading:
-                Button(action: self.viewModel.navigationLeadingButton) {
-                    Image(systemName: "play")
-                },
+                HStack {
+                    Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
+                        Image(systemName: "play")
+                    }
+                    Button(action: self.viewModel.navigationLeadingDivideStatusButton){
+                        Image(systemName: "doc.on.doc")
+                    }
+                }
+                ,
             trailing:
                 Button(action: self.viewModel.navigationTrailingButton) { Image(systemName: "folder.badge.plus") }
             )
