@@ -30,6 +30,7 @@ class CueViewModel : ObservableObject {
     
     func navigationLeadingDivideStatusButton() {
         // 분리하고 있는 파일 상태 바 표시 하는 시트 보여 주기.
+        // TODO: Sheet를 할 것인지? Alert로 할것인지? Z-Index로 이쁘게 할것인지?
         
     }
     
