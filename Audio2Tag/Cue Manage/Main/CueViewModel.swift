@@ -12,69 +12,21 @@ import CoreMedia
 import ID3TagEditor
 import AVFoundation
 
-enum sheetType {
-    case none
-    case cueSearchDocument
-    case splitStatusView
-    case splitFolderDocument
-}
-
-enum alertType {
-    case none
-    case alertSplitView
-}
-
 class CueViewModel : ObservableObject {
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
     @Published var splitStatus = [SplitMusicModel]()
     
     // MARK: - 버튼 클릭 이벤트
     func navigationLeadingButton() {
-        if sheet == .splitStatusView {
-            openSplitStatusView()
-        }
-        else if cueSheetModel.musicUrl == nil {
-            openNone()
-        } else {
-            openAlertSplitView()
-        }
+        
     }
     
     func navigationTrailingButton() {
-        openCueSearchDocument()
+        
     }
     
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
-    @Published var openAlert = false
-    @Published var openSheet = false
-    
-    var sheet = sheetType.none
-    var alert = alertType.none
-    
-    func openCueSearchDocument() {
-        sheet = .cueSearchDocument
-        openSheet = true
-    }
-    func openSplitStatusView() {
-        sheet = .splitStatusView
-        openSheet = true
-    }
-    func openSplitFolderDocument() {
-        sheet = .splitFolderDocument
-        openSheet = true
-    }
-    
-    func openAlertSplitView() {
-        alert = .alertSplitView
-        openAlert = true
-    }
-    func openNone() {
-        alert = .none
-        openAlert = true
-    }
-    
-    
     
     // MARK: -
     
