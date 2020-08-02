@@ -10,71 +10,52 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
-//
-//    func makeAlert() -> Alert {
-//        switch viewModel.alert {
-//        case .alertSplitView:
-//            return Alert(title: Text("파일 분리"),
-//                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
-//                         primaryButton: .cancel(Text("취소")),
-//                         secondaryButton: .default(Text("확인"), action: self.viewModel.openSplitFolderDocument))
-//        case .none:
-//            return Alert(title: Text("오류"),
-//                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
-//                         dismissButton: .cancel(Text("확인")))
-//        }
-//    }
-//
-//    func makeSheet() -> AnyView {
-//        switch viewModel.sheet {
-//        case .cueSearchDocument:
-//            return AnyView()
-//        case .splitFolderDocument:
-//            return AnyView(DocumentPicker(isFolderPicker: true).onSelectFile { url in
-//                self.viewModel.openSplitStatusView()
-//                self.viewModel.splitStart(url: url)
-//            })
-//
-//        case .splitStatusView:
-//            return AnyView(SplitMusicView(bind: self.$viewModel.splitStatus))
-//
-//        default:
-//            return AnyView(EmptyView().background(Color.red))
-//        }
-//    }
+    
+    func makeAlert() -> Alert {
+        if self.viewModel.cueSheetModel.musicUrl != nil {
+            return Alert(title: Text("파일 분리"),
+                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                         primaryButton: .cancel(Text("취소")),
+                         secondaryButton: .default(Text("확인")))
+        } else {
+            return Alert(title: Text("오류"),
+                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
+                         dismissButton: .cancel(Text("확인")))
+        }
+    }
     
     var body: some View {
         NavigationView {
             CueFileInfoView(fileInfo: self.$viewModel.cueSheetModel)
-            .navigationBarTitle("Cue Info")
-            .navigationBarItems(
-            leading:
-                HStack {
-                    Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
-                        Image(systemName: "play")
-                    }
-                    Button(action: self.viewModel.navigationLeadingDivideStatusButton){
-                        Image(systemName: "doc.on.doc")
-                    }.sheet(isPresented: self.$viewModel.showFolderSelection) {
-                        DocumentPicker()
-                            .setConfig(folderPicker: true)
-                            .onSelectFile { url in
-//                                let _ = self.viewModel.loadItem(url: urls)
+                .navigationBarTitle("Cue Info")
+                .navigationBarItems(
+                    leading:
+                    HStack {
+                        Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
+                            Image(systemName: "play")
+                        }.sheet(isPresented: self.$viewModel.showFolderSelection) {
+                            DocumentPicker()
+                                .setConfig(folderPicker: true)
+                                .onSelectFile { url in
+                                    //                                let _ = self.viewModel.loadItem(url: urls)
                             }
-                    }
-                }
-                ,
-            trailing:
-                Button(action: self.viewModel.navigationTrailingButton) {
-                    Image(systemName: "folder.badge.plus")
-                }.sheet(isPresented: self.$viewModel.showFilesSelection) {
-                    DocumentPicker()
-                        .setConfig(folderPicker: false, allowMultiple: true)
-                        .onSelectFile { url in
-                            
+                        }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
+                        Button(action: self.viewModel.navigationLeadingDivideStatusButton){
+                            Image(systemName: "doc.on.doc")
                         }
-                }
-                
+                    }
+                    ,
+                    trailing:
+                    Button(action: self.viewModel.navigationTrailingButton) {
+                        Image(systemName: "folder.badge.plus")
+                    }.sheet(isPresented: self.$viewModel.showFilesSelection) {
+                        DocumentPicker()
+                            .setConfig(folderPicker: false, allowMultiple: true)
+                            .onSelectFile { url in
+                                
+                        }
+                    }
+                    
             )
         }
     }
