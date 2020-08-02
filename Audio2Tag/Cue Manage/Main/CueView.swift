@@ -37,7 +37,7 @@ struct CueView: View {
                             DocumentPicker()
                                 .setConfig(folderPicker: true)
                                 .onSelectFile { url in
-                                    //                                let _ = self.viewModel.loadItem(url: urls)
+                                    
                             }
                         }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
                         Button(action: self.viewModel.navigationLeadingDivideStatusButton){
@@ -51,7 +51,7 @@ struct CueView: View {
                     }.sheet(isPresented: self.$viewModel.showFilesSelection) {
                         DocumentPicker()
                             .setConfig(folderPicker: false, allowMultiple: true)
-                            .onSelectFile { url in
+                            .onSelectFiles { urls in
                                 
                         }
                     }
