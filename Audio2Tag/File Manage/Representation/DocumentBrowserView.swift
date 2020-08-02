@@ -19,16 +19,18 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         if urls.count != 0 {
-            parent.oneFile?(urls[0])
-            parent.multiFile?(urls)
+            parent.oneFile(urls[0])
+            parent.multiFile(urls)
         }
     }
 }
 
+// 기본으로 파일을 선택을 하도록 되어 있습니다.
 struct DocumentPicker : UIViewControllerRepresentable {
-    let isFolderPicker: Bool
-    var oneFile: ((URL) -> Void)? = nil
-    var multiFile: (([URL]) -> Void)? = nil
+    let isFolderPicker: Bool = false
+    let allowMultipleSelection = false
+    var oneFile: ((URL) -> Void) = { _ in }
+    var multiFile: (([URL]) -> Void) = { _ in }
     
     
     func onSelectFile(completeHanlder: @escaping (URL) -> Void) -> DocumentPicker {
@@ -47,11 +49,11 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker ?
-            [String(kUTTypeFolder)] :
-            ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)
+        let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker
+            ? [String(kUTTypeFolder)]
+            : ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)
         
-        picker.allowsMultipleSelection = true
+        picker.allowsMultipleSelection = self.allowMultipleSelection
         picker.delegate = context.coordinator
         
         return picker
