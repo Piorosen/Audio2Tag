@@ -52,7 +52,7 @@ struct CueView: View {
                         DocumentPicker()
                             .setConfig(folderPicker: false, allowMultiple: true)
                             .onSelectFiles { urls in
-                                
+                                self.viewModel.selectFiles(urls)
                         }
                     }
                     
