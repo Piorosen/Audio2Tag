@@ -13,15 +13,30 @@ struct SplitMusicModel : Identifiable {
     let name: String
     var status: Int
 }
+//}
+//
+//struct ProgressView : UIViewRepresentable {
+//    @Binding var data
+//    init(status: Binding<Int>) {
+//
+//    }
+//
+//    func makeUIView(context: Context) -> some UIView {
+//        var i = UIProgressView()
+//    }
+//
+//}
 
 struct SplitMusicView: View {
     @Binding var bind: [SplitMusicModel]
     
     var body: some View {
         Group {
-            Text("asdfasdf")
             List(bind, id: \.self.name) { value in
-                Text("\(value.name) : \(String(format: "%d", value.status))")
+                VStack {
+                    Text("\(value.name) \(value.status)")
+                    
+                }
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         
