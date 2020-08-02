@@ -27,8 +27,8 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
 
 // 기본으로 파일을 선택을 하도록 되어 있습니다.
 struct DocumentPicker : UIViewControllerRepresentable {
-    let isFolderPicker: Bool = false
-    let allowMultipleSelection = false
+    private var isFolderPicker: Bool = false
+    private var allowMultipleSelection = false
     fileprivate var oneFile: ((URL) -> Void) = { _ in }
     fileprivate var multiFile: (([URL]) -> Void) = { _ in }
     
@@ -45,6 +45,13 @@ struct DocumentPicker : UIViewControllerRepresentable {
         return copy
     }
     
+    func setConfig(folderPicker:Bool, allowMultiple: Bool = false) -> DocumentPicker {
+        var copy = self
+        copy.isFolderPicker = folderPicker
+        copy.allowMultipleSelection = allowMultiple
+        return copy
+    }
+    
     func makeCoordinator() -> DocumentPickerCoordinator {
         return DocumentPickerCoordinator(self)
     }
@@ -56,7 +63,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
         
         picker.allowsMultipleSelection = self.allowMultipleSelection
         picker.delegate = context.coordinator
-        
         return picker
     }
         
