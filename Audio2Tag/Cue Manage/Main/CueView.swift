@@ -48,8 +48,6 @@ struct CueView: View {
     var body: some View {
         NavigationView {
             CueFileInfoView(fileInfo: self.$viewModel.cueSheetModel)
-//            .sheet(isPresented: self.$viewModel.openSheet) { self.makeSheet() }
-//            .alert(isPresented: self.$viewModel.openAlert) { self.makeAlert() }
             .navigationBarTitle("Cue Info")
             .navigationBarItems(
             leading:
