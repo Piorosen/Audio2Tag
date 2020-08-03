@@ -10,7 +10,6 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
-    @State var isShowing = false
     
     func makeAlert() -> Alert {
         if viewModel.cueSheetModel.musicUrl != nil {
@@ -42,7 +41,7 @@ struct CueView: View {
                                         self.viewModel.musicOfSplit(url: url)
                                 }
                             }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
-                            Button(action: { self.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
+                            Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
                                 Image(systemName: "doc.on.doc").padding(10)
                             }
                         }
@@ -58,10 +57,13 @@ struct CueView: View {
                             }
                         }
                 )
-            }.blur(radius: self.isShowing ? 10 : 0)
+            }
+            .blur(radius: self.viewModel.isShowing ? 20 : 0)
             .animation(.easeIn)
             
-            SplitMusicView(isPresented: self.$isShowing)
+            SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing).onDrag {
+                self.viewModel.isShowing = false
+            }
         }
     }
 }

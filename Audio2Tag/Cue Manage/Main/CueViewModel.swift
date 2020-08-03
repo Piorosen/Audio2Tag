@@ -20,6 +20,8 @@ class CueViewModel : ObservableObject {
     @Published var showFilesSelection = false
     @Published var showLeadingAlert = false
     
+    @Published var isShowing = false
+    
     @Published var status = [SplitMusicModel]()
     
     // MARK: - 버튼 클릭 이벤트
@@ -103,6 +105,10 @@ class CueViewModel : ObservableObject {
             return
         }
         
+        status.removeAll()
+        for item in sheet.cueSheet!.file.tracks {
+            status.append(.init(name: item.title, status: 0))
+        }
         cueSheetModel = sheet
     }
     
@@ -116,7 +122,7 @@ class CueViewModel : ObservableObject {
             return
         }
         
-        //        splitStatus.removeAll()
+        status.removeAll()
         
         var data = [(URL, CMTimeRange)]()
         for item in cueSheet.file.tracks {
@@ -130,16 +136,17 @@ class CueViewModel : ObservableObject {
             let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
             
             data.append((u, r))
-            //                splitStatus.append(.init(name: item.title, status: 0))
+            status.append(.init(name: item.title, status: 0))
         }
+        self.isShowing = true
         
-        //            let count = 5
+        let count = 1
         AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
-            DispatchQueue.main.sync {
-                //                    let p = Int(own * 100)
-                //                    if (p / count) >  (self.splitStatus[index].status / count) {
-                //                        self.splitStatus[index].status = p
-                //                    }
+            DispatchQueue.main.async {
+                let p = Int(own * 100)
+                if (p / count) >  (self.status[index].status / count) {
+                    self.status[index].status = p
+                }
             }
         }
     }
