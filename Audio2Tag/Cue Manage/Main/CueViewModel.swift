@@ -125,7 +125,7 @@ class CueViewModel : ObservableObject {
                 try? FileManager.default.removeItem(at: u)
             }
             
-            let r = CMTimeRange(start: CMTime(seconds: item.startTime!.seconds / 100, preferredTimescale: 1), duration: CMTime(seconds: item.duration!, preferredTimescale: 1))
+            let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
             
             data.append((u, r))
             //                splitStatus.append(.init(name: item.title, status: 0))
