@@ -20,6 +20,8 @@ class CueViewModel : ObservableObject {
     @Published var showFilesSelection = false
     @Published var showLeadingAlert = false
     
+    @Published var status = [SplitMusicModel]()
+    
     // MARK: - 버튼 클릭 이벤트
     
     // Navigation의 왼쪽 버튼 클릭.
