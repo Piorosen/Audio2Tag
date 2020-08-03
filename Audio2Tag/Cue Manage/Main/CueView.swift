@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
+    @State var isShowing = false
     
     func makeAlert() -> Alert {
         if viewModel.cueSheetModel.musicUrl != nil {
@@ -25,38 +26,42 @@ struct CueView: View {
     }
     
     var body: some View {
-        NavigationView {
-            CueFileInfoView(fileInfo: self.$viewModel.cueSheetModel)
-                .navigationBarTitle("Cue Info")
-                .navigationBarItems(
-                    leading:
-                    HStack {
-                        Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
-                            Image(systemName: "play")
-                        }.sheet(isPresented: self.$viewModel.showFolderSelection) {
-                            DocumentPicker()
-                                .setConfig(folderPicker: true)
-                                .onSelectFile { url in
-                                    self.viewModel.musicOfSplit(url: url)
+        ZStack {
+            NavigationView {
+                CueFileInfoView(fileInfo: self.$viewModel.cueSheetModel)
+                    .navigationBarTitle("Cue Info")
+                    .navigationBarItems(
+                        leading:
+                        HStack {
+                            Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
+                                Image(systemName: "play").padding(10)
+                            }.sheet(isPresented: self.$viewModel.showFolderSelection) {
+                                DocumentPicker()
+                                    .setConfig(folderPicker: true)
+                                    .onSelectFile { url in
+                                        self.viewModel.musicOfSplit(url: url)
+                                }
+                            }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
+                            Button(action: { self.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
+                                Image(systemName: "doc.on.doc").padding(10)
                             }
-                        }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
-                        Button(action: self.viewModel.navigationLeadingDivideStatusButton){
-                            Image(systemName: "doc.on.doc")
                         }
-                    }
-                    ,
-                    trailing:
-                    Button(action: self.viewModel.navigationTrailingButton) {
-                        Image(systemName: "folder.badge.plus")
-                    }.sheet(isPresented: self.$viewModel.showFilesSelection) {
-                        DocumentPicker()
-                            .setConfig(folderPicker: false, allowMultiple: true)
-                            .onSelectFiles { urls in
-                                self.viewModel.selectFiles(urls)
+                        ,
+                        trailing:
+                        Button(action: self.viewModel.navigationTrailingButton) {
+                            Image(systemName: "folder.badge.plus").padding(10)
+                        }.sheet(isPresented: self.$viewModel.showFilesSelection) {
+                            DocumentPicker()
+                                .setConfig(folderPicker: false, allowMultiple: true)
+                                .onSelectFiles { urls in
+                                    self.viewModel.selectFiles(urls)
+                            }
                         }
-                    }
-                    
-            )
+                )
+            }.blur(radius: self.isShowing ? 10 : 0)
+            .animation(.easeIn)
+            
+            SplitMusicView(isPresented: self.$isShowing)
         }
     }
 }
