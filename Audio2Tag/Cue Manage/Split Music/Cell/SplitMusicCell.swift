@@ -14,6 +14,7 @@ struct SplitMusicCell: View {
     var body: some View {
         VStack {
             Text("\(bind.name)")
+                .frame(maxWidth: .infinity, alignment: .leading)
             ProgressBar(value: self.$bind.status)
         }.padding(10)
     }
