@@ -123,6 +123,7 @@ class CueViewModel : ObservableObject {
         }
         
         status.removeAll()
+        status.append(.init(name: "전체 진행률", status: 0))
         
         var data = [(URL, CMTimeRange)]()
         for item in cueSheet.file.tracks {
@@ -144,8 +145,14 @@ class CueViewModel : ObservableObject {
         AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
             DispatchQueue.main.async {
                 let p = Int(own * 100)
-                if (p / count) >  (self.status[index].status / count) {
-                    self.status[index] = SplitMusicModel(name: self.status[index].name, status: p)
+                let i = index + 1
+                if (p / count) >  (self.status[i].status / count) {
+                    self.status[i] = SplitMusicModel(name: self.status[i].name, status: p)
+                }
+                
+                let o = Int(total * 100)
+                if o / count > self.status[0].status / count {
+                    self.status[0] = SplitMusicModel(name: self.status[0].name, status: o)
                 }
             }
         }
