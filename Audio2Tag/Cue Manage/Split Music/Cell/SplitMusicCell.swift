@@ -14,7 +14,7 @@ struct SplitMusicCell: View {
     var body: some View {
         VStack {
             Text("\(bind.name)")
-            ProgressBar(value: self.bind.$status)
+            ProgressBar(value: self.$bind.status)
         }.padding(10)
     }
 }

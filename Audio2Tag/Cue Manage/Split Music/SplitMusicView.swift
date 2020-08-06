@@ -22,7 +22,9 @@ struct SplitMusicView: View {
                 List(0..<bind.count, id: \.self) { index in
                     SplitMusicCell(bind: self.$bind[index])
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                
                 Divider()
+                
                 Button(action: {
                     self.isPresented = false
                 }) {

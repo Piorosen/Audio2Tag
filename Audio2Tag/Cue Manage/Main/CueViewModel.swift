@@ -145,7 +145,7 @@ class CueViewModel : ObservableObject {
             DispatchQueue.main.async {
                 let p = Int(own * 100)
                 if (p / count) >  (self.status[index].status / count) {
-                    self.status[index].status = p
+                    self.status[index] = SplitMusicModel(name: self.status[index].name, status: p)
                 }
             }
         }
