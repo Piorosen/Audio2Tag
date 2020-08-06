@@ -20,6 +20,10 @@ class CueViewModel : ObservableObject {
     @Published var showFilesSelection = false
     @Published var showLeadingAlert = false
     
+    @Published var isShowing = false
+    
+    @Published var status = [SplitMusicModel(name: "전체 진행률", status: 0)]
+    
     // MARK: - 버튼 클릭 이벤트
     
     // Navigation의 왼쪽 버튼 클릭.
@@ -101,6 +105,12 @@ class CueViewModel : ObservableObject {
             return
         }
         
+        status.removeAll()
+        status.append(.init(name: "전체 진행률", status: 0))
+        
+        for item in sheet.cueSheet!.file.tracks {
+            status.append(.init(name: item.title, status: 0))
+        }
         cueSheetModel = sheet
     }
     
@@ -114,7 +124,8 @@ class CueViewModel : ObservableObject {
             return
         }
         
-        //        splitStatus.removeAll()
+        status.removeAll()
+        status.append(.init(name: "전체 진행률", status: 0))
         
         var data = [(URL, CMTimeRange)]()
         for item in cueSheet.file.tracks {
@@ -128,16 +139,23 @@ class CueViewModel : ObservableObject {
             let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
             
             data.append((u, r))
-            //                splitStatus.append(.init(name: item.title, status: 0))
+            status.append(.init(name: item.title, status: 0))
         }
+        self.isShowing = true
         
-        //            let count = 5
+        let count = 1
         AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
-            DispatchQueue.main.sync {
-                //                    let p = Int(own * 100)
-                //                    if (p / count) >  (self.splitStatus[index].status / count) {
-                //                        self.splitStatus[index].status = p
-                //                    }
+            DispatchQueue.main.async {
+                let p = Int(own * 100)
+                let i = index + 1
+                if (p / count) >  (self.status[i].status / count) {
+                    self.status[i] = SplitMusicModel(name: self.status[i].name, status: p)
+                }
+                
+                let o = Int(total * 100)
+                if o / count > self.status[0].status / count {
+                    self.status[0] = SplitMusicModel(name: self.status[0].name, status: o)
+                }
             }
         }
     }

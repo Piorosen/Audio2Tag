@@ -25,6 +25,26 @@ struct ContentView: View {
                 Text("Setting")
             }
         }
+//        .onAppear {
+//            guard let cue = Bundle.main.urls(forResourcesWithExtension: "cue", subdirectory: nil) else {
+//                return
+//            }
+//            guard let wav = Bundle.main.urls(forResourcesWithExtension: "wav", subdirectory: nil) else {
+//                return
+//            }
+//            
+//            let url = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
+//            
+//            for item in cue {
+//                try? FileManager.default.copyItem(at: item, to: url.appendingPathComponent(item.lastPathComponent))
+//            }
+//            for item in wav {
+//                try? FileManager.default.copyItem(at: item, to: url.appendingPathComponent(item.lastPathComponent))
+//            }
+//            
+//            
+//            print(cue)
+//        }
     }
 }
 
