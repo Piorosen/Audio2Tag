@@ -10,7 +10,6 @@
 		620EDF5B24BB0EE3008010CE /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5A24BB0EE3008010CE /* CueViewModel.swift */; };
 		620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */; };
 		622CAA1D24C6972B006473E6 /* SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA1C24C6972B006473E6 /* SplitMusicView.swift */; };
-		622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */; };
 		622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2024C69741006473E6 /* SplitMusicModel.swift */; };
 		622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2324C69D53006473E6 /* CueFileInfoView.swift */; };
 		622CAA2824C6A169006473E6 /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2724C6A169006473E6 /* CueModel.swift */; };
@@ -63,7 +62,6 @@
 		620EDF5A24BB0EE3008010CE /* CueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		620EDF5D24BB14A3008010CE /* DocumentBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBrowserView.swift; sourceTree = "<group>"; };
 		622CAA1C24C6972B006473E6 /* SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicView.swift; sourceTree = "<group>"; };
-		622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicViewModel.swift; sourceTree = "<group>"; };
 		622CAA2024C69741006473E6 /* SplitMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
 		622CAA2324C69D53006473E6 /* CueFileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
 		622CAA2724C6A169006473E6 /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				626F4A3724DBAB9E008D115A /* Cell */,
 				626F4A3424D96A2D008D115A /* ProgressBar */,
 				622CAA1C24C6972B006473E6 /* SplitMusicView.swift */,
-				622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */,
 				622CAA2024C69741006473E6 /* SplitMusicModel.swift */,
 			);
 			path = "Split Music";
@@ -488,7 +485,6 @@
 				626F4A3924DBACB5008D115A /* SplitMusicCell.swift in Sources */,
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
 				622CAA2824C6A169006473E6 /* CueModel.swift in Sources */,
-				622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
 				626F4A3624D96A96008D115A /* ProgressBar.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
