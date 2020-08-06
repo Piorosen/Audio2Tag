@@ -22,7 +22,7 @@ class CueViewModel : ObservableObject {
     
     @Published var isShowing = false
     
-    @Published var status = [SplitMusicModel]()
+    @Published var status = [SplitMusicModel(name: "전체 진행률", status: 0)]
     
     // MARK: - 버튼 클릭 이벤트
     
@@ -106,6 +106,8 @@ class CueViewModel : ObservableObject {
         }
         
         status.removeAll()
+        status.append(.init(name: "전체 진행률", status: 0))
+        
         for item in sheet.cueSheet!.file.tracks {
             status.append(.init(name: item.title, status: 0))
         }
