@@ -58,12 +58,10 @@ struct CueView: View {
                         }
                 )
             }
-            .blur(radius: self.viewModel.isShowing ? 20 : 0)
-            .animation(.easeIn)
+            .blur(radius: self.viewModel.isShowing ? 5 : 0)
+            .animation(.easeOut)
             
-            SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing).onDrag {
-                self.viewModel.isShowing = false
-            }
+            SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing)
         }
     }
 }
