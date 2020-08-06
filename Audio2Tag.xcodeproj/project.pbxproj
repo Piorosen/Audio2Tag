@@ -14,8 +14,13 @@
 		622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2024C69741006473E6 /* SplitMusicModel.swift */; };
 		622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2324C69D53006473E6 /* CueFileInfoView.swift */; };
 		622CAA2824C6A169006473E6 /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622CAA2724C6A169006473E6 /* CueModel.swift */; };
-		626610E424D867EE00BC8A94 /* ProgressScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626610E324D867EE00BC8A94 /* ProgressScrollView.swift */; };
-		626610E624D8682E00BC8A94 /* SplitMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626610E524D8682E00BC8A94 /* SplitMainView.swift */; };
+		626F4A2F24D964F0008D115A /* Faithless - Live in Berlin.cue in Resources */ = {isa = PBXBuildFile; fileRef = 626F4A2A24D964EF008D115A /* Faithless - Live in Berlin.cue */; };
+		626F4A3024D964F0008D115A /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 626F4A2B24D964EF008D115A /* MYTH&ROID - HYDRA.cue */; };
+		626F4A3124D964F0008D115A /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 626F4A2C24D964EF008D115A /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
+		626F4A3224D964F0008D115A /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 626F4A2D24D964EF008D115A /* MYTH&ROID - HYDRA.wav */; };
+		626F4A3324D964F0008D115A /* RADWIMPS - 君の名は。.cue in Resources */ = {isa = PBXBuildFile; fileRef = 626F4A2E24D964F0008D115A /* RADWIMPS - 君の名は。.cue */; };
+		626F4A3624D96A96008D115A /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F4A3524D96A96008D115A /* ProgressBar.swift */; };
+		626F4A3924DBACB5008D115A /* SplitMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F4A3824DBACB5008D115A /* SplitMusicCell.swift */; };
 		626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA124B81E5B00945523 /* AppDelegate.swift */; };
 		626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA324B81E5B00945523 /* SceneDelegate.swift */; };
 		626F5CA624B81E5B00945523 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626F5CA524B81E5B00945523 /* ContentView.swift */; };
@@ -62,8 +67,13 @@
 		622CAA2024C69741006473E6 /* SplitMusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
 		622CAA2324C69D53006473E6 /* CueFileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
 		622CAA2724C6A169006473E6 /* CueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
-		626610E324D867EE00BC8A94 /* ProgressScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressScrollView.swift; sourceTree = "<group>"; };
-		626610E524D8682E00BC8A94 /* SplitMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMainView.swift; sourceTree = "<group>"; };
+		626F4A2A24D964EF008D115A /* Faithless - Live in Berlin.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Faithless - Live in Berlin.cue"; sourceTree = "<group>"; };
+		626F4A2B24D964EF008D115A /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
+		626F4A2C24D964EF008D115A /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
+		626F4A2D24D964EF008D115A /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
+		626F4A2E24D964F0008D115A /* RADWIMPS - 君の名は。.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RADWIMPS - 君の名は。.cue"; sourceTree = "<group>"; };
+		626F4A3524D96A96008D115A /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		626F4A3824DBACB5008D115A /* SplitMusicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitMusicCell.swift; sourceTree = "<group>"; };
 		626F5C9E24B81E5B00945523 /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		626F5CA124B81E5B00945523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		626F5CA324B81E5B00945523 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +138,11 @@
 		620EDF6824BB2120008010CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				626F4A2C24D964EF008D115A /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
+				626F4A2A24D964EF008D115A /* Faithless - Live in Berlin.cue */,
+				626F4A2B24D964EF008D115A /* MYTH&ROID - HYDRA.cue */,
+				626F4A2D24D964EF008D115A /* MYTH&ROID - HYDRA.wav */,
+				626F4A2E24D964F0008D115A /* RADWIMPS - 君の名は。.cue */,
 				62BDB00B24C41B2200832EA2 /* cue.png */,
 			);
 			path = Resources;
@@ -136,8 +151,8 @@
 		622CAA1B24C69706006473E6 /* Split Music */ = {
 			isa = PBXGroup;
 			children = (
-				626610E024D8679400BC8A94 /* MainView */,
-				626610DF24D8677E00BC8A94 /* ProgressScollView */,
+				626F4A3724DBAB9E008D115A /* Cell */,
+				626F4A3424D96A2D008D115A /* ProgressBar */,
 				622CAA1C24C6972B006473E6 /* SplitMusicView.swift */,
 				622CAA1E24C69738006473E6 /* SplitMusicViewModel.swift */,
 				622CAA2024C69741006473E6 /* SplitMusicModel.swift */,
@@ -153,20 +168,20 @@
 			path = FileInfo;
 			sourceTree = "<group>";
 		};
-		626610DF24D8677E00BC8A94 /* ProgressScollView */ = {
+		626F4A3424D96A2D008D115A /* ProgressBar */ = {
 			isa = PBXGroup;
 			children = (
-				626610E324D867EE00BC8A94 /* ProgressScrollView.swift */,
+				626F4A3524D96A96008D115A /* ProgressBar.swift */,
 			);
-			path = ProgressScollView;
+			path = ProgressBar;
 			sourceTree = "<group>";
 		};
-		626610E024D8679400BC8A94 /* MainView */ = {
+		626F4A3724DBAB9E008D115A /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				626610E524D8682E00BC8A94 /* SplitMainView.swift */,
+				626F4A3824DBACB5008D115A /* SplitMusicCell.swift */,
 			);
-			path = MainView;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		626F5C9524B81E5B00945523 = {
@@ -440,7 +455,12 @@
 				626F5CAE24B81E5B00945523 /* LaunchScreen.storyboard in Resources */,
 				626F5CAB24B81E5B00945523 /* Preview Assets.xcassets in Resources */,
 				62BDB00C24C41B2200832EA2 /* cue.png in Resources */,
+				626F4A3024D964F0008D115A /* MYTH&ROID - HYDRA.cue in Resources */,
+				626F4A3224D964F0008D115A /* MYTH&ROID - HYDRA.wav in Resources */,
 				626F5CA824B81E5B00945523 /* Assets.xcassets in Resources */,
+				626F4A3324D964F0008D115A /* RADWIMPS - 君の名は。.cue in Resources */,
+				626F4A3124D964F0008D115A /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
+				626F4A2F24D964F0008D115A /* Faithless - Live in Berlin.cue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,17 +485,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				626F4A3924DBACB5008D115A /* SplitMusicCell.swift in Sources */,
 				626F5CA224B81E5B00945523 /* AppDelegate.swift in Sources */,
 				622CAA2824C6A169006473E6 /* CueModel.swift in Sources */,
 				622CAA1F24C69738006473E6 /* SplitMusicViewModel.swift in Sources */,
 				626F5CA424B81E5B00945523 /* SceneDelegate.swift in Sources */,
+				626F4A3624D96A96008D115A /* ProgressBar.swift in Sources */,
 				626F5CE924B8217C00945523 /* CueView.swift in Sources */,
 				622CAA2424C69D53006473E6 /* CueFileInfoView.swift in Sources */,
 				620EDF5E24BB14A3008010CE /* DocumentBrowserView.swift in Sources */,
 				626F5CED24B8219D00945523 /* FileView.swift in Sources */,
-				626610E424D867EE00BC8A94 /* ProgressScrollView.swift in Sources */,
 				622CAA2124C69741006473E6 /* SplitMusicModel.swift in Sources */,
-				626610E624D8682E00BC8A94 /* SplitMainView.swift in Sources */,
 				622CAA1D24C6972B006473E6 /* SplitMusicView.swift in Sources */,
 				6271B4A924C44BAF006667EC /* CueDetailTrackView.swift in Sources */,
 				626F5CEF24B821A300945523 /* SettingView.swift in Sources */,
