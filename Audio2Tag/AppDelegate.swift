@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Audio2Tag
 //
-//  Created by Aoikazto on 2020/07/10.
+//  Created by Aoikazto on 2020/08/11.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+
 
 }
 

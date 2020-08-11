@@ -2,7 +2,7 @@
 //  Audio2TagUITests.swift
 //  Audio2TagUITests
 //
-//  Created by Aoikazto on 2020/07/10.
+//  Created by Aoikazto on 2020/08/11.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
@@ -27,7 +27,6 @@ class Audio2TagUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-        
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
