@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  Audio2Tag
 //
-//  Created by Aoikazto on 2020/08/11.
+//  Created by Aoikazto on 2020/07/10.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
@@ -12,7 +12,6 @@ import SwiftUI
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
