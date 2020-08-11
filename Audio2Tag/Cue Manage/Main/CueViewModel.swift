@@ -149,12 +149,12 @@ class CueViewModel : ObservableObject {
                 let p = Int(own * 100)
                 let i = index + 1
                 if (p / count) >  (self.status[i].status / count) {
-                    self.status[i] = SplitMusicModel(name: self.status[i].name, status: p)
+                    self.status[i].status = p
                 }
                 
                 let o = Int(total * 100)
                 if o / count > self.status[0].status / count {
-                    self.status[0] = SplitMusicModel(name: self.status[0].name, status: o)
+                    self.status[0].status = o
                 }
             }
         }
