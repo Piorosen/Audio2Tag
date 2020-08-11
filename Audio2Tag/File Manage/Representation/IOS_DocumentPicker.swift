@@ -6,6 +6,8 @@
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
+
+#if !targetEnvironment(macCatalyst)
 import UIKit
 import SwiftUI
 import MobileCoreServices
@@ -57,6 +59,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
+        print("ios")
         let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker
             ? [String(kUTTypeFolder)]
             : ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)
@@ -71,3 +74,4 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
 }
+#endif
