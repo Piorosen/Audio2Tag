@@ -11,7 +11,7 @@ import SwiftUI
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
     
-    func test(urls:[URL]){
+    func update(urls:[URL]){
         viewModel.selectFiles(urls)
     }
     
