@@ -11,6 +11,10 @@ import SwiftUI
 struct CueView: View {
     @ObservedObject var viewModel = CueViewModel()
     
+    func test(urls:[URL]){
+        viewModel.selectFiles(urls)
+    }
+    
     func makeAlert() -> Alert {
         if viewModel.cueSheetModel.musicUrl != nil {
             return Alert(title: Text("파일 분리"),
