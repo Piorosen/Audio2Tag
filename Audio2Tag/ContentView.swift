@@ -10,11 +10,19 @@ import SwiftUI
 
 
 struct ContentView: View {
+    
+    let cue = CueView()
+    
+    func update(_ urls:[URL]) {
+        cue.update(urls: urls)
+    }
+    
     var body: some View {
         TabView {
-            CueView().tabItem {
+            cue.tabItem {
                 Text("Cue")
             }
+            
             TagView().tabItem {
                 Text("Tag")
             }
