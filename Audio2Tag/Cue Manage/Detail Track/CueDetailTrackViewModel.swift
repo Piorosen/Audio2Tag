@@ -45,7 +45,7 @@ class CueDetailTrackViewModel : ObservableObject {
             let cmDuration = item.track.duration,
             let cmInterval = item.track.interval
         {
-            let s = CMTimeGetSeconds(cmStartTime) / 100
+            let s = CMTimeGetSeconds(cmStartTime)
             
             startTime = CueDetailTrackViewModel.makeTime(s)
             endTime = CueDetailTrackViewModel.makeTime(s + cmDuration)
