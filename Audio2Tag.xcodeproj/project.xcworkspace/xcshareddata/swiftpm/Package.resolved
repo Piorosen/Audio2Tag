@@ -2,39 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "ID3TagEditor",
-        "repositoryURL": "https://github.com/chicio/ID3TagEditor",
-        "state": {
-          "branch": null,
-          "revision": "4adad2ca9277456cb16d74b8336320e685be6c5e",
-          "version": "3.2.0"
-        }
-      },
-      {
         "package": "SwiftCueSheet",
-        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet.git",
+        "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet",
         "state": {
           "branch": null,
           "revision": "b19f8cdaec17343a04ff792e29369255ad694588",
           "version": "1.2.0"
-        }
-      },
-      {
-        "package": "SwiftSoup",
-        "repositoryURL": "https://github.com/scinfu/SwiftSoup.git",
-        "state": {
-          "branch": null,
-          "revision": "11da8c685ddde2d519fad04a7daf8485bbbc773e",
-          "version": "1.7.5"
-        }
-      },
-      {
-        "package": "SwiftVgmdb",
-        "repositoryURL": "https://github.com/Piorosen/SwiftVgmdb",
-        "state": {
-          "branch": null,
-          "revision": "92d86d1d52adfd918e5b1ee9db2b4c1172a95326",
-          "version": "1.0.4"
         }
       }
     ]
