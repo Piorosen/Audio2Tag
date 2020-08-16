@@ -50,6 +50,15 @@ struct CueDetailTrackView: View {
                     Spacer()
                     Text("\(self.viewModel.item.track.songWriter)")
                 }
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Text("Meta 정보 추가")
+                        Spacer()
+                        Image(systemName: "plus")
+                    }
+                }
             }
             Section(header: Text("Rem")) {
                 ForEach (self.viewModel.rem) { item in
@@ -57,6 +66,15 @@ struct CueDetailTrackView: View {
                         Text("\(item.value.key)")
                         Spacer()
                         Text("\(item.value.value)")
+                    }
+                }
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Text("Rem 정보 추가")
+                        Spacer()
+                        Image(systemName: "plus")
                     }
                 }
             }

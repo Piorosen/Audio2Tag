@@ -54,6 +54,15 @@ struct CueFileInfoView: View {
                         Text(meta.value.value)
                     }
                 }
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Text("Meta 정보 추가")
+                        Spacer()
+                        Image(systemName: "plus")
+                    }
+                }
             }
             Section(header: Text("Rem")) {
                 ForEach (self.fileInfo.meta) { meta in
@@ -61,6 +70,15 @@ struct CueFileInfoView: View {
                         Text(meta.value.key)
                         Spacer()
                         Text(meta.value.value)
+                    }
+                }
+                Button(action: {
+                    
+                }) {
+                    HStack {
+                        Text("Rem 정보 추가")
+                        Spacer()
+                        Image(systemName: "plus")
                     }
                 }
             }
