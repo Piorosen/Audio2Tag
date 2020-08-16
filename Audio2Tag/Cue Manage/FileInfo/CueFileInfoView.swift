@@ -10,85 +10,63 @@ import SwiftUI
 import CoreMedia
 
 struct CueFileInfoView: View {
-    @Binding var fileInfo: CueSheetModel
+    
+    @ObservedObject var viewModel = CueViewModel()
     
     
-    func musicInfo() -> AnyView {
-        guard let info = fileInfo.cueSheet?.info else {
-            return AnyView(EmptyView())
+    func makeAlert() -> Alert {
+        if viewModel.cueSheetModel.musicUrl != nil {
+            return Alert(title: Text("파일 분리"),
+                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                         primaryButton: .cancel(Text("취소")),
+                         secondaryButton: .default(Text("확인"), action: { self.viewModel.showFolderSelection = true }))
+        } else {
+            return Alert(title: Text("오류"),
+                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
+                         dismissButton: .cancel(Text("확인")))
         }
-        if fileInfo.musicUrl == nil {
-            return AnyView(EmptyView())
-        }
-        
-        
-        return AnyView(Section(header: Text("Music")) {
-            HStack {
-                Text("음원 길이")
-                Spacer()
-                Text("\(CueDetailTrackViewModel.makeTime(CMTimeGetSeconds(info.lengthOfAudio)))")
-            }
-            HStack {
-                Text("채널 수")
-                Spacer()
-                Text("\(info.format.channelCount)")
-            }
-            HStack {
-                Text("샘플 레이트")
-                Spacer()
-                Text("\(Int(info.format.sampleRate))")
-            }
-        })
-        
-        
     }
+    
     
     var body: some View {
-        List {
-            musicInfo()
-            Section(header: Text("Meta")) {
-                ForEach (self.fileInfo.rem) { meta in
-                    HStack {
-                        Text(meta.value.key)
-                        Spacer()
-                        Text(meta.value.value)
+        NavigationView {
+            CueFileMetaView(fileInfo: self.$viewModel.cueSheetModel)
+            .navigationBarTitle("Cue Info")
+            .navigationBarItems(
+                leading:
+                HStack {
+                    Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
+                        Image(systemName: "play").padding(10)
+                    }.sheet(isPresented: self.$viewModel.showFolderSelection) {
+                        DocumentPicker()
+                            .setConfig(folderPicker: true)
+                            .onSelectFile { url in
+                                self.viewModel.musicOfSplit(url: url)
+                        }
+                    }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
+                    Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
+                        Image(systemName: "doc.on.doc").padding(10)
                     }
                 }
-                Button(action: {
-                    
-                }) {
-                    HStack {
-                        Text("Meta 정보 추가")
-                        Spacer()
-                        Image(systemName: "plus")
+                ,
+                trailing:
+                HStack {
+                    Button(action: self.viewModel.navigationTrailingButton) {
+                        Image(systemName: "folder.badge.plus").padding(10)
+                    }.sheet(isPresented: self.$viewModel.showFilesSelection) {
+                        DocumentPicker()
+                            .setConfig(folderPicker: false, allowMultiple: true)
+                            .onSelectFiles { urls in
+                                self.viewModel.selectFiles(urls)
+                        }
+                    }
+                    Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
+                        Image(systemName: "trash").padding(10)
                     }
                 }
-            }
-            Section(header: Text("Rem")) {
-                ForEach (self.fileInfo.meta) { meta in
-                    HStack {
-                        Text(meta.value.key)
-                        Spacer()
-                        Text(meta.value.value)
-                    }
-                }
-                Button(action: {
-                    
-                }) {
-                    HStack {
-                        Text("Rem 정보 추가")
-                        Spacer()
-                        Image(systemName: "plus")
-                    }
-                }
-            }
-            Section(header: Text("File : \(self.fileInfo.cueSheet?.file.fileName ?? String())")) {
-                ForEach (self.fileInfo.tracks) { track in
-                    NavigationLink(destination: CueDetailTrackView(track)) {
-                        Text("\(track.track.trackNum) : \(track.track.title)")
-                    }
-                }
-            }
+            )
+            
         }
     }
+    
 }

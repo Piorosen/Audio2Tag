@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62591A7F24E93BF2006E05C0 /* CueFileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */; };
+		62591A8224E93C41006E05C0 /* CueFileMetaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */; };
 		627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2CF24E24CCD006F979C /* AppDelegate.swift */; };
 		627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D124E24CCD006F979C /* SceneDelegate.swift */; };
 		627BE2D424E24CCD006F979C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D324E24CCD006F979C /* ContentView.swift */; };
@@ -53,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoViewModel.swift; sourceTree = "<group>"; };
+		62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileMetaInfo.swift; sourceTree = "<group>"; };
 		627BE2CC24E24CCD006F979C /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627BE2CF24E24CCD006F979C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		627BE2D124E24CCD006F979C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62591A8024E93C20006E05C0 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		627BE2C324E24CCD006F979C = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +267,9 @@
 		627BE30F24E24E11006F979C /* FileInfo */ = {
 			isa = PBXGroup;
 			children = (
+				62591A8024E93C20006E05C0 /* Info */,
 				627BE31024E24E11006F979C /* CueFileInfoView.swift */,
+				62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */,
 			);
 			path = FileInfo;
 			sourceTree = "<group>";
@@ -463,6 +477,7 @@
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
+				62591A7F24E93BF2006E05C0 /* CueFileInfoViewModel.swift in Sources */,
 				627BE32224E24E11006F979C /* SplitMusicView.swift in Sources */,
 				627BE32824E24E11006F979C /* CueDetailTrackViewModel.swift in Sources */,
 				627BE32B24E24E11006F979C /* CueModel.swift in Sources */,
@@ -472,6 +487,7 @@
 				627BE32124E24E11006F979C /* FileView.swift in Sources */,
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
 				627BE2D424E24CCD006F979C /* ContentView.swift in Sources */,
+				62591A8224E93C41006E05C0 /* CueFileMetaInfo.swift in Sources */,
 				627BE32A24E24E11006F979C /* CueViewModel.swift in Sources */,
 				627BE32724E24E11006F979C /* CueFileInfoView.swift in Sources */,
 				627BE32E24E24E11006F979C /* TagView.swift in Sources */,
