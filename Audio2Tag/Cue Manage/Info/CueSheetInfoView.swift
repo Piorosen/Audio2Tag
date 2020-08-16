@@ -9,9 +9,9 @@
 import SwiftUI
 import CoreMedia
 
-struct CueFileInfoView: View {
+struct CueSheetInfoView: View {
     
-    @ObservedObject var viewModel = CueViewModel()
+    @ObservedObject var viewModel = CueSheetInfoViewModel()
     
     
     func makeAlert() -> Alert {
@@ -30,7 +30,7 @@ struct CueFileInfoView: View {
     
     var body: some View {
         NavigationView {
-            CueFileMetaView(fileInfo: self.$viewModel.cueSheetModel)
+            CueSheetListInfoView(fileInfo: self.$viewModel.cueSheetModel)
             .navigationBarTitle("Cue Info")
             .navigationBarItems(
                 leading:

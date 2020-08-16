@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		62591A7F24E93BF2006E05C0 /* CueFileInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */; };
-		62591A8224E93C41006E05C0 /* CueFileMetaInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */; };
+		62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */; };
+		62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */; };
 		627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2CF24E24CCD006F979C /* AppDelegate.swift */; };
 		627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D124E24CCD006F979C /* SceneDelegate.swift */; };
 		627BE2D424E24CCD006F979C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D324E24CCD006F979C /* ContentView.swift */; };
@@ -24,12 +24,12 @@
 		627BE32424E24E11006F979C /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE30A24E24E11006F979C /* ProgressBar.swift */; };
 		627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE30C24E24E11006F979C /* SplitMusicCell.swift */; };
 		627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE30E24E24E11006F979C /* AVAudioSpliter.swift */; };
-		627BE32724E24E11006F979C /* CueFileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31024E24E11006F979C /* CueFileInfoView.swift */; };
+		627BE32724E24E11006F979C /* CueSheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31024E24E11006F979C /* CueSheetInfoView.swift */; };
 		627BE32824E24E11006F979C /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31224E24E11006F979C /* CueDetailTrackViewModel.swift */; };
 		627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31324E24E11006F979C /* CueDetailTrackView.swift */; };
-		627BE32A24E24E11006F979C /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31524E24E11006F979C /* CueViewModel.swift */; };
-		627BE32B24E24E11006F979C /* CueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31624E24E11006F979C /* CueModel.swift */; };
-		627BE32C24E24E11006F979C /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31724E24E11006F979C /* CueView.swift */; };
+		627BE32A24E24E11006F979C /* CueMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31524E24E11006F979C /* CueMainViewModel.swift */; };
+		627BE32B24E24E11006F979C /* CueMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31624E24E11006F979C /* CueMainModel.swift */; };
+		627BE32C24E24E11006F979C /* CueMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31724E24E11006F979C /* CueMainView.swift */; };
 		627BE32D24E24E11006F979C /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31A24E24E11006F979C /* SettingView.swift */; };
 		627BE32E24E24E11006F979C /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE31D24E24E11006F979C /* TagView.swift */; };
 		627BE32F24E24E11006F979C /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 627BE31F24E24E11006F979C /* cue.png */; };
@@ -55,8 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileInfoViewModel.swift; sourceTree = "<group>"; };
-		62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueFileMetaInfo.swift; sourceTree = "<group>"; };
+		62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
+		62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
 		627BE2CC24E24CCD006F979C /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627BE2CF24E24CCD006F979C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		627BE2D124E24CCD006F979C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,12 +79,12 @@
 		627BE30A24E24E11006F979C /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		627BE30C24E24E11006F979C /* SplitMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicCell.swift; sourceTree = "<group>"; };
 		627BE30E24E24E11006F979C /* AVAudioSpliter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioSpliter.swift; sourceTree = "<group>"; };
-		627BE31024E24E11006F979C /* CueFileInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueFileInfoView.swift; sourceTree = "<group>"; };
+		627BE31024E24E11006F979C /* CueSheetInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetInfoView.swift; sourceTree = "<group>"; };
 		627BE31224E24E11006F979C /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
 		627BE31324E24E11006F979C /* CueDetailTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackView.swift; sourceTree = "<group>"; };
-		627BE31524E24E11006F979C /* CueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
-		627BE31624E24E11006F979C /* CueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueModel.swift; sourceTree = "<group>"; };
-		627BE31724E24E11006F979C /* CueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		627BE31524E24E11006F979C /* CueMainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainViewModel.swift; sourceTree = "<group>"; };
+		627BE31624E24E11006F979C /* CueMainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainModel.swift; sourceTree = "<group>"; };
+		627BE31724E24E11006F979C /* CueMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainView.swift; sourceTree = "<group>"; };
 		627BE31A24E24E11006F979C /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		627BE31D24E24E11006F979C /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		627BE31F24E24E11006F979C /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		62591A8024E93C20006E05C0 /* Info */ = {
 			isa = PBXGroup;
 			children = (
-				62591A8124E93C41006E05C0 /* CueFileMetaInfo.swift */,
+				62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -222,8 +222,7 @@
 			children = (
 				627BE30624E24E11006F979C /* Split Music */,
 				627BE30D24E24E11006F979C /* Library */,
-				627BE30F24E24E11006F979C /* FileInfo */,
-				627BE31124E24E11006F979C /* Detail Track */,
+				627BE30F24E24E11006F979C /* Info */,
 				627BE31424E24E11006F979C /* Main */,
 			);
 			path = "Cue Manage";
@@ -264,14 +263,15 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
-		627BE30F24E24E11006F979C /* FileInfo */ = {
+		627BE30F24E24E11006F979C /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				627BE31124E24E11006F979C /* Detail Track */,
 				62591A8024E93C20006E05C0 /* Info */,
-				627BE31024E24E11006F979C /* CueFileInfoView.swift */,
-				62591A7E24E93BF2006E05C0 /* CueFileInfoViewModel.swift */,
+				627BE31024E24E11006F979C /* CueSheetInfoView.swift */,
+				62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */,
 			);
-			path = FileInfo;
+			path = Info;
 			sourceTree = "<group>";
 		};
 		627BE31124E24E11006F979C /* Detail Track */ = {
@@ -286,9 +286,9 @@
 		627BE31424E24E11006F979C /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				627BE31524E24E11006F979C /* CueViewModel.swift */,
-				627BE31624E24E11006F979C /* CueModel.swift */,
-				627BE31724E24E11006F979C /* CueView.swift */,
+				627BE31524E24E11006F979C /* CueMainViewModel.swift */,
+				627BE31624E24E11006F979C /* CueMainModel.swift */,
+				627BE31724E24E11006F979C /* CueMainView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -471,25 +471,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				627BE32C24E24E11006F979C /* CueView.swift in Sources */,
+				627BE32C24E24E11006F979C /* CueMainView.swift in Sources */,
 				627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */,
 				627BE32324E24E11006F979C /* SplitMusicModel.swift in Sources */,
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
-				62591A7F24E93BF2006E05C0 /* CueFileInfoViewModel.swift in Sources */,
+				62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */,
 				627BE32224E24E11006F979C /* SplitMusicView.swift in Sources */,
 				627BE32824E24E11006F979C /* CueDetailTrackViewModel.swift in Sources */,
-				627BE32B24E24E11006F979C /* CueModel.swift in Sources */,
+				627BE32B24E24E11006F979C /* CueMainModel.swift in Sources */,
 				627BE32D24E24E11006F979C /* SettingView.swift in Sources */,
 				627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */,
 				627BE32024E24E11006F979C /* IOS_DocumentPicker.swift in Sources */,
 				627BE32124E24E11006F979C /* FileView.swift in Sources */,
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
 				627BE2D424E24CCD006F979C /* ContentView.swift in Sources */,
-				62591A8224E93C41006E05C0 /* CueFileMetaInfo.swift in Sources */,
-				627BE32A24E24E11006F979C /* CueViewModel.swift in Sources */,
-				627BE32724E24E11006F979C /* CueFileInfoView.swift in Sources */,
+				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
+				627BE32A24E24E11006F979C /* CueMainViewModel.swift in Sources */,
+				627BE32724E24E11006F979C /* CueSheetInfoView.swift in Sources */,
 				627BE32E24E24E11006F979C /* TagView.swift in Sources */,
 				627BE33424E251FE006F979C /* macOS_DocumentPicker.swift in Sources */,
 			);

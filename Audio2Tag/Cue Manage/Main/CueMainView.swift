@@ -9,25 +9,19 @@
 import SwiftUI
 
 struct CueView: View {
-    @ObservedObject var viewModel = CueViewModel()
+    @ObservedObject var viewModel = CueMainViewModel()
     
-    func update(urls:[URL]){
-        viewModel.selectFiles(urls)
-    }
-    
+//    func update(urls:[URL]){
+//        viewModel.selectFiles(urls)
+//    }
+//
     var body: some View {
         ZStack {
-            CueFileInfoView()
+            CueSheetInfoView()
                 .blur(radius: self.viewModel.isShowing ? 5 : 0)
                 .animation(.easeOut)
             
             SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing)
         }
-    }
-}
-
-struct CueView_Previews: PreviewProvider {
-    static var previews: some View {
-        CueView()
     }
 }

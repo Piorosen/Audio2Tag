@@ -1,18 +1,16 @@
 //
-//  CueViewModel.swift
+//  CueFileInfoViewModel.swift
 //  Audio2Tag
 //
-//  Created by Aoikazto on 2020/07/12.
+//  Created by Aoikazto on 2020/08/16.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 import SwiftCueSheet
 import CoreMedia
 
-import AVFoundation
-
-class CueViewModel : ObservableObject {
+class CueSheetInfoViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)

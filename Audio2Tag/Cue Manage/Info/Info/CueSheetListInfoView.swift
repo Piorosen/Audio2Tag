@@ -11,7 +11,7 @@ import SwiftUI
 import CoreMedia
 
 
-struct CueFileMetaView: View {
+struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
     
     
