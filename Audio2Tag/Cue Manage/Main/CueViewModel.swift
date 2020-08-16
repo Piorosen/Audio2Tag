@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftCueSheet
 import CoreMedia
-import ID3TagEditor
+
 import AVFoundation
 
 class CueViewModel : ObservableObject {
