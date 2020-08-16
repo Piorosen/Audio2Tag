@@ -51,13 +51,18 @@ struct CueView: View {
                         }
                         ,
                         trailing:
-                        Button(action: self.viewModel.navigationTrailingButton) {
-                            Image(systemName: "folder.badge.plus").padding(10)
-                        }.sheet(isPresented: self.$viewModel.showFilesSelection) {
-                            DocumentPicker()
-                                .setConfig(folderPicker: false, allowMultiple: true)
-                                .onSelectFiles { urls in
-                                    self.viewModel.selectFiles(urls)
+                        HStack {
+                            Button(action: self.viewModel.navigationTrailingButton) {
+                                Image(systemName: "folder.badge.plus").padding(10)
+                            }.sheet(isPresented: self.$viewModel.showFilesSelection) {
+                                DocumentPicker()
+                                    .setConfig(folderPicker: false, allowMultiple: true)
+                                    .onSelectFiles { urls in
+                                        self.viewModel.selectFiles(urls)
+                                }
+                            }
+                            Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
+                                Image(systemName: "trash").padding(10)
                             }
                         }
                 )
