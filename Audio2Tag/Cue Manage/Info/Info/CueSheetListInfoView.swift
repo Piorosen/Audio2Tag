@@ -1,18 +1,37 @@
 //
-//  CueFileInfoView.swift
+//  CueFileMetaInfo.swift
 //  Audio2Tag
 //
-//  Created by Aoikazto on 2020/07/21.
+//  Created by Aoikazto on 2020/08/16.
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 import CoreMedia
 
-struct CueFileInfoView: View {
+
+struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
     
+    // MARK: - 이벤트
+    var changeMeta = { (_:[MetaModel]) in }
+    var changeRem = { (_:[RemModel]) in }
     
+    // MARK: - 이벤트 처리하는 함수
+    func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueSheetListInfoView {
+        var copy = self
+        copy.changeMeta = action
+        return copy
+    }
+    
+    func onChangedRem(action: @escaping ([RemModel]) -> Void) -> CueSheetListInfoView {
+        var copy = self
+        copy.changeRem = action
+        return copy
+    }
+    
+    // MARK: - 이벤트 처리하는 함수
     func musicInfo() -> AnyView {
         guard let info = fileInfo.cueSheet?.info else {
             return AnyView(EmptyView())
@@ -26,7 +45,7 @@ struct CueFileInfoView: View {
             HStack {
                 Text("음원 길이")
                 Spacer()
-                Text("\(CueDetailTrackViewModel.makeTime(CMTimeGetSeconds(info.lengthOfAudio)))")
+                Text("\(CMTimeGetSeconds(info.lengthOfAudio).makeTime())")
             }
             HStack {
                 Text("채널 수")

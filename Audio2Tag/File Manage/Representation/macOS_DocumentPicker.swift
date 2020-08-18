@@ -59,7 +59,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        print("macOS")
         let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker
             ? [String(kUTTypeFolder)]
             : ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)

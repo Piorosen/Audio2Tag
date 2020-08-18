@@ -11,6 +11,14 @@ import SwiftUI
 import SwiftCueSheet
 import CoreMedia
 
+extension Double {
+    func makeTime() -> String {
+        let min = Int(self / 60)
+        let second = Int(self) % 60
+        let ms = Int(self * 1000) % 1000
+        return String(format: "%dm, %ds, %dms", min, second, ms)
+    }
+}
 
 class CueDetailTrackViewModel : ObservableObject {
     let item: TrackModel
@@ -20,13 +28,6 @@ class CueDetailTrackViewModel : ObservableObject {
     let endTime:String
     let waitTime: String
     let durTime: String
-    
-    static func makeTime(_ time: Double) -> String {
-        let min = Int(time / 60)
-        let second = Int(time) % 60
-        let ms = Int(time * 1000) % 1000
-        return String(format: "%dm, %ds, %dms", min, second, ms)
-    }
     
     init(item: TrackModel) {
         self.item = item
@@ -47,16 +48,16 @@ class CueDetailTrackViewModel : ObservableObject {
         {
             let s = CMTimeGetSeconds(cmStartTime)
             
-            startTime = CueDetailTrackViewModel.makeTime(s)
-            endTime = CueDetailTrackViewModel.makeTime(s + cmDuration)
-            waitTime = CueDetailTrackViewModel.makeTime(cmInterval)
-            durTime = CueDetailTrackViewModel.makeTime(cmDuration)
+            startTime = s.makeTime()
+            endTime = (s + cmDuration).makeTime()
+            waitTime = cmInterval.makeTime()
+            durTime = cmDuration.makeTime()
         }
         else {
-            startTime = CueDetailTrackViewModel.makeTime(0)
-            endTime = CueDetailTrackViewModel.makeTime(0)
-            waitTime = CueDetailTrackViewModel.makeTime(0)
-            durTime = CueDetailTrackViewModel.makeTime(0)
+            startTime = 0.makeTime()
+            endTime = 0.makeTime()
+            waitTime = 0.makeTime()
+            durTime = 0.makeTime()
         }
     }
     
