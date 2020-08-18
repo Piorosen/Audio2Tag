@@ -25,7 +25,7 @@ class CueSheetInfoViewModel : ObservableObject {
     var showFilesSelection = false
     var showLeadingAlert = false
     
-    // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
+    // MARK: - alert창과 sheet창을 만드는 함수.
     
     func makeSheet() -> AnyView {
         if showFilesSelection {

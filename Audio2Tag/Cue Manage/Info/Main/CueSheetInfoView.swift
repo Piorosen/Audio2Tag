@@ -12,10 +12,11 @@ import CoreMedia
 struct CueSheetInfoView: View {
     @ObservedObject var viewModel = CueSheetInfoViewModel()
     
-    
+    // MARK: - 이벤트
     private var splitStartAction = { }
     private var requestOpenState = { }
     
+    // MARK: - 이벤트 처리 하는 함수.
     func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetInfoView {
         var copy = self
         copy.requestOpenState = action
@@ -34,6 +35,7 @@ struct CueSheetInfoView: View {
         return copy
     }
     
+    // MARK: - View
     var body: some View {
         NavigationView {
             CueSheetListInfoView(fileInfo: self.$viewModel.cueSheetModel)
