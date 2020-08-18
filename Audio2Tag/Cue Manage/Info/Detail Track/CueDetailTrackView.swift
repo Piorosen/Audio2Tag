@@ -12,9 +12,11 @@ import SwiftUI
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
     
+    // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
     var changeRem = { (_:[RemModel]) in }
     
+    // MARK: - 이벤트 처리하는 함수
     func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueDetailTrackView {
         var copy = self
         copy.changeMeta = action
@@ -31,6 +33,7 @@ struct CueDetailTrackView: View {
         viewModel = CueDetailTrackViewModel(item: item)
     }
     
+    // MARK: - View
     var body: some View {
         List {
             Section(header: Text("Description")) {

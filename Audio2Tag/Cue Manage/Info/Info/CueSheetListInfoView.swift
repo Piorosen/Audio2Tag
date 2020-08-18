@@ -13,9 +13,12 @@ import CoreMedia
 
 struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
+    
+    // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
     var changeRem = { (_:[RemModel]) in }
     
+    // MARK: - 이벤트 처리하는 함수
     func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueSheetListInfoView {
         var copy = self
         copy.changeMeta = action
@@ -28,6 +31,7 @@ struct CueSheetListInfoView: View {
         return copy
     }
     
+    // MARK: - 이벤트 처리하는 함수
     func musicInfo() -> AnyView {
         guard let info = fileInfo.cueSheet?.info else {
             return AnyView(EmptyView())
