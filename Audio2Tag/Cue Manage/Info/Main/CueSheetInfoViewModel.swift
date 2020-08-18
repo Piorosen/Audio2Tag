@@ -19,6 +19,7 @@ class CueSheetInfoViewModel : ObservableObject {
     @Published var openAlert = false
     @Published var openSheet = false
     
+    var selectedCueSheet = { (sheet:CueSheetModel) in }
     
     var showFolderSelection = false
     var showFilesSelection = false
@@ -27,7 +28,17 @@ class CueSheetInfoViewModel : ObservableObject {
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     
     func makeSheet() -> AnyView {
-        return AnyView(EmptyView())
+        if showFilesSelection {
+            return AnyView(DocumentPicker()
+            .setConfig(folderPicker: false, allowMultiple: true)
+            .onSelectFiles { urls in
+                if let v = self.selectFiles(urls) {
+                    self.selectedCueSheet(v)
+                }
+            })
+        }else {
+            return AnyView(EmptyView())
+        }
     }
     
     func makeAlert() -> Alert {

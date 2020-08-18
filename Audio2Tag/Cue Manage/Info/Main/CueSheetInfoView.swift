@@ -12,7 +12,7 @@ import CoreMedia
 struct CueSheetInfoView: View {
     @ObservedObject var viewModel = CueSheetInfoViewModel()
     
-    private var selectedCueSheet = { (sheet:CueSheetModel) in }
+    
     private var splitStartAction = { }
     private var requestOpenState = { }
     
@@ -23,8 +23,8 @@ struct CueSheetInfoView: View {
     }
     
     func onSelectedCueSheetAndAudioAction(_ action: @escaping (CueSheetModel) -> Void) -> CueSheetInfoView {
-        var copy = self
-        copy.selectedCueSheet = action
+        let copy = self
+        copy.viewModel.selectedCueSheet = action
         return copy
     }
     
@@ -48,13 +48,9 @@ struct CueSheetInfoView: View {
                         .onTrashAction {
                             // 수정하기
                     }.onFolderBadgePlusAction {
-                        DocumentPicker()
-                            .setConfig(folderPicker: false, allowMultiple: true)
-                            .onSelectFiles { urls in
-                                if let v = self.viewModel.selectFiles(urls) {
-                                    self.selectedCueSheet(v)
-                                }
-                            }
+                        self.viewModel.showFilesSelection = true
+                        self.viewModel.openSheet = true
+                        
                     }
             )
             
