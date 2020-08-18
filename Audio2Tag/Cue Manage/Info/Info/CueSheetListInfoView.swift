@@ -45,7 +45,7 @@ struct CueSheetListInfoView: View {
             HStack {
                 Text("음원 길이")
                 Spacer()
-                Text("\(CueDetailTrackViewModel.makeTime(CMTimeGetSeconds(info.lengthOfAudio)))")
+                Text("\(CMTimeGetSeconds(info.lengthOfAudio).makeTime())")
             }
             HStack {
                 Text("채널 수")
