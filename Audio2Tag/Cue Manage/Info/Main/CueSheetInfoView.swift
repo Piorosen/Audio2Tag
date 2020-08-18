@@ -50,11 +50,13 @@ struct CueSheetInfoView: View {
                         .onTrashAction {
                             
                         }.onFolderBadgePlusAction {
-                        
+                            
                         }
                 )
             
         }
+        .alert(isPresented: self.$viewModel.openAlert, content: self.viewModel.makeAlert)
+        .sheet(isPresented: self.$viewModel.openSheet, content: self.viewModel.makeSheet)            
     }
     
 }
