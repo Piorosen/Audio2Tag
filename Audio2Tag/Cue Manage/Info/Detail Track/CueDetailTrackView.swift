@@ -12,8 +12,8 @@ import SwiftUI
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
     
-    var changeMeta = { ([MetaModel]) in }
-    var changeRem = { ([RemModel]) in }
+    var changeMeta = { (_:[MetaModel]) in }
+    var changeRem = { (_:[RemModel]) in }
     
     func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueDetailTrackView {
         var copy = self

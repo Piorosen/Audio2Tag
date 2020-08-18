@@ -13,8 +13,8 @@ import CoreMedia
 
 struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
-    var changeMeta = { ([MetaModel]) in }
-    var changeRem = { ([RemModel]) in }
+    var changeMeta = { (_:[MetaModel]) in }
+    var changeRem = { (_:[RemModel]) in }
     
     func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueSheetListInfoView {
         var copy = self
