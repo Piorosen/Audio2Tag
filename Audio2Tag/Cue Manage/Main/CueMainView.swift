@@ -18,7 +18,6 @@ struct CueView: View {
 //
     var body: some View {
         ZStack {
-            
             CueSheetInfoView()
                 .onReuqestOpenState {
                     self.viewModel.isShowing = true
@@ -26,7 +25,7 @@ struct CueView: View {
                 .blur(radius: self.viewModel.isShowing ? 5 : 0)
                 .animation(.easeOut)
             
-            SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing)
+            SplitMusicView(isPresented: self.$viewModel.isShowing)
                 .edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 

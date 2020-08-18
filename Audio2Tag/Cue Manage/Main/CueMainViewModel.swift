@@ -14,6 +14,6 @@ import AVFoundation
 
 class CueMainViewModel : ObservableObject {
     @Published var isShowing = false
-    @Published var status = [SplitMusicModel]()
+    @Published var status = CueSheetModel()
     
 }
