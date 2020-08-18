@@ -12,20 +12,27 @@ import CoreMedia
 struct CueSheetInfoView: View {
     @ObservedObject var viewModel = CueSheetInfoViewModel()
     
+    private var selectedCueSheet = { (sheet:CueSheetModel) in }
+    private var splitStartAction = { }
+    private var requestOpenState = { }
     
-    func makeAlert() -> Alert {
-        if viewModel.cueSheetModel.musicUrl != nil {
-            return Alert(title: Text("파일 분리"),
-                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
-                         primaryButton: .cancel(Text("취소")),
-                         secondaryButton: .default(Text("확인"), action: { self.viewModel.showFolderSelection = true }))
-        } else {
-            return Alert(title: Text("오류"),
-                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
-                         dismissButton: .cancel(Text("확인")))
-        }
+    func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetInfoView {
+        var copy = self
+        copy.requestOpenState = action
+        return copy
     }
     
+    func onSelectedCueSheetAndAudioAction(_ action: @escaping (CueSheetModel) -> Void) -> CueSheetInfoView {
+        var copy = self
+        copy.selectedCueSheet = action
+        return copy
+    }
+    
+    func onSplitStart(_ action: @escaping () -> Void) -> CueSheetInfoView {
+        var copy = self
+        copy.splitStartAction = action
+        return copy
+    }
     
     var body: some View {
         NavigationView {
@@ -34,15 +41,14 @@ struct CueSheetInfoView: View {
                 .navigationBarItems(
                     leading:
                         CueInfoNavigationBarLeading()
-                        .onSplitStart {
-                        
-                        }
+                            .onSplitStart(self.requestOpenState)
                         .onSplitState {
-                        
+                            
                         }
                     , trailing:
-                        CueInfoNavigationBarTrailling().onTrashAction {
-                        
+                        CueInfoNavigationBarTrailling()
+                        .onTrashAction {
+                            
                         }.onFolderBadgePlusAction {
                         
                         }

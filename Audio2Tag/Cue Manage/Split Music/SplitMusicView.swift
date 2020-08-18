@@ -37,10 +37,6 @@ struct SplitMusicView: View {
             .cornerRadius(15)
             .shadow(radius: 100)
         }
-        .edgesIgnoringSafeArea(.all)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .offset(y: self.isPresented ? self.offsetHeight : UIScreen.main.bounds.height)
-        .animation(.spring())
-        
     }
 }

@@ -9,18 +9,23 @@
 import Foundation
 import SwiftCueSheet
 import CoreMedia
+import SwiftUI
 
 class CueSheetInfoViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
-    @Published var showFolderSelection = false
-    @Published var showFilesSelection = false
-    @Published var showLeadingAlert = false
+    @Published var splitState = [SplitMusicModel(name: "전체 진행률", status: 0)]
+    @Published var alertShow = false
+    @Published var sheetShow = false
     
-    @Published var isShowing = false
     
-    @Published var status = [SplitMusicModel(name: "전체 진행률", status: 0)]
+    
+    
+    var showFolderSelection = false
+    var showFilesSelection = false
+    var showLeadingAlert = false
+    
     
     // MARK: - 버튼 클릭 이벤트
     
@@ -44,6 +49,18 @@ class CueSheetInfoViewModel : ObservableObject {
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     
+    func makeAlert() -> Alert {
+        if cueSheetModel.musicUrl != nil {
+            return Alert(title: Text("파일 분리"),
+                         message: Text("Cue File 기준으로 파일을 분리 하겠습니까?"),
+                         primaryButton: .cancel(Text("취소")),
+                         secondaryButton: .default(Text("확인"), action: { self.showFolderSelection = true }))
+        } else {
+            return Alert(title: Text("오류"),
+                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
+                         dismissButton: .cancel(Text("확인")))
+        }
+    }
     
     // MARK: - CueSheet 정보 가져오기.
     
@@ -103,11 +120,11 @@ class CueSheetInfoViewModel : ObservableObject {
             return
         }
         
-        status.removeAll()
-        status.append(.init(name: "전체 진행률", status: 0))
+        splitState.removeAll()
+        splitState.append(.init(name: "전체 진행률", status: 0))
         
         for item in sheet.cueSheet!.file.tracks {
-            status.append(.init(name: item.title, status: 0))
+            splitState.append(.init(name: item.title, status: 0))
         }
         cueSheetModel = sheet
     }
@@ -122,8 +139,8 @@ class CueSheetInfoViewModel : ObservableObject {
             return
         }
         
-        status.removeAll()
-        status.append(.init(name: "전체 진행률", status: 0))
+        splitState.removeAll()
+        splitState.append(.init(name: "전체 진행률", status: 0))
         
         var data = [(URL, CMTimeRange)]()
         for item in cueSheet.file.tracks {
@@ -137,22 +154,21 @@ class CueSheetInfoViewModel : ObservableObject {
             let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
             
             data.append((u, r))
-            status.append(.init(name: item.title, status: 0))
+            splitState.append(.init(name: item.title, status: 0))
         }
-        self.isShowing = true
         
         let count = 1
         AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
             DispatchQueue.main.async {
                 let p = Int(own * 100)
                 let i = index + 1
-                if (p / count) >  (self.status[i].status / count) {
-                    self.status[i].status = p
+                if (p / count) >  (self.splitState[i].status / count) {
+                    self.splitState[i].status = p
                 }
                 
                 let o = Int(total * 100)
-                if o / count > self.status[0].status / count {
-                    self.status[0].status = o
+                if o / count > self.splitState[0].status / count {
+                    self.splitState[0].status = o
                 }
             }
         }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CueView: View {
     @ObservedObject var viewModel = CueMainViewModel()
+    @State var stateShow = false
     
 //    func update(urls:[URL]){
 //        viewModel.selectFiles(urls)
@@ -17,11 +18,19 @@ struct CueView: View {
 //
     var body: some View {
         ZStack {
+            
             CueSheetInfoView()
+                .onReuqestOpenState {
+                    self.viewModel.isShowing = true
+                }
                 .blur(radius: self.viewModel.isShowing ? 5 : 0)
                 .animation(.easeOut)
             
             SplitMusicView(bind: self.$viewModel.status, isPresented: self.$viewModel.isShowing)
+                .edgesIgnoringSafeArea(.all)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                .animation(.spring())
         }
     }
 }
