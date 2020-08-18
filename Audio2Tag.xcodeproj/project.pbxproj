@@ -10,6 +10,7 @@
 		62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */; };
 		62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */; };
 		62591A8524E94036006E05C0 /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */; };
+		62591A8724E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8624E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift */; };
 		627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2CF24E24CCD006F979C /* AppDelegate.swift */; };
 		627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D124E24CCD006F979C /* SceneDelegate.swift */; };
 		627BE2D424E24CCD006F979C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D324E24CCD006F979C /* ContentView.swift */; };
