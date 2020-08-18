@@ -35,10 +35,3 @@ struct CueInfoNavigationBarTrailling: View {
         }
     }
 }
-//.sheet(isPresented: self.$viewModel.showFilesSelection) {
-//    DocumentPicker()
-//        .setConfig(folderPicker: false, allowMultiple: true)
-//        .onSelectFiles { urls in
-//            self.viewModel.selectFiles(urls)
-//    }
-//}

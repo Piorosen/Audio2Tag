@@ -14,7 +14,7 @@ import SwiftUI
 class CueSheetInfoViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
-    @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
+    @Published var cueSheetModel = CueSheetModel()
     
     @Published var openAlert = false
     @Published var openSheet = false
@@ -23,27 +23,6 @@ class CueSheetInfoViewModel : ObservableObject {
     var showFolderSelection = false
     var showFilesSelection = false
     var showLeadingAlert = false
-    
-    
-    // MARK: - 버튼 클릭 이벤트
-    
-    // Navigation의 왼쪽 버튼 클릭.
-    func navigationLeadingDivdeMusicButton() {
-        // 분리 작업할 폴더 열람 및 파일 분리 작업.
-        showLeadingAlert = true
-    }
-    
-    func navigationLeadingDivideStatusButton() {
-        // 분리하고 있는 파일 상태 바 표시 하는 시트 보여 주기.
-        // TODO: Sheet를 할 것인지? Alert로 할것인지? Z-Index로 이쁘게 할것인지?
-        
-    }
-    
-    // Navigation의 오른쪽 버튼 클릭.
-    func navigationTrailingButton() {
-        // Cue Sheet와 Music파일 선택 하는 창 표시.
-        showFilesSelection = true
-    }
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
     
@@ -116,20 +95,15 @@ class CueSheetInfoViewModel : ObservableObject {
     
     // UI 와 인터렉션 담당.
     // 그래서 내부 함수인 getCueSheet를 따로 호출하여 처리를 하도록 하였음.
-//    func selectFiles(_ urls: [URL]) {
-//        guard let sheet = getCueSheet(urls) else {
-//            // 만약 nil 일 경우 처리를 하지 않도록 진행함.
-//            return
-//        }
-//
-//        splitState.removeAll()
-//        splitState.append(.init(name: "전체 진행률", status: 0))
-//
-//        for item in sheet.cueSheet!.file.tracks {
-//            splitState.append(.init(name: item.title, status: 0))
-//        }
-//        cueSheetModel = sheet
-//    }
+    func selectFiles(_ urls: [URL]) -> CueSheetModel? {
+        guard let sheet = getCueSheet(urls) else {
+            // 만약 nil 일 경우 처리를 하지 않도록 진행함.
+            return nil
+        }
+
+        cueSheetModel = sheet
+        return cueSheetModel
+    }
 //
 //
 //    func musicOfSplit(url: URL) -> Void {

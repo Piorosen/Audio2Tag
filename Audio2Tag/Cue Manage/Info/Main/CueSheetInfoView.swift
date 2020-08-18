@@ -40,19 +40,23 @@ struct CueSheetInfoView: View {
                 .navigationBarTitle("Cue Info")
                 .navigationBarItems(
                     leading:
-                        CueInfoNavigationBarLeading()
-                            .onSplitStart(self.requestOpenState)
-                        .onSplitState {
-                            
-                        }
+                    CueInfoNavigationBarLeading()
+                        .onSplitStart(self.splitStartAction)
+                        .onSplitState(self.requestOpenState)
                     , trailing:
-                        CueInfoNavigationBarTrailling()
+                    CueInfoNavigationBarTrailling()
                         .onTrashAction {
-                            
-                        }.onFolderBadgePlusAction {
-                            
-                        }
-                )
+                            // 수정하기
+                    }.onFolderBadgePlusAction {
+                        DocumentPicker()
+                            .setConfig(folderPicker: false, allowMultiple: true)
+                            .onSelectFiles { urls in
+                                if let v = self.viewModel.selectFiles(urls) {
+                                    self.selectedCueSheet(v)
+                                }
+                            }
+                    }
+            )
             
         }
         .alert(isPresented: self.$viewModel.openAlert, content: self.viewModel.makeAlert)
