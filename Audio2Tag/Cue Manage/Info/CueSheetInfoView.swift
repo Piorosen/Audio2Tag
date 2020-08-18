@@ -10,7 +10,6 @@ import SwiftUI
 import CoreMedia
 
 struct CueSheetInfoView: View {
-    
     @ObservedObject var viewModel = CueSheetInfoViewModel()
     
     
@@ -31,40 +30,23 @@ struct CueSheetInfoView: View {
     var body: some View {
         NavigationView {
             CueSheetListInfoView(fileInfo: self.$viewModel.cueSheetModel)
-            .navigationBarTitle("Cue Info")
-            .navigationBarItems(
-                leading:
-                HStack {
-                    Button(action: self.viewModel.navigationLeadingDivdeMusicButton) {
-                        Image(systemName: "play").padding(10)
-                    }.sheet(isPresented: self.$viewModel.showFolderSelection) {
-                        DocumentPicker()
-                            .setConfig(folderPicker: true)
-                            .onSelectFile { url in
-                                self.viewModel.musicOfSplit(url: url)
+                .navigationBarTitle("Cue Info")
+                .navigationBarItems(
+                    leading:
+                        CueInfoNavigationBarLeading()
+                        .onSplitStart {
+                        
                         }
-                    }.alert(isPresented: self.$viewModel.showLeadingAlert, content: self.makeAlert)
-                    Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
-                        Image(systemName: "doc.on.doc").padding(10)
-                    }
-                }
-                ,
-                trailing:
-                HStack {
-                    Button(action: self.viewModel.navigationTrailingButton) {
-                        Image(systemName: "folder.badge.plus").padding(10)
-                    }.sheet(isPresented: self.$viewModel.showFilesSelection) {
-                        DocumentPicker()
-                            .setConfig(folderPicker: false, allowMultiple: true)
-                            .onSelectFiles { urls in
-                                self.viewModel.selectFiles(urls)
+                        .onSplitState {
+                        
                         }
-                    }
-                    Button(action: { self.viewModel.isShowing = true } /* self.viewModel.navigationLeadingDivideStatusButton */){
-                        Image(systemName: "trash").padding(10)
-                    }
-                }
-            )
+                    , trailing:
+                        CueInfoNavigationBarTrailling().onTrashAction {
+                        
+                        }.onFolderBadgePlusAction {
+                        
+                        }
+                )
             
         }
     }
