@@ -36,7 +36,7 @@ struct SplitMusicView: View {
             .background(Color(UIColor.systemBackground))
             .cornerRadius(15)
             .shadow(radius: 100)
-            .offset(y: self.isPresented ? self.offsetHeight : -UIScreen.main.bounds.height)
+            .offset(y: self.isPresented ? self.offsetHeight :  -UIScreen.main.nativeBounds.height)
         }
     }
 }
