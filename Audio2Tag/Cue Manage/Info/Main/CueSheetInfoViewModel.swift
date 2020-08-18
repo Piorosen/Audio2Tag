@@ -15,11 +15,9 @@ class CueSheetInfoViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel(cueSheet: nil, cueUrl: nil, musicUrl: nil)
-    @Published var splitState = [SplitMusicModel(name: "전체 진행률", status: 0)]
-    @Published var alertShow = false
-    @Published var sheetShow = false
     
-    
+    @Published var openAlert = false
+    @Published var openSheet = false
     
     
     var showFolderSelection = false
@@ -48,6 +46,10 @@ class CueSheetInfoViewModel : ObservableObject {
     }
     
     // MARK: - alert창과 Sheet창 언제 보이게 할 지 나타 냄.
+    
+    func makeSheet() -> AnyView {
+        return AnyView(EmptyView())
+    }
     
     func makeAlert() -> Alert {
         if cueSheetModel.musicUrl != nil {
@@ -114,63 +116,63 @@ class CueSheetInfoViewModel : ObservableObject {
     
     // UI 와 인터렉션 담당.
     // 그래서 내부 함수인 getCueSheet를 따로 호출하여 처리를 하도록 하였음.
-    func selectFiles(_ urls: [URL]) {
-        guard let sheet = getCueSheet(urls) else {
-            // 만약 nil 일 경우 처리를 하지 않도록 진행함.
-            return
-        }
-        
-        splitState.removeAll()
-        splitState.append(.init(name: "전체 진행률", status: 0))
-        
-        for item in sheet.cueSheet!.file.tracks {
-            splitState.append(.init(name: item.title, status: 0))
-        }
-        cueSheetModel = sheet
-    }
-    
-    
-    func musicOfSplit(url: URL) -> Void {
-        // 1번 더 체크 함.
-        guard let musicUrl = cueSheetModel.musicUrl else {
-            return
-        }
-        guard let cueSheet = cueSheetModel.cueSheet else {
-            return
-        }
-        
-        splitState.removeAll()
-        splitState.append(.init(name: "전체 진행률", status: 0))
-        
-        var data = [(URL, CMTimeRange)]()
-        for item in cueSheet.file.tracks {
-            let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
-            
-            // 기존에 이미 있는 파일 지움.
-            if FileManager.default.fileExists(atPath: u.path) {
-                try? FileManager.default.removeItem(at: u)
-            }
-            
-            let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
-            
-            data.append((u, r))
-            splitState.append(.init(name: item.title, status: 0))
-        }
-        
-        let count = 1
-        AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
-            DispatchQueue.main.async {
-                let p = Int(own * 100)
-                let i = index + 1
-                if (p / count) >  (self.splitState[i].status / count) {
-                    self.splitState[i].status = p
-                }
-                
-                let o = Int(total * 100)
-                if o / count > self.splitState[0].status / count {
-                    self.splitState[0].status = o
-                }
-            }
-        }
-    }
+//    func selectFiles(_ urls: [URL]) {
+//        guard let sheet = getCueSheet(urls) else {
+//            // 만약 nil 일 경우 처리를 하지 않도록 진행함.
+//            return
+//        }
+//
+//        splitState.removeAll()
+//        splitState.append(.init(name: "전체 진행률", status: 0))
+//
+//        for item in sheet.cueSheet!.file.tracks {
+//            splitState.append(.init(name: item.title, status: 0))
+//        }
+//        cueSheetModel = sheet
+//    }
+//
+//
+//    func musicOfSplit(url: URL) -> Void {
+//        // 1번 더 체크 함.
+//        guard let musicUrl = cueSheetModel.musicUrl else {
+//            return
+//        }
+//        guard let cueSheet = cueSheetModel.cueSheet else {
+//            return
+//        }
+//
+//        splitState.removeAll()
+//        splitState.append(.init(name: "전체 진행률", status: 0))
+//
+//        var data = [(URL, CMTimeRange)]()
+//        for item in cueSheet.file.tracks {
+//            let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
+//
+//            // 기존에 이미 있는 파일 지움.
+//            if FileManager.default.fileExists(atPath: u.path) {
+//                try? FileManager.default.removeItem(at: u)
+//            }
+//
+//            let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
+//
+//            data.append((u, r))
+//            splitState.append(.init(name: item.title, status: 0))
+//        }
+//
+//        let count = 1
+//        AVAudioSpliter(inputFileURL: musicUrl, outputFileURL: data)?.convert { index, own, total in
+//            DispatchQueue.main.async {
+//                let p = Int(own * 100)
+//                let i = index + 1
+//                if (p / count) >  (self.splitState[i].status / count) {
+//                    self.splitState[i].status = p
+//                }
+//
+//                let o = Int(total * 100)
+//                if o / count > self.splitState[0].status / count {
+//                    self.splitState[0].status = o
+//                }
+//            }
+//        }
+//    }
 }
