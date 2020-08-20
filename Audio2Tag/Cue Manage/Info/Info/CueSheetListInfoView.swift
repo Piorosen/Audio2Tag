@@ -14,6 +14,7 @@ import CoreMedia
 struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
     
+    
     // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
     var changeRem = { (_:[RemModel]) in }

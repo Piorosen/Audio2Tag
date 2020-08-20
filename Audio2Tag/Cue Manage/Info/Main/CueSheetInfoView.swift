@@ -10,10 +10,13 @@ import SwiftUI
 import CoreMedia
 
 struct CueSheetInfoView: View {
-    @ObservedObject var viewModel = CueSheetInfoViewModel()
+    @StateObject var viewModel = CueSheetInfoViewModel()
+    
+    init() {
+        print("재 생성됨.")
+    }
     
     // MARK: - 이벤트
-    private var splitStartAction = { }
     private var requestOpenState = { }
     
     // MARK: - 이벤트 처리 하는 함수.
@@ -29,9 +32,9 @@ struct CueSheetInfoView: View {
         return copy
     }
     
-    func onSplitStart(_ action: @escaping () -> Void) -> CueSheetInfoView {
-        var copy = self
-        copy.splitStartAction = action
+    func onSplitStart(_ action: @escaping (URL) -> Void) -> CueSheetInfoView {
+        let copy = self
+        copy.viewModel.splitStartAction = action
         return copy
     }
     
@@ -43,16 +46,20 @@ struct CueSheetInfoView: View {
                 .navigationBarItems(
                     leading:
                     CueInfoNavigationBarLeading()
-                        .onSplitStart(self.splitStartAction)
+                        .onSplitStart {
+                            self.viewModel.showFolderSelection = true
+                            self.viewModel.showFilesSelection = false
+                            self.viewModel.openSheet = true
+                        }
                         .onSplitState(self.requestOpenState)
                     , trailing:
                     CueInfoNavigationBarTrailling()
                         .onTrashAction {
                             // 수정하기
                     }.onFolderBadgePlusAction {
+                        self.viewModel.showFolderSelection = false
                         self.viewModel.showFilesSelection = true
                         self.viewModel.openSheet = true
-                        
                     }
             )
             

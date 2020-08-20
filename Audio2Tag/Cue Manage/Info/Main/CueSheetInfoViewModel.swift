@@ -20,6 +20,7 @@ class CueSheetInfoViewModel : ObservableObject {
     @Published var openSheet = false
     
     var selectedCueSheet = { (sheet:CueSheetModel) in }
+    var splitStartAction = { (url:URL) in }
     
     var showFolderSelection = false
     var showFilesSelection = false
@@ -36,6 +37,12 @@ class CueSheetInfoViewModel : ObservableObject {
                     self.selectedCueSheet(v)
                 }
             })
+        }else if showFolderSelection {
+            return AnyView(DocumentPicker()
+                .setConfig(folderPicker: true, allowMultiple: false)
+                .onSelectFile { url in
+                    self.splitStartAction(url)
+                })
         }else {
             return AnyView(EmptyView())
         }
@@ -113,7 +120,7 @@ class CueSheetInfoViewModel : ObservableObject {
         }
 
         cueSheetModel = sheet
-        return cueSheetModel
+        return sheet
     }
 //
 //

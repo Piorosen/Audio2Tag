@@ -25,6 +25,9 @@ struct MetaModel : Identifiable {
 }
 
 struct CueSheetModel : Identifiable {
+    init(_ copy: CueSheetModel) {
+        self.init(cueSheet: copy.cueSheet, cueUrl: copy.cueUrl, musicUrl: copy.musicUrl)
+    }
     init(cueSheet:CueSheet? = nil, cueUrl:URL? = nil, musicUrl:URL? = nil) {
         self.cueSheet = cueSheet
         self.cueUrl = cueUrl
