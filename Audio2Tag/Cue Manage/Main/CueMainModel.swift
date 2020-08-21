@@ -50,7 +50,7 @@ struct CueSheetModel : Identifiable {
     let cueUrl: URL?
     let musicUrl: URL?
     
-    let rem: [RemModel]
-    let meta: [MetaModel]
-    let tracks: [TrackModel]
+    var rem: [RemModel]
+    var meta: [MetaModel]
+    var tracks: [TrackModel]
 }

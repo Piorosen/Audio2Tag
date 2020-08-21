@@ -42,6 +42,11 @@ struct CueSheetInfoView: View {
     var body: some View {
         NavigationView {
             CueSheetListInfoView(fileInfo: self.$viewModel.cueSheetModel)
+                .onChangedRem { r in
+                    viewModel.cueSheetModel.rem = r
+                }.onChangedMeta { m in
+                    viewModel.cueSheetModel.meta = m
+                }
                 .navigationBarTitle("Cue Info")
                 .navigationBarItems(
                     leading:
@@ -61,8 +66,7 @@ struct CueSheetInfoView: View {
                         self.viewModel.showFilesSelection = true
                         self.viewModel.openSheet = true
                     }
-            )
-            
+                )
         }
         .alert(isPresented: self.$viewModel.openAlert, content: self.viewModel.makeAlert)
         .sheet(isPresented: self.$viewModel.openSheet, content: self.viewModel.makeSheet)            

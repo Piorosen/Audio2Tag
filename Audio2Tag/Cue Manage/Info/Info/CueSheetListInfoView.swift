@@ -10,10 +10,16 @@ import Foundation
 import SwiftUI
 import CoreMedia
 
+enum CueSheetListInfoEnum {
+    case None, Meta, Rem
+}
 
 struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
-    
+    @State var openSheet = false
+    @State var sheetType = CueSheetListInfoEnum.None
+    @State var key = String()
+    @State var value = String()
     
     // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
@@ -67,7 +73,7 @@ struct CueSheetListInfoView: View {
         List {
             musicInfo()
             Section(header: Text("Meta")) {
-                ForEach (self.fileInfo.rem) { meta in
+                ForEach (self.fileInfo.meta) { meta in
                     HStack {
                         Text(meta.value.key)
                         Spacer()
@@ -75,7 +81,8 @@ struct CueSheetListInfoView: View {
                     }
                 }
                 Button(action: {
-                    
+                    self.sheetType = .Meta
+                    self.openSheet = true
                 }) {
                     HStack {
                         Text("Meta 정보 추가")
@@ -85,7 +92,7 @@ struct CueSheetListInfoView: View {
                 }
             }
             Section(header: Text("Rem")) {
-                ForEach (self.fileInfo.meta) { meta in
+                ForEach (self.fileInfo.rem) { meta in
                     HStack {
                         Text(meta.value.key)
                         Spacer()
@@ -93,7 +100,8 @@ struct CueSheetListInfoView: View {
                     }
                 }
                 Button(action: {
-                    
+                    self.sheetType = .Rem
+                    self.openSheet = true
                 }) {
                     HStack {
                         Text("Rem 정보 추가")
@@ -110,5 +118,30 @@ struct CueSheetListInfoView: View {
                 }
             }
         }
+        .sheet(isPresented: $openSheet, content: {
+            VStack {
+                Text("키값")
+                TextField("", text: self.$key)
+                Text("밸류 값")
+                TextField("", text: self.$value)
+                Button("적용", action: {
+                    switch (self.sheetType) {
+                    case .Meta:
+                        var copy = fileInfo.meta
+                        copy.append(MetaModel(value: (self.key, self.value)))
+                        self.changeMeta(copy)
+                        break
+                    case .Rem:
+                        var copy = fileInfo.rem
+                        copy.append(RemModel(value: (self.key, self.value)))
+                        self.changeRem(copy)
+                        break
+                    default:
+                        break
+                    }
+                    self.openSheet = false
+                })
+            }
+        })
     }
 }

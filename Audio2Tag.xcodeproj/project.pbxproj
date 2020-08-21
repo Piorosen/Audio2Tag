@@ -11,6 +11,7 @@
 		62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */; };
 		62591A8524E94036006E05C0 /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */; };
 		62591A8724E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8624E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift */; };
+		626EC75524EF7495002EEC82 /* CueSheetListInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */; };
 		627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2CF24E24CCD006F979C /* AppDelegate.swift */; };
 		627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D124E24CCD006F979C /* SceneDelegate.swift */; };
 		627BE2D424E24CCD006F979C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE2D324E24CCD006F979C /* ContentView.swift */; };
@@ -62,6 +63,7 @@
 		62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
 		62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarLeading.swift; sourceTree = "<group>"; };
 		62591A8624E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarTrailling.swift; sourceTree = "<group>"; };
+		626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoViewModel.swift; sourceTree = "<group>"; };
 		627BE2CC24E24CCD006F979C /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		627BE2CF24E24CCD006F979C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		627BE2D124E24CCD006F979C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */,
+				626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
 				627BE2D424E24CCD006F979C /* ContentView.swift in Sources */,
 				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
+				626EC75524EF7495002EEC82 /* CueSheetListInfoViewModel.swift in Sources */,
 				627BE32A24E24E11006F979C /* CueMainViewModel.swift in Sources */,
 				627BE32724E24E11006F979C /* CueSheetInfoView.swift in Sources */,
 				627BE32E24E24E11006F979C /* TagView.swift in Sources */,
