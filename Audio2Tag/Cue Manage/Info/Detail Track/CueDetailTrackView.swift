@@ -21,11 +21,11 @@ struct CueDetailTrackView: View {
     var changeRem = { (_:[RemModel]) in }
     
     // MARK: - 이벤트 처리하는 함수
-    func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueDetailTrackView {
-        var copy = self
-        copy.changeMeta = action
-        return copy
-    }
+//    func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueDetailTrackView {
+//        var copy = self
+//        copy.changeMeta = action
+//        return copy
+//    }
     
     func onChangedRem(action: @escaping ([RemModel]) -> Void) -> CueDetailTrackView {
         var copy = self

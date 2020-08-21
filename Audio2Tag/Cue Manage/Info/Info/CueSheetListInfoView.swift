@@ -24,6 +24,8 @@ struct CueSheetListInfoView: View {
     // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
     var changeRem = { (_:[RemModel]) in }
+    var changeTrackRem = { (_:Int, _:[RemModel]) in }
+    
     
     // MARK: - 이벤트 처리하는 함수
     func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueSheetListInfoView {
@@ -35,6 +37,12 @@ struct CueSheetListInfoView: View {
     func onChangedRem(action: @escaping ([RemModel]) -> Void) -> CueSheetListInfoView {
         var copy = self
         copy.changeRem = action
+        return copy
+    }
+    
+    func onChangeTrackRem(action: @escaping (Int, [RemModel]) -> Void) -> CueSheetListInfoView {
+        var copy = self
+        copy.changeTrackRem = action
         return copy
     }
     
@@ -112,7 +120,14 @@ struct CueSheetListInfoView: View {
             }
             Section(header: Text("File : \(self.fileInfo.cueSheet?.file.fileName ?? String())")) {
                 ForEach (self.fileInfo.tracks) { track in
-                    NavigationLink(destination: CueDetailTrackView(track)) {
+                    NavigationLink(destination:
+                                    CueDetailTrackView(track)
+                                    .onChangedRem { r in
+                                        
+                                    }
+                    
+                    
+                    ) {
                         Text("\(track.track.trackNum) : \(track.track.title)")
                     }
                 }
