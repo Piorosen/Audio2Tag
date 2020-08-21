@@ -11,6 +11,10 @@ import SwiftUI
 
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
+    @State var sheetType = CueSheetChangeType.None
+    @State var key = String()
+    @State var value = String()
+    @State var openSheet = false
     
     // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
@@ -87,7 +91,8 @@ struct CueDetailTrackView: View {
                     }
                 }
                 Button(action: {
-                    
+                    sheetType = .Rem
+                    openSheet = true
                 }) {
                     HStack {
                         Text("Rem 정보 추가")
@@ -121,5 +126,25 @@ struct CueDetailTrackView: View {
             }
 
         }.navigationBarTitle("Track Info")
+        .sheet(isPresented: $openSheet, content: {
+            VStack {
+                Text("키값")
+                TextField("", text: self.$key)
+                Text("밸류 값")
+                TextField("", text: self.$value)
+                Button("적용", action: {
+                    switch (self.sheetType) {
+                    case .Rem:
+                        var copy = viewModel.rem
+                        copy.append(RemModel(value: (self.key, self.value)))
+                        self.changeRem(copy)
+                        break
+                    default:
+                        break
+                    }
+                    self.openSheet = false
+                })
+            }
+        })
     }
 }

@@ -10,14 +10,14 @@ import Foundation
 import SwiftUI
 import CoreMedia
 
-enum CueSheetListInfoEnum {
+enum CueSheetChangeType {
     case None, Meta, Rem
 }
 
 struct CueSheetListInfoView: View {
     @Binding var fileInfo: CueSheetModel
     @State var openSheet = false
-    @State var sheetType = CueSheetListInfoEnum.None
+    @State var sheetType = CueSheetChangeType.None
     @State var key = String()
     @State var value = String()
     

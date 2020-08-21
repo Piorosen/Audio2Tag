@@ -11,7 +11,7 @@ import SwiftCueSheet
 
 struct TrackModel : Identifiable {
     let id = UUID()
-    let track: Track
+    var track: Track
 }
 
 struct RemModel : Identifiable {
