@@ -12,12 +12,10 @@ import CoreMedia
 struct CueSheetInfoView: View {
     @StateObject var viewModel = CueSheetInfoViewModel()
     
-    init() {
-        print("재 생성됨.")
-    }
-    
     // MARK: - 이벤트
     private var requestOpenState = { }
+    private var selectedCueSheet = { (sheet:CueSheetModel) in }
+    private var splitStartAction = { (url:URL) in }
     
     // MARK: - 이벤트 처리 하는 함수.
     func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetInfoView {
@@ -27,16 +25,17 @@ struct CueSheetInfoView: View {
     }
     
     func onSelectedCueSheetAndAudioAction(_ action: @escaping (CueSheetModel) -> Void) -> CueSheetInfoView {
-        let copy = self
-        copy.viewModel.selectedCueSheet = action
+        var copy = self
+        copy.selectedCueSheet = action
         return copy
     }
     
     func onSplitStart(_ action: @escaping (URL) -> Void) -> CueSheetInfoView {
-        let copy = self
-        copy.viewModel.splitStartAction = action
+        var copy = self
+        copy.splitStartAction = action
         return copy
     }
+    
     
     // MARK: - View
     var body: some View {
@@ -50,26 +49,18 @@ struct CueSheetInfoView: View {
                 .navigationBarTitle("Cue Info")
                 .navigationBarItems(
                     leading:
-                    CueInfoNavigationBarLeading()
-                        .onSplitStart {
-                            self.viewModel.showFolderSelection = true
-                            self.viewModel.showFilesSelection = false
-                            self.viewModel.openSheet = true
-                        }
-                        .onSplitState(self.requestOpenState)
+                        CueInfoNavigationBarLeading()
+                        .onSplitStart(viewModel.onStartSplit)
+                        .onSplitState(requestOpenState)
                     , trailing:
-                    CueInfoNavigationBarTrailling()
+                        CueInfoNavigationBarTrailling()
                         .onTrashAction {
                             // 수정하기
-                    }.onFolderBadgePlusAction {
-                        self.viewModel.showFolderSelection = false
-                        self.viewModel.showFilesSelection = true
-                        self.viewModel.openSheet = true
-                    }
+                        }.onFolderBadgePlusAction(viewModel.onBadgePlus)
                 )
         }
-        .alert(isPresented: self.$viewModel.openAlert, content: self.viewModel.makeAlert)
-        .sheet(isPresented: self.$viewModel.openSheet, content: self.viewModel.makeSheet)            
+        .alert(isPresented: self.$viewModel.openAlert, content: self.makeAlert)
+        .sheet(isPresented: self.$viewModel.openSheet, content: self.makeSheet)            
     }
     
 }
