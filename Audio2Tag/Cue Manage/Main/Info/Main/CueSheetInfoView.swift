@@ -14,8 +14,7 @@ struct CueSheetInfoView: View {
     
     // MARK: - 이벤트
     private var requestOpenState = { }
-    private var selectedCueSheet = { (sheet:CueSheetModel) in }
-    private var splitStartAction = { (url:URL) in }
+    private var splitStartAction = { (directory:URL, sheet:CueSheetModel) in }
     
     // MARK: - 이벤트 처리 하는 함수.
     func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetInfoView {
@@ -24,13 +23,7 @@ struct CueSheetInfoView: View {
         return copy
     }
     
-    func onSelectedCueSheetAndAudioAction(_ action: @escaping (CueSheetModel) -> Void) -> CueSheetInfoView {
-        var copy = self
-        copy.selectedCueSheet = action
-        return copy
-    }
-    
-    func onSplitStart(_ action: @escaping (URL) -> Void) -> CueSheetInfoView {
+    func onSplitStart(_ action: @escaping (URL, CueSheetModel) -> Void) -> CueSheetInfoView {
         var copy = self
         copy.splitStartAction = action
         return copy

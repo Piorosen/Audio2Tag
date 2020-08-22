@@ -22,9 +22,10 @@ struct CueSheetListInfoView: View {
     @State var value = String()
     
     // MARK: - 이벤트
-    var changeMeta = { (_:[MetaModel]) in }
-    var changeRem = { (_:[RemModel]) in }
-    var changeTrackRem = { (_:Int, _:[RemModel]) in }
+    var changeMeta = { (meta:[MetaModel]) in }
+    var changeRem = { (rem:[RemModel]) in }
+    var changeTrackRem = { (index:Int, rem:[RemModel]) in }
+    var changeSheet = { (sheet:CueSheetModel) in }
     
     
     // MARK: - 이벤트 처리하는 함수
@@ -46,8 +47,14 @@ struct CueSheetListInfoView: View {
         return copy
     }
     
+    func onChangeCueSheet(action: @escaping (CueSheetModel) -> Void) -> CueSheetListInfoView {
+        var copy = self
+        copy.changeSheet = action
+        return copy
+    }
+    
     // MARK: - 이벤트 처리하는 함수
-    func musicInfo() -> AnyView {
+    func musicInfo() -> some View {
         guard let info = fileInfo.cueSheet?.info else {
             return AnyView(EmptyView())
         }

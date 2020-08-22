@@ -130,6 +130,7 @@
 		62591A8024E93C20006E05C0 /* Info */ = {
 			isa = PBXGroup;
 			children = (
+				627BD04024F0E4A200AEEAB6 /* Cell */,
 				62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */,
 				626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */,
 			);
@@ -143,6 +144,13 @@
 				62591A8624E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift */,
 			);
 			path = "Navigation Bar Items";
+			sourceTree = "<group>";
+		};
+		627BD04024F0E4A200AEEAB6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		627BE2C324E24CCD006F979C = {

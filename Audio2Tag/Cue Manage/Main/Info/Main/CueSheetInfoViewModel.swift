@@ -76,7 +76,6 @@ class CueSheetInfoViewModel : ObservableObject {
                 }
             }
             
-            
             // cue 파일이 없거나, Cue파일이 여러개 입력한 경우는 nil로 반환 함.
             if cueIndex == -1 || countCue != 1 {
                 return nil

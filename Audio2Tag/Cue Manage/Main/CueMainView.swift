@@ -21,8 +21,8 @@ struct CueView: View {
             CueSheetInfoView()
                 .onReuqestOpenState {
                     self.viewModel.isShowing = true
-                }.onSelectedCueSheetAndAudioAction { sheet in
-                    self.viewModel.status = sheet
+                }.onSplitStart { dir, sheet in
+                    
                 }
                 .blur(radius: self.viewModel.isShowing ? 5 : 0)
                 .animation(.easeOut)
