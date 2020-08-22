@@ -238,9 +238,7 @@
 		627BE30524E24E11006F979C /* Cue Manage */ = {
 			isa = PBXGroup;
 			children = (
-				627BE30624E24E11006F979C /* Split Music */,
 				627BE30D24E24E11006F979C /* Library */,
-				627BE30F24E24E11006F979C /* Info */,
 				627BE31424E24E11006F979C /* Main */,
 			);
 			path = "Cue Manage";
@@ -305,6 +303,8 @@
 		627BE31424E24E11006F979C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				627BE30624E24E11006F979C /* Split Music */,
+				627BE30F24E24E11006F979C /* Info */,
 				627BE31524E24E11006F979C /* CueMainViewModel.swift */,
 				627BE31624E24E11006F979C /* CueMainModel.swift */,
 				627BE31724E24E11006F979C /* CueMainView.swift */,
