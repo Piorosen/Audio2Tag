@@ -153,6 +153,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		627BD04124F0E68400AEEAB6 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
 		627BE2C324E24CCD006F979C = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +311,7 @@
 		627BE31124E24E11006F979C /* Detail Track */ = {
 			isa = PBXGroup;
 			children = (
+				627BD04124F0E68400AEEAB6 /* Section */,
 				627BE31224E24E11006F979C /* CueDetailTrackViewModel.swift */,
 				627BE31324E24E11006F979C /* CueDetailTrackView.swift */,
 			);
