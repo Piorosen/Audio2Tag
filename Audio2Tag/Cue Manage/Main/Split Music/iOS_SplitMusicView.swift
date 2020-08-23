@@ -6,6 +6,7 @@
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
+#if !targetEnvironment(macCatalyst)
 import SwiftUI
 
 struct SplitMusicView: View {
@@ -36,11 +37,9 @@ struct SplitMusicView: View {
             .background(Color(UIColor.systemBackground))
             .cornerRadius(15)
             .shadow(radius: 100)
+            .offset(y: self.isPresented ? self.offsetHeight : UIScreen.main.bounds.height)
         }
-        .edgesIgnoringSafeArea(.all)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .offset(y: self.isPresented ? self.offsetHeight : UIScreen.main.bounds.height)
-        .animation(.spring())
-        
     }
 }
+#endif
+

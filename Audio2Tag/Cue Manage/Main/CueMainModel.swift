@@ -11,7 +11,7 @@ import SwiftCueSheet
 
 struct TrackModel : Identifiable {
     let id = UUID()
-    let track: Track
+    var track: Track
 }
 
 struct RemModel : Identifiable {
@@ -25,6 +25,9 @@ struct MetaModel : Identifiable {
 }
 
 struct CueSheetModel : Identifiable {
+    init(_ copy: CueSheetModel) {
+        self.init(cueSheet: copy.cueSheet, cueUrl: copy.cueUrl, musicUrl: copy.musicUrl)
+    }
     init(cueSheet:CueSheet? = nil, cueUrl:URL? = nil, musicUrl:URL? = nil) {
         self.cueSheet = cueSheet
         self.cueUrl = cueUrl
@@ -47,7 +50,7 @@ struct CueSheetModel : Identifiable {
     let cueUrl: URL?
     let musicUrl: URL?
     
-    let rem: [RemModel]
-    let meta: [MetaModel]
-    let tracks: [TrackModel]
+    var rem: [RemModel]
+    var meta: [MetaModel]
+    var tracks: [TrackModel]
 }
