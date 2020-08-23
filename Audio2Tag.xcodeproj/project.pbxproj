@@ -335,9 +335,9 @@
 			children = (
 				627BE30624E24E11006F979C /* Split Music */,
 				627BE30F24E24E11006F979C /* Info */,
+				627BE31724E24E11006F979C /* CueMainView.swift */,
 				627BE31524E24E11006F979C /* CueMainViewModel.swift */,
 				627BE31624E24E11006F979C /* CueMainModel.swift */,
-				627BE31724E24E11006F979C /* CueMainView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

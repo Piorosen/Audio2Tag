@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CueDetailListInfoDescriptionSection: View {
-    let track: TrackModel
+    var track: TrackModel
     
     var body: some View {
         Section(header: Text("Description")) {
@@ -44,15 +44,15 @@ struct CueDetailListInfoDescriptionSection: View {
                 Spacer()
                 Text("\(track.track.songWriter)")
             }
-            Button(action: {
-                
-            }) {
-                HStack {
-                    Text("Meta 정보 추가")
-                    Spacer()
-                    Image(systemName: "plus")
-                }
-            }
+//            Button(action: {
+//                
+//            }) {
+//                HStack {
+//                    Text("Meta 정보 추가")
+//                    Spacer()
+//                    Image(systemName: "plus")
+//                }
+//            }
         }
     }
 }

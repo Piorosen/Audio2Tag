@@ -95,16 +95,16 @@ struct CueSheetListInfoView: View {
                         Text(meta.value.value)
                     }
                 }
-                Button(action: {
-                    self.sheetType = .Meta
-                    self.openSheet = true
-                }) {
-                    HStack {
-                        Text("Meta 정보 추가")
-                        Spacer()
-                        Image(systemName: "plus")
-                    }
-                }
+//                Button(action: {
+//                    self.sheetType = .Meta
+//                    self.openSheet = true
+//                }) {
+//                    HStack {
+//                        Text("Meta 정보 추가")
+//                        Spacer()
+//                        Image(systemName: "plus")
+//                    }
+//                }
             }
             Section(header: Text("Rem")) {
                 ForEach (self.fileInfo.rem) { meta in
@@ -114,16 +114,16 @@ struct CueSheetListInfoView: View {
                         Text(meta.value.value)
                     }
                 }
-                Button(action: {
-                    self.sheetType = .Rem
-                    self.openSheet = true
-                }) {
-                    HStack {
-                        Text("Rem 정보 추가")
-                        Spacer()
-                        Image(systemName: "plus")
-                    }
-                }
+//                Button(action: {
+//                    self.sheetType = .Rem
+//                    self.openSheet = true
+//                }) {
+//                    HStack {
+//                        Text("Rem 정보 추가")
+//                        Spacer()
+//                        Image(systemName: "plus")
+//                    }
+//                }
             }
             Section(header: Text("File : \(self.fileInfo.cueSheet?.file.fileName ?? String())")) {
                 ForEach (self.fileInfo.tracks) { track in
