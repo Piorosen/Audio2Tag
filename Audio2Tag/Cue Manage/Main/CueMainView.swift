@@ -19,15 +19,12 @@ struct CueView: View {
     var body: some View {
         ZStack {
             CueSheetInfoView()
-                .onReuqestOpenState {
-                    self.viewModel.isShowing = true
-                }.onSplitStart { dir, sheet in
-                    
-                }
+                .onReuqestOpenState(viewModel.reuqestOpenState)
+                .onSplitStart(viewModel.splitStart)
                 .blur(radius: self.viewModel.isShowing ? 5 : 0)
                 .animation(.easeOut)
             
-            SplitMusicView(isPresented: self.$viewModel.isShowing)
+            SplitMusicView(bind: $viewModel.splitState, isPresented: self.$viewModel.isShowing)
                 .edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
