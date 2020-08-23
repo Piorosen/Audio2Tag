@@ -9,38 +9,40 @@
 import SwiftUI
 
 struct CueDetailListInfoDescriptionSection: View {
+    let track: TrackModel
+    
     var body: some View {
         Section(header: Text("Description")) {
             HStack {
                 Text("Title")
                 Spacer()
-                Text("\(self.viewModel.item.track.title)")
+                Text("\(track.track.title)")
             }
             HStack {
                 Text("Track Num")
                 Spacer()
-                Text("\(self.viewModel.item.track.trackNum)")
+                Text("\(track.track.trackNum)")
             }
             HStack {
                 Text("ISRC")
                 Spacer()
-                Text("\(self.viewModel.item.track.isrc)")
+                Text("\(track.track.isrc)")
             }
             HStack {
                 Text("Performer")
                 Spacer()
-                Text("\(self.viewModel.item.track.performer)")
+                Text("\(track.track.performer)")
             }
             
             HStack {
                 Text("Track Type")
                 Spacer()
-                Text("\(self.viewModel.item.track.trackType)")
+                Text("\(track.track.trackType)")
             }
             HStack {
                 Text("Song Writer")
                 Spacer()
-                Text("\(self.viewModel.item.track.songWriter)")
+                Text("\(track.track.songWriter)")
             }
             Button(action: {
                 

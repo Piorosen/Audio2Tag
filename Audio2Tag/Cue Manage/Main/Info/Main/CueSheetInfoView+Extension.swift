@@ -19,15 +19,13 @@ extension CueSheetInfoView {
                 DocumentPicker()
                     .setConfig(folderPicker: false, allowMultiple: true)
                     .onSelectFiles { urls in
-                        //                if let v = self.selectFiles(urls) {
-                        //                    self.selectedCueSheet(v)
-                        //                }
+                        _ = self.viewModel.selectFiles(urls)
                     }
             }else if self.viewModel.showFolderSelection {
                 DocumentPicker()
                     .setConfig(folderPicker: true, allowMultiple: false)
                     .onSelectFile { url in
-                        //                    self.splitStartAction(url)
+//                        self.splitStartAction(url)
                     }
             }else {
                 EmptyView()

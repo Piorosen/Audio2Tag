@@ -31,8 +31,6 @@ extension CueDetailTrackView {
                     self.openSheet = false
                 })
             }
-            
-            
         }
     }
 }

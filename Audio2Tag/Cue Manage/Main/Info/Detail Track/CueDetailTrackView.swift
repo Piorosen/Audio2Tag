@@ -34,15 +34,18 @@ struct CueDetailTrackView: View {
     }
     
     init(_ item: TrackModel) {
-        viewModel = CueDetailTrackViewModel(item: item)
+        viewModel = CueDetailTrackViewModel(items: item)
     }
     
     // MARK: - View
     var body: some View {
         List {
-            CueDetailListInfoDescriptionSection()
-            CueDetailListInfoRemSection()
-            CueDetailListInfoTimeSection()
+            CueDetailListInfoDescriptionSection(track: viewModel.item)
+            CueDetailListInfoRemSection(rem: viewModel.rem)
+            CueDetailListInfoTimeSection(startTime: viewModel.startTime
+                                         , endTime: viewModel.endTime
+                                         , waitTime: viewModel.waitTime
+                                         , durationTime: viewModel.durTime)
         }
         .navigationBarTitle("Track Info")
         .sheet(isPresented: $openSheet, content: makeSheet)

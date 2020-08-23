@@ -21,26 +21,17 @@ extension Double {
 }
 
 class CueDetailTrackViewModel : ObservableObject {
-    let item: TrackModel
-    let rem: [RemModel]
+    var item: TrackModel
+    var rem: [RemModel]
     
     let startTime: String
     let endTime:String
     let waitTime: String
     let durTime: String
     
-    init(item: TrackModel) {
-        self.item = item
-        
-        var tmp = [RemModel]()
-        for (key, value) in item.track.rem {
-            
-            let data = RemModel(value: (key, value))
-            if data.value.value != String() {
-                tmp.append(data)
-            }
-        }
-        rem = tmp
+    init(items: TrackModel) {
+        item = items
+        rem = item.track.rem.filter({ _, v in v != String() }).map({ k, v in RemModel(value: (k, v))})
         
         if let cmStartTime = item.track.startTime,
             let cmDuration = item.track.duration,

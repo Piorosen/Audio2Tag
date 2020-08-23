@@ -323,8 +323,8 @@
 			isa = PBXGroup;
 			children = (
 				627BD04124F0E68400AEEAB6 /* Section */,
-				627BE31224E24E11006F979C /* CueDetailTrackViewModel.swift */,
 				627BE31324E24E11006F979C /* CueDetailTrackView.swift */,
+				627BE31224E24E11006F979C /* CueDetailTrackViewModel.swift */,
 				627BD04924F0E89800AEEAB6 /* CueDetailTrackView+Extension.swift */,
 			);
 			path = "Detail Track";

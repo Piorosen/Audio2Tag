@@ -9,9 +9,11 @@
 import SwiftUI
 
 struct CueDetailListInfoRemSection: View {
+    let rem: [RemModel]
+    
     var body: some View {
         Section(header: Text("Rem")) {
-            ForEach (self.viewModel.rem) { item in
+            ForEach (self.rem) { item in
                 HStack {
                     Text("\(item.value.key)")
                     Spacer()
@@ -19,8 +21,8 @@ struct CueDetailListInfoRemSection: View {
                 }
             }
             Button(action: {
-                sheetType = .Rem
-                openSheet = true
+//                sheetType = .Rem
+//                openSheet = true
             }) {
                 HStack {
                     Text("Rem 정보 추가")
