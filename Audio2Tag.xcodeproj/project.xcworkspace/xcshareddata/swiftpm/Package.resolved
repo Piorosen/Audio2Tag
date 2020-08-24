@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "ID3TagEditor",
+        "repositoryURL": "https://github.com/chicio/ID3TagEditor",
+        "state": {
+          "branch": null,
+          "revision": "4adad2ca9277456cb16d74b8336320e685be6c5e",
+          "version": "3.2.0"
+        }
+      },
+      {
         "package": "SwiftCueSheet",
         "repositoryURL": "https://github.com/Piorosen/SwiftCueSheet",
         "state": {
