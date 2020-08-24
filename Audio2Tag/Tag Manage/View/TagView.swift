@@ -9,8 +9,22 @@
 import SwiftUI
 
 struct TagView: View {
+    @ObservedObject
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            // Image
+            LazyVStack {
+                
+            }
+            .navigationTitle("Tag Info")
+            .navigationBarItems(trailing: Group {
+                Button(action: {
+                    print("AA")
+                }) {
+                    Image(systemName: "plus.app")
+                }
+            })
+        }
     }
 }
 
