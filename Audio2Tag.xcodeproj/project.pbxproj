@@ -43,7 +43,10 @@
 		627BE32F24E24E11006F979C /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 627BE31F24E24E11006F979C /* cue.png */; };
 		627BE33224E24E4A006F979C /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 627BE33124E24E4A006F979C /* SwiftCueSheet */; };
 		627BE33424E251FE006F979C /* macOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE33324E251FE006F979C /* macOS_DocumentPicker.swift */; };
+		629650DE24F36E2600941A4C /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629650DD24F36E2600941A4C /* TagViewModel.swift */; };
+		629650E024F36E3E00941A4C /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629650DF24F36E3E00941A4C /* TagModel.swift */; };
 		62A6499924EC054D004C3D84 /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */; };
+		62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 62C3094024F3693200F7AEE7 /* SwiftVgmdb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +109,8 @@
 		627BE31D24E24E11006F979C /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		627BE31F24E24E11006F979C /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
 		627BE33324E251FE006F979C /* macOS_DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_DocumentPicker.swift; sourceTree = "<group>"; };
+		629650DD24F36E2600941A4C /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		629650DF24F36E3E00941A4C /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_SplitMusicView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				627BE33224E24E4A006F979C /* SwiftCueSheet in Frameworks */,
+				62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +376,8 @@
 			isa = PBXGroup;
 			children = (
 				627BE31D24E24E11006F979C /* TagView.swift */,
+				629650DD24F36E2600941A4C /* TagViewModel.swift */,
+				629650DF24F36E3E00941A4C /* TagModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -410,6 +418,7 @@
 			name = Audio2Tag;
 			packageProductDependencies = (
 				627BE33124E24E4A006F979C /* SwiftCueSheet */,
+				62C3094024F3693200F7AEE7 /* SwiftVgmdb */,
 			);
 			productName = Audio2Tag;
 			productReference = 627BE2CC24E24CCD006F979C /* Audio2Tag.app */;
@@ -485,6 +494,7 @@
 			mainGroup = 627BE2C324E24CCD006F979C;
 			packageReferences = (
 				627BE33024E24E4A006F979C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
+				62C3093F24F3693200F7AEE7 /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
 			);
 			productRefGroup = 627BE2CD24E24CCD006F979C /* Products */;
 			projectDirPath = "";
@@ -550,7 +560,9 @@
 				627BE32124E24E11006F979C /* FileView.swift in Sources */,
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
 				627BE2D424E24CCD006F979C /* ContentView.swift in Sources */,
+				629650DE24F36E2600941A4C /* TagViewModel.swift in Sources */,
 				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
+				629650E024F36E3E00941A4C /* TagModel.swift in Sources */,
 				627BD04824F0E76600AEEAB6 /* CueDetailListInfoTimeSection.swift in Sources */,
 				626EC75524EF7495002EEC82 /* CueSheetListInfoViewModel.swift in Sources */,
 				627BE32A24E24E11006F979C /* CueMainViewModel.swift in Sources */,
@@ -904,6 +916,14 @@
 				minimumVersion = 1.2.0;
 			};
 		};
+		62C3093F24F3693200F7AEE7 /* XCRemoteSwiftPackageReference "SwiftVgmdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/SwiftVgmdb";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -911,6 +931,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 627BE33024E24E4A006F979C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
 			productName = SwiftCueSheet;
+		};
+		62C3094024F3693200F7AEE7 /* SwiftVgmdb */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 62C3093F24F3693200F7AEE7 /* XCRemoteSwiftPackageReference "SwiftVgmdb" */;
+			productName = SwiftVgmdb;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
