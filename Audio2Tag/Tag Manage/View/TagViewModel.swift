@@ -8,8 +8,19 @@
 
 import Foundation
 import SwiftUI
+import ID3TagEditor
+import MobileCoreServices
 
 class TagViewModel : ObservableObject {
+    @Published var tagInfo = TagModel()
+    @Published var openSheet = false
     
+    func traillingButtonAction() {
+        openSheet = true
+    }
+    
+    func loadAudio(url: URL) {
+        
+    }
     
 }

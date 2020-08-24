@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct TagModel : Identifiable {
     let id = UUID()
+    
+    var image = UIImage()
+    
+    
     
     
     
