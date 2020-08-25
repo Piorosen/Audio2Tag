@@ -15,6 +15,7 @@ class TagViewModel : ObservableObject {
     @Published var tagInfo = TagModel(tagVersion: .version2, tagFrame: .init())
     @Published var openSheet = false
     @Published var openAlert = false
+    @Published var openActionSheet = false
     
     func traillingButtonAction() {
         openSheet = true
