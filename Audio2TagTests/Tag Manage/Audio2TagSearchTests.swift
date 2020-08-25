@@ -18,9 +18,24 @@ class Audio2TagSearchTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    // VgmDB 검색
+    // MARK: - VGM DB Test
+    // VgmDB 앨범 검색
+    func testVgmDBAlbumLists() {
+        
+    }
+
+    // VgmDB 앨범 기준 내용 검색
+    func testVgmDBTrackLists() {
+        
+    }
     
-    // 
+    // MARK: - MusicBrainz Test
+    // MusicBrainz 앨범 검색
+    func testMusicBrainzAlbumLists() {
+        
+    }
+    
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

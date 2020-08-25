@@ -13,22 +13,108 @@ enum TagSearchKind {
     case MusicBrainz
 }
 
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif
+
+struct ActivityIndicator : UIViewRepresentable {
+    
+    typealias UIViewType = UIActivityIndicatorView
+    let style : UIActivityIndicatorView.Style
+    
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> ActivityIndicator.UIViewType {
+        return UIActivityIndicatorView(style: style)
+    }
+    
+    func updateUIView(_ uiView: ActivityIndicator.UIViewType, context: UIViewRepresentableContext<ActivityIndicator>) {
+        uiView.startAnimating()
+    }
+    
+}
+
+
 struct TagSearchView: View {
     @ObservedObject var viewModel = TagSearchViewModel()
-    private var funcOfKind = { }
+    @State private var searchText = ""
+    @State private var showCancelButton: Bool = false
+    @State var test = [String]()
+    
+    private var funcOfKind = { (_:String) in }
+    private var name = ""
     
     func setKind(kind: TagSearchKind) -> TagSearchView {
         var copy = self
         if (kind == .MusicBrainz) {
             copy.funcOfKind = viewModel.musicBrainz
+            copy.name = "MusicBrainz"
         }else if (kind == .VgmDB) {
             copy.funcOfKind = viewModel.vgmDB
+            copy.name = "Vgm DB"
         }
         return copy
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            NavigationView {
+                VStack {
+                    HStack {
+                        Text("검색 엔진 : \(self.name)").font(.title)
+                    }
+                    
+                    // Search view
+                    HStack {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            
+                            TextField("search", text: $searchText, onEditingChanged: { isEditing in
+                                if isEditing {
+                                    self.showCancelButton = true
+                                }
+                            }, onCommit: {
+                                self.showCancelButton = false
+                                funcOfKind(searchText)
+                            }).foregroundColor(.primary)
+                            .animation(.easeOut)
+                            
+                            Button(action: {
+                                self.searchText = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                            }.animation(.easeOut)
+                        }
+                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                        .foregroundColor(.secondary)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(10.0)
+                        
+                    }
+                    .padding(.horizontal)
+                    .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
+                    
+                }
+                .animation(.spring())
+                
+                List(viewModel.items) { (index) in
+//                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[index]) ) {
+                        Text("\(index.result.albumTitle)")
+//                    }
+                }
+            }
+            if viewModel.showIndicator {
+                VStack {
+                    Text("LOADING")
+                    ActivityIndicator(style: .large)
+                }
+                .frame(width: 200, height: 200.0)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+            }
+        }
     }
 }
-

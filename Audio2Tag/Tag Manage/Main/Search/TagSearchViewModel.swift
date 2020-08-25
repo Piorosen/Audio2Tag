@@ -8,14 +8,29 @@
 
 import Foundation
 import SwiftUI
+import SwiftVgmdb
+
+struct TagSearch : Identifiable {
+    let id = UUID()
+    var result: VDAlbum
+}
 
 class TagSearchViewModel : ObservableObject {
+    @Published var items = [TagSearch]()
+    @Published var showIndicator = false
     
-    func musicBrainz() {
+    func musicBrainz(annotation: String) {
         
     }
-    func vgmDB() {
-        
+    func vgmDB(annotation: String) {
+        showIndicator = true
+        SwiftVgmDb().getAlbumList(ack: VDSearchAnnotation(title: annotation)) { result in
+            DispatchQueue.main.sync {
+                self.items = result.map({ t in TagSearch(result: t)})
+                self.showIndicator = false
+            }
+            
+        }
     }
     
 }

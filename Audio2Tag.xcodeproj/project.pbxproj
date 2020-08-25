@@ -15,6 +15,8 @@
 		625EEF5124F51B060073CADB /* TagSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EEF5024F51B060073CADB /* TagSearchView.swift */; };
 		625EEF5724F51DAA0073CADB /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EEF5624F51DAA0073CADB /* TagSearchViewModel.swift */; };
 		625EEF5A24F5227C0073CADB /* Audio2TagSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EEF5924F5227C0073CADB /* Audio2TagSearchTests.swift */; };
+		625EEF5C24F52DF30073CADB /* TagSearchTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EEF5B24F52DF30073CADB /* TagSearchTrackView.swift */; };
+		625EEF5E24F52E470073CADB /* TagSearchTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */; };
 		626EC75524EF7495002EEC82 /* CueSheetListInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */; };
 		627BD04324F0E6DD00AEEAB6 /* CueDetailListInfoDescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BD04224F0E6DD00AEEAB6 /* CueDetailListInfoDescriptionSection.swift */; };
 		627BD04524F0E70600AEEAB6 /* CueDetailListInfoRemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BD04424F0E70600AEEAB6 /* CueDetailListInfoRemSection.swift */; };
@@ -79,6 +81,8 @@
 		625EEF5024F51B060073CADB /* TagSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchView.swift; sourceTree = "<group>"; };
 		625EEF5624F51DAA0073CADB /* TagSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		625EEF5924F5227C0073CADB /* Audio2TagSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagSearchTests.swift; sourceTree = "<group>"; };
+		625EEF5B24F52DF30073CADB /* TagSearchTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchTrackView.swift; sourceTree = "<group>"; };
+		625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSearchTrackViewModel.swift; sourceTree = "<group>"; };
 		626EC75424EF7495002EEC82 /* CueSheetListInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoViewModel.swift; sourceTree = "<group>"; };
 		627BD04224F0E6DD00AEEAB6 /* CueDetailListInfoDescriptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoDescriptionSection.swift; sourceTree = "<group>"; };
 		627BD04424F0E70600AEEAB6 /* CueDetailListInfoRemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoRemSection.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				625EEF5524F51D940073CADB /* Library */,
 				625EEF5024F51B060073CADB /* TagSearchView.swift */,
 				625EEF5624F51DAA0073CADB /* TagSearchViewModel.swift */,
+				625EEF5B24F52DF30073CADB /* TagSearchTrackView.swift */,
+				625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -602,7 +608,9 @@
 				625EEF5124F51B060073CADB /* TagSearchView.swift in Sources */,
 				625EEF5724F51DAA0073CADB /* TagSearchViewModel.swift in Sources */,
 				629650E024F36E3E00941A4C /* TagModel.swift in Sources */,
+				625EEF5C24F52DF30073CADB /* TagSearchTrackView.swift in Sources */,
 				627BD04824F0E76600AEEAB6 /* CueDetailListInfoTimeSection.swift in Sources */,
+				625EEF5E24F52E470073CADB /* TagSearchTrackViewModel.swift in Sources */,
 				626EC75524EF7495002EEC82 /* CueSheetListInfoViewModel.swift in Sources */,
 				627BE32A24E24E11006F979C /* CueMainViewModel.swift in Sources */,
 				627BD04324F0E6DD00AEEAB6 /* CueDetailListInfoDescriptionSection.swift in Sources */,

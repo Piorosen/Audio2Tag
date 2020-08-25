@@ -17,6 +17,7 @@ struct TagView: View {
             // Image
             VStack {
                 Spacer()
+                
             }.background(backgroundColor)
             .navigationTitle("Tag Info")
             .navigationBarItems(trailing: Group {
@@ -27,10 +28,11 @@ struct TagView: View {
                     Button(action: { viewModel.openActionSheet = true }) {
                         Image(systemName: "doc.on.doc")
                     }.sheet(isPresented: $viewModel.openSheet) {
-                        DocumentPicker()
-                            .setConfig(folderPicker: false, allowMultiple: false)
-                            .setUTType(type: [.folder])
-                            .onSelectFile { viewModel.loadAudio(url: $0) }
+                        TagSearchView().setKind(kind: .VgmDB)
+//                        DocumentPicker()
+//                            .setConfig(folderPicker: false, allowMultiple: false)
+//                            .setUTType(type: [.folder])
+//                            .onSelectFile { viewModel.loadAudio(url: $0) }
                     }.actionSheet(isPresented: $viewModel.openActionSheet) {
                         ActionSheet(title: Text("검색"), message: Text("Tag 정보를 검색합니다."), buttons: [
                             .default(Text("VgmDB")) { self.backgroundColor = .red },
