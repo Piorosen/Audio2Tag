@@ -11,6 +11,7 @@
 import UIKit
 import SwiftUI
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     var parent: DocumentPicker
@@ -31,6 +32,8 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
 struct DocumentPicker : UIViewControllerRepresentable {
     private var isFolderPicker: Bool = false
     private var allowMultipleSelection = false
+    private var utType = [UTType(exportedAs: "com.aoikazto.Auido2Tag.cue"), .audio]
+    
     fileprivate var oneFile: ((URL) -> Void) = { _ in }
     fileprivate var multiFile: (([URL]) -> Void) = { _ in }
     
@@ -49,8 +52,18 @@ struct DocumentPicker : UIViewControllerRepresentable {
     
     func setConfig(folderPicker:Bool, allowMultiple: Bool = false) -> DocumentPicker {
         var copy = self
+        if (folderPicker) {
+            copy.utType.removeAll()
+            copy.utType.append(.folder)
+        }
         copy.isFolderPicker = folderPicker
         copy.allowMultipleSelection = allowMultiple
+        return copy
+    }
+    
+    func setUTType(type: [UTType]) -> DocumentPicker {
+        var copy = self
+        copy.utType = type
         return copy
     }
     
@@ -59,10 +72,8 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-        let picker = UIDocumentPickerViewController(documentTypes: isFolderPicker
-            ? [String(kUTTypeFolder)]
-            : ["com.aoikazto.Auido2Tag.cue", String(kUTTypeAudio), String(kUTTypeText)], in: .open)
-        
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: utType)
+
         picker.allowsMultipleSelection = self.allowMultipleSelection
         picker.delegate = context.coordinator
         return picker

@@ -16,6 +16,18 @@ struct TagView: View {
             // Image
             LazyVStack {
                 Image(uiImage: viewModel.tagInfo.image)
+                Divider()
+                Section(header: Text("description")) {
+                    ForEach(self.viewModel.tagInfo.tagFrame) { value in
+                        NavigationLink(destination: EmptyView()) {
+                            HStack {
+//                                Text("\(value.key.hashValue)")
+                                Spacer()
+                                Text("\("하하")")
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("Tag Info")
             .navigationBarItems(trailing: Group {
