@@ -26,7 +26,7 @@ class TagSearchViewModel : ObservableObject {
         showIndicator = true
         SwiftVgmDb().getAlbumList(ack: VDSearchAnnotation(title: annotation)) { result in
             DispatchQueue.main.sync {
-                self.items = result.map({ t in TagSearch(result: t)})
+                self.items = result.map({ t in print("\(t.albumTitle)"); return TagSearch(result: t) })
                 self.showIndicator = false
             }
             

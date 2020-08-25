@@ -60,7 +60,7 @@ struct TagSearchView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+            VStack {
                 VStack {
                     HStack {
                         Text("검색 엔진 : \(self.name)").font(.title)
@@ -99,10 +99,14 @@ struct TagSearchView: View {
                 }
                 .animation(.spring())
                 
-                List(viewModel.items) { (index) in
-//                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[index]) ) {
-                        Text("\(index.result.albumTitle)")
-//                    }
+                NavigationView {
+                List(viewModel.items.indices, id:\.self) { (item:Int) in
+                    
+                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[item]).setKind(kind: .VgmDB)) {
+                        Text("\(viewModel.items[item].result.albumTitle)")
+                    }
+                    
+                }
                 }
             }
             if viewModel.showIndicator {
@@ -118,3 +122,4 @@ struct TagSearchView: View {
         }
     }
 }
+

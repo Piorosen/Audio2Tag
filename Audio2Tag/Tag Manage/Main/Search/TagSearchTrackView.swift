@@ -37,7 +37,7 @@ struct TagSearchTrackView: View {
         ZStack {
             VStack {
                 List(viewModel.items, id: \.self) { item in
-                        Text("\(item)")
+                    Text("\(item)")
                 }
             }
             if viewModel.showIndicator {
@@ -50,6 +50,8 @@ struct TagSearchTrackView: View {
                 .foregroundColor(Color.primary)
                 .cornerRadius(20)
             }
+        }.onAppear {
+            self.funcOfKind(String(self.checked.result.id))
         }
     }
 }
