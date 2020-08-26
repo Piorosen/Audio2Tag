@@ -53,6 +53,7 @@
 		629650E324F36F5E00941A4C /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 629650E224F36F5E00941A4C /* ID3TagEditor */; };
 		62A6499924EC054D004C3D84 /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */; };
 		62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 62C3094024F3693200F7AEE7 /* SwiftVgmdb */; };
+		62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		629650DD24F36E2600941A4C /* TagViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		629650DF24F36E3E00941A4C /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_SplitMusicView.swift; sourceTree = "<group>"; };
+		62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,20 +177,10 @@
 		625EEF5424F51D880073CADB /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				625EEF5524F51D940073CADB /* Library */,
-				625EEF5024F51B060073CADB /* TagSearchView.swift */,
-				625EEF5624F51DAA0073CADB /* TagSearchViewModel.swift */,
-				625EEF5B24F52DF30073CADB /* TagSearchTrackView.swift */,
-				625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */,
+				62DF8B7724F664E800FCFE0D /* Track */,
+				62DF8B7624F664E200FCFE0D /* Album */,
 			);
 			path = Search;
-			sourceTree = "<group>";
-		};
-		625EEF5524F51D940073CADB /* Library */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Library;
 			sourceTree = "<group>";
 		};
 		625EEF5824F522560073CADB /* Tag Manage */ = {
@@ -415,6 +407,7 @@
 		627BE31C24E24E11006F979C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				62DF8B7324F56D2E00FCFE0D /* Navigation */,
 				625EEF5424F51D880073CADB /* Search */,
 				629650DF24F36E3E00941A4C /* TagModel.swift */,
 				627BE31D24E24E11006F979C /* TagView.swift */,
@@ -429,6 +422,32 @@
 				627BE31F24E24E11006F979C /* cue.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		62DF8B7324F56D2E00FCFE0D /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		62DF8B7624F664E200FCFE0D /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				625EEF5024F51B060073CADB /* TagSearchView.swift */,
+				625EEF5624F51DAA0073CADB /* TagSearchViewModel.swift */,
+			);
+			path = Album;
+			sourceTree = "<group>";
+		};
+		62DF8B7724F664E800FCFE0D /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				625EEF5B24F52DF30073CADB /* TagSearchTrackView.swift */,
+				625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */,
+			);
+			path = Track;
 			sourceTree = "<group>";
 		};
 		62EC0EF424EB8BB900F1CCC5 /* Main */ = {
@@ -599,6 +618,7 @@
 				627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */,
 				627BE32024E24E11006F979C /* IOS_DocumentPicker.swift in Sources */,
 				627BD04A24F0E89800AEEAB6 /* CueDetailTrackView+Extension.swift in Sources */,
+				62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */,
 				627BD04524F0E70600AEEAB6 /* CueDetailListInfoRemSection.swift in Sources */,
 				627BE32124E24E11006F979C /* FileView.swift in Sources */,
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
