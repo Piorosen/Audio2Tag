@@ -34,72 +34,60 @@ struct TagSearchView: View {
             name = "MusicBrainz"
         }else if (kind == .vgmDb) {
             funcOfKind = viewModel.vgmDB
-             name = "Vgm DB"
+            name = "Vgm DB"
         }
     }
-
+    
     
     var body: some View {
-        ZStack {
+        ZStack{
+        NavigationView {
             VStack {
-                VStack {
+                HStack {
                     HStack {
-                        Text("검색 엔진 : \(self.name)").font(.title)
-                    }
-                    
-                    // Search view
-                    HStack {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            
-                            TextField("search", text: $searchText, onEditingChanged: { isEditing in
-                                if isEditing {
-                                    self.showCancelButton = true
-                                }
-                            }, onCommit: {
-                                self.showCancelButton = false
-                                funcOfKind(searchText)
-                            }).foregroundColor(.primary)
-                            .animation(.easeOut)
-                            
-                            Button(action: {
-                                self.searchText = ""
-                            }) {
-                                Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                            }.animation(.easeOut)
-                        }
-                        .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                        .foregroundColor(.secondary)
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(10.0)
+                        Image(systemName: "magnifyingglass")
                         
+                        TextField("search", text: $searchText, onEditingChanged: { isEditing in
+                            if isEditing {
+                                self.showCancelButton = true
+                            }
+                        }, onCommit: {
+                            self.showCancelButton = false
+                            funcOfKind(searchText)
+                        }).foregroundColor(.primary)
+                        .animation(.easeOut)
+                        
+                        Button(action: {
+                            self.searchText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
+                        }.animation(.easeOut)
                     }
-                    .padding(.horizontal)
-                    .navigationBarHidden(showCancelButton) // .animation(.default) // animation does not work properly
-                    
+                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
+                    .foregroundColor(.secondary)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(10.0)
                 }
+                .padding(.horizontal)
                 .animation(.spring())
                 
-                NavigationView {
                 List(viewModel.items.indices, id:\.self) { (item:Int) in
-                    
                     NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[item]).setKind(kind: .vgmDb)) {
                         Text("\(viewModel.items[item].result.albumTitle)")
                     }
-                    
                 }
-                }
+            }.navigationTitle(Text("\(name)"))
+        }
+        if viewModel.showIndicator {
+            VStack {
+                Text("LOADING")
+                ActivityIndicator(style: .large)
             }
-            if viewModel.showIndicator {
-                VStack {
-                    Text("LOADING")
-                    ActivityIndicator(style: .large)
-                }
-                .frame(width: 200, height: 200.0)
-                .background(Color.secondary.colorInvert())
-                .foregroundColor(Color.primary)
-                .cornerRadius(20)
-            }
+            .frame(width: 200, height: 200.0)
+            .background(Color.secondary.colorInvert())
+            .foregroundColor(Color.primary)
+            .cornerRadius(20)
+        }
         }
     }
 }
