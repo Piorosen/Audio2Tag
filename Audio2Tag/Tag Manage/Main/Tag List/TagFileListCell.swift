@@ -1,5 +1,5 @@
 //
-//  TagFileList.swift
+//  TagFileListCell.swift
 //  Audio2Tag
 //
 //  Created by Aoikazto on 2020/08/28.
@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-struct TagFileList: View {
+struct TagFileListCell: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct TagFileList_Previews: PreviewProvider {
+struct TagFileListCell_Previews: PreviewProvider {
     static var previews: some View {
-        TagFileList()
+        TagFileListCell()
     }
 }

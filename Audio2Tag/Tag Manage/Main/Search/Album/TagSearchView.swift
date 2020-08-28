@@ -9,8 +9,8 @@
 import SwiftUI
 
 enum TagSearchKind {
-    case VgmDB
-    case MusicBrainz
+    case vgmDb
+    case musicBrainz
 }
 
 extension View {
@@ -29,10 +29,10 @@ struct TagSearchView: View {
     private var name = ""
     
     init(kind: TagSearchKind) {
-        if (kind == .MusicBrainz) {
+        if (kind == .musicBrainz) {
             funcOfKind = viewModel.musicBrainz
             name = "MusicBrainz"
-        }else if (kind == .VgmDB) {
+        }else if (kind == .vgmDb) {
             funcOfKind = viewModel.vgmDB
              name = "Vgm DB"
         }
@@ -83,7 +83,7 @@ struct TagSearchView: View {
                 NavigationView {
                 List(viewModel.items.indices, id:\.self) { (item:Int) in
                     
-                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[item]).setKind(kind: .VgmDB)) {
+                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[item]).setKind(kind: .vgmDb)) {
                         Text("\(viewModel.items[item].result.albumTitle)")
                     }
                     

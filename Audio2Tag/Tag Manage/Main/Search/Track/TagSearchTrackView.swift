@@ -33,10 +33,10 @@ struct TagSearchTrackView: View {
 
     func setKind(kind: TagSearchKind) -> TagSearchTrackView {
         var copy = self
-        if (kind == .MusicBrainz) {
+        if (kind == .musicBrainz) {
             copy.funcOfKind = viewModel.musicBrainz
             copy.name = "MusicBrainz"
-        }else if (kind == .VgmDB) {
+        }else if (kind == .vgmDb) {
             copy.funcOfKind = viewModel.vgmDb
             copy.name = "Vgm DB"
         }
