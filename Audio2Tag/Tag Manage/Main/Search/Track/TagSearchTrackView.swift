@@ -21,6 +21,16 @@ struct TagSearchTrackView: View {
     private var funcOfKind = { (_:String) in }
     private var name = ""
     
+//    init(kind: TagSearchKind) {
+//        if (kind == .MusicBrainz) {
+//            funcOfKind = viewModel.musicBrainz
+//            name = "MusicBrainz"
+//        }else if (kind == .VgmDB) {
+//            funcOfKind = viewModel.vgmDB
+//             name = "Vgm DB"
+//        }
+//    }
+
     func setKind(kind: TagSearchKind) -> TagSearchTrackView {
         var copy = self
         if (kind == .MusicBrainz) {

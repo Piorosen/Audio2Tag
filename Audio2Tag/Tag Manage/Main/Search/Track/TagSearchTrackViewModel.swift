@@ -19,7 +19,7 @@ class TagSearchTrackViewModel : ObservableObject {
     }
     func vgmDb(id:String) {
         showIndicator = true
-        SwiftVgmDb().getTrackList(id: Int(id)!) { track in
+        _ = SwiftVgmDb().getTrackList(id: Int(id)!) { track in
             DispatchQueue.main.sync {
                 self.items = track.trackInfo[.romjai]?.flatMap { $0 } ??
                             track.trackInfo[.english]?.flatMap { $0 } ??

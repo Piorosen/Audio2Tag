@@ -28,11 +28,18 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     }
 }
 
+extension UTType {
+    /**
+            cue Sheet파일의 UTI 입니다.
+     */
+    static let cue = UTType(exportedAs: "com.aoikazto.Auido2Tag.cue")
+}
+
 // 기본으로 파일을 선택을 하도록 되어 있습니다.
 struct DocumentPicker : UIViewControllerRepresentable {
     private var isFolderPicker: Bool = false
     private var allowMultipleSelection = false
-    private var utType = [UTType(exportedAs: "com.aoikazto.Auido2Tag.cue"), .audio]
+    private var utType:[UTType] = [.cue, .audio]
     
     fileprivate var oneFile: ((URL) -> Void) = { _ in }
     fileprivate var multiFile: (([URL]) -> Void) = { _ in }

@@ -11,14 +11,34 @@ import SwiftUI
 import ID3TagEditor
 import MobileCoreServices
 
+enum TagSheetEnum {
+    case tagRequest
+    case documentAudio
+}
+
+
 class TagViewModel : ObservableObject {
     @Published var tagInfo = TagModel(tagVersion: .version2, tagFrame: .init())
     @Published var openSheet = false
+    var tagSheetEnum = TagSheetEnum.tagRequest
     @Published var openAlert = false
     @Published var openActionSheet = false
     
-    func traillingButtonAction() {
+    var showTagRequest = false
+    
+    func tagRequest() {
+        tagSheetEnum = .tagRequest
         openSheet = true
+        
+    }
+    
+    func audioRequest() {
+        tagSheetEnum = .documentAudio
+        openSheet = true
+    }
+    
+    func selectAudioRequest(urls: [URL]) {
+        
     }
     
     func loadAudio(url: URL) {

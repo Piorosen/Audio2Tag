@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SplitMusicView: View {
-//    @Binding var bind: [SplitMusicModel]
+    @Binding var bind: [SplitMusicModel]
     @Binding var isPresented: Bool
     
     var size: CGSize = CGSize(width: 300, height: 400)
@@ -19,9 +19,9 @@ struct SplitMusicView: View {
     var body: some View {
         Group {
             VStack(spacing: 0) {
-//                List(0..<bind.count, id: \.self) { index in
-//                    SplitMusicCell(bind: self.$bind[index])
-//                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                List(0..<bind.count, id: \.self) { index in
+                    SplitMusicCell(bind: self.$bind[index])
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 Divider()
                 
@@ -36,7 +36,7 @@ struct SplitMusicView: View {
             .background(Color(UIColor.systemBackground))
             .cornerRadius(15)
             .shadow(radius: 100)
-            .offset(y: self.isPresented ? self.offsetHeight :  -UIScreen.main.nativeBounds.height)
+            .offset(y: self.isPresented ? self.offsetHeight : UIScreen.main.bounds.height)
         }
     }
 }

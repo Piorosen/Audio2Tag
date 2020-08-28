@@ -54,6 +54,8 @@
 		62A6499924EC054D004C3D84 /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */; };
 		62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 62C3094024F3693200F7AEE7 /* SwiftVgmdb */; };
 		62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */; };
+		62DF8B7924F666FA00FCFE0D /* TagNavigationLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeading.swift */; };
+		62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,8 @@
 		629650DF24F36E3E00941A4C /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_SplitMusicView.swift; sourceTree = "<group>"; };
 		62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
+		62DF8B7824F666FA00FCFE0D /* TagNavigationLeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationLeading.swift; sourceTree = "<group>"; };
+		62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,7 @@
 		627BE2CE24E24CCD006F979C /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				62DF8B7A24F7F71600FCFE0D /* UI Library */,
 				627BE2FF24E24D8D006F979C /* Audio2Tag.entitlements */,
 				627BE2DD24E24CCE006F979C /* Info.plist */,
 				627BE2CF24E24CCD006F979C /* AppDelegate.swift */,
@@ -278,19 +283,18 @@
 		627BE30024E24E11006F979C /* File Manage */ = {
 			isa = PBXGroup;
 			children = (
-				627BE30124E24E11006F979C /* Representation */,
 				627BE30324E24E11006F979C /* View */,
 			);
 			path = "File Manage";
 			sourceTree = "<group>";
 		};
-		627BE30124E24E11006F979C /* Representation */ = {
+		627BE30124E24E11006F979C /* DocumentPicker */ = {
 			isa = PBXGroup;
 			children = (
 				627BE30224E24E11006F979C /* IOS_DocumentPicker.swift */,
 				627BE33324E251FE006F979C /* macOS_DocumentPicker.swift */,
 			);
-			path = Representation;
+			path = DocumentPicker;
 			sourceTree = "<group>";
 		};
 		627BE30324E24E11006F979C /* View */ = {
@@ -316,7 +320,6 @@
 				627BE30724E24E11006F979C /* iOS_SplitMusicView.swift */,
 				62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */,
 				627BE30824E24E11006F979C /* SplitMusicModel.swift */,
-				627BE30924E24E11006F979C /* ProgressBar */,
 				627BE30B24E24E11006F979C /* Cell */,
 			);
 			path = "Split Music";
@@ -428,6 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */,
+				62DF8B7824F666FA00FCFE0D /* TagNavigationLeading.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -448,6 +452,16 @@
 				625EEF5D24F52E470073CADB /* TagSearchTrackViewModel.swift */,
 			);
 			path = Track;
+			sourceTree = "<group>";
+		};
+		62DF8B7A24F7F71600FCFE0D /* UI Library */ = {
+			isa = PBXGroup;
+			children = (
+				627BE30924E24E11006F979C /* ProgressBar */,
+				627BE30124E24E11006F979C /* DocumentPicker */,
+				62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */,
+			);
+			path = "UI Library";
 			sourceTree = "<group>";
 		};
 		62EC0EF424EB8BB900F1CCC5 /* Main */ = {
@@ -606,6 +620,7 @@
 				627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */,
 				627BE32324E24E11006F979C /* SplitMusicModel.swift in Sources */,
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
+				62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
 				62591A8724E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift in Sources */,
@@ -615,6 +630,7 @@
 				627BE32B24E24E11006F979C /* CueMainModel.swift in Sources */,
 				627BE32D24E24E11006F979C /* SettingView.swift in Sources */,
 				620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */,
+				62DF8B7924F666FA00FCFE0D /* TagNavigationLeading.swift in Sources */,
 				627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */,
 				627BE32024E24E11006F979C /* IOS_DocumentPicker.swift in Sources */,
 				627BD04A24F0E89800AEEAB6 /* CueDetailTrackView+Extension.swift in Sources */,

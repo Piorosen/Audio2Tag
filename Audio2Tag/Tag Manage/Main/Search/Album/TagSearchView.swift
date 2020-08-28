@@ -13,29 +13,11 @@ enum TagSearchKind {
     case MusicBrainz
 }
 
-#if canImport(UIKit)
 extension View {
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
-#endif
-
-struct ActivityIndicator : UIViewRepresentable {
-    
-    typealias UIViewType = UIActivityIndicatorView
-    let style : UIActivityIndicatorView.Style
-    
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> ActivityIndicator.UIViewType {
-        return UIActivityIndicatorView(style: style)
-    }
-    
-    func updateUIView(_ uiView: ActivityIndicator.UIViewType, context: UIViewRepresentableContext<ActivityIndicator>) {
-        uiView.startAnimating()
-    }
-    
-}
-
 
 struct TagSearchView: View {
     @ObservedObject var viewModel = TagSearchViewModel()
@@ -46,17 +28,16 @@ struct TagSearchView: View {
     private var funcOfKind = { (_:String) in }
     private var name = ""
     
-    func setKind(kind: TagSearchKind) -> TagSearchView {
-        var copy = self
+    init(kind: TagSearchKind) {
         if (kind == .MusicBrainz) {
-            copy.funcOfKind = viewModel.musicBrainz
-            copy.name = "MusicBrainz"
+            funcOfKind = viewModel.musicBrainz
+            name = "MusicBrainz"
         }else if (kind == .VgmDB) {
-            copy.funcOfKind = viewModel.vgmDB
-            copy.name = "Vgm DB"
+            funcOfKind = viewModel.vgmDB
+             name = "Vgm DB"
         }
-        return copy
     }
+
     
     var body: some View {
         ZStack {
