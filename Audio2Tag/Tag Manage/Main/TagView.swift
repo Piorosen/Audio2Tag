@@ -49,10 +49,12 @@ struct TagView: View {
                     ForEach(viewModel.fileInfo) { item in
                         Section(header: Text("파일 정보")) {
                             Text("\(item.fileName)")
-                            HStack {
-                                Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
-                                Spacer()
-                                Text("\(item.ext)")
+                            NavigationLink(destination: TagFileDetailListView()) {
+                                HStack {
+                                    Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
+                                    Spacer()
+                                    Text("\(item.ext)")
+                                }
                             }
                         }
                     }
