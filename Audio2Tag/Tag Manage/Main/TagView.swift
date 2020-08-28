@@ -46,14 +46,20 @@ struct TagView: View {
                 }else if viewModel.fileInfo.count == 1 {
                     EmptyView()
                 }else {
-                    ForEach(viewModel.fileInfo) { item in
+                    ForEach(viewModel.fileInfo.sorted(by: { $0.fileName < $1.fileName })) { item in
                         Section(header: Text("파일 정보")) {
-                            Text("\(item.fileName)")
                             NavigationLink(destination: TagFileDetailListView()) {
-                                HStack {
-                                    Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
-                                    Spacer()
-                                    Text("\(item.ext)")
+                                VStack {
+                                    HStack {
+                                        Text("\(item.fileName)")
+                                        Spacer()
+                                    }
+                                    Divider()
+                                    HStack {
+                                        Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
+                                        Spacer()
+                                        Text("\(item.ext)")
+                                    }
                                 }
                             }
                         }
