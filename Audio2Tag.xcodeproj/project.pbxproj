@@ -56,6 +56,7 @@
 		62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */; };
 		62DF8B7924F666FA00FCFE0D /* TagNavigationLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeading.swift */; };
 		62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */; };
+		62DF8B7E24F8AB1E00FCFE0D /* TagFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7D24F8AB1E00FCFE0D /* TagFileList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 		62DF8B7824F666FA00FCFE0D /* TagNavigationLeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationLeading.swift; sourceTree = "<group>"; };
 		62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		62DF8B7D24F8AB1E00FCFE0D /* TagFileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +412,7 @@
 		627BE31C24E24E11006F979C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				62DF8B7F24F8AB2800FCFE0D /* List */,
 				62DF8B7324F56D2E00FCFE0D /* Navigation */,
 				625EEF5424F51D880073CADB /* Search */,
 				629650DF24F36E3E00941A4C /* TagModel.swift */,
@@ -462,6 +465,14 @@
 				62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */,
 			);
 			path = "UI Library";
+			sourceTree = "<group>";
+		};
+		62DF8B7F24F8AB2800FCFE0D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				62DF8B7D24F8AB1E00FCFE0D /* TagFileList.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		62EC0EF424EB8BB900F1CCC5 /* Main */ = {
@@ -620,6 +631,7 @@
 				627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */,
 				627BE32324E24E11006F979C /* SplitMusicModel.swift in Sources */,
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
+				62DF8B7E24F8AB1E00FCFE0D /* TagFileList.swift in Sources */,
 				62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
