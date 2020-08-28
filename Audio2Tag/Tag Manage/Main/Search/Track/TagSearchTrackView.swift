@@ -34,12 +34,16 @@ struct TagSearchTrackView: View {
                     Text("\(item)")
                 }
             }.navigationTitle(Text("\(name) : Track"))
+            .navigationBarItems(trailing:
+                                    Button("Select", action: {
+                                        
+                                    }))
             if viewModel.showIndicator {
                 VStack {
                     Text("LOADING")
                     ActivityIndicator(style: .large)
                 }
-                .frame(width: 200, height: 200.0)
+                .frame(width: 200, height: 200)
                 .background(Color.secondary.colorInvert())
                 .foregroundColor(Color.primary)
                 .cornerRadius(20)
