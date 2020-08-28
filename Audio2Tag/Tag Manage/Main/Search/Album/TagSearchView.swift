@@ -26,9 +26,11 @@ struct TagSearchView: View {
     @State var test = [String]()
     
     private var funcOfKind = { (_:String) in }
+    private var kind: TagSearchKind
     private var name = ""
     
     init(kind: TagSearchKind) {
+        self.kind = kind
         if (kind == .musicBrainz) {
             funcOfKind = viewModel.musicBrainz
             name = "MusicBrainz"
@@ -72,7 +74,7 @@ struct TagSearchView: View {
                 .animation(.spring())
                 
                 List(viewModel.items.indices, id:\.self) { (item:Int) in
-                    NavigationLink(destination: TagSearchTrackView(c: $viewModel.items[item]).setKind(kind: .vgmDb)) {
+                    NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: kind)) {
                         Text("\(viewModel.items[item].result.albumTitle)")
                     }
                 }

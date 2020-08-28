@@ -13,34 +13,18 @@ struct TagSearchTrackView: View {
     @ObservedObject var viewModel = TagSearchTrackViewModel()
     @Binding var checked:TagSearch
     
-    init(c: Binding<TagSearch>) {
-        self._checked = c
-        print("\(checked.result.id)")
-    }
-    
     private var funcOfKind = { (_:String) in }
     private var name = ""
     
-//    init(kind: TagSearchKind) {
-//        if (kind == .MusicBrainz) {
-//            funcOfKind = viewModel.musicBrainz
-//            name = "MusicBrainz"
-//        }else if (kind == .VgmDB) {
-//            funcOfKind = viewModel.vgmDB
-//             name = "Vgm DB"
-//        }
-//    }
-
-    func setKind(kind: TagSearchKind) -> TagSearchTrackView {
-        var copy = self
+    init(bind: Binding<TagSearch>, kind: TagSearchKind) {
+        self._checked = bind
         if (kind == .musicBrainz) {
-            copy.funcOfKind = viewModel.musicBrainz
-            copy.name = "MusicBrainz"
+            funcOfKind = viewModel.musicBrainz
+            name = "MusicBrainz"
         }else if (kind == .vgmDb) {
-            copy.funcOfKind = viewModel.vgmDb
-            copy.name = "Vgm DB"
+            funcOfKind = viewModel.vgmDb
+             name = "Vgm DB"
         }
-        return copy
     }
     
     var body: some View {
@@ -49,7 +33,7 @@ struct TagSearchTrackView: View {
                 List(viewModel.items, id: \.self) { item in
                     Text("\(item)")
                 }
-            }
+            }.navigationTitle(Text("\(name) : Track"))
             if viewModel.showIndicator {
                 VStack {
                     Text("LOADING")
