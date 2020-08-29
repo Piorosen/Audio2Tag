@@ -67,15 +67,14 @@ struct TagSearchView: View {
                         }
                     Divider()
                     List(viewModel.items.indices, id:\.self) { item in
-                        //                    HStack {
                         NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: self.kind)) {
                             Text("\(viewModel.items[item].result.albumTitle)")
                         }
                     }
                     .navigationBarTitle(Text("Search"))
                     .resignKeyboardOnDragGesture()
-                }.animation(.spring())
-            }.animation(.spring())
+                }
+            }
             
             ActivityIndicatorView(showIndicator: $viewModel.showIndicator)
         }

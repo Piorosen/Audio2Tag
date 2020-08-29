@@ -10,6 +10,9 @@
 		620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */; };
 		623BEDA324F8B9B800F0535F /* TagFileDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */; };
 		624E798324FA36D400BADE93 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E798224FA36D400BADE93 /* SearchView.swift */; };
+		624E798524FA490200BADE93 /* TagFileDetailListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E798424FA490200BADE93 /* TagFileDetailListViewModel.swift */; };
+		624E798A24FA4FB900BADE93 /* 1-04 天使は誰だ.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 624E798924FA4FB900BADE93 /* 1-04 天使は誰だ.m4a */; };
+		624E798C24FA5B3400BADE93 /* example-v4-png.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 624E798B24FA5B3400BADE93 /* example-v4-png.mp3 */; };
 		62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */; };
 		62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */; };
 		62591A8524E94036006E05C0 /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */; };
@@ -83,6 +86,9 @@
 		620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CueSheetInfoView+Extension.swift"; sourceTree = "<group>"; };
 		623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListView.swift; sourceTree = "<group>"; };
 		624E798224FA36D400BADE93 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		624E798424FA490200BADE93 /* TagFileDetailListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListViewModel.swift; sourceTree = "<group>"; };
+		624E798924FA4FB900BADE93 /* 1-04 天使は誰だ.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "1-04 天使は誰だ.m4a"; sourceTree = "<group>"; };
+		624E798B24FA5B3400BADE93 /* example-v4-png.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "example-v4-png.mp3"; sourceTree = "<group>"; };
 		62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
 		62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
 		62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarLeading.swift; sourceTree = "<group>"; };
@@ -432,6 +438,8 @@
 		627BE31E24E24E11006F979C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				624E798B24FA5B3400BADE93 /* example-v4-png.mp3 */,
+				624E798924FA4FB900BADE93 /* 1-04 天使は誰だ.m4a */,
 				627BE31F24E24E11006F979C /* cue.png */,
 			);
 			path = Resources;
@@ -441,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */,
+				624E798424FA490200BADE93 /* TagFileDetailListViewModel.swift */,
 			);
 			path = "Tag Detail";
 			sourceTree = "<group>";
@@ -569,6 +578,9 @@
 		627BE2C424E24CCD006F979C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = Aoikazto;
@@ -617,9 +629,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				627BE2DC24E24CCE006F979C /* LaunchScreen.storyboard in Resources */,
+				624E798A24FA4FB900BADE93 /* 1-04 天使は誰だ.m4a in Resources */,
 				627BE2D924E24CCE006F979C /* Preview Assets.xcassets in Resources */,
 				627BE2D624E24CCE006F979C /* Assets.xcassets in Resources */,
 				627BE32F24E24E11006F979C /* cue.png in Resources */,
+				624E798C24FA5B3400BADE93 /* example-v4-png.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,6 +674,7 @@
 				627BE32D24E24E11006F979C /* SettingView.swift in Sources */,
 				624E798324FA36D400BADE93 /* SearchView.swift in Sources */,
 				623BEDA324F8B9B800F0535F /* TagFileDetailListView.swift in Sources */,
+				624E798524FA490200BADE93 /* TagFileDetailListViewModel.swift in Sources */,
 				620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */,
 				62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */,
 				62C6BC1024F8B27A0054F702 /* TagFileListCellView.swift in Sources */,

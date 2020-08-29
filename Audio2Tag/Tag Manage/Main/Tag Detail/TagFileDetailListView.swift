@@ -7,15 +7,21 @@
 //
 
 import SwiftUI
+import ID3TagEditor
 
 struct TagFileDetailListView: View {
+    @ObservedObject var viewModel = TagFileDetailListViewModel()
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TagFileDetailListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TagFileDetailListView()
+        LazyVStack {
+            Group {
+                Image(uiImage: viewModel.image)
+                    
+            }
+            Divider()
+            
+            
+        }
     }
 }
