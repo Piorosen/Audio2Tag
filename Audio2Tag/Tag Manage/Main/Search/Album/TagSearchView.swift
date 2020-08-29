@@ -40,9 +40,6 @@ extension View {
 struct TagSearchView: View {
     @ObservedObject var viewModel = TagSearchViewModel()
     
-    //    @State private var showCancelButton: Bool = false
-    @State var test = String()
-    
     private var funcOfKind = { (_:String) in }
     private var kind: TagSearchKind
     private var name = ""
@@ -59,27 +56,29 @@ struct TagSearchView: View {
         }
     }
     
-    
-    let array = ["Peter", "Paul", "Mary", "Anna-Lena", "George", "John", "Greg", "Thomas", "Robert", "Bernie", "Mike", "Benno", "Hugo", "Miles", "Michael", "Mikel", "Tim", "Tom", "Lottie", "Lorrie", "Barbara"]
-    
-    
     var body: some View {
-        
-        NavigationView {
-            VStack {
-                // Search view
-                SearchView(text: $test)
-                Divider()
-                List {
-//                    // Filtered list of names
-//                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
-//                        searchText in Text(searchText)
-//                    }
-                }
-                .navigationBarTitle(Text("Search"))
-                .resignKeyboardOnDragGesture()
+        ZStack {
+            NavigationView {
+                VStack {
+                    // Search view
+                    SearchView()
+                        .onCommit { text in
+                            self.funcOfKind(text)
+                        }
+                    Divider()
+                    List(viewModel.items.indices, id:\.self) { item in
+                        //                    HStack {
+                        NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: self.kind)) {
+                            Text("\(viewModel.items[item].result.albumTitle)")
+                        }
+                    }
+                    .navigationBarTitle(Text("Search"))
+                    .resignKeyboardOnDragGesture()
+                }.animation(.spring())
             }.animation(.spring())
-        }.animation(.spring())
+            
+            ActivityIndicatorView(showIndicator: $viewModel.showIndicator)
+        }
     }
 }
 

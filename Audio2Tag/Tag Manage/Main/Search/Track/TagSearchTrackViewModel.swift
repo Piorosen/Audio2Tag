@@ -12,7 +12,7 @@ import SwiftVgmdb
 
 class TagSearchTrackViewModel : ObservableObject {
     var album = [VDTrackInfo : String]()
-    var items = [String]()
+    var items = [[String]]()
     @Published var showIndicator = false
     
     func musicBrainz(id:String) {
@@ -23,10 +23,10 @@ class TagSearchTrackViewModel : ObservableObject {
         _ = SwiftVgmDb().getTrackList(id: Int(id)!) { track in
             DispatchQueue.main.sync {
                 self.album = track.albumInfo
-                self.items = track.trackInfo[.romjai]?.flatMap { $0 } ??
-                            track.trackInfo[.english]?.flatMap { $0 } ??
-                            track.trackInfo[.japanese]?.flatMap { $0 } ??
-                            [String]()
+                self.items = track.trackInfo[.romjai] ??
+                            track.trackInfo[.english] ??
+                            track.trackInfo[.japanese] ??
+                            [[String]]()
                 self.showIndicator = false
             }
         }

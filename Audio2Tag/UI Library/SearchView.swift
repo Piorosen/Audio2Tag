@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct SearchView: View {
-    @Binding var text:String
+    @State var text:String = ""
     
-    init(text: Binding<String>) {
-        _text = text
-    }
+//    init(text: Binding<String>) {
+//        _text = text
+//    }
     
     @State private var showCancelButton: Bool = false
     private var commit = { (_:String) in }

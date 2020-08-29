@@ -30,26 +30,29 @@ struct TagSearchTrackView: View {
     var body: some View {
         ZStack {
             VStack {
-                List(viewModel.items, id: \.self) { item in
-                    Text("\(item)")
+                List {
+                    // Section
+                    ForEach (viewModel.items.indices, id: \.self) { sec in
+                        Section(header: Text("\(sec + 1)번 트랙")) {
+                            ForEach(viewModel.items[sec], id: \.self) { (item:String) in
+                                Text("\(item)")
+                            }
+                        }
+                    }
                 }
             }.navigationTitle(Text("\(name) : Track"))
             .navigationBarItems(trailing:
                                     Button("Select", action: {
                                         
                                     }))
-            if viewModel.showIndicator {
-                VStack {
-                    Text("LOADING")
-                    ActivityIndicator(style: .large)
-                }
-                .frame(width: 200, height: 200)
-                .background(Color.secondary.colorInvert())
-                .foregroundColor(Color.primary)
-                .cornerRadius(20)
-            }
+            
+            
+            ActivityIndicatorView(showIndicator: $viewModel.showIndicator)
         }.onAppear {
-            self.funcOfKind(String(self.checked.result.id))
+            if viewModel.items.count == 0 {
+                self.funcOfKind(String(self.checked.result.id))
+            }
+            
         }
     }
 }

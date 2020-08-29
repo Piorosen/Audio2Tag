@@ -17,6 +17,7 @@ struct TagSearch : Identifiable {
 
 class TagSearchViewModel : ObservableObject {
     @Published var items = [TagSearch]()
+    @Published var searchText = ""
     @Published var showIndicator = false
     
     func musicBrainz(annotation: String) {
