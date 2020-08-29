@@ -13,21 +13,40 @@ enum TagSearchKind {
     case musicBrainz
 }
 
+extension UIApplication {
+    func endEditing(_ force: Bool) {
+        self.windows
+            .filter{$0.isKeyWindow}
+            .first?
+            .endEditing(force)
+    }
+}
+
+struct ResignKeyboardOnDragGesture: ViewModifier {
+    var gesture = DragGesture().onChanged{_ in
+        UIApplication.shared.endEditing(true)
+    }
+    func body(content: Content) -> some View {
+        content.gesture(gesture)
+    }
+}
+
 extension View {
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    func resignKeyboardOnDragGesture() -> some View {
+        return modifier(ResignKeyboardOnDragGesture())
     }
 }
 
 struct TagSearchView: View {
     @ObservedObject var viewModel = TagSearchViewModel()
-    @State private var searchText = ""
-    @State private var showCancelButton: Bool = false
-    @State var test = [String]()
+    
+    //    @State private var showCancelButton: Bool = false
+    @State var test = String()
     
     private var funcOfKind = { (_:String) in }
     private var kind: TagSearchKind
     private var name = ""
+    
     
     init(kind: TagSearchKind) {
         self.kind = kind
@@ -41,56 +60,26 @@ struct TagSearchView: View {
     }
     
     
+    let array = ["Peter", "Paul", "Mary", "Anna-Lena", "George", "John", "Greg", "Thomas", "Robert", "Bernie", "Mike", "Benno", "Hugo", "Miles", "Michael", "Mikel", "Tim", "Tom", "Lottie", "Lorrie", "Barbara"]
+    
+    
     var body: some View {
-        ZStack{
+        
         NavigationView {
             VStack {
-                HStack {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                        
-                        TextField("search", text: $searchText, onEditingChanged: { isEditing in
-                            if isEditing {
-                                self.showCancelButton = true
-                            }
-                        }, onCommit: {
-                            self.showCancelButton = false
-                            funcOfKind(searchText)
-                        }).foregroundColor(.primary)
-                        .animation(.easeOut)
-                        
-                        Button(action: {
-                            self.searchText = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill").opacity(searchText == "" ? 0 : 1)
-                        }.animation(.easeOut)
-                    }
-                    .padding(EdgeInsets(top: 8, leading: 6, bottom: 8, trailing: 6))
-                    .foregroundColor(.secondary)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(10.0)
+                // Search view
+                SearchView(text: $test)
+                Divider()
+                List {
+//                    // Filtered list of names
+//                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
+//                        searchText in Text(searchText)
+//                    }
                 }
-                .padding(.horizontal)
-                .animation(.spring())
-                
-                List(viewModel.items.indices, id:\.self) { (item:Int) in
-                    NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: kind)) {
-                        Text("\(viewModel.items[item].result.albumTitle)")
-                    }
-                }
-            }.navigationTitle(Text("\(name)"))
-        }
-        if viewModel.showIndicator {
-            VStack {
-                Text("LOADING")
-                ActivityIndicator(style: .large)
-            }
-            .frame(width: 200, height: 200.0)
-            .background(Color.secondary.colorInvert())
-            .foregroundColor(Color.primary)
-            .cornerRadius(20)
-        }
-        }
+                .navigationBarTitle(Text("Search"))
+                .resignKeyboardOnDragGesture()
+            }.animation(.spring())
+        }.animation(.spring())
     }
 }
 

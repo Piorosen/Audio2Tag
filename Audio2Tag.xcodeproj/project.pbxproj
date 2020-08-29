@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */; };
 		623BEDA324F8B9B800F0535F /* TagFileDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */; };
+		624E798324FA36D400BADE93 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E798224FA36D400BADE93 /* SearchView.swift */; };
 		62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */; };
 		62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */; };
 		62591A8524E94036006E05C0 /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CueSheetInfoView+Extension.swift"; sourceTree = "<group>"; };
 		623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListView.swift; sourceTree = "<group>"; };
+		624E798224FA36D400BADE93 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
 		62591A8124E93C41006E05C0 /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
 		62591A8424E94036006E05C0 /* CueInfoNavigationBarLeading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarLeading.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				627BE30924E24E11006F979C /* ProgressBar */,
 				627BE30124E24E11006F979C /* DocumentPicker */,
 				62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */,
+				624E798224FA36D400BADE93 /* SearchView.swift */,
 			);
 			path = "UI Library";
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				627BE32824E24E11006F979C /* CueDetailTrackViewModel.swift in Sources */,
 				627BE32B24E24E11006F979C /* CueMainModel.swift in Sources */,
 				627BE32D24E24E11006F979C /* SettingView.swift in Sources */,
+				624E798324FA36D400BADE93 /* SearchView.swift in Sources */,
 				623BEDA324F8B9B800F0535F /* TagFileDetailListView.swift in Sources */,
 				620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */,
 				62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */,
