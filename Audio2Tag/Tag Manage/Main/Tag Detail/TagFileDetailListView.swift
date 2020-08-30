@@ -9,9 +9,15 @@
 import SwiftUI
 import ID3TagEditor
 
+extension View {
+//    func sheet<Content>(isPresented: Binding<Bool>, ) -> some View where Content : View
+    func customAlert<Content>(isPresent:Binding<Bool>, onDismiss: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content) -> some View where Content : View {
+        CustomAlertView(isPresent: isPresent, content: content)
+    }
+}
+
 struct TagFileDetailListView: View {
     @ObservedObject var viewModel = TagFileDetailListViewModel()
-    
     
     var body: some View {
         List {
@@ -70,6 +76,25 @@ struct TagFileDetailListView: View {
             }
         }
         .navigationTitle("Detail View")
-        .navigationBarItems(trailing: EditButton())
+        .navigationBarItems(trailing: HStack {
+            Button(action: {
+                viewModel.openSheet = true
+            }) {
+                Text("Tag")
+            }.contextMenu(ContextMenu {
+                List {
+                    Section(header: Text("")) {
+                        ForEach(viewModel.remainTag , id: \.self) { item in
+                            Text("\(item)")
+                        }
+                    }
+                }
+            })
+            
+            EditButton()
+        })
+        .sheet(isPresented: $viewModel.openSheet) {
+            TagFileDetailListSheetView()
+        }
     }
 }

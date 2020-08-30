@@ -63,6 +63,9 @@
 		62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */; };
 		62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */; };
 		62DF8B7E24F8AB1E00FCFE0D /* TagFileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7D24F8AB1E00FCFE0D /* TagFileListView.swift */; };
+		62E7C87724FBACB70030E5A2 /* TagFileDetailListSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87624FBACB70030E5A2 /* TagFileDetailListSheetView.swift */; };
+		62E7C87924FBCB190030E5A2 /* TagFileDetailSelectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87824FBCB190030E5A2 /* TagFileDetailSelectListView.swift */; };
+		62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +146,9 @@
 		62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
 		62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		62DF8B7D24F8AB1E00FCFE0D /* TagFileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileListView.swift; sourceTree = "<group>"; };
+		62E7C87624FBACB70030E5A2 /* TagFileDetailListSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListSheetView.swift; sourceTree = "<group>"; };
+		62E7C87824FBCB190030E5A2 /* TagFileDetailSelectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailSelectListView.swift; sourceTree = "<group>"; };
+		62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +454,7 @@
 		62C6BC1124F8B2930054F702 /* Tag Detail */ = {
 			isa = PBXGroup;
 			children = (
+				62E7C87524FBAC820030E5A2 /* Sheet */,
 				623BEDA224F8B9B800F0535F /* TagFileDetailListView.swift */,
 				624E798424FA490200BADE93 /* TagFileDetailListViewModel.swift */,
 			);
@@ -488,6 +495,7 @@
 				627BE30124E24E11006F979C /* DocumentPicker */,
 				62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */,
 				624E798224FA36D400BADE93 /* SearchView.swift */,
+				62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */,
 			);
 			path = "UI Library";
 			sourceTree = "<group>";
@@ -499,6 +507,15 @@
 				62C6BC0F24F8B27A0054F702 /* TagFileListCellView.swift */,
 			);
 			path = "Tag List";
+			sourceTree = "<group>";
+		};
+		62E7C87524FBAC820030E5A2 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				62E7C87624FBACB70030E5A2 /* TagFileDetailListSheetView.swift */,
+				62E7C87824FBCB190030E5A2 /* TagFileDetailSelectListView.swift */,
+			);
+			path = Sheet;
 			sourceTree = "<group>";
 		};
 		62EC0EF424EB8BB900F1CCC5 /* Main */ = {
@@ -666,6 +683,7 @@
 				62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
+				62E7C87924FBCB190030E5A2 /* TagFileDetailSelectListView.swift in Sources */,
 				62591A8724E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift in Sources */,
 				62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */,
 				627BE32224E24E11006F979C /* iOS_SplitMusicView.swift in Sources */,
@@ -689,7 +707,9 @@
 				629650DE24F36E2600941A4C /* TagViewModel.swift in Sources */,
 				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
 				625EEF5124F51B060073CADB /* TagSearchView.swift in Sources */,
+				62E7C87724FBACB70030E5A2 /* TagFileDetailListSheetView.swift in Sources */,
 				625EEF5724F51DAA0073CADB /* TagSearchViewModel.swift in Sources */,
+				62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */,
 				629650E024F36E3E00941A4C /* TagModel.swift in Sources */,
 				625EEF5C24F52DF30073CADB /* TagSearchTrackView.swift in Sources */,
 				627BD04824F0E76600AEEAB6 /* CueDetailListInfoTimeSection.swift in Sources */,
