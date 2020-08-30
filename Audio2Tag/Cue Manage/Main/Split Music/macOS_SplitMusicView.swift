@@ -28,7 +28,7 @@ struct SplitMusicView: View {
                 Button(action: {
                     self.isPresented = false
                 }) {
-                    Text("OK").padding(10).frame(maxWidth: .infinity)
+                    Text("확인").padding(10).frame(maxWidth: .infinity)
                 }
                 .frame(maxWidth: .infinity)
             }

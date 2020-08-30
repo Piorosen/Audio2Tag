@@ -33,6 +33,7 @@ class TagFileDetailListViewModel : ObservableObject {
     @Published var frontImage = UIImage()
     @Published var text = [TagFileDetailListModel]()
     @Published var openSheet = false
+    @Published var openCustomAlert = false
     
     @Published var remainTag = [String]()
     
@@ -60,7 +61,7 @@ class TagFileDetailListViewModel : ObservableObject {
             p.forEach { (f:FrameName) in aa.removeAll(where: { $0 == f } ) }
             
             remainTag = aa.map { $0.caseName }
-            
+            openCustomAlert = true
             
         }catch {
             print(error)

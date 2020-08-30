@@ -19,20 +19,26 @@ struct CustomAlertView<Content>: View where Content : View {
     
     
     var body: some View {
-        GeometryReader { (g:GeometryProxy) in
-            ZStack {
-                content()
-                
-                Divider()
-                Button(action: {
-                    withAnimation {
-                        isPresent.toggle()
+            GeometryReader { (g:GeometryProxy) in
+                if isPresent {
+                    VStack {
+                        content()
+                        Divider()
+                        Button(action: {
+                            withAnimation {
+                                isPresent.toggle()
+                            }
+                        }) {
+                            Text("취소").padding(10).frame(maxWidth: .infinity)
+                        }
                     }
-                }) {
-                    Text("취소")
+                    
+                    .frame(width: g.size.width * 0.7, height: g.size.height * 0.7)
+                    .background(Color.red)
+                    .cornerRadius(15)
                 }
-            }.opacity(isPresent ? 1 : 0)
-        }
+            }
+    
     }
+    
 }
-

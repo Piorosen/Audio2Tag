@@ -13,29 +13,27 @@ struct TagFileDetailSelectListView: View {
     
     var body: some View {
         GeometryReader { (g: GeometryProxy) in
-            ZStack {
-                VStack {
-                    
-                    Divider()
-                    HStack {
-                        Button(action: {
-                            withAnimation {
-                                isPresent = false
-                            }
-                        }) {
-                            Text("Dismiss")
+            VStack {
+                
+                Divider()
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            isPresent = false
                         }
+                    }) {
+                        Text("Dismiss")
                     }
                 }
-                .padding()
-                .background(Color.white)
-                .frame(
-                    width: g.size.width*0.7,
-                    height: g.size.height*0.7
-                )
-                .shadow(radius: 1)
-                .opacity(self.isPresent ? 1 : 0)
             }
+            .padding()
+            .background(Color.white)
+            .frame(
+                width: g.size.width*0.7,
+                height: g.size.height*0.7
+            )
+            .shadow(radius: 1)
+            .opacity(self.isPresent ? 1 : 0)
         }
     }
 }
