@@ -14,14 +14,62 @@ struct TagFileDetailListView: View {
     
     
     var body: some View {
-        LazyVStack {
+        List {
             Group {
-                Image(uiImage: viewModel.image)
+                GeometryReader { (g:GeometryProxy) in
+                    ZStack {
+                        Image(uiImage: viewModel.frontImage)
+                            .resizable()
+                            .frame(width: g.size.width, height: g.size.height, alignment: .center)
+                            .aspectRatio(contentMode: .fill)
+                            .blur(radius: 15)
+                            .colorInvert()
+                        
+                        Image(uiImage: viewModel.frontImage)
+                            .resizable()
+                            .frame(width: g.size.width / 2, height: g.size.height / 2, alignment: .center)
+                            .aspectRatio(contentMode: .fit)
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Button(action: {
+                                    print("a")
+                                }) {
+                                    Image(systemName: "minus.circle")
+                                }
+                                Spacer()
+                                Button(action: {
+                                    print("b")
+                                }) {
+                                    Image(systemName: "plus.circle")
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                }
+            }.frame(maxWidth: .infinity, idealHeight: 200, alignment: .center)
+            
+            Divider().padding(.all, 10)
+            
+            Section {
+                ForEach(viewModel.text.indices, id: \.self) { idx in
+                    NavigationLink(destination: EmptyView()) {
+                        HStack {
+                            Text("\(viewModel.text[idx].title)")
+                            Spacer()
+                            TextField("", text: $viewModel.text[idx].text)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                    }
                     
+                }.onDelete(perform: { idx in
+                    viewModel.text.remove(atOffsets: idx)
+                })
             }
-            Divider()
-            
-            
         }
+        .navigationTitle("Detail View")
+        .navigationBarItems(trailing: EditButton())
     }
 }

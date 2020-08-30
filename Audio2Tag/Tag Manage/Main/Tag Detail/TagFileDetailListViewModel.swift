@@ -9,17 +9,39 @@
 import SwiftUI
 import ID3TagEditor
 
+extension FrameName {
+    var caseName: String {
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
+    }
+}
+
+struct TagFileDetailListModel : Identifiable {
+    let id = UUID()
+    let title :String
+    var text: String = ""
+}
+
 class TagFileDetailListViewModel : ObservableObject {
-    @Published var image = UIImage()
+    @Published var frontImage = UIImage()
+    @Published var text = [TagFileDetailListModel]()
     
     init() {
         let p = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)
         
 
         do {
-            var data = try? Data(contentsOf: p![0])
-            let tag = try ID3TagEditor().read(mp3: data!)
-            print(tag)
+            guard let tag = try ID3TagEditor().read(from: p![0].path) else {
+                return
+            }
+            
+            let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
+            
+//            print(getAllImage)
+            frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
+            
+            let p = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
+            text = p.map { TagFileDetailListModel(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
+            
         }catch {
             print(error)
         }
