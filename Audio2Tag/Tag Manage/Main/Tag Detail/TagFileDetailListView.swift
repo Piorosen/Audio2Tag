@@ -76,11 +76,13 @@ struct TagFileDetailListView: View {
                     })
                 }
             }
-            
-            CustomAlertView(isPresent: $viewModel.openCustomAlert) {
-                VStack {
-                    Text("추가 태그 선택")
-                    Divider()
+            .navigationTitle("Detail View")
+            .navigationBarItems(trailing: HStack {
+                Button(action: {
+                    viewModel.openCustomAlert = true
+                }) {
+                    Text("Tag")
+                }.contextMenu(ContextMenu {
                     List {
                         Section(header: Text("")) {
                             ForEach(viewModel.remainTag , id: \.self) { item in
@@ -88,30 +90,31 @@ struct TagFileDetailListView: View {
                             }
                         }
                     }
-                }
-            }.edgesIgnoringSafeArea(.all)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .navigationTitle("Detail View")
-        .navigationBarItems(trailing: HStack {
-            Button(action: {
-                viewModel.openSheet = true
-            }) {
-                Text("Tag")
-            }.contextMenu(ContextMenu {
-                List {
-                    Section(header: Text("")) {
-                        ForEach(viewModel.remainTag , id: \.self) { item in
-                            Text("\(item)")
-                        }
-                    }
-                }
+                })
+                
+                EditButton()
             })
+            .sheet(isPresented: $viewModel.openSheet) {
+                TagFileDetailListSheetView()
+            }
             
-            EditButton()
-        })
-        .sheet(isPresented: $viewModel.openSheet) {
-            TagFileDetailListSheetView()
+            CustomAlertView(isPresent: $viewModel.openCustomAlert) {
+                VStack {
+                    Text("추가 태그 선택").padding(.top, 15)
+                    Divider()
+                    List {
+                        Section(header: Text("")) {
+                            ForEach(viewModel.remainTag , id: \.self) { item in
+                                Text("\(item)")
+                            }
+                        }
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            }
+            .edgesIgnoringSafeArea(.all)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .animation(.spring())
         }
+        
     }
 }

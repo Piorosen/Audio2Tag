@@ -17,28 +17,25 @@ struct CustomAlertView<Content>: View where Content : View {
         self.content = content
     }
     
-    
     var body: some View {
-            GeometryReader { (g:GeometryProxy) in
-                if isPresent {
-                    VStack {
-                        content()
-                        Divider()
-                        Button(action: {
-                            withAnimation {
-                                isPresent.toggle()
-                            }
-                        }) {
-                            Text("취소").padding(10).frame(maxWidth: .infinity)
-                        }
+        Group {
+            VStack(spacing: 0) {
+                content()
+                Divider()
+                Button(action: {
+                    withAnimation {
+                        isPresent.toggle()
                     }
-                    
-                    .frame(width: g.size.width * 0.7, height: g.size.height * 0.7)
-                    .background(Color.red)
-                    .cornerRadius(15)
+                }) {
+                    Text("취소").padding(10).frame(maxWidth: .infinity)
                 }
             }
-    
+            .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.5)
+            .background(Color(UIColor.systemBackground))
+            .cornerRadius(15)
+            .shadow(radius: 100)
+            
+            .opacity(isPresent ? 1 : 0)
+        }
     }
-    
 }
