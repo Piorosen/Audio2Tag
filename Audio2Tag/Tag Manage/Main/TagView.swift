@@ -41,38 +41,19 @@ struct TagView: View {
     var body: some View {
         NavigationView{
             List {
-                if viewModel.fileInfo.count == 0 {
-                    EmptyView()
-                }else if viewModel.fileInfo.count == 1 {
-                    NavigationLink(destination: TagFileDetailView()) {
-                        VStack {
-                            HStack {
-                                Text("\(viewModel.fileInfo[0].fileName)")
-                                Spacer()
-                            }
-                            Divider()
-                            HStack {
-                                Text("\(viewModel.fileInfo[0].haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
-                                Spacer()
-                                Text("\(viewModel.fileInfo[0].ext)")
-                            }
-                        }
-                    }
-                }else {
-                    ForEach(viewModel.fileInfo.sorted(by: { $0.fileName < $1.fileName })) { item in
-                        Section(header: Text("파일 정보")) {
-                            NavigationLink(destination: TagFileDetailView()) {
-                                VStack {
-                                    HStack {
-                                        Text("\(item.fileName)")
-                                        Spacer()
-                                    }
-                                    Divider()
-                                    HStack {
-                                        Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
-                                        Spacer()
-                                        Text("\(item.ext)")
-                                    }
+                ForEach(viewModel.fileInfo.sorted(by: { $0.fileName < $1.fileName })) { item in
+                    Section(header: Text("파일 정보")) {
+                        NavigationLink(destination: TagFileDetailView()) {
+                            VStack {
+                                HStack {
+                                    Text("\(item.fileName)")
+                                    Spacer()
+                                }
+                                Divider()
+                                HStack {
+                                    Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
+                                    Spacer()
+                                    Text("\(item.ext)")
                                 }
                             }
                         }
