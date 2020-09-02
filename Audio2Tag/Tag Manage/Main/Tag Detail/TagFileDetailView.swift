@@ -16,8 +16,8 @@ extension View {
     //    }
 }
 
-struct TagFileDetailListView: View {
-    @ObservedObject var viewModel = TagFileDetailListViewModel()
+struct TagFileDetailView: View {
+    @ObservedObject var viewModel = TagFileDetailViewModel()
     
     var body: some View {
         ZStack {
@@ -82,16 +82,7 @@ struct TagFileDetailListView: View {
                     viewModel.openCustomAlert = true
                 }) {
                     Text("Tag")
-                }.contextMenu(ContextMenu {
-                    List {
-                        Section(header: Text("")) {
-                            ForEach(viewModel.remainTag , id: \.self) { item in
-                                Text("\(item)")
-                            }
-                        }
-                    }
-                })
-                
+                }
                 EditButton()
             })
             .sheet(isPresented: $viewModel.openSheet) {

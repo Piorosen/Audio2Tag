@@ -29,7 +29,7 @@ struct TagFileDetailListModel : Identifiable {
     var text: String = ""
 }
 
-class TagFileDetailListViewModel : ObservableObject {
+class TagFileDetailViewModel : ObservableObject {
     @Published var frontImage = UIImage()
     @Published var text = [TagFileDetailListModel]()
     @Published var openSheet = false
