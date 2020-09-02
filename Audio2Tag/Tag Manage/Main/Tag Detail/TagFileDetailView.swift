@@ -66,7 +66,7 @@ struct TagFileDetailView: View {
                             HStack {
                                 Text("\(viewModel.text[idx].title)")
                                 Spacer()
-                                TextField("", text: $viewModel.text[idx].text)
+                                Text("\(viewModel.text[idx].text)")
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                             }
                         }
@@ -93,11 +93,9 @@ struct TagFileDetailView: View {
                 VStack {
                     Text("추가 태그 선택").padding(.top, 15)
                     Divider()
-                    List {
-                        Section(header: Text("")) {
-                            ForEach(viewModel.remainTag , id: \.self) { item in
-                                Text("\(item)")
-                            }
+                    List (viewModel.remainTag , id: \.self) { item in
+                        Button(item) {
+                            viewModel.selectTag(item)
                         }
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }

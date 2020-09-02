@@ -44,7 +44,7 @@ struct TagView: View {
                 if viewModel.fileInfo.count == 0 {
                     EmptyView()
                 }else if viewModel.fileInfo.count == 1 {
-                    NavigationLink(destination: TagFileDetailListView()) {
+                    NavigationLink(destination: TagFileDetailView()) {
                         VStack {
                             HStack {
                                 Text("\(viewModel.fileInfo[0].fileName)")
@@ -61,7 +61,7 @@ struct TagView: View {
                 }else {
                     ForEach(viewModel.fileInfo.sorted(by: { $0.fileName < $1.fileName })) { item in
                         Section(header: Text("파일 정보")) {
-                            NavigationLink(destination: TagFileDetailListView()) {
+                            NavigationLink(destination: TagFileDetailView()) {
                                 VStack {
                                     HStack {
                                         Text("\(item.fileName)")

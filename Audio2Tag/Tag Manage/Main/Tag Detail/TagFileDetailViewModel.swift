@@ -69,4 +69,8 @@ class TagFileDetailViewModel : ObservableObject {
     }
     
     
+    func selectTag(_ item: String) {
+        openSheet = true
+    }
+    
 }

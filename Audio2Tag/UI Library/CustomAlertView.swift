@@ -30,7 +30,7 @@ struct CustomAlertView<Content>: View where Content : View {
                     Text("취소").padding(10).frame(maxWidth: .infinity)
                 }
             }
-            .frame(width: UIScreen.main.bounds.width * 0.7, height: UIScreen.main.bounds.height * 0.5)
+            .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
             .background(Color(UIColor.systemBackground))
             .cornerRadius(15)
             .shadow(radius: 100)
