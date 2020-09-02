@@ -86,7 +86,7 @@ struct TagFileDetailView: View {
                 EditButton()
             })
             .sheet(isPresented: $viewModel.openSheet) {
-                TagFileDetailListSheetView()
+                TagFileDetailListSheetView(title: $viewModel.selectTitle)
             }
             
             CustomAlertView(isPresent: $viewModel.openCustomAlert) {

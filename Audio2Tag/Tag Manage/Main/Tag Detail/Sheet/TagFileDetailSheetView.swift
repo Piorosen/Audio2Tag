@@ -9,13 +9,20 @@
 import SwiftUI
 
 struct TagFileDetailListSheetView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    @Binding var title: String
+    @State var text: String = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TagFileDetailListSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        TagFileDetailListSheetView()
+        VStack {
+            Text("Tag 제목")
+            Text("\(title)")
+            Text("내용")
+            TextField("", text: $text, onEditingChanged: { _ in }, onCommit: {
+                presentationMode.wrappedValue.dismiss()
+            })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }

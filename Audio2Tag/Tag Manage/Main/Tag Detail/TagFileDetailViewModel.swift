@@ -36,7 +36,7 @@ class TagFileDetailViewModel : ObservableObject {
     @Published var openCustomAlert = false
     
     @Published var remainTag = [String]()
-    
+    @Published var selectTitle = ""
     
     
     init() {
@@ -70,6 +70,7 @@ class TagFileDetailViewModel : ObservableObject {
     
     
     func selectTag(_ item: String) {
+        selectTitle = item
         openSheet = true
     }
     
