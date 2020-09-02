@@ -39,29 +39,10 @@ struct TagView: View {
     // File List -> 선택시 해당 파일 제목 -> 태그 정보 -> 태그정보 선택 -> 수정
     // 단일 파일 == 해당 파일 제목 -> 태그정보
     var body: some View {
-        NavigationView{
-            List {
-                ForEach(viewModel.fileInfo.sorted(by: { $0.fileName < $1.fileName })) { item in
-                    Section(header: Text("파일 정보")) {
-                        NavigationLink(destination: TagFileDetailView()) {
-                            VStack {
-                                HStack {
-                                    Text("\(item.fileName)")
-                                    Spacer()
-                                }
-                                Divider()
-                                HStack {
-                                    Text("\(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 오류")")
-                                    Spacer()
-                                    Text("\(item.ext)")
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Tag Info")
-            .navigationBarItems(trailing: TagNavigationTraillingView()
+        NavigationView {
+            TagListView(models: $viewModel.fileInfo)
+                .navigationTitle("Tag Info")
+                .navigationBarItems(trailing: TagNavigationTraillingView()
                                     .onTagReuqest(self.viewModel.tagRequest)
                                     .onAudioRequest(self.viewModel.audioRequest))
         }

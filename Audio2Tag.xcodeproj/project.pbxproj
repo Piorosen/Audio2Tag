@@ -59,11 +59,11 @@
 		629C78B924FE36EA001E1392 /* TagFileDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C78B824FE36EA001E1392 /* TagFileDetailListView.swift */; };
 		62A6499924EC054D004C3D84 /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */; };
 		62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 62C3094024F3693200F7AEE7 /* SwiftVgmdb */; };
-		62C6BC1024F8B27A0054F702 /* TagFileListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6BC0F24F8B27A0054F702 /* TagFileListCellView.swift */; };
+		62C6BC1024F8B27A0054F702 /* TagListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C6BC0F24F8B27A0054F702 /* TagListCellView.swift */; };
 		62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */; };
 		62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */; };
 		62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */; };
-		62DF8B7E24F8AB1E00FCFE0D /* TagFileListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7D24F8AB1E00FCFE0D /* TagFileListView.swift */; };
+		62DF8B7E24F8AB1E00FCFE0D /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7D24F8AB1E00FCFE0D /* TagListView.swift */; };
 		62E7C87724FBACB70030E5A2 /* TagFileDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */; };
 		62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */; };
 /* End PBXBuildFile section */
@@ -142,11 +142,11 @@
 		629650DF24F36E3E00941A4C /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		629C78B824FE36EA001E1392 /* TagFileDetailListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListView.swift; sourceTree = "<group>"; };
 		62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macOS_SplitMusicView.swift; sourceTree = "<group>"; };
-		62C6BC0F24F8B27A0054F702 /* TagFileListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileListCellView.swift; sourceTree = "<group>"; };
+		62C6BC0F24F8B27A0054F702 /* TagListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCellView.swift; sourceTree = "<group>"; };
 		62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 		62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
 		62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		62DF8B7D24F8AB1E00FCFE0D /* TagFileListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileListView.swift; sourceTree = "<group>"; };
+		62DF8B7D24F8AB1E00FCFE0D /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailSheetView.swift; sourceTree = "<group>"; };
 		62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -512,8 +512,8 @@
 		62DF8B7F24F8AB2800FCFE0D /* Tag List */ = {
 			isa = PBXGroup;
 			children = (
-				62DF8B7D24F8AB1E00FCFE0D /* TagFileListView.swift */,
-				62C6BC0F24F8B27A0054F702 /* TagFileListCellView.swift */,
+				62DF8B7D24F8AB1E00FCFE0D /* TagListView.swift */,
+				62C6BC0F24F8B27A0054F702 /* TagListCellView.swift */,
 			);
 			path = "Tag List";
 			sourceTree = "<group>";
@@ -687,7 +687,7 @@
 				627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */,
 				627BE32324E24E11006F979C /* SplitMusicModel.swift in Sources */,
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
-				62DF8B7E24F8AB1E00FCFE0D /* TagFileListView.swift in Sources */,
+				62DF8B7E24F8AB1E00FCFE0D /* TagListView.swift in Sources */,
 				62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */,
 				629C78B924FE36EA001E1392 /* TagFileDetailListView.swift in Sources */,
 				627BE32924E24E11006F979C /* CueDetailTrackView.swift in Sources */,
@@ -703,7 +703,7 @@
 				624E798524FA490200BADE93 /* TagFileDetailViewModel.swift in Sources */,
 				620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */,
 				62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */,
-				62C6BC1024F8B27A0054F702 /* TagFileListCellView.swift in Sources */,
+				62C6BC1024F8B27A0054F702 /* TagListCellView.swift in Sources */,
 				627BE2D224E24CCD006F979C /* SceneDelegate.swift in Sources */,
 				627BE32024E24E11006F979C /* IOS_DocumentPicker.swift in Sources */,
 				627BD04A24F0E89800AEEAB6 /* CueDetailTrackView+Extension.swift in Sources */,

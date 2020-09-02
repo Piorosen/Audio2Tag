@@ -63,10 +63,8 @@ class TagViewModel : ObservableObject {
         
         for item in urls {
             let id3 = (try? ID3TagEditor().read(from: item.path)) == nil ? false : true
-            fileInfo.append(TagModel(fileName: item.deletingPathExtension().lastPathComponent,
-                                     DeviceFilePath: item,
-                                     haveID3Tag: id3,
-                                     ext: item.pathExtension))
+            fileInfo.append(TagModel(deviceFilePath: item,
+                                     haveID3Tag: id3))
         }
         
         

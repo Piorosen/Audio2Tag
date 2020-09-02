@@ -55,7 +55,7 @@ class TagFileDetailViewModel : ObservableObject {
             
             let p = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
             
-            let p1 = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithIntegerContent) != nil }.map { $0 }
+            _ = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithIntegerContent) != nil }.map { $0 }
             text = p.map { TagFileDetailListModel(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
             
             p.forEach { (f:FrameName) in aa.removeAll(where: { $0 == f } ) }
