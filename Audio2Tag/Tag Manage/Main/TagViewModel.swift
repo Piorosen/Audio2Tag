@@ -67,7 +67,7 @@ class TagViewModel : ObservableObject {
                                      haveID3Tag: id3))
         }
         
-        
+        fileInfo.sort { $0.fileName < $1.fileName }        
     }
     
     func loadAudio(url: URL) {

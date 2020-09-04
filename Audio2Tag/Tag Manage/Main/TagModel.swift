@@ -18,20 +18,42 @@ import ID3TagEditor
 
 struct TagModel : Identifiable {
     let id = UUID()
+    
+    init(deviceFilePath: URL, haveID3Tag: Bool) {
+        _fileName = deviceFilePath.deletingPathExtension().lastPathComponent
+        _ext = deviceFilePath.pathExtension
+        _deviceFilePath = deviceFilePath
+        
+        self.haveID3Tag = haveID3Tag
+    }
+    
+    private var _fileName: String = String()
+    private var _ext:String = String()
+    private var _deviceFilePath: URL
+    
     var fileName:String {
         get
         {
-            return deviceFilePath.deletingPathExtension().lastPathComponent
+            return _fileName
         }
     }
     var ext:String {
         get
         {
-            return deviceFilePath.pathExtension
+            return _ext
         }
     }
     
-    var deviceFilePath:URL
+    var deviceFilePath:URL {
+        get {
+            return _deviceFilePath
+        }
+        set {
+            _fileName = newValue.deletingPathExtension().lastPathComponent
+            _ext = newValue.pathExtension
+            _deviceFilePath = newValue
+        }
+    }
     let haveID3Tag: Bool
     
 }

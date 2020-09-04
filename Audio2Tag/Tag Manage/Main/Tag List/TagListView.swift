@@ -13,7 +13,7 @@ struct TagListView: View {
     
     var body: some View {
         List {
-            ForEach(models.sorted(by: { $0.fileName < $1.fileName }).indices) { item in
+            ForEach(models.indices, id: \.self) { item in
                 TagListCellView(item: $models[item])
             }
         }
