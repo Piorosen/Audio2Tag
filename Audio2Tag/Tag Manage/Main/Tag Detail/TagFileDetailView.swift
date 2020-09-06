@@ -10,72 +10,24 @@ import SwiftUI
 import ID3TagEditor
 
 extension View {
-    ////    func sheet<Content>(isPresented: Binding<Bool>, ) -> some View where Content : View
-    //    func customAlert<Content>(isPresent:Binding<Bool>, onDismiss: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content) -> some View where Content : View {
-    //        CustomAlertView(isPresent: isPresent, parent: self, content: content)
-    //    }
+    func customAlert<Content>(isPresent:Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View where Content : View {
+        ZStack {
+            self;
+            CustomAlertView(isPresent: isPresent, content: content)
+        }
+        
+    }
 }
 
 struct TagFileDetailView: View {
-    @ObservedObject var viewModel = TagFileDetailViewModel()
+    @ObservedObject var viewModel: TagFileDetailViewModel
+    
+    init(bind: Binding<TagModel>) {
+        viewModel = TagFileDetailViewModel()
+    }
     
     var body: some View {
-        ZStack {
-            List {
-                Group {
-                    GeometryReader { (g:GeometryProxy) in
-                        ZStack {
-                            Image(uiImage: viewModel.frontImage)
-                                .resizable()
-                                .frame(width: g.size.width, height: g.size.height, alignment: .center)
-                                .aspectRatio(contentMode: .fill)
-                                .blur(radius: 15)
-                                .colorInvert()
-                            
-                            Image(uiImage: viewModel.frontImage)
-                                .resizable()
-                                .frame(width: g.size.width / 2, height: g.size.height / 2, alignment: .center)
-                                .aspectRatio(contentMode: .fit)
-                            VStack {
-                                Spacer()
-                                HStack {
-                                    Button(action: {
-                                        print("a")
-                                    }) {
-                                        Image(systemName: "minus.circle")
-                                    }
-                                    Spacer()
-                                    Button(action: {
-                                        print("b")
-                                    }) {
-                                        Image(systemName: "plus.circle")
-                                    }
-                                    
-                                }
-                            }
-                            
-                        }
-                    }
-                }.frame(maxWidth: .infinity, idealHeight: 200, alignment: .center)
-                
-                Divider().padding(.all, 10)
-                
-                Section {
-                    ForEach(viewModel.text.indices, id: \.self) { idx in
-                        NavigationLink(destination: EmptyView()) {
-                            HStack {
-                                Text("\(viewModel.text[idx].title)")
-                                Spacer()
-                                Text("\(viewModel.text[idx].text)")
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                            }
-                        }
-                        
-                    }.onDelete(perform: { idx in
-                        viewModel.text.remove(atOffsets: idx)
-                    })
-                }
-            }
+        TagFileDetailListView(model: $viewModel.tagModel)
             .navigationTitle("Detail View")
             .navigationBarItems(trailing: HStack {
                 Button(action: {
@@ -85,11 +37,8 @@ struct TagFileDetailView: View {
                 }
                 EditButton()
             })
-            .sheet(isPresented: $viewModel.openSheet) {
-                TagFileDetailListSheetView(title: $viewModel.selectTitle)
-            }
-            
-            CustomAlertView(isPresent: $viewModel.openCustomAlert) {
+            .customAlert(isPresent: $viewModel.openCustomAlert)
+            {
                 VStack {
                     Text("추가 태그 선택").padding(.top, 15)
                     Divider()
@@ -100,10 +49,5 @@ struct TagFileDetailView: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.spring())
-        }
-        
     }
 }

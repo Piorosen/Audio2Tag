@@ -18,24 +18,29 @@ struct CustomAlertView<Content>: View where Content : View {
     }
     
     var body: some View {
-        Group {
-            VStack(spacing: 0) {
-                content()
-                Divider()
-                Button(action: {
-                    withAnimation {
-                        isPresent.toggle()
+        ZStack {
+            Group {
+                VStack(spacing: 0) {
+                    content()
+                    Divider()
+                    Button(action: {
+                        withAnimation {
+                            isPresent.toggle()
+                        }
+                    }) {
+                        Text("취소").padding(10).frame(maxWidth: .infinity)
                     }
-                }) {
-                    Text("취소").padding(10).frame(maxWidth: .infinity)
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
+                .background(Color(UIColor.systemBackground))
+                .cornerRadius(15)
+                .shadow(radius: 100)
+                
+                .opacity(isPresent ? 1 : 0)
             }
-            .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(15)
-            .shadow(radius: 100)
-            
-            .opacity(isPresent ? 1 : 0)
         }
+        .edgesIgnoringSafeArea(.all)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .animation(.spring())
     }
 }

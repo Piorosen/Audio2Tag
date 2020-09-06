@@ -9,13 +9,23 @@
 import SwiftUI
 
 struct TagFileDetailListView: View {
+    @Binding var model: TagFileDetailListModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TagFileDetailListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TagFileDetailListView()
+        List {
+            TagFileDetailListImageCellView(image: $model.image)
+                .frame(maxWidth: .infinity, idealHeight: 200, alignment: .center)
+            
+            Divider().padding(.all, 10)
+            
+            Section {
+                ForEach(model.tag.indices, id: \.self) { idx in
+                    TagFileDetailListTextCellView(title: model.tag[idx].title, text: $model.tag[idx].text)
+                }
+                .onDelete(perform: { idx in
+                    model.tag.remove(atOffsets: idx)
+                })
+            }
+        }
     }
 }

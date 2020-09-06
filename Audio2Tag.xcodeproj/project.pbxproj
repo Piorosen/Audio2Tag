@@ -64,6 +64,8 @@
 		62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */; };
 		62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */; };
 		62DF8B7E24F8AB1E00FCFE0D /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7D24F8AB1E00FCFE0D /* TagListView.swift */; };
+		62E50E492504E6E100C1AECC /* TagFileDetailListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E482504E6E100C1AECC /* TagFileDetailListImageCell.swift */; };
+		62E50E4B2504E70200C1AECC /* TagFileDetailListTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E4A2504E70200C1AECC /* TagFileDetailListTextCell.swift */; };
 		62E7C87724FBACB70030E5A2 /* TagFileDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */; };
 		62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */; };
 /* End PBXBuildFile section */
@@ -147,6 +149,8 @@
 		62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
 		62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		62DF8B7D24F8AB1E00FCFE0D /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		62E50E482504E6E100C1AECC /* TagFileDetailListImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListImageCell.swift; sourceTree = "<group>"; };
+		62E50E4A2504E70200C1AECC /* TagFileDetailListTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListTextCell.swift; sourceTree = "<group>"; };
 		62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailSheetView.swift; sourceTree = "<group>"; };
 		62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -454,22 +458,15 @@
 		629C78B724FE36DB001E1392 /* List */ = {
 			isa = PBXGroup;
 			children = (
+				62E50E472504E6BD00C1AECC /* Cell */,
 				629C78B824FE36EA001E1392 /* TagFileDetailListView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
 		};
-		62A5042A24FFFA1C002D4144 /* Elements */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Elements;
-			sourceTree = "<group>";
-		};
 		62C6BC1124F8B2930054F702 /* Tag Detail */ = {
 			isa = PBXGroup;
 			children = (
-				62A5042A24FFFA1C002D4144 /* Elements */,
 				629C78B724FE36DB001E1392 /* List */,
 				62E7C87524FBAC820030E5A2 /* Sheet */,
 				623BEDA224F8B9B800F0535F /* TagFileDetailView.swift */,
@@ -524,6 +521,15 @@
 				62C6BC0F24F8B27A0054F702 /* TagListCellView.swift */,
 			);
 			path = "Tag List";
+			sourceTree = "<group>";
+		};
+		62E50E472504E6BD00C1AECC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				62E50E482504E6E100C1AECC /* TagFileDetailListImageCell.swift */,
+				62E50E4A2504E70200C1AECC /* TagFileDetailListTextCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		62E7C87524FBAC820030E5A2 /* Sheet */ = {
@@ -709,6 +715,7 @@
 				624E798324FA36D400BADE93 /* SearchView.swift in Sources */,
 				623BEDA324F8B9B800F0535F /* TagFileDetailView.swift in Sources */,
 				624E798524FA490200BADE93 /* TagFileDetailViewModel.swift in Sources */,
+				62E50E492504E6E100C1AECC /* TagFileDetailListImageCell.swift in Sources */,
 				620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */,
 				62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */,
 				62C6BC1024F8B27A0054F702 /* TagListCellView.swift in Sources */,
@@ -721,6 +728,7 @@
 				627BE32424E24E11006F979C /* ProgressBar.swift in Sources */,
 				627BE2D424E24CCD006F979C /* ContentView.swift in Sources */,
 				629650DE24F36E2600941A4C /* TagViewModel.swift in Sources */,
+				62E50E4B2504E70200C1AECC /* TagFileDetailListTextCell.swift in Sources */,
 				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
 				625EEF5124F51B060073CADB /* TagSearchView.swift in Sources */,
 				62E7C87724FBACB70030E5A2 /* TagFileDetailSheetView.swift in Sources */,

@@ -17,21 +17,23 @@ extension FrameName : CaseIterable {
     var caseName: String {
         return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
-    //    public static allCases: [FrameName] {
-    ////        return
-    //
-    //    }
+}
+
+struct TagFileDetailListTextCell : Identifiable {
+    let id = UUID()
+    let title: String
+    var text = String()
 }
 
 struct TagFileDetailListModel : Identifiable {
     let id = UUID()
-    let title :String
-    var text: String = ""
+    
+    var image = UIImage()
+    var tag = [TagFileDetailListTextCell]()
 }
 
 class TagFileDetailViewModel : ObservableObject {
-    @Published var frontImage = UIImage()
-    @Published var text = [TagFileDetailListModel]()
+    @Published var tagModel = TagFileDetailListModel()
     @Published var openSheet = false
     @Published var openCustomAlert = false
     
@@ -43,6 +45,7 @@ class TagFileDetailViewModel : ObservableObject {
         let p = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)
         
         do {
+            
             guard let tag = try ID3TagEditor().read(from: p![0].path) else {
                 return
             }
@@ -50,16 +53,17 @@ class TagFileDetailViewModel : ObservableObject {
             let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
             
             //            print(getAllImage)
-            frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
+            let frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
             var aa = FrameName.allCases.map { $0 }
             
             let p = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
             
             _ = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithIntegerContent) != nil }.map { $0 }
-            text = p.map { TagFileDetailListModel(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
+            let text = p.map { TagFileDetailListTextCell(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
             
             p.forEach { (f:FrameName) in aa.removeAll(where: { $0 == f } ) }
             
+            tagModel = TagFileDetailListModel(image: frontImage, tag: text)
             remainTag = aa.map { $0.caseName }
             
         }catch {

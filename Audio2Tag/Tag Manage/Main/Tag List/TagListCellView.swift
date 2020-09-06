@@ -13,7 +13,7 @@ struct TagListCellView: View {
     
     var body: some View {
         Section(header: Text("파일 정보")) {
-            NavigationLink(destination: TagFileDetailView()) {
+            NavigationLink(destination: TagFileDetailView(bind: $item)) {
                 VStack {
                     HStack {
                         Text("\(item.fileName)")
