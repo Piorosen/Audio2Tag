@@ -39,7 +39,6 @@ struct TagView: View {
     // File List -> 선택시 해당 파일 제목 -> 태그 정보 -> 태그정보 선택 -> 수정
     // 단일 파일 == 해당 파일 제목 -> 태그정보
     var body: some View {
-        
         NavigationView {
             TagListView(models: $viewModel.fileInfo)
                 .navigationTitle("Tag Info")
