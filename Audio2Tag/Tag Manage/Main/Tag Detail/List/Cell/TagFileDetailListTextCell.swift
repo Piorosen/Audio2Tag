@@ -18,7 +18,6 @@ struct TagFileDetailListTextCellView: View {
                 Text(self.title)
                 Spacer()
                 Text(self.text)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
     }
