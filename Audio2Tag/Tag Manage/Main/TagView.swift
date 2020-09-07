@@ -13,6 +13,8 @@ extension TagView {
         return Group {
             if viewModel.tagSheetEnum == .tagRequest {
                 TagSearchView(kind: viewModel.searchEnum)
+                    .onSelectTag(viewModel.searchTagResult)
+                
             }else if viewModel.tagSheetEnum == .documentAudio {
                 DocumentPicker()
                     .setConfig(folderPicker: false, allowMultiple: true)

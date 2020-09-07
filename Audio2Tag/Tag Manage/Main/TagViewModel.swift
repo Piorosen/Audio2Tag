@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import ID3TagEditor
 import UniformTypeIdentifiers
-
+import SwiftVgmdb
 
 enum TagSheetEnum {
     case tagRequest
@@ -30,7 +30,11 @@ class TagViewModel : ObservableObject {
     @Published var openAlert = false
     @Published var openActionSheet = false
     
+    // MARK: - Sheet Request
     
+    func searchTagResult(album: VDAlbum, track: [[TagSearchTrackModel]]) {
+        
+    }
     
     // MARK: - View Action
     func tagRequest() {
