@@ -16,7 +16,7 @@ struct TagSearchTrackModel {
 
 struct TagSearchTrackView: View {
     @ObservedObject var viewModel = TagSearchTrackViewModel()
-    @Binding var checked:TagSearch
+    var checked:TagSearch
     
     private var selectTag = { (_:[[TagSearchTrackModel]]) in }
     private var funcOfKind = { (_:String) in }
@@ -28,8 +28,8 @@ struct TagSearchTrackView: View {
         return copy
     }
     
-    init(bind: Binding<TagSearch>, kind: TagSearchKind) {
-        self._checked = bind
+    init(bind: TagSearch, kind: TagSearchKind) {
+        self.checked = bind
         if (kind == .musicBrainz) {
             funcOfKind = viewModel.musicBrainz
             name = "MusicBrainz"

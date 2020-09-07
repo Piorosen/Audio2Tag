@@ -51,7 +51,7 @@ struct TagSearchView: View {
                         }
                     Divider()
                     List(viewModel.items.indices, id:\.self) { item in
-                        NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: self.kind)
+                        NavigationLink(destination: TagSearchTrackView(bind: viewModel.items[item], kind: self.kind)
                                         .onSelectTag({ items in selectTag(viewModel.items[item].result, items) })) {
                             Text("\(viewModel.items[item].result.albumTitle)")
                         }
