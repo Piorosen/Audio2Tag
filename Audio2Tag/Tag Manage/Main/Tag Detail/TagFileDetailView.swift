@@ -37,17 +37,11 @@ struct TagFileDetailView: View {
                 }
                 EditButton()
             })
-            .customAlert(isPresent: $viewModel.openCustomAlert)
-            {
-                VStack {
-                    Text("추가 태그 선택").padding(.top, 15)
-                    Divider()
-                    List (viewModel.remainTag , id: \.self) { item in
-                        Button(item) {
-                            viewModel.selectTag(item)
-                        }
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                }
+            .customAlert(isPresent: $viewModel.openCustomAlert) {
+                TagFileDetailCustomAlertView(tag: $viewModel.remainTag)
+                    .onSelectedTag { item in
+                        
+                    }
             }
     }
 }
