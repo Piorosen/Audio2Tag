@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftVgmdb
 
 enum TagSearchKind {
     case vgmDb
@@ -17,10 +18,16 @@ enum TagSearchKind {
 struct TagSearchView: View {
     @ObservedObject var viewModel = TagSearchViewModel()
     
+    private var selectTag = { (_:VDAlbum, _:[[TagSearchTrackModel]]) in }
     private var funcOfKind = { (_:String) in }
     private var kind: TagSearchKind
     private var name = ""
     
+    func onSelectTag(_ action: @escaping (VDAlbum, [[TagSearchTrackModel]]) -> Void) -> TagSearchView {
+        var copy = self
+        copy.selectTag = action
+        return copy
+    }
     
     init(kind: TagSearchKind) {
         self.kind = kind
@@ -44,7 +51,8 @@ struct TagSearchView: View {
                         }
                     Divider()
                     List(viewModel.items.indices, id:\.self) { item in
-                        NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: self.kind)) {
+                        NavigationLink(destination: TagSearchTrackView(bind: $viewModel.items[item], kind: self.kind)
+                                        .onSelectTag({ items in selectTag(viewModel.items[item].result, items) })) {
                             Text("\(viewModel.items[item].result.albumTitle)")
                         }
                     }

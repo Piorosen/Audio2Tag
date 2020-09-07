@@ -9,12 +9,24 @@
 import SwiftUI
 import SwiftVgmdb
 
+struct TagSearchTrackModel {
+    var tag: [VDTrackInfo:String]
+    var title: String
+}
+
 struct TagSearchTrackView: View {
     @ObservedObject var viewModel = TagSearchTrackViewModel()
     @Binding var checked:TagSearch
     
+    private var selectTag = { (_:[[TagSearchTrackModel]]) in }
     private var funcOfKind = { (_:String) in }
     private var name = ""
+    
+    func onSelectTag(_ action: @escaping ([[TagSearchTrackModel]]) -> Void) -> TagSearchTrackView {
+        var copy = self
+        copy.selectTag = action
+        return copy
+    }
     
     init(bind: Binding<TagSearch>, kind: TagSearchKind) {
         self._checked = bind
@@ -23,7 +35,7 @@ struct TagSearchTrackView: View {
             name = "MusicBrainz"
         }else if (kind == .vgmDb) {
             funcOfKind = viewModel.vgmDb
-             name = "Vgm DB"
+            name = "Vgm DB"
         }
     }
     
@@ -43,7 +55,11 @@ struct TagSearchTrackView: View {
             }.navigationTitle(Text("\(name) : Track"))
             .navigationBarItems(trailing:
                                     Button("Select", action: {
-                                        
+                                        selectTag(viewModel.items.map {
+                                            track in track.map {
+                                                title in TagSearchTrackModel(tag: viewModel.album, title: title)
+                                            }
+                                        })
                                     }))
             
             
@@ -52,7 +68,6 @@ struct TagSearchTrackView: View {
             if viewModel.items.count == 0 {
                 self.funcOfKind(String(self.checked.result.id))
             }
-            
         }
     }
 }
