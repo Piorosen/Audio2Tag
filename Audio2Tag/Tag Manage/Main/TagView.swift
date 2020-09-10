@@ -47,6 +47,7 @@ struct TagView: View {
                 .navigationBarItems(trailing: TagNavigationTraillingView()
                                     .onTagReuqest(self.viewModel.tagRequest)
                                     .onAudioRequest(self.viewModel.audioRequest))
+                
         }
         .sheet(isPresented: $viewModel.openSheet, content: makeSheet)
         .actionSheet(isPresented: $viewModel.openActionSheet, content: makeActionSheet)

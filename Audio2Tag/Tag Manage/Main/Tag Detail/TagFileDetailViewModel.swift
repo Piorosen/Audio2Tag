@@ -36,17 +36,15 @@ class TagFileDetailViewModel : ObservableObject {
     @Published var tagModel = TagFileDetailListModel()
     @Published var openSheet = false
     @Published var openCustomAlert = false
+    @Published var openAlert = false
     
     @Published var remainTag = [String]()
     @Published var selectTitle = ""
     
-    
-    init() {
-        let p = Bundle.main.urls(forResourcesWithExtension: "mp3", subdirectory: nil)
-        
+    init(data: TagModel) {
         do {
             
-            guard let tag = try ID3TagEditor().read(from: p![0].path) else {
+            guard let tag = try ID3TagEditor().read(from: data.deviceFilePath.path) else {
                 return
             }
             
