@@ -21,7 +21,7 @@ enum TagSheetEnum {
 class TagViewModel : ObservableObject {
 //    @Published var tagInfo = TagModel(tagVersion: .version2, tagFrame: .init())
 //
-    @Published var fileInfo = [TagModel(deviceFilePath: URL(fileURLWithPath: ""), haveID3Tag: true)]
+    @Published var fileInfo = [TagModel]()
     
     @Published var openSheet = false
     var tagSheetEnum:TagSheetEnum = .tagRequest
