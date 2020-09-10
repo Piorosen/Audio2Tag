@@ -67,7 +67,7 @@
 		62E50E4B2504E70200C1AECC /* TagFileDetailListTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E4A2504E70200C1AECC /* TagFileDetailListTextCell.swift */; };
 		62E50E4D2505FFB400C1AECC /* TagFileDetailCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E4C2505FFB400C1AECC /* TagFileDetailCustomAlertView.swift */; };
 		62E50E4F2506022100C1AECC /* TagSearchView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E4E2506022100C1AECC /* TagSearchView+Extension.swift */; };
-		62E7C87724FBACB70030E5A2 /* TagFileDetailSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */; };
+		62E50E512509D23A00C1AECC /* TagFileDetailEditCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E50E502509D23A00C1AECC /* TagFileDetailEditCustomAlertView.swift */; };
 		62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */; };
 /* End PBXBuildFile section */
 
@@ -153,7 +153,7 @@
 		62E50E4A2504E70200C1AECC /* TagFileDetailListTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailListTextCell.swift; sourceTree = "<group>"; };
 		62E50E4C2505FFB400C1AECC /* TagFileDetailCustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailCustomAlertView.swift; sourceTree = "<group>"; };
 		62E50E4E2506022100C1AECC /* TagSearchView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TagSearchView+Extension.swift"; sourceTree = "<group>"; };
-		62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailSheetView.swift; sourceTree = "<group>"; };
+		62E50E502509D23A00C1AECC /* TagFileDetailEditCustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailEditCustomAlertView.swift; sourceTree = "<group>"; };
 		62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -537,8 +537,8 @@
 		62E7C87524FBAC820030E5A2 /* Sheet */ = {
 			isa = PBXGroup;
 			children = (
-				62E7C87624FBACB70030E5A2 /* TagFileDetailSheetView.swift */,
 				62E50E4C2505FFB400C1AECC /* TagFileDetailCustomAlertView.swift */,
+				62E50E502509D23A00C1AECC /* TagFileDetailEditCustomAlertView.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -704,6 +704,7 @@
 				627BE32524E24E11006F979C /* SplitMusicCell.swift in Sources */,
 				627BE32324E24E11006F979C /* SplitMusicModel.swift in Sources */,
 				627BE2D024E24CCD006F979C /* AppDelegate.swift in Sources */,
+				62E50E512509D23A00C1AECC /* TagFileDetailEditCustomAlertView.swift in Sources */,
 				62DF8B7E24F8AB1E00FCFE0D /* TagListView.swift in Sources */,
 				62DF8B7C24F7F78000FCFE0D /* ActivityIndicator.swift in Sources */,
 				629C78B924FE36EA001E1392 /* TagFileDetailListView.swift in Sources */,
@@ -733,7 +734,6 @@
 				62E50E4B2504E70200C1AECC /* TagFileDetailListTextCell.swift in Sources */,
 				62591A8224E93C41006E05C0 /* CueSheetListInfoView.swift in Sources */,
 				625EEF5124F51B060073CADB /* TagSearchView.swift in Sources */,
-				62E7C87724FBACB70030E5A2 /* TagFileDetailSheetView.swift in Sources */,
 				62E50E4F2506022100C1AECC /* TagSearchView+Extension.swift in Sources */,
 				625EEF5724F51DAA0073CADB /* TagSearchViewModel.swift in Sources */,
 				62E7C87B24FBCDA90030E5A2 /* CustomAlertView.swift in Sources */,

@@ -24,8 +24,6 @@ struct TagFileDetailCustomAlertView: View {
     
     var body: some View {
         VStack {
-            Text("추가 태그 선택").padding(.top, 15)
-            Divider()
             List (selectableTag , id: \.self) { item in
                 Button(item) {
                     selectedTag(item)

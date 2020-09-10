@@ -36,10 +36,15 @@ class TagFileDetailViewModel : ObservableObject {
     @Published var tagModel = TagFileDetailListModel()
     @Published var openSheet = false
     @Published var openCustomAlert = false
+    @Published var openCustomEditAlert = false
     @Published var openAlert = false
     
     @Published var remainTag = [String]()
     @Published var selectTitle = ""
+    
+    var selectedTagTitle = ""
+    var selectedTagText = ""
+    
     
     init(data: TagModel) {
         do {

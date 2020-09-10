@@ -11,9 +11,23 @@ import SwiftUI
 struct TagFileDetailListTextCellView: View {
     var title: String
     @Binding var text: String
+    private var requestEdit = { }
+    
+    init(title: String, text: Binding<String>) {
+        self.title = title
+        self._text = text
+    }
+    
+    func onRequestEdit(_ action: @escaping () -> Void) -> TagFileDetailListTextCellView {
+        var copy = self
+        copy.requestEdit = action
+        return copy
+    }
     
     var body: some View {
-        NavigationLink(destination: EmptyView()) {
+        Button(action: {
+            requestEdit()
+        }) {
             HStack {
                 Text(self.title)
                 Spacer()

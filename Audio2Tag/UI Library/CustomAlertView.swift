@@ -8,30 +8,79 @@
 
 import SwiftUI
 
+enum CustomAlert {
+    case cancel
+    case okCancel
+    case yesNo
+}
+
 struct CustomAlertView<Content>: View where Content : View {
     @Binding var isPresent:Bool
     var content: () -> Content
+    let title: String
+    let state: CustomAlert
     
-    init(isPresent: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) {
+    init(isPresent: Binding<Bool>, title: String, state:CustomAlert, @ViewBuilder content: @escaping () -> Content) {
         self._isPresent = isPresent
         self.content = content
+        self.title = title
+        self.state = state
     }
     
     var body: some View {
         ZStack {
             Group {
-                VStack(spacing: 0) {
+                VStack{
+                    Text(title).padding(.top, 15)
+                    Divider()
                     content()
                     Divider()
-                    Button(action: {
-                        withAnimation {
-                            isPresent.toggle()
+                    HStack {
+                        if (state == .cancel) {
+                            Button(action: {
+                                withAnimation {
+                                    isPresent.toggle()
+                                }
+                            }) {
+                                Text("취소").padding(10).frame(maxWidth: .infinity)
+                            }
+                        }else if (state == .okCancel) {
+                            Button(action: {
+                                withAnimation {
+                                    isPresent.toggle()
+                                }
+                            }) {
+                                Text("취소").padding(10).frame(maxWidth: .infinity)
+                            }
+                            Divider()
+                            Button(action: {
+                                withAnimation {
+                                    isPresent.toggle()
+                                }
+                            }) {
+                                Text("확인").padding(10).frame(maxWidth: .infinity)
+                            }
+                        }else {
+                            Button(action: {
+                                withAnimation {
+                                    isPresent.toggle()
+                                }
+                            }) {
+                                Text("아니요").padding(10).frame(maxWidth: .infinity)
+                            }
+                            Divider()
+                            Button(action: {
+                                withAnimation {
+                                    isPresent.toggle()
+                                }
+                            }) {
+                                Text("예").padding(10).frame(maxWidth: .infinity)
+                            }
                         }
-                    }) {
-                        Text("취소").padding(10).frame(maxWidth: .infinity)
+                        
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width * 0.8, height: UIScreen.main.bounds.height * 0.5)
+                .frame(maxWidth: UIScreen.main.bounds.width * 0.8, maxHeight: UIScreen.main.bounds.height * 0.5)
                 .background(Color(UIColor.systemBackground))
                 .cornerRadius(15)
                 .shadow(radius: 100)
