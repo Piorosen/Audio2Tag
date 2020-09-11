@@ -28,7 +28,7 @@ struct TagFileDetailCustomAlertView: View {
                 Button(item) {
                     selectedTag(item)
                 }
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            }.frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height * 0.5)
         }
     }
 }

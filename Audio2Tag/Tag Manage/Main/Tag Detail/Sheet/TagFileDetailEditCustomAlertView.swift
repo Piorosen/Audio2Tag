@@ -23,12 +23,13 @@ struct TagFileDetailEditCustomAlertView: View {
     init(title:String, text:String) {
         self.title = title
         self.hint = text
+        self.text = ""
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(self.title)
-            TextField(hint, text: $text)
+            TextField(hint, text: $text, onEditingChanged: { _ in }, onCommit: { commit(text) })
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }.padding()
     }

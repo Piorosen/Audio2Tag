@@ -74,6 +74,14 @@ class TagFileDetailViewModel : ObservableObject {
         }
     }
     
+    func editTag(_ title:String, _ text:String){
+        if let index = tagModel.tag.firstIndex(where: { e in e.title == title }) {
+            tagModel.tag[index].text = text
+            print(tagModel.tag)
+        }
+        remainTag = remainTag.filter { i in i != title }
+        
+    }
     
     func selectTag(_ item: String) {
         selectTitle = item
