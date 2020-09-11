@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import ID3TagEditor
 import UniformTypeIdentifiers
-
+import SwiftVgmdb
 
 enum TagSheetEnum {
     case tagRequest
@@ -30,7 +30,11 @@ class TagViewModel : ObservableObject {
     @Published var openAlert = false
     @Published var openActionSheet = false
     
+    // MARK: - Sheet Request
     
+    func searchTagResult(album: VDAlbum, track: [[TagSearchTrackModel]]) {
+        
+    }
     
     // MARK: - View Action
     func tagRequest() {
@@ -63,13 +67,11 @@ class TagViewModel : ObservableObject {
         
         for item in urls {
             let id3 = (try? ID3TagEditor().read(from: item.path)) == nil ? false : true
-            fileInfo.append(TagModel(fileName: item.deletingPathExtension().lastPathComponent,
-                                     DeviceFilePath: item,
-                                     haveID3Tag: id3,
-                                     ext: item.pathExtension))
+            fileInfo.append(TagModel(deviceFilePath: item,
+                                     haveID3Tag: id3))
         }
         
-        
+        fileInfo.sort { $0.fileName < $1.fileName }        
     }
     
     func loadAudio(url: URL) {

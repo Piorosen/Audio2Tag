@@ -9,101 +9,63 @@
 import SwiftUI
 import ID3TagEditor
 
-extension View {
-    ////    func sheet<Content>(isPresented: Binding<Bool>, ) -> some View where Content : View
-    //    func customAlert<Content>(isPresent:Binding<Bool>, onDismiss: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content) -> some View where Content : View {
-    //        CustomAlertView(isPresent: isPresent, parent: self, content: content)
-    //    }
+extension TagFileDetailView {
+    func makeAlert() -> Alert {
+        Alert(title: Text("저장 하시겠습니까?"), primaryButton: .default(Text("예")), secondaryButton: .cancel())
+    }
 }
 
 struct TagFileDetailView: View {
-    @ObservedObject var viewModel = TagFileDetailViewModel()
+    @ObservedObject var viewModel: TagFileDetailViewModel
+    
+    init(bind: TagModel) {
+        viewModel = TagFileDetailViewModel(data: bind)
+    }
     
     var body: some View {
         ZStack {
-            List {
-                Group {
-                    GeometryReader { (g:GeometryProxy) in
-                        ZStack {
-                            Image(uiImage: viewModel.frontImage)
-                                .resizable()
-                                .frame(width: g.size.width, height: g.size.height, alignment: .center)
-                                .aspectRatio(contentMode: .fill)
-                                .blur(radius: 15)
-                                .colorInvert()
+            TagFileDetailListView(model: $viewModel.tagModel)
+                .onEditRequest { item in
+                    viewModel.openCustomEditAlert = true
+                    viewModel.selectTitle = item.title
+                    viewModel.selectedTagText = item.text
+                }
+                .navigationTitle("Detail View")
+                .navigationBarItems(
+                    trailing:
+                        HStack {
+                            EditButton().hidden()
                             
-                            Image(uiImage: viewModel.frontImage)
-                                .resizable()
-                                .frame(width: g.size.width / 2, height: g.size.height / 2, alignment: .center)
-                                .aspectRatio(contentMode: .fit)
-                            VStack {
-                                Spacer()
-                                HStack {
-                                    Button(action: {
-                                        print("a")
-                                    }) {
-                                        Image(systemName: "minus.circle")
-                                    }
-                                    Spacer()
-                                    Button(action: {
-                                        print("b")
-                                    }) {
-                                        Image(systemName: "plus.circle")
-                                    }
-                                    
-                                }
+                            Button(action: {
+                                viewModel.openCustomAlert = true
+                            }) {
+                                Text("Tag")
                             }
                             
-                        }
-                    }
-                }.frame(maxWidth: .infinity, idealHeight: 200, alignment: .center)
-                
-                Divider().padding(.all, 10)
-                
-                Section {
-                    ForEach(viewModel.text.indices, id: \.self) { idx in
-                        NavigationLink(destination: EmptyView()) {
-                            HStack {
-                                Text("\(viewModel.text[idx].title)")
-                                Spacer()
-                                Text("\(viewModel.text[idx].text)")
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                            Button(action: {
+                                
+                            }) {
+                                Text("Save")
                             }
-                        }
-                        
-                    }.onDelete(perform: { idx in
-                        viewModel.text.remove(atOffsets: idx)
-                    })
-                }
-            }
-            .navigationTitle("Detail View")
-            .navigationBarItems(trailing: HStack {
-                Button(action: {
-                    viewModel.openCustomAlert = true
-                }) {
-                    Text("Tag")
-                }
-                EditButton()
-            })
-            .sheet(isPresented: $viewModel.openSheet) {
-                TagFileDetailListSheetView(title: $viewModel.selectTitle)
-            }
+                        })
+                .alert(isPresented: $viewModel.openAlert, content: makeAlert)
             
-            CustomAlertView(isPresent: $viewModel.openCustomAlert) {
-                VStack {
-                    Text("추가 태그 선택").padding(.top, 15)
-                    Divider()
-                    List (viewModel.remainTag , id: \.self) { item in
-                        Button(item) {
-                            viewModel.selectTag(item)
-                        }
-                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            CustomAlertView(isPresent: $viewModel.openCustomAlert, title: "추가 태그 선택", state: .cancel) {
+                TagFileDetailCustomAlertView(tag: $viewModel.remainTag).onSelectedTag { item in
+                    viewModel.openCustomEditAlert = true
+                    viewModel.selectTitle = item
+                    viewModel.selectedTagText = ""
                 }
             }
-            .edgesIgnoringSafeArea(.all)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.spring())
+            CustomAlertView(isPresent: $viewModel.openCustomEditAlert, title: "태그 편집", state: .okCancel) {
+                TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, text: viewModel.selectedTagText).onCommit
+                { t in
+                    viewModel.selectedTagText = t
+                    
+                }
+            }.onOk {
+                viewModel.editTag(viewModel.selectTitle, viewModel.selectedTagText)
+            }
         }
-        
     }
 }
