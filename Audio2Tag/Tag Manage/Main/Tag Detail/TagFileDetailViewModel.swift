@@ -38,54 +38,78 @@ class TagFileDetailViewModel : ObservableObject {
     @Published var openCustomAlert = false
     @Published var openCustomEditAlert = false
     @Published var openAlert = false
+    @Published var selectedTagHint = ""
     
-    @Published var remainTag = [String]()
+    @Published var addableTag = [String]()
     @Published var selectTitle = ""
     
     var selectedTagTitle = ""
     var selectedTagText = ""
     
+    // MARK: - UI Interaction
+    
+    func tagEditRequest(item: TagFileDetailListTextCell) {
+        selectedTagHint = item.text
+        selectTitle = item.title
+        openCustomEditAlert = true
+    }
+    
+    func tagAddRequest(item: String) {
+        selectedTagHint = ""
+        selectTitle = item
+        openCustomEditAlert = true
+        
+    }
+    
+    // MARK: - UI -> Model
+    func editTag(_ title:String, _ text:String){
+        // 기존에 이미 태그가 존재하는 경우.
+        if let index = tagModel.tag.firstIndex(where: { e in e.title == title }) {
+            tagModel.tag[index].text = text
+            print(tagModel.tag)
+        }
+        // 기존에 태그가 없어서, 추가해야하는 경우.
+        else {
+            tagModel.tag.append(TagFileDetailListTextCell(title: title, text: text))
+            // 자동 정렬 및 추가 가능한 목록에서 삭제함.
+            tagModel.tag.sort { $0.title > $1.title }
+            addableTag = addableTag.filter { i in i != title }
+        }
+    }
+    
+    
+    
+    // MARK: - Initialize
     
     init(data: TagModel) {
         do {
-            
             guard let tag = try ID3TagEditor().read(from: data.deviceFilePath.path) else {
                 return
             }
             
             let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
             
-            //            print(getAllImage)
+            
             let frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
-            var aa = FrameName.allCases.map { $0 }
+            var tagAllCases = FrameName.allCases.map { $0 }
             
-            let p = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
+            let ownFrameKey = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
             
-            _ = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithIntegerContent) != nil }.map { $0 }
-            let text = p.map { TagFileDetailListTextCell(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
+//            _ = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithIntegerContent) != nil }.map { $0 }
+            let text = ownFrameKey.map { TagFileDetailListTextCell(title: $0.caseName, text: (tag.frames[$0] as! ID3FrameWithStringContent).content) }
             
-            p.forEach { (f:FrameName) in aa.removeAll(where: { $0 == f } ) }
+            // 남아 있는 태그 정리.
+            ownFrameKey.forEach { (f:FrameName) in tagAllCases.removeAll(where: { $0 == f } ) }
             
             tagModel = TagFileDetailListModel(image: frontImage, tag: text)
-            remainTag = aa.map { $0.caseName }
+            addableTag = tagAllCases.map { $0.caseName }
             
         }catch {
             print(error)
         }
     }
     
-    func editTag(_ title:String, _ text:String){
-        if let index = tagModel.tag.firstIndex(where: { e in e.title == title }) {
-            tagModel.tag[index].text = text
-            print(tagModel.tag)
-        }
-        remainTag = remainTag.filter { i in i != title }
-        
-    }
     
-    func selectTag(_ item: String) {
-        selectTitle = item
-        openSheet = true
-    }
+    
     
 }

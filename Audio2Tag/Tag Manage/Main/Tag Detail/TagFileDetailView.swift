@@ -25,11 +25,7 @@ struct TagFileDetailView: View {
     var body: some View {
         ZStack {
             TagFileDetailListView(model: $viewModel.tagModel)
-                .onEditRequest { item in
-                    viewModel.openCustomEditAlert = true
-                    viewModel.selectTitle = item.title
-                    viewModel.selectedTagText = item.text
-                }
+                .onEditRequest(viewModel.tagEditRequest)
                 .navigationTitle("Detail View")
                 .navigationBarItems(
                     trailing:
@@ -51,18 +47,12 @@ struct TagFileDetailView: View {
                 .alert(isPresented: $viewModel.openAlert, content: makeAlert)
             
             CustomAlertView(isPresent: $viewModel.openCustomAlert, title: "추가 태그 선택", state: .cancel) {
-                TagFileDetailCustomAlertView(tag: $viewModel.remainTag).onSelectedTag { item in
-                    viewModel.openCustomEditAlert = true
-                    viewModel.selectTitle = item
-                    viewModel.selectedTagText = ""
-                }
+                TagFileDetailCustomAlertView(tag: $viewModel.addableTag)
+                    .onSelectedTag(viewModel.tagAddRequest)
             }
             CustomAlertView(isPresent: $viewModel.openCustomEditAlert, title: "태그 편집", state: .okCancel) {
-                TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, text: viewModel.selectedTagText).onCommit
-                { t in
-                    viewModel.selectedTagText = t
-                    
-                }
+                TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, hint: viewModel.selectedTagHint,
+                                                 text: $viewModel.selectedTagText)
             }.onOk {
                 viewModel.editTag(viewModel.selectTitle, viewModel.selectedTagText)
             }

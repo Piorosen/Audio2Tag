@@ -8,28 +8,25 @@
 
 import SwiftUI
 
+class TagFileDetailEditCustomAlertViewModel : ObservableObject {
+    //    @Published var
+}
+
 struct TagFileDetailEditCustomAlertView: View {
-    private var commit = { (_:String) in }
-    
-    func onCommit(_ action: @escaping (String) -> Void) -> TagFileDetailEditCustomAlertView {
-        var copy = self
-        copy.commit = action
-        return copy
-    }
     private let hint: String
     private let title: String
-    @State var text: String = "" 
+    @Binding var text: String
     
-    init(title:String, text:String) {
+    init(title:String, hint:String, text:Binding<String>) {
         self.title = title
-        self.hint = text
-        self.text = ""
+        self.hint = hint
+        self._text = text
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             Text(self.title)
-            TextField(hint, text: $text, onEditingChanged: { _ in }, onCommit: { commit(text) })
+            TextField(hint, text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }.padding()
     }

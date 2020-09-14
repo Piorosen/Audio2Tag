@@ -37,6 +37,7 @@ struct SearchView: View {
                 
                 Button(action: {
                     self.text = ""
+                    showCancelButton = false
                 }) {
                     Image(systemName: "xmark.circle.fill").opacity(text == "" ? 0 : 1)
                 }
