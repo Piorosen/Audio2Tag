@@ -34,35 +34,45 @@ struct TagFileDetailListModel : Identifiable {
 
 class TagFileDetailViewModel : ObservableObject {
     @Published var tagModel = TagFileDetailListModel()
-    @Published var openSheet = false
     @Published var openCustomAlert = false
     @Published var openCustomEditAlert = false
     @Published var openAlert = false
-    @Published var selectedTagHint = ""
     
     @Published var addableTag = [String]()
-    @Published var selectTitle = ""
     
-    var selectedTagTitle = ""
-    var selectedTagText = ""
     
     // MARK: - UI Interaction
     
+    @Published var selectText = ""
+    var selectTitle = ""
+    var selectHint = ""
+    
     func tagEditRequest(item: TagFileDetailListTextCell) {
-        selectedTagHint = item.text
+        selectHint = item.text
         selectTitle = item.title
         openCustomEditAlert = true
     }
     
     func tagAddRequest(item: String) {
-        selectedTagHint = ""
+        selectHint = ""
         selectTitle = item
         openCustomEditAlert = true
-        
     }
     
+    func tagNewRequest() {
+        openCustomAlert = true
+    }
+    
+    func tagSaveRequest() {
+        openAlert = true
+    }
+    
+    
     // MARK: - UI -> Model
-    func editTag(_ title:String, _ text:String){
+    func editTag() {
+        let title = selectTitle
+        let text = selectText.isEmpty ? selectHint : selectText
+        
         // 기존에 이미 태그가 존재하는 경우.
         if let index = tagModel.tag.firstIndex(where: { e in e.title == title }) {
             tagModel.tag[index].text = text
@@ -88,7 +98,6 @@ class TagFileDetailViewModel : ObservableObject {
             }
             
             let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
-            
             
             let frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
             var tagAllCases = FrameName.allCases.map { $0 }

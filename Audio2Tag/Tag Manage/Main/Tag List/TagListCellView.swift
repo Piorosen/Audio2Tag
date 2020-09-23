@@ -19,7 +19,7 @@ struct TagListCellView: View {
             }
             Divider()
             HStack {
-                Text("ID3 태그 정상")
+                Text(item.haveID3Tag ? "ID3 태그 정상" : "ID3 태그 이상")
                 Spacer()
                 Text("\(item.ext)")
             }

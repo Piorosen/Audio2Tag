@@ -47,15 +47,10 @@ struct TagView: View {
                 .navigationBarItems(trailing: TagNavigationTraillingView()
                                     .onTagReuqest(self.viewModel.tagRequest)
                                     .onAudioRequest(self.viewModel.audioRequest))
-                
         }
+        // 음악 파일 선택 및 태그 검색 하기 위하 시트
         .sheet(isPresented: $viewModel.openSheet, content: makeSheet)
+        // Tag 검색 기능을 위한 시트, 선택지 입니다.
         .actionSheet(isPresented: $viewModel.openActionSheet, content: makeActionSheet)
-    }
-}
-
-struct TagView_Previews: PreviewProvider {
-    static var previews: some View {
-        TagView()
     }
 }
