@@ -12,18 +12,21 @@ struct TagListView: View {
     @Binding var models: [TagModel]
     
     var body: some View {
-        List {
-            ForEach(models.indices, id: \.self) { item in
-                Section(header: Text("파일 정보")) {
-                    if models[item].haveID3Tag {
-                        NavigationLink(destination: TagFileDetailView(bind: models[item])) {
+        ScrollView {
+            VStack {
+                ForEach (models.indices, id: \.self) { item in
+                    GroupBox(label: Text("파일 정보")) {
+                        if models[item].haveID3Tag {
+                            NavigationLink(destination: TagFileDetailView(bind: models[item])) {
+                                TagListCellView(item: models[item])
+                            }
+                        }else {
                             TagListCellView(item: models[item])
                         }
-                    }else {
-                        TagListCellView(item: models[item])
                     }
-                }
+                }.padding()
             }
         }
+        
     }
 }

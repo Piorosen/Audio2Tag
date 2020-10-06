@@ -9,8 +9,9 @@
 import SwiftUI
 
 extension TagView {
+    
     func makeSheet() -> some View {
-        return Group {
+        return VStack {
             if viewModel.tagSheetEnum == .tagRequest {
                 TagSearchView(kind: viewModel.searchEnum)
                     .onSelectTag(viewModel.searchTagResult)

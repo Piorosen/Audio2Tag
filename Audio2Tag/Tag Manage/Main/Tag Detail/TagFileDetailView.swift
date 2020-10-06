@@ -26,7 +26,7 @@ struct TagFileDetailView: View {
         ZStack {
             TagFileDetailListView(model: $viewModel.tagModel)
                 .onEditRequest(viewModel.tagEditRequest)
-//                .navigationTitle("Detail View")
+                .navigationTitle("Detail View")
                 .navigationBarItems(
                     trailing:
                         HStack {

@@ -6,12 +6,21 @@
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
+//
 
-#if !targetEnvironment(macCatalyst)
 import UIKit
 import SwiftUI
 import MobileCoreServices
 import UniformTypeIdentifiers
+
+extension UTType {
+    /**
+     cue Sheet파일의 UTI 입니다.
+     */
+    static let cue = UTType(exportedAs: "com.aoikazto.Auido2Tag.cue")
+}
+
+//#if !targetEnvironment(macCatalyst)
 
 class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     var parent: DocumentPicker
@@ -28,21 +37,19 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     }
 }
 
-extension UTType {
-    /**
-            cue Sheet파일의 UTI 입니다.
-     */
-    static let cue = UTType(exportedAs: "com.aoikazto.Auido2Tag.cue")
-}
+
+
 
 // 기본으로 파일을 선택을 하도록 되어 있습니다.
 struct DocumentPicker : UIViewControllerRepresentable {
     private var isFolderPicker: Bool = false
     private var allowMultipleSelection = false
-    private var utType:[UTType] = [.cue, .audio]
+    private var utType = [UTType]()
     
     fileprivate var oneFile: ((URL) -> Void) = { _ in }
     fileprivate var multiFile: (([URL]) -> Void) = { _ in }
+    
+//  r  public var picker: UIDocumentPickerViewController
     
     
     func onSelectFile(completeHanlder: @escaping (URL) -> Void) -> DocumentPicker {
@@ -60,8 +67,9 @@ struct DocumentPicker : UIViewControllerRepresentable {
     func setConfig(folderPicker:Bool, allowMultiple: Bool = false) -> DocumentPicker {
         var copy = self
         if (folderPicker) {
-            copy.utType.removeAll()
-            copy.utType.append(.folder)
+            copy = setUTType(type: [.folder])
+        }else {
+            copy = setUTType(type: [.cue, .audio])
         }
         copy.isFolderPicker = folderPicker
         copy.allowMultipleSelection = allowMultiple
@@ -71,6 +79,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
     func setUTType(type: [UTType]) -> DocumentPicker {
         var copy = self
         copy.utType = type
+        
         return copy
     }
     
@@ -80,15 +89,14 @@ struct DocumentPicker : UIViewControllerRepresentable {
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(forOpeningContentTypes: utType)
-
         picker.allowsMultipleSelection = self.allowMultipleSelection
         picker.delegate = context.coordinator
         return picker
     }
-        
+    
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
         
     }
     
 }
-#endif
+//#endif

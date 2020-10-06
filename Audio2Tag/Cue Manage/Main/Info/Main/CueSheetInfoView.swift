@@ -13,9 +13,9 @@ import CoreMedia
 extension CueSheetInfoView {
     
     // MARK: - alert창과 sheet창을 만드는 함수.
-    
+
     func makeSheet() -> some View {
-        return Group {
+        return VStack {
             if self.viewModel.showFilesSelection {
                 DocumentPicker()
                     .setConfig(folderPicker: false, allowMultiple: true)
@@ -33,7 +33,7 @@ extension CueSheetInfoView {
             }
         }
     }
-    
+
     
     
     func makeAlert() -> Alert {
@@ -100,7 +100,7 @@ struct CueSheetInfoView: View {
                 )
         }
         .alert(isPresented: self.$viewModel.openAlert, content: self.makeAlert)
-        .sheet(isPresented: self.$viewModel.openSheet, content: self.makeSheet)            
+        .sheet(isPresented: self.$viewModel.openSheet, content: self.makeSheet)
     }
     
 }
