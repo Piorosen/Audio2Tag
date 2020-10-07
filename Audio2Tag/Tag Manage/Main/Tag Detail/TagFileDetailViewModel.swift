@@ -85,6 +85,8 @@ class TagFileDetailViewModel : ObservableObject {
             tagModel.tag.sort { $0.title > $1.title }
             addableTag = addableTag.filter { i in i != title }
         }
+        
+        selectText = ""
     }
     
     
