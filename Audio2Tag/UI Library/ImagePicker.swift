@@ -23,11 +23,16 @@ struct ImagePicker : UIViewControllerRepresentable {
                 return
             }
             
-            parent.selectImage(image)
-            parent.presentationMode.wrappedValue.dismiss()
+            DispatchQueue.main.async {
+                self.parent.selectImage(image)
+            }
+            picker.dismiss(animated: true)
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true)
         }
     }
-    @Environment(\.presentationMode) var presentationMode
     
     fileprivate var selectImage:(UIImage) -> Void = { _ in }
     

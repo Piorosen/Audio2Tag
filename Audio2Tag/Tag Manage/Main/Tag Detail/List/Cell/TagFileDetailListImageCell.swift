@@ -23,8 +23,6 @@ struct TagFileDetailListImageCellView: View {
                         .aspectRatio(contentMode: .fill)
                         .blur(radius: 15)
                     Button(action: {
-                        image = UIImage(ciImage: CIImage(color: .black))
-                        print("changed")
                         openSheet = true
                     }) {
                         Image(uiImage: image)
