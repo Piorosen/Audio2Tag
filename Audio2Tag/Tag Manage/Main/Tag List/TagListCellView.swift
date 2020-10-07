@@ -12,7 +12,7 @@ struct TagListCellView: View {
     let item: TagModel
     
     var body: some View {
-        VStack {
+        GroupBox(label: Text("파일 정보")) {
             HStack {
                 Text("\(item.fileName)")
                 Spacer()
@@ -23,6 +23,6 @@ struct TagListCellView: View {
                 Spacer()
                 Text("\(item.ext)")
             }
-        }
+        }.padding()
     }
 }

@@ -10,6 +10,7 @@
 		620F1D3B24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */; };
 		621F310F250F14B30064A1EB /* TagListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621F310E250F14B30064A1EB /* TagListCellView.swift */; };
 		623BEDA324F8B9B800F0535F /* TagFileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 623BEDA224F8B9B800F0535F /* TagFileDetailView.swift */; };
+		624C317D252D698A0086477F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624C317C252D698A0086477F /* ImagePicker.swift */; };
 		624E798324FA36D400BADE93 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E798224FA36D400BADE93 /* SearchView.swift */; };
 		624E798524FA490200BADE93 /* TagFileDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624E798424FA490200BADE93 /* TagFileDetailViewModel.swift */; };
 		62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */; };
@@ -91,6 +92,7 @@
 		620F1D3A24F0DB9B002ED39E /* CueSheetInfoView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CueSheetInfoView+Extension.swift"; sourceTree = "<group>"; };
 		621F310E250F14B30064A1EB /* TagListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListCellView.swift; sourceTree = "<group>"; };
 		623BEDA224F8B9B800F0535F /* TagFileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailView.swift; sourceTree = "<group>"; };
+		624C317C252D698A0086477F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		624E798224FA36D400BADE93 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		624E798424FA490200BADE93 /* TagFileDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFileDetailViewModel.swift; sourceTree = "<group>"; };
 		62591A7E24E93BF2006E05C0 /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
@@ -509,6 +511,7 @@
 				62DF8B7B24F7F78000FCFE0D /* ActivityIndicator.swift */,
 				624E798224FA36D400BADE93 /* SearchView.swift */,
 				62E7C87A24FBCDA90030E5A2 /* CustomAlertView.swift */,
+				624C317C252D698A0086477F /* ImagePicker.swift */,
 			);
 			path = "UI Library";
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				627BE32624E24E11006F979C /* AVAudioSpliter.swift in Sources */,
 				62591A8724E9404E006E05C0 /* CueInfoNavigationBarTrailling.swift in Sources */,
 				62591A7F24E93BF2006E05C0 /* CueSheetInfoViewModel.swift in Sources */,
+				624C317D252D698A0086477F /* ImagePicker.swift in Sources */,
 				627BE32224E24E11006F979C /* iOS_SplitMusicView.swift in Sources */,
 				627BE32824E24E11006F979C /* CueDetailTrackViewModel.swift in Sources */,
 				627BE32B24E24E11006F979C /* CueMainModel.swift in Sources */,
