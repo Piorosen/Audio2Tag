@@ -11,7 +11,7 @@ import ID3TagEditor
 
 extension TagFileDetailView {
     func makeAlert() -> Alert {
-        Alert(title: Text("저장 하시겠습니까?"), primaryButton: .default(Text("예")), secondaryButton: .cancel())
+        Alert(title: Text("저장 하시겠습니까?"), primaryButton: .default(Text("예")) { self.viewModel.tagSave() }, secondaryButton: .cancel(Text("아니요")))
     }
 }
 

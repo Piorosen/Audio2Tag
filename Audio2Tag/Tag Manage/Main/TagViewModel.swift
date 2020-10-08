@@ -66,9 +66,16 @@ class TagViewModel : ObservableObject {
         
         
         for item in urls {
-            let id3 = (try? ID3TagEditor().read(from: item.path)) == nil ? false : true
+            var id3: Bool = false
+            do {
+                _ = try ID3TagEditor().read(from: item.path)
+                id3 = true
+            }catch {
+                
+            }
             fileInfo.append(TagModel(deviceFilePath: item,
                                      haveID3Tag: id3))
+            
         }
         
         fileInfo.sort { $0.fileName < $1.fileName }        

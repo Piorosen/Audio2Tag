@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import ID3TagEditor
 
 class TagFileDetailEditCustomAlertViewModel : ObservableObject {
     //    @Published var
@@ -14,10 +15,10 @@ class TagFileDetailEditCustomAlertViewModel : ObservableObject {
 
 struct TagFileDetailEditCustomAlertView: View {
     private let hint: String
-    private let title: String
+    private let title: FrameName
     @Binding var text: String
     
-    init(title:String, hint:String, text:Binding<String>) {
+    init(title:FrameName, hint:String, text:Binding<String>) {
         self.title = title
         self.hint = hint
         self._text = text
@@ -25,7 +26,7 @@ struct TagFileDetailEditCustomAlertView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(self.title)
+            Text(self.title.caseName)
             TextField(hint, text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
         }.padding()
