@@ -9,11 +9,7 @@
 import SwiftUI
 import ID3TagEditor
 
-extension FrameName : CaseIterable {
-    public static var allCases: [FrameName] {
-        return [.Album, .AlbumArtist, .Artist, .Composer, .Conductor, .ContentGrouping, .Copyright, .DiscPosition, .EncodedBy, .EncoderSettings ,.FileOwner,.Genre,.Lyricist,.MixArtist,.Publisher,.RecordingDateTime,.RecordingDayMonth,.RecordingHourMinute,.RecordingYear,.Subtitle,.Title,.TrackPosition]
-    }
-    
+extension FrameName {
     var caseName: String {
         return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
@@ -39,6 +35,9 @@ class TagFileDetailViewModel : ObservableObject {
     @Published var openAlert = false
     
     @Published var addableTag = [FrameName]()
+    
+    var openAlertSaveEvent = false
+    var openAlertSavedEvent = false
     
     
     // MARK: - UI Interaction
@@ -66,6 +65,14 @@ class TagFileDetailViewModel : ObservableObject {
     }
     
     func tagSaveRequest() {
+        openAlertSaveEvent = true
+        openAlertSavedEvent = false
+        openAlert = true
+    }
+    
+    func tagSavedRequest() {
+        openAlertSaveEvent = false
+        openAlertSavedEvent = true
         openAlert = true
     }
     
@@ -80,12 +87,15 @@ class TagFileDetailViewModel : ObservableObject {
         }
         
         do {
-            try ID3TagEditor().write(tag: ID3Tag(version: .version3, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("a.mp3").path)
-            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0].appendingPathComponent("b.mp3").path)
+            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: self.parentModel.deviceFilePath.path)
+            
+            
         }catch {
             print(error)
         }
-        
+        DispatchQueue.main.async {
+            self.tagSavedRequest()
+        }
     }
     
     
@@ -124,7 +134,8 @@ class TagFileDetailViewModel : ObservableObject {
             let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
             
             let frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
-            var tagAllCases = FrameName.allCases.map { $0 }
+
+            var tagAllCases = FrameName.allCases.map { $0 }.filter { !$0.caseName.lowercased().contains("picture") }
             
             let ownFrameKey = tag.frames.keys.filter { (tag.frames[$0] as? ID3FrameWithStringContent) != nil }.map { $0 }
             
@@ -142,8 +153,4 @@ class TagFileDetailViewModel : ObservableObject {
             return
         }
     }
-    
-    
-    
-    
 }
