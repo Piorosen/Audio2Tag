@@ -55,9 +55,9 @@
 		627BE33424E251FE006F979C /* macOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627BE33324E251FE006F979C /* macOS_DocumentPicker.swift */; };
 		629650DE24F36E2600941A4C /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629650DD24F36E2600941A4C /* TagViewModel.swift */; };
 		629650E024F36E3E00941A4C /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629650DF24F36E3E00941A4C /* TagModel.swift */; };
-		629650E324F36F5E00941A4C /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 629650E224F36F5E00941A4C /* ID3TagEditor */; };
 		629C78B924FE36EA001E1392 /* TagFileDetailListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C78B824FE36EA001E1392 /* TagFileDetailListView.swift */; };
 		62A6499924EC054D004C3D84 /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A6499824EC054D004C3D84 /* macOS_SplitMusicView.swift */; };
+		62C1CD6E25340A990019A3F7 /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 62C1CD6D25340A990019A3F7 /* ID3TagEditor */; };
 		62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 62C3094024F3693200F7AEE7 /* SwiftVgmdb */; };
 		62DF8B7524F56D4A00FCFE0D /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7424F56D4A00FCFE0D /* TagNavigationTraillingView.swift */; };
 		62DF8B7924F666FA00FCFE0D /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DF8B7824F666FA00FCFE0D /* TagNavigationLeadingView.swift */; };
@@ -162,7 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				629650E324F36F5E00941A4C /* ID3TagEditor in Frameworks */,
+				62C1CD6E25340A990019A3F7 /* ID3TagEditor in Frameworks */,
 				627BE33224E24E4A006F979C /* SwiftCueSheet in Frameworks */,
 				62C3094124F3693200F7AEE7 /* SwiftVgmdb in Frameworks */,
 			);
@@ -245,6 +245,7 @@
 				627BE2E524E24CCE006F979C /* Audio2TagTests */,
 				627BE2F024E24CCE006F979C /* Audio2TagUITests */,
 				627BE2CD24E24CCD006F979C /* Products */,
+				62C1CD6C25340A990019A3F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -464,6 +465,13 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		62C1CD6C25340A990019A3F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		62C6BC1124F8B2930054F702 /* Tag Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,7 +580,7 @@
 			packageProductDependencies = (
 				627BE33124E24E4A006F979C /* SwiftCueSheet */,
 				62C3094024F3693200F7AEE7 /* SwiftVgmdb */,
-				629650E224F36F5E00941A4C /* ID3TagEditor */,
+				62C1CD6D25340A990019A3F7 /* ID3TagEditor */,
 			);
 			productName = Audio2Tag;
 			productReference = 627BE2CC24E24CCD006F979C /* Audio2Tag.app */;
@@ -1100,7 +1108,7 @@
 			repositoryURL = "https://github.com/chicio/ID3TagEditor";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
+				minimumVersion = 3.3.3;
 			};
 		};
 		62C3093F24F3693200F7AEE7 /* XCRemoteSwiftPackageReference "SwiftVgmdb" */ = {
@@ -1119,7 +1127,7 @@
 			package = 627BE33024E24E4A006F979C /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
 			productName = SwiftCueSheet;
 		};
-		629650E224F36F5E00941A4C /* ID3TagEditor */ = {
+		62C1CD6D25340A990019A3F7 /* ID3TagEditor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 629650E124F36F5E00941A4C /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
 			productName = ID3TagEditor;
