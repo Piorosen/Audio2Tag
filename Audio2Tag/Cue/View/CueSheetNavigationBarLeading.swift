@@ -8,17 +8,17 @@
 
 import SwiftUI
 
-struct CueInfoNavigationBarLeading: View {
+struct CueSheetNavigationBarLeading: View {
     private var start = { }
     private var state = { }
     
-    func onSplitStart(_ action: @escaping () -> Void) -> CueInfoNavigationBarLeading {
+    func onSplitStart(_ action: @escaping () -> Void) -> CueSheetNavigationBarLeading {
         var copy = self
         copy.start = action
         return copy
     }
     
-    func onSplitState(_ action : @escaping () -> Void) -> CueInfoNavigationBarLeading {
+    func onSplitState(_ action : @escaping () -> Void) -> CueSheetNavigationBarLeading {
         var copy = self
         copy.state = action
         return copy
@@ -35,11 +35,3 @@ struct CueInfoNavigationBarLeading: View {
         }
     }
 }
-
-//.sheet(isPresented: self.$viewModel.showFolderSelection) {
-//    DocumentPicker()
-//        .setConfig(folderPicker: true)
-//        .onSelectFile { url in
-//            self.viewModel.musicOfSplit(url: url)
-//    }.$viewModel.showLeadingAlert, content: self.makeAlert)
-//}.alert(isPresented: self

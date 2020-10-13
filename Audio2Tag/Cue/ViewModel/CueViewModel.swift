@@ -12,7 +12,7 @@ import CoreMedia
 
 import AVFoundation
 
-class CueMainViewModel : ObservableObject {
+class CueViewModel : ObservableObject {
     @Published var isShowing = false
     @Published var status = CueSheetModel()
     @Published var splitState = [SplitMusicModel(name: "전체 진행률", status: 0)]

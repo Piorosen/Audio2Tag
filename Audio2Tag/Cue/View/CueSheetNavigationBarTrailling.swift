@@ -8,17 +8,17 @@
 
 import SwiftUI
 
-struct CueInfoNavigationBarTrailling: View {
+struct CueSheetNavigationBarTrailling: View {
     private var folderBadgePlusAction = { }
     private var trashAction = { }
     
-    func onFolderBadgePlusAction(_ action: @escaping () -> Void) -> CueInfoNavigationBarTrailling {
+    func onFolderBadgePlusAction(_ action: @escaping () -> Void) -> CueSheetNavigationBarTrailling {
         var copy = self
         copy.folderBadgePlusAction = action
         return copy
     }
     
-    func onTrashAction(_ action : @escaping () -> Void) -> CueInfoNavigationBarTrailling {
+    func onTrashAction(_ action : @escaping () -> Void) -> CueSheetNavigationBarTrailling {
         var copy = self
         copy.trashAction = action
         return copy

@@ -11,7 +11,7 @@ import SwiftCueSheet
 import CoreMedia
 import SwiftUI
 
-class CueSheetInfoViewModel : ObservableObject {
+class CueSheetViewModel : ObservableObject {
     // MARK: - View와 Binding할 변수 및 객체.
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel()

@@ -14,10 +14,10 @@
 		6256BADF2535549400C497AD /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BADE2535549400C497AD /* Audio2TagUITests.swift */; };
 		6256BB4C2535550400C497AD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAF72535550400C497AD /* SettingView.swift */; };
 		6256BB4D2535550400C497AD /* AVAudioSpliter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFA2535550400C497AD /* AVAudioSpliter.swift */; };
-		6256BB4E2535550400C497AD /* CueMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFC2535550400C497AD /* CueMainViewModel.swift */; };
+		6256BB4E2535550400C497AD /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFC2535550400C497AD /* CueViewModel.swift */; };
 		6256BB4F2535550400C497AD /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFE2535550400C497AD /* SplitMusicModel.swift */; };
-		6256BB512535550400C497AD /* SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB002535550400C497AD /* SplitMusicView.swift */; };
-		6256BB522535550400C497AD /* SplitMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB022535550400C497AD /* SplitMusicCell.swift */; };
+		6256BB512535550400C497AD /* CueSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB002535550400C497AD /* CueSplitView.swift */; };
+		6256BB522535550400C497AD /* CueSplitCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB022535550400C497AD /* CueSplitCellView.swift */; };
 		6256BB532535550400C497AD /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB062535550400C497AD /* CueSheetListInfoView.swift */; };
 		6256BB542535550400C497AD /* CueSheetListInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */; };
 		6256BB552535550400C497AD /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */; };
@@ -26,12 +26,12 @@
 		6256BB582535550400C497AD /* CueDetailListInfoTimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */; };
 		6256BB592535550400C497AD /* CueDetailListInfoDescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */; };
 		6256BB5A2535550400C497AD /* CueDetailTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB102535550400C497AD /* CueDetailTrackView.swift */; };
-		6256BB5B2535550400C497AD /* CueInfoNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */; };
-		6256BB5C2535550400C497AD /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */; };
-		6256BB5D2535550400C497AD /* CueSheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB152535550400C497AD /* CueSheetInfoView.swift */; };
-		6256BB5E2535550400C497AD /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */; };
+		6256BB5B2535550400C497AD /* CueSheetNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */; };
+		6256BB5C2535550400C497AD /* CueSheetNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */; };
+		6256BB5D2535550400C497AD /* CueSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB152535550400C497AD /* CueSheetView.swift */; };
+		6256BB5E2535550400C497AD /* CueSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB162535550400C497AD /* CueSheetViewModel.swift */; };
 		6256BB602535550400C497AD /* CueMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB182535550400C497AD /* CueMainModel.swift */; };
-		6256BB612535550400C497AD /* CueMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB192535550400C497AD /* CueMainView.swift */; };
+		6256BB612535550400C497AD /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB192535550400C497AD /* CueView.swift */; };
 		6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
 		6256BB632535550400C497AD /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */; };
 		6256BB642535550500C497AD /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1D2535550400C497AD /* cue.png */; };
@@ -41,10 +41,8 @@
 		6256BB682535550500C497AD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB242535550400C497AD /* SearchView.swift */; };
 		6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB252535550400C497AD /* ActivityIndicator.swift */; };
 		6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB262535550400C497AD /* ImagePicker.swift */; };
-		6256BB6B2535550500C497AD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB282535550400C497AD /* ProgressBar.swift */; };
 		6256BB6C2535550500C497AD /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB292535550400C497AD /* CustomAlertView.swift */; };
-		6256BB6D2535550500C497AD /* macOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */; };
-		6256BB6E2535550500C497AD /* IOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */; };
+		6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2C2535550400C497AD /* DocumentPicker.swift */; };
 		6256BB6F2535550500C497AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2D2535550400C497AD /* ContentView.swift */; };
 		6256BB702535550500C497AD /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB302535550400C497AD /* TagModel.swift */; };
 		6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB322535550400C497AD /* TagNavigationLeadingView.swift */; };
@@ -68,6 +66,7 @@
 		6256BB882535589800C497AD /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB872535589800C497AD /* SwiftCueSheet */; };
 		6256BB8E253558A000C497AD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB8D253558A000C497AD /* ID3TagEditor */; };
 		6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB93253558D200C497AD /* SwiftVgmdb */; };
+		62B57846253583E100839A92 /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,10 +100,10 @@
 		6256BAE02535549400C497AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6256BAF72535550400C497AD /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		6256BAFA2535550400C497AD /* AVAudioSpliter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioSpliter.swift; sourceTree = "<group>"; };
-		6256BAFC2535550400C497AD /* CueMainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainViewModel.swift; sourceTree = "<group>"; };
+		6256BAFC2535550400C497AD /* CueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6256BAFE2535550400C497AD /* SplitMusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
-		6256BB002535550400C497AD /* SplitMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicView.swift; sourceTree = "<group>"; };
-		6256BB022535550400C497AD /* SplitMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicCell.swift; sourceTree = "<group>"; };
+		6256BB002535550400C497AD /* CueSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSplitView.swift; sourceTree = "<group>"; };
+		6256BB022535550400C497AD /* CueSplitCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSplitCellView.swift; sourceTree = "<group>"; };
 		6256BB062535550400C497AD /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
 		6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoViewModel.swift; sourceTree = "<group>"; };
 		6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
@@ -113,12 +112,12 @@
 		6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoTimeSection.swift; sourceTree = "<group>"; };
 		6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoDescriptionSection.swift; sourceTree = "<group>"; };
 		6256BB102535550400C497AD /* CueDetailTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackView.swift; sourceTree = "<group>"; };
-		6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarTrailling.swift; sourceTree = "<group>"; };
-		6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarLeading.swift; sourceTree = "<group>"; };
-		6256BB152535550400C497AD /* CueSheetInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetInfoView.swift; sourceTree = "<group>"; };
-		6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
+		6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetNavigationBarTrailling.swift; sourceTree = "<group>"; };
+		6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetNavigationBarLeading.swift; sourceTree = "<group>"; };
+		6256BB152535550400C497AD /* CueSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetView.swift; sourceTree = "<group>"; };
+		6256BB162535550400C497AD /* CueSheetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetViewModel.swift; sourceTree = "<group>"; };
 		6256BB182535550400C497AD /* CueMainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainModel.swift; sourceTree = "<group>"; };
-		6256BB192535550400C497AD /* CueMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainView.swift; sourceTree = "<group>"; };
+		6256BB192535550400C497AD /* CueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
 		6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
 		6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
 		6256BB1D2535550400C497AD /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
@@ -128,10 +127,8 @@
 		6256BB242535550400C497AD /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		6256BB252535550400C497AD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		6256BB262535550400C497AD /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		6256BB282535550400C497AD /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		6256BB292535550400C497AD /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
-		6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = macOS_DocumentPicker.swift; sourceTree = "<group>"; };
-		6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS_DocumentPicker.swift; sourceTree = "<group>"; };
+		6256BB2C2535550400C497AD /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		6256BB2D2535550400C497AD /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6256BB302535550400C497AD /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		6256BB322535550400C497AD /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
@@ -152,6 +149,8 @@
 		6256BB492535550400C497AD /* TagFileDetailEditCustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailEditCustomAlertView.swift; sourceTree = "<group>"; };
 		6256BB4A2535550400C497AD /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		6256BB4B2535550400C497AD /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		62B57838253581AF00839A92 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
+		62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +204,7 @@
 		6256BAC02535549300C497AD /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				62B57838253581AF00839A92 /* Audio2Tag.entitlements */,
 				6256BB1A2535550400C497AD /* Resources */,
 				6256BB2D2535550400C497AD /* ContentView.swift */,
 				6256BAF82535550400C497AD /* Cue */,
@@ -284,6 +284,7 @@
 		6256BB1A2535550400C497AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */,
 				6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
 				6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */,
 				6256BB1D2535550400C497AD /* cue.png */,
@@ -315,28 +316,10 @@
 				6256BB242535550400C497AD /* SearchView.swift */,
 				6256BB252535550400C497AD /* ActivityIndicator.swift */,
 				6256BB262535550400C497AD /* ImagePicker.swift */,
-				6256BB272535550400C497AD /* ProgressBar */,
 				6256BB292535550400C497AD /* CustomAlertView.swift */,
-				6256BB2A2535550400C497AD /* DocumentPicker */,
+				6256BB2C2535550400C497AD /* DocumentPicker.swift */,
 			);
 			path = "UI Library";
-			sourceTree = "<group>";
-		};
-		6256BB272535550400C497AD /* ProgressBar */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB282535550400C497AD /* ProgressBar.swift */,
-			);
-			path = ProgressBar;
-			sourceTree = "<group>";
-		};
-		6256BB2A2535550400C497AD /* DocumentPicker */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */,
-				6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */,
-			);
-			path = DocumentPicker;
 			sourceTree = "<group>";
 		};
 		6256BB2E2535550400C497AD /* Tag */ = {
@@ -448,17 +431,16 @@
 		6256BB9825357B8600C497AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB192535550400C497AD /* CueMainView.swift */,
+				6256BB192535550400C497AD /* CueView.swift */,
+				6256BBCF25357F3000C497AD /* CueSheet */,
+				6256BBD325357F3B00C497AD /* CueSplit */,
 				6256BB062535550400C497AD /* CueSheetListInfoView.swift */,
 				6256BB102535550400C497AD /* CueDetailTrackView.swift */,
-				6256BB002535550400C497AD /* SplitMusicView.swift */,
-				6256BB022535550400C497AD /* SplitMusicCell.swift */,
 				6256BB0D2535550400C497AD /* CueDetailListInfoRemSection.swift */,
 				6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */,
 				6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */,
-				6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */,
-				6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */,
-				6256BB152535550400C497AD /* CueSheetInfoView.swift */,
+				6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */,
+				6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,13 +457,30 @@
 		6256BB9A25357B8D00C497AD /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				6256BAFC2535550400C497AD /* CueMainViewModel.swift */,
+				6256BAFC2535550400C497AD /* CueViewModel.swift */,
 				6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */,
 				6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */,
 				6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */,
-				6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */,
+				6256BB162535550400C497AD /* CueSheetViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6256BBCF25357F3000C497AD /* CueSheet */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB152535550400C497AD /* CueSheetView.swift */,
+			);
+			path = CueSheet;
+			sourceTree = "<group>";
+		};
+		6256BBD325357F3B00C497AD /* CueSplit */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB002535550400C497AD /* CueSplitView.swift */,
+				6256BB022535550400C497AD /* CueSplitCellView.swift */,
+			);
+			path = CueSplit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -601,6 +600,7 @@
 				6256BB662535550500C497AD /* RADWIMPS - 君の名は。.cue in Resources */,
 				6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
 				6256BB652535550500C497AD /* Faithless - Live in Berlin.cue in Resources */,
+				62B57846253583E100839A92 /* MYTH&ROID - HYDRA.wav in Resources */,
 				6256BAC92535549400C497AD /* Preview Assets.xcassets in Resources */,
 				6256BAC62535549400C497AD /* Assets.xcassets in Resources */,
 				6256BB632535550400C497AD /* MYTH&ROID - HYDRA.cue in Resources */,
@@ -628,23 +628,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6256BB5E2535550400C497AD /* CueSheetInfoViewModel.swift in Sources */,
+				6256BB5E2535550400C497AD /* CueSheetViewModel.swift in Sources */,
 				6256BB772535550500C497AD /* TagSearchViewModel.swift in Sources */,
 				6256BAC22535549300C497AD /* Audio2TagApp.swift in Sources */,
 				6256BB6F2535550500C497AD /* ContentView.swift in Sources */,
 				6256BB762535550500C497AD /* TagSearchTrackViewModel.swift in Sources */,
-				6256BB512535550400C497AD /* SplitMusicView.swift in Sources */,
+				6256BB512535550400C497AD /* CueSplitView.swift in Sources */,
 				6256BB7E2535550500C497AD /* TagFileDetailListView.swift in Sources */,
 				6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */,
-				6256BB5B2535550400C497AD /* CueInfoNavigationBarTrailling.swift in Sources */,
+				6256BB5B2535550400C497AD /* CueSheetNavigationBarTrailling.swift in Sources */,
 				6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */,
 				6256BB732535550500C497AD /* TagListCellView.swift in Sources */,
 				6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */,
-				6256BB6B2535550500C497AD /* ProgressBar.swift in Sources */,
 				6256BB782535550500C497AD /* TagSearchView.swift in Sources */,
-				6256BB6E2535550500C497AD /* IOS_DocumentPicker.swift in Sources */,
+				6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */,
 				6256BB4F2535550400C497AD /* SplitMusicModel.swift in Sources */,
-				6256BB612535550400C497AD /* CueMainView.swift in Sources */,
+				6256BB612535550400C497AD /* CueView.swift in Sources */,
 				6256BB752535550500C497AD /* TagSearchTrackView.swift in Sources */,
 				6256BB7F2535550500C497AD /* TagFileDetailCustomAlertView.swift in Sources */,
 				6256BB5A2535550400C497AD /* CueDetailTrackView.swift in Sources */,
@@ -654,7 +653,7 @@
 				6256BB4C2535550400C497AD /* SettingView.swift in Sources */,
 				6256BB7A2535550500C497AD /* TagFileDetailView.swift in Sources */,
 				6256BB792535550500C497AD /* TagSearchView+Extension.swift in Sources */,
-				6256BB522535550400C497AD /* SplitMusicCell.swift in Sources */,
+				6256BB522535550400C497AD /* CueSplitCellView.swift in Sources */,
 				6256BB7D2535550500C497AD /* TagFileDetailListTextCell.swift in Sources */,
 				6256BB742535550500C497AD /* TagListView.swift in Sources */,
 				6256BB672535550500C497AD /* FileView.swift in Sources */,
@@ -666,14 +665,13 @@
 				6256BB682535550500C497AD /* SearchView.swift in Sources */,
 				6256BB6C2535550500C497AD /* CustomAlertView.swift in Sources */,
 				6256BB822535550500C497AD /* TagViewModel.swift in Sources */,
-				6256BB6D2535550500C497AD /* macOS_DocumentPicker.swift in Sources */,
 				6256BB552535550400C497AD /* CueDetailTrackViewModel.swift in Sources */,
-				6256BB5D2535550400C497AD /* CueSheetInfoView.swift in Sources */,
-				6256BB4E2535550400C497AD /* CueMainViewModel.swift in Sources */,
+				6256BB5D2535550400C497AD /* CueSheetView.swift in Sources */,
+				6256BB4E2535550400C497AD /* CueViewModel.swift in Sources */,
 				6256BB722535550500C497AD /* TagNavigationTraillingView.swift in Sources */,
 				6256BB562535550400C497AD /* CueDetailTrackView+Extension.swift in Sources */,
 				6256BB7B2535550500C497AD /* TagFileDetailViewModel.swift in Sources */,
-				6256BB5C2535550400C497AD /* CueInfoNavigationBarLeading.swift in Sources */,
+				6256BB5C2535550400C497AD /* CueSheetNavigationBarLeading.swift in Sources */,
 				6256BB592535550400C497AD /* CueDetailListInfoDescriptionSection.swift in Sources */,
 				6256BB542535550400C497AD /* CueSheetListInfoViewModel.swift in Sources */,
 				6256BB602535550400C497AD /* CueMainModel.swift in Sources */,

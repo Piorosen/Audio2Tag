@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 import ID3TagEditor
-import UniformTypeIdentifiers
+
 import SwiftVgmdb
 
 enum TagSheetEnum {

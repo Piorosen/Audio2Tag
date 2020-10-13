@@ -10,7 +10,7 @@ import SwiftUI
 import CoreMedia
 
 
-extension CueSheetInfoView {
+extension CueSheetView {
     
     // MARK: - alert창과 sheet창을 만드는 함수.
 
@@ -56,21 +56,21 @@ extension CueSheetInfoView {
 }
 
 
-struct CueSheetInfoView: View {
-    @StateObject var viewModel = CueSheetInfoViewModel()
+struct CueSheetView: View {
+    @StateObject var viewModel = CueSheetViewModel()
     
     // MARK: - 이벤트
     fileprivate var requestOpenState = { }
     fileprivate var splitStartAction = { (directory:URL, sheet:CueSheetModel) in }
     
     // MARK: - 이벤트 처리 하는 함수.
-    func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetInfoView {
+    func onReuqestOpenState(_ action: @escaping () -> Void) -> CueSheetView {
         var copy = self
         copy.requestOpenState = action
         return copy
     }
     
-    func onSplitStart(_ action: @escaping (URL, CueSheetModel) -> Void) -> CueSheetInfoView {
+    func onSplitStart(_ action: @escaping (URL, CueSheetModel) -> Void) -> CueSheetView {
         var copy = self
         copy.splitStartAction = action
         return copy
@@ -89,11 +89,11 @@ struct CueSheetInfoView: View {
                 .navigationBarTitle("Cue Info")
                 .navigationBarItems(
                     leading:
-                        CueInfoNavigationBarLeading()
+                        CueSheetNavigationBarLeading()
                         .onSplitStart(viewModel.onStartSplit)
                         .onSplitState(requestOpenState)
                     , trailing:
-                        CueInfoNavigationBarTrailling()
+                        CueSheetNavigationBarTrailling()
                         .onTrashAction {
                             // 수정하기
                         }.onFolderBadgePlusAction(viewModel.onBadgePlus)

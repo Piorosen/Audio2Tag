@@ -9,7 +9,7 @@
 #if !targetEnvironment(macCatalyst)
 import SwiftUI
 
-struct SplitMusicView: View {
+struct CueSplitView: View {
     @Binding var bind: [SplitMusicModel]
     @Binding var isPresented: Bool
     
@@ -21,7 +21,7 @@ struct SplitMusicView: View {
         Group {
             VStack(spacing: 0) {
                 List(0..<bind.count, id: \.self) { index in
-                    SplitMusicCell(bind: self.$bind[index])
+                    CueSplitCellView(bind: self.$bind[index])
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 Divider()
