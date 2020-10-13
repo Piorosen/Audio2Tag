@@ -115,6 +115,9 @@ struct CustomAlertView<Content>: View where Content : View {
             .cornerRadius(15)
             .shadow(radius: 100)
             .opacity(isPresent ? 1 : 0)
+            .onChange(of: isPresent) { newValue in
+                UIApplication.shared.endEditing(true)
+            }
         }
         .frame(maxWidth: UIScreen.main.bounds.width * 0.8)
         .animation(.spring())

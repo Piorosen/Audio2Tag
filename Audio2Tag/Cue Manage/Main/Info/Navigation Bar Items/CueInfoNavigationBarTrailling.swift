@@ -30,7 +30,7 @@ struct CueInfoNavigationBarTrailling: View {
                 Image(systemName: "folder.badge.plus").padding(10)
             }
             Button(action: self.trashAction){
-//                Image(systemName: "trash").padding(10)
+                Image(systemName: "trash").padding(10)
             }
         }
     }

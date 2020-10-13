@@ -32,7 +32,7 @@ struct TagFileDetailListView: View {
             
             Section {
                 ForEach(model.tag.indices, id: \.self) { idx in
-                    TagFileDetailListTextCellView(title: model.tag[idx].title, text: $model.tag[idx].text)
+                    TagFileDetailListTextCellView(title: model.tag[idx].title.caseName, text: $model.tag[idx].text)
                         .onRequestEdit { editRequest(model.tag[idx]) }
                 }
                 .onDelete(perform: { idx in

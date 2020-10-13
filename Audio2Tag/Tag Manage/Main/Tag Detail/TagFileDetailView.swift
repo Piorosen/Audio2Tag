@@ -11,7 +11,13 @@ import ID3TagEditor
 
 extension TagFileDetailView {
     func makeAlert() -> Alert {
-        Alert(title: Text("저장 하시겠습니까?"), primaryButton: .default(Text("예")), secondaryButton: .cancel())
+        if viewModel.openAlertSaveEvent {
+            return Alert(title: Text("저장 하시겠습니까?"), primaryButton: .default(Text("예")) { self.viewModel.tagSave() }, secondaryButton: .cancel(Text("아니요")))
+        }else if viewModel.openAlertSavedEvent {
+            return Alert(title: Text("태그가 정상적으로 저장이 되었습니다."), dismissButton: .default(Text("확인")))
+        }else {
+            return Alert(title: Text("잘못된 요청입니다."))
+        }
     }
 }
 
@@ -25,47 +31,30 @@ struct TagFileDetailView: View {
     var body: some View {
         ZStack {
             TagFileDetailListView(model: $viewModel.tagModel)
-                .onEditRequest { item in
-                    viewModel.openCustomEditAlert = true
-                    viewModel.selectTitle = item.title
-                    viewModel.selectedTagText = item.text
-                }
+                .onEditRequest(viewModel.tagEditRequest)
                 .navigationTitle("Detail View")
                 .navigationBarItems(
                     trailing:
                         HStack {
                             EditButton().hidden()
                             
-                            Button(action: {
-                                viewModel.openCustomAlert = true
-                            }) {
+                            Button(action: viewModel.tagNewRequest) {
                                 Text("Tag")
                             }
                             
-                            Button(action: {
-                                
-                            }) {
+                            Button(action: viewModel.tagSaveRequest) {
                                 Text("Save")
                             }
                         })
-                .alert(isPresented: $viewModel.openAlert, content: makeAlert)
+                
             
             CustomAlertView(isPresent: $viewModel.openCustomAlert, title: "추가 태그 선택", state: .cancel) {
-                TagFileDetailCustomAlertView(tag: $viewModel.remainTag).onSelectedTag { item in
-                    viewModel.openCustomEditAlert = true
-                    viewModel.selectTitle = item
-                    viewModel.selectedTagText = ""
-                }
+                TagFileDetailCustomAlertView(tag: $viewModel.addableTag)
+                    .onSelectedTag(viewModel.tagAddRequest)
             }
             CustomAlertView(isPresent: $viewModel.openCustomEditAlert, title: "태그 편집", state: .okCancel) {
-                TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, text: viewModel.selectedTagText).onCommit
-                { t in
-                    viewModel.selectedTagText = t
-                    
-                }
-            }.onOk {
-                viewModel.editTag(viewModel.selectTitle, viewModel.selectedTagText)
-            }
-        }
+                TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, hint: viewModel.selectHint, text: $viewModel.selectText)
+            }.onOk(viewModel.editTag)
+        }.alert(isPresented: $viewModel.openAlert, content: makeAlert)
     }
 }
