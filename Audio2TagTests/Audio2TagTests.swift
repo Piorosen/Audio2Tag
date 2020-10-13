@@ -2,8 +2,7 @@
 //  Audio2TagTests.swift
 //  Audio2TagTests
 //
-//  Created by Aoikazto on 2020/08/11.
-//  Copyright © 2020 Aoikazto. All rights reserved.
+//  Created by Aoikazto on 2020/10/13.
 //
 
 import XCTest
@@ -12,7 +11,7 @@ import XCTest
 class Audio2TagTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called be1fore the invocation of each test method in the class.
+        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
