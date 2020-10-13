@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
-    @State var sheetType = CueSheetChangeType.None
+//    @State var sheetType = CueSheetChangeType.None
     @State var key = String()
     @State var value = String()
     @State var openSheet = false

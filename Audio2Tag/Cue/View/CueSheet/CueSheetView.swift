@@ -80,7 +80,7 @@ struct CueSheetView: View {
     // MARK: - View
     var body: some View {
         NavigationView {
-            CueSheetListInfoView(fileInfo: self.$viewModel.cueSheetModel)
+            CueSheetListView(fileInfo: self.$viewModel.cueSheetModel)
                 .onChangedRem { r in
                     viewModel.cueSheetModel.rem = r
                 }.onChangedMeta { m in
@@ -94,9 +94,7 @@ struct CueSheetView: View {
                         .onSplitState(requestOpenState)
                     , trailing:
                         CueSheetNavigationBarTrailling()
-                        .onTrashAction {
-                            // 수정하기
-                        }.onFolderBadgePlusAction(viewModel.onBadgePlus)
+                        .onFolderBadgePlusAction(viewModel.onBadgePlus)
                 )
         }
         .alert(isPresented: self.$viewModel.openAlert, content: self.makeAlert)

@@ -18,20 +18,20 @@ struct CueSheetNavigationBarTrailling: View {
         return copy
     }
     
-    func onTrashAction(_ action : @escaping () -> Void) -> CueSheetNavigationBarTrailling {
-        var copy = self
-        copy.trashAction = action
-        return copy
-    }
+//    func onTrashAction(_ action : @escaping () -> Void) -> CueSheetNavigationBarTrailling {
+//        var copy = self
+//        copy.trashAction = action
+//        return copy
+//    }
     
     var body: some View {
         HStack {
             Button(action: self.folderBadgePlusAction) {
                 Image(systemName: "folder.badge.plus").padding(10)
             }
-            Button(action: self.trashAction){
-                Image(systemName: "trash").padding(10)
-            }
+//            Button(action: self.trashAction){
+//                Image(systemName: "trash").padding(10)
+//            }
         }
     }
 }

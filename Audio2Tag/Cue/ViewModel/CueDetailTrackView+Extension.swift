@@ -18,18 +18,18 @@ extension CueDetailTrackView {
                 TextField("", text: self.$key)
                 Text("밸류 값")
                 TextField("", text: self.$value)
-                Button("적용", action: {
-                    switch (self.sheetType) {
-                    case .Rem:
-                        var copy = viewModel.rem
-                        copy.append(RemModel(value: (self.key, self.value)))
-                        self.changeRem(copy)
-                        break
-                    default:
-                        break
-                    }
-                    self.openSheet = false
-                })
+//                Button("적용", action: {
+//                    switch (self.sheetType) {
+//                    case .Rem:
+//                        var copy = viewModel.rem
+//                        copy.append(RemModel(value: (self.key, self.value)))
+//                        self.changeRem(copy)
+//                        break
+//                    default:
+//                        break
+//                    }
+//                    self.openSheet = false
+//                })
             }
         }
     }
