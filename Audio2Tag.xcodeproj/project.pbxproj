@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -67,6 +67,9 @@
 		6256BB802535550500C497AD /* TagFileDetailEditCustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB492535550400C497AD /* TagFileDetailEditCustomAlertView.swift */; };
 		6256BB812535550500C497AD /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB4A2535550400C497AD /* TagView.swift */; };
 		6256BB822535550500C497AD /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB4B2535550400C497AD /* TagViewModel.swift */; };
+		6256BB882535589800C497AD /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB872535589800C497AD /* SwiftCueSheet */; };
+		6256BB8E253558A000C497AD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB8D253558A000C497AD /* ID3TagEditor */; };
+		6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB93253558D200C497AD /* SwiftVgmdb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */,
+				6256BB882535589800C497AD /* SwiftCueSheet in Frameworks */,
+				6256BB8E253558A000C497AD /* ID3TagEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,6 +570,11 @@
 			dependencies = (
 			);
 			name = Audio2Tag;
+			packageProductDependencies = (
+				6256BB872535589800C497AD /* SwiftCueSheet */,
+				6256BB8D253558A000C497AD /* ID3TagEditor */,
+				6256BB93253558D200C497AD /* SwiftVgmdb */,
+			);
 			productName = Audio2Tag;
 			productReference = 6256BABE2535549300C497AD /* Audio2Tag.app */;
 			productType = "com.apple.product-type.application";
@@ -635,6 +646,11 @@
 				Base,
 			);
 			mainGroup = 6256BAB52535549300C497AD;
+			packageReferences = (
+				6256BB862535589800C497AD /* XCRemoteSwiftPackageReference "SwiftCueSheet" */,
+				6256BB8C253558A000C497AD /* XCRemoteSwiftPackageReference "ID3TagEditor" */,
+				6256BB92253558D200C497AD /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
+			);
 			productRefGroup = 6256BABF2535549300C497AD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1052,6 +1068,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6256BB862535589800C497AD /* XCRemoteSwiftPackageReference "SwiftCueSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		6256BB8C253558A000C497AD /* XCRemoteSwiftPackageReference "ID3TagEditor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chicio/ID3TagEditor";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.3.3;
+			};
+		};
+		6256BB92253558D200C497AD /* XCRemoteSwiftPackageReference "SwiftVgmdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Piorosen/SwiftVgmdb";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6256BB872535589800C497AD /* SwiftCueSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6256BB862535589800C497AD /* XCRemoteSwiftPackageReference "SwiftCueSheet" */;
+			productName = SwiftCueSheet;
+		};
+		6256BB8D253558A000C497AD /* ID3TagEditor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6256BB8C253558A000C497AD /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
+			productName = ID3TagEditor;
+		};
+		6256BB93253558D200C497AD /* SwiftVgmdb */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6256BB92253558D200C497AD /* XCRemoteSwiftPackageReference "SwiftVgmdb" */;
+			productName = SwiftVgmdb;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6256BAB62535549300C497AD /* Project object */;
 }
