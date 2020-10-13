@@ -1,0 +1,20 @@
+name: Swift Build Test And UnitTest
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master, dev, dev-** ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: xcodebuild -scheme Audio2Tag build
+    - name: Test : iOS 14, Iphone 11 
+      run: xcodebuild test -project Audio2Tag.xcodeproj -scheme Audio2Tag -destination platform=iOS\ Simulator,OS=14.0,name=iPhone\ 11
+    - name: Test : iOS 14, Iphone 11 Pro
+      run: xcodebuild test -project Audio2Tag.xcodeproj -scheme Audio2Tag -destination platform=iOS\ Simulator,OS=14.0,name=iPhone\ 11\ Pro
