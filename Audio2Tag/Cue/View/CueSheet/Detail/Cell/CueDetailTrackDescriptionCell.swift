@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CueDetailListInfoDescriptionSection: View {
     var track: TrackModel
+    @State var openAlert = false
     
     var body: some View {
         Section(header: Text("Description")) {
@@ -44,15 +45,11 @@ struct CueDetailListInfoDescriptionSection: View {
                 Spacer()
                 Text("\(track.track.songWriter)")
             }
-//            Button(action: {
-//                
-//            }) {
-//                HStack {
-//                    Text("Meta 정보 추가")
-//                    Spacer()
-//                    Image(systemName: "plus")
-//                }
-//            }
+            AddButton("META 추가") {
+                openAlert = true
+            }
+        }.alert(isPresented: $openAlert) {
+            Alert(title: Text("미 구현 입니다."))
         }
     }
 }

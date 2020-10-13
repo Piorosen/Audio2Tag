@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CueDetailListInfoRemSection: View {
+    @State var openAlert = false
+    
     var rem: [RemModel]
     init(rem: [RemModel]) {
         self.rem = rem
@@ -35,16 +37,11 @@ struct CueDetailListInfoRemSection: View {
                     Text("\(item.value.value)")
                 }
             }
-//            Button(action: {
-//                // 시트 열고 수정해야함.
-//                
-//            }) {
-//                HStack {
-//                    Text("Rem 정보 추가")
-//                    Spacer()
-//                    Image(systemName: "plus")
-//                }
-//            }
+            AddButton("REM 추가") {
+                openAlert = true
+            }
+        }.alert(isPresented: $openAlert) {
+            Alert(title: Text("미 구현 입니다."))
         }
     }
 }

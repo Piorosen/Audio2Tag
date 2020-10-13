@@ -34,13 +34,13 @@ struct ContentView: View {
             }
         }.onAppear(perform: {
             
-//            let paste = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
+            let paste = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
 //            var fileList =             Bundle.main.urls(forResourcesWithExtension: "wav", subdirectory: nil)
-//            fileList!.append(contentsOf: Bundle.main.urls(forResourcesWithExtension: "cue", subdirectory: nil)!)
+            let fileList = Bundle.main.urls(forResourcesWithExtension: "cue", subdirectory: nil)
             
-//            for item in fileList! {
-//                _ = try? FileManager.default.copyItem(at: item, to: paste.appendingPathComponent(item.lastPathComponent))
-//            }
+            for item in fileList! {
+                _ = try? FileManager.default.copyItem(at: item, to: paste.appendingPathComponent(item.lastPathComponent))
+            }
             
             
 
