@@ -90,10 +90,10 @@ struct CueDetailTrackRemCell: View {
                     Text("\(item.value.value)")
                 }
             }
-//            AddButton("REM 추가") {
-//                viewModel.openSheet = true
-//            }
+            AddButton("REM 추가") {
+                viewModel.openSheet = true
+            }
         }
-//        .sheet(isPresented: $viewModel.openSheet, content: makeSheet)
+        .alert(isPresented: $viewModel.openSheet) { Alert(title: Text("미구현 데이터 입니다")) }
     }
 }
