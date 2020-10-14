@@ -23,16 +23,16 @@ class CueViewModel : ObservableObject {
     
     func splitStart(url:URL, sheet:CueSheetModel) {
         isShowing = true
-        musicOfSplit(url: url, sheet: sheet)
+        _ = musicOfSplit(url: url, sheet: sheet)
     }
     
-    func musicOfSplit(url: URL, sheet:CueSheetModel) -> Void {
+    func musicOfSplit(url: URL, sheet:CueSheetModel) -> Bool {
         // 1번 더 체크 함.
         guard let musicUrl = sheet.musicUrl else {
-            return
+            return false
         }
         guard let cueSheet = sheet.cueSheet else {
-            return
+            return false
         }
         
         splitState.removeAll()
@@ -68,5 +68,7 @@ class CueViewModel : ObservableObject {
                 }
             }
         }
+        
+        return true
     }
 }

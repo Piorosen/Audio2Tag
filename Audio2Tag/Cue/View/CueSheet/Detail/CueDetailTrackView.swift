@@ -40,9 +40,9 @@ struct CueDetailTrackView: View {
     // MARK: - View
     var body: some View {
         List {
-            CueDetailListInfoDescriptionSection(track: viewModel.item)
-            CueDetailListInfoRemSection(rem: viewModel.rem)
-            CueDetailListInfoTimeSection(startTime: viewModel.startTime
+            CueDetailTrackDescriptionCell(track: viewModel.item)
+            CueDetailTrackRemCell(rem: viewModel.rem)
+            CueDetailTrackTimeCell(startTime: viewModel.startTime
                                          , endTime: viewModel.endTime
                                          , waitTime: viewModel.waitTime
                                          , durationTime: viewModel.durTime)

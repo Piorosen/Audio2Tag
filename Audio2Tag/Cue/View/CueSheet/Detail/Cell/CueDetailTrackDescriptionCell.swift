@@ -8,48 +8,71 @@
 
 import SwiftUI
 
-struct CueDetailListInfoDescriptionSection: View {
+struct CueDetailTrackDescriptionCell: View {
     var track: TrackModel
     @State var openAlert = false
     
     var body: some View {
         Section(header: Text("Description")) {
-            HStack {
-                Text("Title")
-                Spacer()
-                Text("\(track.track.title)")
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("Title")
+                    Spacer()
+                    Text("\(track.track.title)")
+                }
             }
-            HStack {
-                Text("Track Num")
-                Spacer()
-                Text("\(track.track.trackNum)")
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("Track Num")
+                    Spacer()
+                    Text("\(track.track.trackNum)")
+                }
             }
-            HStack {
-                Text("ISRC")
-                Spacer()
-                Text("\(track.track.isrc)")
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("ISRC")
+                    Spacer()
+                    Text("\(track.track.isrc)")
+                }
             }
-            HStack {
-                Text("Performer")
-                Spacer()
-                Text("\(track.track.performer)")
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("Performer")
+                    Spacer()
+                    Text("\(track.track.performer)")
+                }
+            }
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("Track Type")
+                    Spacer()
+                    Text("\(track.track.trackType)")
+                }
+            }
+            Button(action: {
+                openAlert = true
+            }) {
+                HStack {
+                    Text("Song Writer")
+                    Spacer()
+                    Text("\(track.track.songWriter)")
+                }
             }
             
-            HStack {
-                Text("Track Type")
-                Spacer()
-                Text("\(track.track.trackType)")
-            }
-            HStack {
-                Text("Song Writer")
-                Spacer()
-                Text("\(track.track.songWriter)")
-            }
-            AddButton("META 추가") {
-                openAlert = true
-            }
-        }.alert(isPresented: $openAlert) {
-            Alert(title: Text("미 구현 입니다."))
+            
+            
+            
+            
         }
     }
 }

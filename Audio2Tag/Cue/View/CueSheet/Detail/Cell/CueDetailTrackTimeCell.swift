@@ -10,7 +10,7 @@ import SwiftUI
 import CoreMedia
 
 
-struct CueDetailListInfoTimeSection: View {
+struct CueDetailTrackTimeCell: View {
     let startTime: String
     let endTime: String
     let waitTime:String

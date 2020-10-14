@@ -49,7 +49,7 @@ extension CueSheetView {
                                                     }))
         } else {
             return Alert(title: Text("오류"),
-                         message: Text("Cue File과 음원 파일을 선택해 주세요."),
+                         message: Text("Cue File 또는 음원 파일을 선택해 주세요."),
                          dismissButton: .cancel(Text("확인")))
         }
     }
