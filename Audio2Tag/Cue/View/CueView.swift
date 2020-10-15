@@ -23,6 +23,10 @@ struct CueView: View {
                 .edgesIgnoringSafeArea(.all)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .animation(.spring())
+                .alert(isPresented: $viewModel.openAlert) {
+                    Alert(title: Text("오류"), message: Text("태그를 저장할 수 있는 포맷이 아닙니다. 저장하지 않고 계속 진행하시겠습니까?"), primaryButton: .default(Text("예"), action: { viewModel.splitRun(b: true) }), secondaryButton: .cancel(Text("아니요"), action: { viewModel.splitRun(b: false) }))
+                }
+            
         }
     }
 }

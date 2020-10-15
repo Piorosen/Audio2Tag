@@ -113,7 +113,6 @@ struct CueSheetListView: View {
                     }
                 }
             }
-            
             Section(header: Text("Meta")) {
                 ForEach (self.viewModel.meta) { meta in
                     HStack {
@@ -146,8 +145,10 @@ struct CueSheetListView: View {
                         Text("\(track.track.trackNum) : \(track.track.title)")
                     }
                 }
-//                AddButton("File 추가", viewModel.addTrack)
+                //                AddButton("File 추가", viewModel.addTrack)
             }
-        }.sheet(item: $viewModel.sheetType, content: self.makeSheet)
+            
+        }
+        .sheet(item: $viewModel.sheetType, content: self.makeSheet)
     }
 }

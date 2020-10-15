@@ -6,7 +6,6 @@
 //  Copyright © 2020 Aoikazto. All rights reserved.
 //
 
-#if !targetEnvironment(macCatalyst)
 import SwiftUI
 
 struct CueSplitView: View {
@@ -41,5 +40,3 @@ struct CueSplitView: View {
         }
     }
 }
-#endif
-

@@ -12,18 +12,47 @@ import CoreMedia
 
 import AVFoundation
 
+import ID3TagEditor
+
 class CueViewModel : ObservableObject {
     @Published var isShowing = false
     @Published var status = CueSheetModel()
     @Published var splitState = [SplitMusicModel(name: "전체 진행률", status: 0)]
+    @Published var openAlert = false
+    var sem = DispatchSemaphore(value: 0)
+    
     
     func reuqestOpenState() {
         isShowing = true
     }
     
+    private var request = false
+    func splitRun(b: Bool) {
+        sem.signal()
+        request = b
+    }
+    
     func splitStart(url:URL, sheet:CueSheetModel) {
-        isShowing = true
-        _ = musicOfSplit(url: url, sheet: sheet)
+        request = false
+        
+        guard let musicUrl = sheet.musicUrl else {
+            return
+        }
+        let p = try? ID3TagEditor().read(from: musicUrl.path)
+        
+        if let _ = p {
+            _ = musicOfSplit(url: url, sheet: sheet)
+        }else {
+            openAlert = true
+            sem = DispatchSemaphore(value: 0)
+            sem.wait()
+            
+            
+            if request {
+                _ = musicOfSplit(url: url, sheet: sheet)
+            }
+        }
+        
     }
     
     func musicOfSplit(url: URL, sheet:CueSheetModel) -> Bool {
@@ -34,6 +63,8 @@ class CueViewModel : ObservableObject {
         guard let cueSheet = sheet.cueSheet else {
             return false
         }
+        
+        isShowing = true
         
         splitState.removeAll()
         splitState.append(.init(name: "전체 진행률", status: 0))
