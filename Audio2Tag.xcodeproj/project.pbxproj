@@ -46,7 +46,6 @@
 		6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2C2535550400C497AD /* DocumentPicker.swift */; };
 		6256BB6F2535550500C497AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2D2535550400C497AD /* ContentView.swift */; };
 		6256BB702535550500C497AD /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB302535550400C497AD /* TagModel.swift */; };
-		6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB322535550400C497AD /* TagNavigationLeadingView.swift */; };
 		6256BB722535550500C497AD /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB332535550400C497AD /* TagNavigationTraillingView.swift */; };
 		6256BB732535550500C497AD /* TagListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB352535550400C497AD /* TagListCellView.swift */; };
 		6256BB742535550500C497AD /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB362535550400C497AD /* TagListView.swift */; };
@@ -54,7 +53,7 @@
 		6256BB762535550500C497AD /* TagSearchTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */; };
 		6256BB772535550500C497AD /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3C2535550400C497AD /* TagSearchViewModel.swift */; };
 		6256BB782535550500C497AD /* TagSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3D2535550400C497AD /* TagSearchView.swift */; };
-		6256BB792535550500C497AD /* TagSearchView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */; };
+		6256BB792535550500C497AD /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3E2535550400C497AD /* Keyboard+Extension.swift */; };
 		6256BB7A2535550500C497AD /* TagFileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB402535550400C497AD /* TagFileDetailView.swift */; };
 		6256BB7B2535550500C497AD /* TagFileDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB412535550400C497AD /* TagFileDetailViewModel.swift */; };
 		6256BB7C2535550500C497AD /* TagFileDetailListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB442535550400C497AD /* TagFileDetailListImageCell.swift */; };
@@ -134,7 +133,6 @@
 		6256BB2C2535550400C497AD /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		6256BB2D2535550400C497AD /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6256BB302535550400C497AD /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
-		6256BB322535550400C497AD /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
 		6256BB332535550400C497AD /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 		6256BB352535550400C497AD /* TagListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListCellView.swift; sourceTree = "<group>"; };
 		6256BB362535550400C497AD /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -142,7 +140,7 @@
 		6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchTrackViewModel.swift; sourceTree = "<group>"; };
 		6256BB3C2535550400C497AD /* TagSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		6256BB3D2535550400C497AD /* TagSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchView.swift; sourceTree = "<group>"; };
-		6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TagSearchView+Extension.swift"; sourceTree = "<group>"; };
+		6256BB3E2535550400C497AD /* Keyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
 		6256BB402535550400C497AD /* TagFileDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailView.swift; sourceTree = "<group>"; };
 		6256BB412535550400C497AD /* TagFileDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailViewModel.swift; sourceTree = "<group>"; };
 		6256BB442535550400C497AD /* TagFileDetailListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailListImageCell.swift; sourceTree = "<group>"; };
@@ -347,89 +345,20 @@
 		6256BB2E2535550400C497AD /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB2F2535550400C497AD /* Main */,
+				62E7C2B125386D8B0097F4C5 /* ViewModel */,
+				62E7C2B025386D870097F4C5 /* Model */,
+				62E7C2AF25386D820097F4C5 /* View */,
+				6256BB2F2535550400C497AD /* Library */,
 			);
 			path = Tag;
 			sourceTree = "<group>";
 		};
-		6256BB2F2535550400C497AD /* Main */ = {
+		6256BB2F2535550400C497AD /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB302535550400C497AD /* TagModel.swift */,
-				6256BB312535550400C497AD /* Navigation */,
-				6256BB342535550400C497AD /* Tag List */,
-				6256BB372535550400C497AD /* Search */,
-				6256BB3F2535550400C497AD /* Tag Detail */,
-				6256BB4A2535550400C497AD /* TagView.swift */,
-				6256BB4B2535550400C497AD /* TagViewModel.swift */,
+				6256BB3E2535550400C497AD /* Keyboard+Extension.swift */,
 			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		6256BB312535550400C497AD /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB322535550400C497AD /* TagNavigationLeadingView.swift */,
-				6256BB332535550400C497AD /* TagNavigationTraillingView.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		6256BB342535550400C497AD /* Tag List */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB352535550400C497AD /* TagListCellView.swift */,
-				6256BB362535550400C497AD /* TagListView.swift */,
-			);
-			path = "Tag List";
-			sourceTree = "<group>";
-		};
-		6256BB372535550400C497AD /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB382535550400C497AD /* Track */,
-				6256BB3B2535550400C497AD /* Album */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		6256BB382535550400C497AD /* Track */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB392535550400C497AD /* TagSearchTrackView.swift */,
-				6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */,
-			);
-			path = Track;
-			sourceTree = "<group>";
-		};
-		6256BB3B2535550400C497AD /* Album */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB3C2535550400C497AD /* TagSearchViewModel.swift */,
-				6256BB3D2535550400C497AD /* TagSearchView.swift */,
-				6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */,
-			);
-			path = Album;
-			sourceTree = "<group>";
-		};
-		6256BB3F2535550400C497AD /* Tag Detail */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB402535550400C497AD /* TagFileDetailView.swift */,
-				6256BB412535550400C497AD /* TagFileDetailViewModel.swift */,
-				6256BB422535550400C497AD /* List */,
-				6256BB472535550400C497AD /* Sheet */,
-			);
-			path = "Tag Detail";
-			sourceTree = "<group>";
-		};
-		6256BB422535550400C497AD /* List */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB432535550400C497AD /* Cell */,
-				6256BB462535550400C497AD /* TagFileDetailListView.swift */,
-			);
-			path = List;
+			path = Library;
 			sourceTree = "<group>";
 		};
 		6256BB432535550400C497AD /* Cell */ = {
@@ -511,6 +440,66 @@
 				6256BB102535550400C497AD /* CueDetailTrackView.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		62E7C2AF25386D820097F4C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				62E7C2B725386E940097F4C5 /* List */,
+				62E7C2B225386E0A0097F4C5 /* Search */,
+				6256BB4A2535550400C497AD /* TagView.swift */,
+				6256BB332535550400C497AD /* TagNavigationTraillingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		62E7C2B025386D870097F4C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB302535550400C497AD /* TagModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62E7C2B125386D8B0097F4C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB4B2535550400C497AD /* TagViewModel.swift */,
+				6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */,
+				6256BB3C2535550400C497AD /* TagSearchViewModel.swift */,
+				6256BB412535550400C497AD /* TagFileDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		62E7C2B225386E0A0097F4C5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB392535550400C497AD /* TagSearchTrackView.swift */,
+				6256BB3D2535550400C497AD /* TagSearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		62E7C2B725386E940097F4C5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB362535550400C497AD /* TagListView.swift */,
+				6256BB352535550400C497AD /* TagListCellView.swift */,
+				62E7C2B825386EA40097F4C5 /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		62E7C2B825386EA40097F4C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB402535550400C497AD /* TagFileDetailView.swift */,
+				6256BB462535550400C497AD /* TagFileDetailListView.swift */,
+				6256BB472535550400C497AD /* Sheet */,
+				6256BB432535550400C497AD /* Cell */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -667,7 +656,6 @@
 				6256BB7E2535550500C497AD /* TagFileDetailListView.swift in Sources */,
 				6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */,
 				6256BB5B2535550400C497AD /* CueSheetNavigationBarTrailling.swift in Sources */,
-				6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */,
 				6256BB732535550500C497AD /* TagListCellView.swift in Sources */,
 				6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */,
 				6256BB782535550500C497AD /* TagSearchView.swift in Sources */,
@@ -683,7 +671,7 @@
 				6256BB572535550400C497AD /* CueDetailTrackRemCell.swift in Sources */,
 				6256BB4C2535550400C497AD /* SettingView.swift in Sources */,
 				6256BB7A2535550500C497AD /* TagFileDetailView.swift in Sources */,
-				6256BB792535550500C497AD /* TagSearchView+Extension.swift in Sources */,
+				6256BB792535550500C497AD /* Keyboard+Extension.swift in Sources */,
 				6256BB522535550400C497AD /* CueSplitCellView.swift in Sources */,
 				6256BB7D2535550500C497AD /* TagFileDetailListTextCell.swift in Sources */,
 				6256BB742535550500C497AD /* TagListView.swift in Sources */,
