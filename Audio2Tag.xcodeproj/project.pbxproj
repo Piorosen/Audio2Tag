@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6226913B25358FC4003040C4 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6226913A25358FC4003040C4 /* AddButton.swift */; };
 		6256BAC22535549300C497AD /* Audio2TagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAC12535549300C497AD /* Audio2TagApp.swift */; };
 		6256BAC62535549400C497AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6256BAC52535549400C497AD /* Assets.xcassets */; };
 		6256BAC92535549400C497AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6256BAC82535549400C497AD /* Preview Assets.xcassets */; };
@@ -14,42 +15,33 @@
 		6256BADF2535549400C497AD /* Audio2TagUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BADE2535549400C497AD /* Audio2TagUITests.swift */; };
 		6256BB4C2535550400C497AD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAF72535550400C497AD /* SettingView.swift */; };
 		6256BB4D2535550400C497AD /* AVAudioSpliter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFA2535550400C497AD /* AVAudioSpliter.swift */; };
-		6256BB4E2535550400C497AD /* CueMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFC2535550400C497AD /* CueMainViewModel.swift */; };
+		6256BB4E2535550400C497AD /* CueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFC2535550400C497AD /* CueViewModel.swift */; };
 		6256BB4F2535550400C497AD /* SplitMusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFE2535550400C497AD /* SplitMusicModel.swift */; };
-		6256BB502535550400C497AD /* macOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAFF2535550400C497AD /* macOS_SplitMusicView.swift */; };
-		6256BB512535550400C497AD /* iOS_SplitMusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB002535550400C497AD /* iOS_SplitMusicView.swift */; };
-		6256BB522535550400C497AD /* SplitMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB022535550400C497AD /* SplitMusicCell.swift */; };
-		6256BB532535550400C497AD /* CueSheetListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB062535550400C497AD /* CueSheetListInfoView.swift */; };
-		6256BB542535550400C497AD /* CueSheetListInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */; };
+		6256BB512535550400C497AD /* CueSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB002535550400C497AD /* CueSplitView.swift */; };
+		6256BB522535550400C497AD /* CueSplitCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB022535550400C497AD /* CueSplitCellView.swift */; };
+		6256BB532535550400C497AD /* CueSheetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB062535550400C497AD /* CueSheetListView.swift */; };
+		6256BB542535550400C497AD /* CueSheetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB072535550400C497AD /* CueSheetListViewModel.swift */; };
 		6256BB552535550400C497AD /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */; };
 		6256BB562535550400C497AD /* CueDetailTrackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */; };
-		6256BB572535550400C497AD /* CueDetailListInfoRemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0D2535550400C497AD /* CueDetailListInfoRemSection.swift */; };
-		6256BB582535550400C497AD /* CueDetailListInfoTimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */; };
-		6256BB592535550400C497AD /* CueDetailListInfoDescriptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */; };
+		6256BB572535550400C497AD /* CueDetailTrackRemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0D2535550400C497AD /* CueDetailTrackRemCell.swift */; };
+		6256BB582535550400C497AD /* CueDetailTrackTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0E2535550400C497AD /* CueDetailTrackTimeCell.swift */; };
+		6256BB592535550400C497AD /* CueDetailTrackDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0F2535550400C497AD /* CueDetailTrackDescriptionCell.swift */; };
 		6256BB5A2535550400C497AD /* CueDetailTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB102535550400C497AD /* CueDetailTrackView.swift */; };
-		6256BB5B2535550400C497AD /* CueInfoNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */; };
-		6256BB5C2535550400C497AD /* CueInfoNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */; };
-		6256BB5D2535550400C497AD /* CueSheetInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB152535550400C497AD /* CueSheetInfoView.swift */; };
-		6256BB5E2535550400C497AD /* CueSheetInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */; };
-		6256BB5F2535550400C497AD /* CueSheetInfoView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB172535550400C497AD /* CueSheetInfoView+Extension.swift */; };
+		6256BB5B2535550400C497AD /* CueSheetNavigationBarTrailling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */; };
+		6256BB5C2535550400C497AD /* CueSheetNavigationBarLeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */; };
+		6256BB5D2535550400C497AD /* CueSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB152535550400C497AD /* CueSheetView.swift */; };
+		6256BB5E2535550400C497AD /* CueSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB162535550400C497AD /* CueSheetViewModel.swift */; };
 		6256BB602535550400C497AD /* CueMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB182535550400C497AD /* CueMainModel.swift */; };
-		6256BB612535550400C497AD /* CueMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB192535550400C497AD /* CueMainView.swift */; };
-		6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
-		6256BB632535550400C497AD /* MYTH&ROID - HYDRA.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */; };
+		6256BB612535550400C497AD /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB192535550400C497AD /* CueView.swift */; };
 		6256BB642535550500C497AD /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1D2535550400C497AD /* cue.png */; };
-		6256BB652535550500C497AD /* Faithless - Live in Berlin.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */; };
-		6256BB662535550500C497AD /* RADWIMPS - 君の名は。.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */; };
 		6256BB672535550500C497AD /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB222535550400C497AD /* FileView.swift */; };
 		6256BB682535550500C497AD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB242535550400C497AD /* SearchView.swift */; };
 		6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB252535550400C497AD /* ActivityIndicator.swift */; };
 		6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB262535550400C497AD /* ImagePicker.swift */; };
-		6256BB6B2535550500C497AD /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB282535550400C497AD /* ProgressBar.swift */; };
 		6256BB6C2535550500C497AD /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB292535550400C497AD /* CustomAlertView.swift */; };
-		6256BB6D2535550500C497AD /* macOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */; };
-		6256BB6E2535550500C497AD /* IOS_DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */; };
+		6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2C2535550400C497AD /* DocumentPicker.swift */; };
 		6256BB6F2535550500C497AD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB2D2535550400C497AD /* ContentView.swift */; };
 		6256BB702535550500C497AD /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB302535550400C497AD /* TagModel.swift */; };
-		6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB322535550400C497AD /* TagNavigationLeadingView.swift */; };
 		6256BB722535550500C497AD /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB332535550400C497AD /* TagNavigationTraillingView.swift */; };
 		6256BB732535550500C497AD /* TagListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB352535550400C497AD /* TagListCellView.swift */; };
 		6256BB742535550500C497AD /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB362535550400C497AD /* TagListView.swift */; };
@@ -57,7 +49,7 @@
 		6256BB762535550500C497AD /* TagSearchTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */; };
 		6256BB772535550500C497AD /* TagSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3C2535550400C497AD /* TagSearchViewModel.swift */; };
 		6256BB782535550500C497AD /* TagSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3D2535550400C497AD /* TagSearchView.swift */; };
-		6256BB792535550500C497AD /* TagSearchView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */; };
+		6256BB792535550500C497AD /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB3E2535550400C497AD /* Keyboard+Extension.swift */; };
 		6256BB7A2535550500C497AD /* TagFileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB402535550400C497AD /* TagFileDetailView.swift */; };
 		6256BB7B2535550500C497AD /* TagFileDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB412535550400C497AD /* TagFileDetailViewModel.swift */; };
 		6256BB7C2535550500C497AD /* TagFileDetailListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB442535550400C497AD /* TagFileDetailListImageCell.swift */; };
@@ -70,6 +62,7 @@
 		6256BB882535589800C497AD /* SwiftCueSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB872535589800C497AD /* SwiftCueSheet */; };
 		6256BB8E253558A000C497AD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB8D253558A000C497AD /* ID3TagEditor */; };
 		6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB93253558D200C497AD /* SwiftVgmdb */; };
+		628B40D92536A4E000439485 /* CueAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628B40D82536A4E000439485 /* CueAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6226913A25358FC4003040C4 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		6256BABE2535549300C497AD /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6256BAC12535549300C497AD /* Audio2TagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagApp.swift; sourceTree = "<group>"; };
 		6256BAC52535549400C497AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,42 +97,33 @@
 		6256BAE02535549400C497AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6256BAF72535550400C497AD /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		6256BAFA2535550400C497AD /* AVAudioSpliter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioSpliter.swift; sourceTree = "<group>"; };
-		6256BAFC2535550400C497AD /* CueMainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainViewModel.swift; sourceTree = "<group>"; };
+		6256BAFC2535550400C497AD /* CueViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueViewModel.swift; sourceTree = "<group>"; };
 		6256BAFE2535550400C497AD /* SplitMusicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicModel.swift; sourceTree = "<group>"; };
-		6256BAFF2535550400C497AD /* macOS_SplitMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = macOS_SplitMusicView.swift; sourceTree = "<group>"; };
-		6256BB002535550400C497AD /* iOS_SplitMusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS_SplitMusicView.swift; sourceTree = "<group>"; };
-		6256BB022535550400C497AD /* SplitMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitMusicCell.swift; sourceTree = "<group>"; };
-		6256BB062535550400C497AD /* CueSheetListInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoView.swift; sourceTree = "<group>"; };
-		6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListInfoViewModel.swift; sourceTree = "<group>"; };
+		6256BB002535550400C497AD /* CueSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSplitView.swift; sourceTree = "<group>"; };
+		6256BB022535550400C497AD /* CueSplitCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSplitCellView.swift; sourceTree = "<group>"; };
+		6256BB062535550400C497AD /* CueSheetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListView.swift; sourceTree = "<group>"; };
+		6256BB072535550400C497AD /* CueSheetListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListViewModel.swift; sourceTree = "<group>"; };
 		6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
 		6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CueDetailTrackView+Extension.swift"; sourceTree = "<group>"; };
-		6256BB0D2535550400C497AD /* CueDetailListInfoRemSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoRemSection.swift; sourceTree = "<group>"; };
-		6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoTimeSection.swift; sourceTree = "<group>"; };
-		6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailListInfoDescriptionSection.swift; sourceTree = "<group>"; };
+		6256BB0D2535550400C497AD /* CueDetailTrackRemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackRemCell.swift; sourceTree = "<group>"; };
+		6256BB0E2535550400C497AD /* CueDetailTrackTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackTimeCell.swift; sourceTree = "<group>"; };
+		6256BB0F2535550400C497AD /* CueDetailTrackDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackDescriptionCell.swift; sourceTree = "<group>"; };
 		6256BB102535550400C497AD /* CueDetailTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackView.swift; sourceTree = "<group>"; };
-		6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarTrailling.swift; sourceTree = "<group>"; };
-		6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueInfoNavigationBarLeading.swift; sourceTree = "<group>"; };
-		6256BB152535550400C497AD /* CueSheetInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetInfoView.swift; sourceTree = "<group>"; };
-		6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetInfoViewModel.swift; sourceTree = "<group>"; };
-		6256BB172535550400C497AD /* CueSheetInfoView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CueSheetInfoView+Extension.swift"; sourceTree = "<group>"; };
+		6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetNavigationBarTrailling.swift; sourceTree = "<group>"; };
+		6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetNavigationBarLeading.swift; sourceTree = "<group>"; };
+		6256BB152535550400C497AD /* CueSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetView.swift; sourceTree = "<group>"; };
+		6256BB162535550400C497AD /* CueSheetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetViewModel.swift; sourceTree = "<group>"; };
 		6256BB182535550400C497AD /* CueMainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainModel.swift; sourceTree = "<group>"; };
-		6256BB192535550400C497AD /* CueMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainView.swift; sourceTree = "<group>"; };
-		6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
-		6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA.cue"; sourceTree = "<group>"; };
+		6256BB192535550400C497AD /* CueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
 		6256BB1D2535550400C497AD /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
-		6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Faithless - Live in Berlin.cue"; sourceTree = "<group>"; };
-		6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RADWIMPS - 君の名は。.cue"; sourceTree = "<group>"; };
 		6256BB222535550400C497AD /* FileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		6256BB242535550400C497AD /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		6256BB252535550400C497AD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		6256BB262535550400C497AD /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		6256BB282535550400C497AD /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		6256BB292535550400C497AD /* CustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
-		6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = macOS_DocumentPicker.swift; sourceTree = "<group>"; };
-		6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOS_DocumentPicker.swift; sourceTree = "<group>"; };
+		6256BB2C2535550400C497AD /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		6256BB2D2535550400C497AD /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6256BB302535550400C497AD /* TagModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
-		6256BB322535550400C497AD /* TagNavigationLeadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationLeadingView.swift; sourceTree = "<group>"; };
 		6256BB332535550400C497AD /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 		6256BB352535550400C497AD /* TagListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListCellView.swift; sourceTree = "<group>"; };
 		6256BB362535550400C497AD /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -146,7 +131,7 @@
 		6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchTrackViewModel.swift; sourceTree = "<group>"; };
 		6256BB3C2535550400C497AD /* TagSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchViewModel.swift; sourceTree = "<group>"; };
 		6256BB3D2535550400C497AD /* TagSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchView.swift; sourceTree = "<group>"; };
-		6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TagSearchView+Extension.swift"; sourceTree = "<group>"; };
+		6256BB3E2535550400C497AD /* Keyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
 		6256BB402535550400C497AD /* TagFileDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailView.swift; sourceTree = "<group>"; };
 		6256BB412535550400C497AD /* TagFileDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailViewModel.swift; sourceTree = "<group>"; };
 		6256BB442535550400C497AD /* TagFileDetailListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailListImageCell.swift; sourceTree = "<group>"; };
@@ -156,6 +141,8 @@
 		6256BB492535550400C497AD /* TagFileDetailEditCustomAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagFileDetailEditCustomAlertView.swift; sourceTree = "<group>"; };
 		6256BB4A2535550400C497AD /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		6256BB4B2535550400C497AD /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
+		628B40D82536A4E000439485 /* CueAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueAudio.swift; sourceTree = "<group>"; };
+		62B57838253581AF00839A92 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +173,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6226914225358FD3003040C4 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6226913A25358FC4003040C4 /* AddButton.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		624594DD25359DB7006964A1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB0F2535550400C497AD /* CueDetailTrackDescriptionCell.swift */,
+				6256BB0D2535550400C497AD /* CueDetailTrackRemCell.swift */,
+				6256BB0E2535550400C497AD /* CueDetailTrackTimeCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		6256BAB52535549300C497AD = {
 			isa = PBXGroup;
 			children = (
@@ -209,12 +214,13 @@
 		6256BAC02535549300C497AD /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB2D2535550400C497AD /* ContentView.swift */,
-				6256BAF82535550400C497AD /* Cue Manage */,
-				6256BB202535550400C497AD /* File Manage */,
+				62B57838253581AF00839A92 /* Audio2Tag.entitlements */,
 				6256BB1A2535550400C497AD /* Resources */,
-				6256BAF52535550400C497AD /* Setting Manage */,
-				6256BB2E2535550400C497AD /* Tag Manage */,
+				6256BB2D2535550400C497AD /* ContentView.swift */,
+				6256BAF82535550400C497AD /* Cue */,
+				6256BB202535550400C497AD /* File */,
+				6256BAF52535550400C497AD /* Setting */,
+				6256BB2E2535550400C497AD /* Tag */,
 				6256BB232535550400C497AD /* UI Library */,
 				6256BAC12535549300C497AD /* Audio2TagApp.swift */,
 				6256BAC52535549400C497AD /* Assets.xcassets */,
@@ -250,12 +256,12 @@
 			path = Audio2TagUITests;
 			sourceTree = "<group>";
 		};
-		6256BAF52535550400C497AD /* Setting Manage */ = {
+		6256BAF52535550400C497AD /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				6256BAF62535550400C497AD /* View */,
 			);
-			path = "Setting Manage";
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		6256BAF62535550400C497AD /* View */ = {
@@ -266,13 +272,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		6256BAF82535550400C497AD /* Cue Manage */ = {
+		6256BAF82535550400C497AD /* Cue */ = {
 			isa = PBXGroup;
 			children = (
+				6256BB9A25357B8D00C497AD /* ViewModel */,
+				6256BB9925357B8900C497AD /* Model */,
+				6256BB9825357B8600C497AD /* View */,
 				6256BAF92535550400C497AD /* Library */,
-				6256BAFB2535550400C497AD /* Main */,
 			);
-			path = "Cue Manage";
+			path = Cue;
 			sourceTree = "<group>";
 		};
 		6256BAF92535550400C497AD /* Library */ = {
@@ -283,131 +291,20 @@
 			path = Library;
 			sourceTree = "<group>";
 		};
-		6256BAFB2535550400C497AD /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				6256BAFC2535550400C497AD /* CueMainViewModel.swift */,
-				6256BAFD2535550400C497AD /* Split Music */,
-				6256BB042535550400C497AD /* Info */,
-				6256BB182535550400C497AD /* CueMainModel.swift */,
-				6256BB192535550400C497AD /* CueMainView.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		6256BAFD2535550400C497AD /* Split Music */ = {
-			isa = PBXGroup;
-			children = (
-				6256BAFE2535550400C497AD /* SplitMusicModel.swift */,
-				6256BAFF2535550400C497AD /* macOS_SplitMusicView.swift */,
-				6256BB002535550400C497AD /* iOS_SplitMusicView.swift */,
-				6256BB012535550400C497AD /* Cell */,
-				6256BB032535550400C497AD /* Main */,
-			);
-			path = "Split Music";
-			sourceTree = "<group>";
-		};
-		6256BB012535550400C497AD /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB022535550400C497AD /* SplitMusicCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		6256BB032535550400C497AD /* Main */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		6256BB042535550400C497AD /* Info */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB052535550400C497AD /* Info */,
-				6256BB092535550400C497AD /* Detail Track */,
-				6256BB112535550400C497AD /* Navigation Bar Items */,
-				6256BB142535550400C497AD /* Main */,
-			);
-			path = Info;
-			sourceTree = "<group>";
-		};
-		6256BB052535550400C497AD /* Info */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB062535550400C497AD /* CueSheetListInfoView.swift */,
-				6256BB072535550400C497AD /* CueSheetListInfoViewModel.swift */,
-				6256BB082535550400C497AD /* Cell */,
-			);
-			path = Info;
-			sourceTree = "<group>";
-		};
-		6256BB082535550400C497AD /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		6256BB092535550400C497AD /* Detail Track */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */,
-				6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */,
-				6256BB0C2535550400C497AD /* Section */,
-				6256BB102535550400C497AD /* CueDetailTrackView.swift */,
-			);
-			path = "Detail Track";
-			sourceTree = "<group>";
-		};
-		6256BB0C2535550400C497AD /* Section */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB0D2535550400C497AD /* CueDetailListInfoRemSection.swift */,
-				6256BB0E2535550400C497AD /* CueDetailListInfoTimeSection.swift */,
-				6256BB0F2535550400C497AD /* CueDetailListInfoDescriptionSection.swift */,
-			);
-			path = Section;
-			sourceTree = "<group>";
-		};
-		6256BB112535550400C497AD /* Navigation Bar Items */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB122535550400C497AD /* CueInfoNavigationBarTrailling.swift */,
-				6256BB132535550400C497AD /* CueInfoNavigationBarLeading.swift */,
-			);
-			path = "Navigation Bar Items";
-			sourceTree = "<group>";
-		};
-		6256BB142535550400C497AD /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB152535550400C497AD /* CueSheetInfoView.swift */,
-				6256BB162535550400C497AD /* CueSheetInfoViewModel.swift */,
-				6256BB172535550400C497AD /* CueSheetInfoView+Extension.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
 		6256BB1A2535550400C497AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
-				6256BB1C2535550400C497AD /* MYTH&ROID - HYDRA.cue */,
 				6256BB1D2535550400C497AD /* cue.png */,
-				6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */,
-				6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		6256BB202535550400C497AD /* File Manage */ = {
+		6256BB202535550400C497AD /* File */ = {
 			isa = PBXGroup;
 			children = (
 				6256BB212535550400C497AD /* View */,
 			);
-			path = "File Manage";
+			path = File;
 			sourceTree = "<group>";
 		};
 		6256BB212535550400C497AD /* View */ = {
@@ -424,116 +321,29 @@
 				6256BB242535550400C497AD /* SearchView.swift */,
 				6256BB252535550400C497AD /* ActivityIndicator.swift */,
 				6256BB262535550400C497AD /* ImagePicker.swift */,
-				6256BB272535550400C497AD /* ProgressBar */,
 				6256BB292535550400C497AD /* CustomAlertView.swift */,
-				6256BB2A2535550400C497AD /* DocumentPicker */,
+				6256BB2C2535550400C497AD /* DocumentPicker.swift */,
 			);
 			path = "UI Library";
 			sourceTree = "<group>";
 		};
-		6256BB272535550400C497AD /* ProgressBar */ = {
+		6256BB2E2535550400C497AD /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB282535550400C497AD /* ProgressBar.swift */,
+				62E7C2B125386D8B0097F4C5 /* ViewModel */,
+				62E7C2B025386D870097F4C5 /* Model */,
+				62E7C2AF25386D820097F4C5 /* View */,
+				6256BB2F2535550400C497AD /* Library */,
 			);
-			path = ProgressBar;
+			path = Tag;
 			sourceTree = "<group>";
 		};
-		6256BB2A2535550400C497AD /* DocumentPicker */ = {
+		6256BB2F2535550400C497AD /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				6256BB2B2535550400C497AD /* macOS_DocumentPicker.swift */,
-				6256BB2C2535550400C497AD /* IOS_DocumentPicker.swift */,
+				6256BB3E2535550400C497AD /* Keyboard+Extension.swift */,
 			);
-			path = DocumentPicker;
-			sourceTree = "<group>";
-		};
-		6256BB2E2535550400C497AD /* Tag Manage */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB2F2535550400C497AD /* Main */,
-			);
-			path = "Tag Manage";
-			sourceTree = "<group>";
-		};
-		6256BB2F2535550400C497AD /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB302535550400C497AD /* TagModel.swift */,
-				6256BB312535550400C497AD /* Navigation */,
-				6256BB342535550400C497AD /* Tag List */,
-				6256BB372535550400C497AD /* Search */,
-				6256BB3F2535550400C497AD /* Tag Detail */,
-				6256BB4A2535550400C497AD /* TagView.swift */,
-				6256BB4B2535550400C497AD /* TagViewModel.swift */,
-			);
-			path = Main;
-			sourceTree = "<group>";
-		};
-		6256BB312535550400C497AD /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB322535550400C497AD /* TagNavigationLeadingView.swift */,
-				6256BB332535550400C497AD /* TagNavigationTraillingView.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		6256BB342535550400C497AD /* Tag List */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB352535550400C497AD /* TagListCellView.swift */,
-				6256BB362535550400C497AD /* TagListView.swift */,
-			);
-			path = "Tag List";
-			sourceTree = "<group>";
-		};
-		6256BB372535550400C497AD /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB382535550400C497AD /* Track */,
-				6256BB3B2535550400C497AD /* Album */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
-		6256BB382535550400C497AD /* Track */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB392535550400C497AD /* TagSearchTrackView.swift */,
-				6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */,
-			);
-			path = Track;
-			sourceTree = "<group>";
-		};
-		6256BB3B2535550400C497AD /* Album */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB3C2535550400C497AD /* TagSearchViewModel.swift */,
-				6256BB3D2535550400C497AD /* TagSearchView.swift */,
-				6256BB3E2535550400C497AD /* TagSearchView+Extension.swift */,
-			);
-			path = Album;
-			sourceTree = "<group>";
-		};
-		6256BB3F2535550400C497AD /* Tag Detail */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB402535550400C497AD /* TagFileDetailView.swift */,
-				6256BB412535550400C497AD /* TagFileDetailViewModel.swift */,
-				6256BB422535550400C497AD /* List */,
-				6256BB472535550400C497AD /* Sheet */,
-			);
-			path = "Tag Detail";
-			sourceTree = "<group>";
-		};
-		6256BB422535550400C497AD /* List */ = {
-			isa = PBXGroup;
-			children = (
-				6256BB432535550400C497AD /* Cell */,
-				6256BB462535550400C497AD /* TagFileDetailListView.swift */,
-			);
-			path = List;
+			path = Library;
 			sourceTree = "<group>";
 		};
 		6256BB432535550400C497AD /* Cell */ = {
@@ -552,6 +362,129 @@
 				6256BB492535550400C497AD /* TagFileDetailEditCustomAlertView.swift */,
 			);
 			path = Sheet;
+			sourceTree = "<group>";
+		};
+		6256BB9825357B8600C497AD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6226914225358FD3003040C4 /* Extension */,
+				6256BB192535550400C497AD /* CueView.swift */,
+				6256BBCF25357F3000C497AD /* CueSheet */,
+				6256BBD325357F3B00C497AD /* CueSplit */,
+				6256BB122535550400C497AD /* CueSheetNavigationBarTrailling.swift */,
+				6256BB132535550400C497AD /* CueSheetNavigationBarLeading.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6256BB9925357B8900C497AD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB182535550400C497AD /* CueMainModel.swift */,
+				628B40D82536A4E000439485 /* CueAudio.swift */,
+				6256BAFE2535550400C497AD /* SplitMusicModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6256BB9A25357B8D00C497AD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6256BAFC2535550400C497AD /* CueViewModel.swift */,
+				6256BB072535550400C497AD /* CueSheetListViewModel.swift */,
+				6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */,
+				6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */,
+				6256BB162535550400C497AD /* CueSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6256BBCF25357F3000C497AD /* CueSheet */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB152535550400C497AD /* CueSheetView.swift */,
+				6256BB062535550400C497AD /* CueSheetListView.swift */,
+				62B578542535867300839A92 /* Detail */,
+			);
+			path = CueSheet;
+			sourceTree = "<group>";
+		};
+		6256BBD325357F3B00C497AD /* CueSplit */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB002535550400C497AD /* CueSplitView.swift */,
+				6256BB022535550400C497AD /* CueSplitCellView.swift */,
+			);
+			path = CueSplit;
+			sourceTree = "<group>";
+		};
+		62B578542535867300839A92 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				624594DD25359DB7006964A1 /* Cell */,
+				6256BB102535550400C497AD /* CueDetailTrackView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		62E7C2AF25386D820097F4C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				62E7C2B725386E940097F4C5 /* List */,
+				62E7C2B225386E0A0097F4C5 /* Search */,
+				6256BB4A2535550400C497AD /* TagView.swift */,
+				6256BB332535550400C497AD /* TagNavigationTraillingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		62E7C2B025386D870097F4C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB302535550400C497AD /* TagModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		62E7C2B125386D8B0097F4C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB4B2535550400C497AD /* TagViewModel.swift */,
+				6256BB3A2535550400C497AD /* TagSearchTrackViewModel.swift */,
+				6256BB3C2535550400C497AD /* TagSearchViewModel.swift */,
+				6256BB412535550400C497AD /* TagFileDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		62E7C2B225386E0A0097F4C5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB392535550400C497AD /* TagSearchTrackView.swift */,
+				6256BB3D2535550400C497AD /* TagSearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		62E7C2B725386E940097F4C5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB362535550400C497AD /* TagListView.swift */,
+				6256BB352535550400C497AD /* TagListCellView.swift */,
+				62E7C2B825386EA40097F4C5 /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		62E7C2B825386EA40097F4C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6256BB402535550400C497AD /* TagFileDetailView.swift */,
+				6256BB462535550400C497AD /* TagFileDetailListView.swift */,
+				6256BB472535550400C497AD /* Sheet */,
+				6256BB432535550400C497AD /* Cell */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -668,12 +601,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6256BB642535550500C497AD /* cue.png in Resources */,
-				6256BB662535550500C497AD /* RADWIMPS - 君の名は。.cue in Resources */,
-				6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
-				6256BB652535550500C497AD /* Faithless - Live in Berlin.cue in Resources */,
 				6256BAC92535549400C497AD /* Preview Assets.xcassets in Resources */,
 				6256BAC62535549400C497AD /* Assets.xcassets in Resources */,
-				6256BB632535550400C497AD /* MYTH&ROID - HYDRA.cue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,57 +627,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6256BB5E2535550400C497AD /* CueSheetInfoViewModel.swift in Sources */,
+				6256BB5E2535550400C497AD /* CueSheetViewModel.swift in Sources */,
 				6256BB772535550500C497AD /* TagSearchViewModel.swift in Sources */,
 				6256BAC22535549300C497AD /* Audio2TagApp.swift in Sources */,
 				6256BB6F2535550500C497AD /* ContentView.swift in Sources */,
 				6256BB762535550500C497AD /* TagSearchTrackViewModel.swift in Sources */,
-				6256BB512535550400C497AD /* iOS_SplitMusicView.swift in Sources */,
+				6256BB512535550400C497AD /* CueSplitView.swift in Sources */,
 				6256BB7E2535550500C497AD /* TagFileDetailListView.swift in Sources */,
 				6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */,
-				6256BB5B2535550400C497AD /* CueInfoNavigationBarTrailling.swift in Sources */,
-				6256BB712535550500C497AD /* TagNavigationLeadingView.swift in Sources */,
+				6256BB5B2535550400C497AD /* CueSheetNavigationBarTrailling.swift in Sources */,
 				6256BB732535550500C497AD /* TagListCellView.swift in Sources */,
 				6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */,
-				6256BB6B2535550500C497AD /* ProgressBar.swift in Sources */,
 				6256BB782535550500C497AD /* TagSearchView.swift in Sources */,
-				6256BB6E2535550500C497AD /* IOS_DocumentPicker.swift in Sources */,
+				6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */,
 				6256BB4F2535550400C497AD /* SplitMusicModel.swift in Sources */,
-				6256BB612535550400C497AD /* CueMainView.swift in Sources */,
+				6226913B25358FC4003040C4 /* AddButton.swift in Sources */,
+				6256BB612535550400C497AD /* CueView.swift in Sources */,
 				6256BB752535550500C497AD /* TagSearchTrackView.swift in Sources */,
 				6256BB7F2535550500C497AD /* TagFileDetailCustomAlertView.swift in Sources */,
 				6256BB5A2535550400C497AD /* CueDetailTrackView.swift in Sources */,
 				6256BB702535550500C497AD /* TagModel.swift in Sources */,
-				6256BB532535550400C497AD /* CueSheetListInfoView.swift in Sources */,
-				6256BB572535550400C497AD /* CueDetailListInfoRemSection.swift in Sources */,
+				6256BB532535550400C497AD /* CueSheetListView.swift in Sources */,
+				6256BB572535550400C497AD /* CueDetailTrackRemCell.swift in Sources */,
 				6256BB4C2535550400C497AD /* SettingView.swift in Sources */,
 				6256BB7A2535550500C497AD /* TagFileDetailView.swift in Sources */,
-				6256BB5F2535550400C497AD /* CueSheetInfoView+Extension.swift in Sources */,
-				6256BB792535550500C497AD /* TagSearchView+Extension.swift in Sources */,
-				6256BB522535550400C497AD /* SplitMusicCell.swift in Sources */,
+				6256BB792535550500C497AD /* Keyboard+Extension.swift in Sources */,
+				6256BB522535550400C497AD /* CueSplitCellView.swift in Sources */,
 				6256BB7D2535550500C497AD /* TagFileDetailListTextCell.swift in Sources */,
 				6256BB742535550500C497AD /* TagListView.swift in Sources */,
 				6256BB672535550500C497AD /* FileView.swift in Sources */,
 				6256BB812535550500C497AD /* TagView.swift in Sources */,
-				6256BB582535550400C497AD /* CueDetailListInfoTimeSection.swift in Sources */,
+				6256BB582535550400C497AD /* CueDetailTrackTimeCell.swift in Sources */,
+				628B40D92536A4E000439485 /* CueAudio.swift in Sources */,
 				6256BB802535550500C497AD /* TagFileDetailEditCustomAlertView.swift in Sources */,
 				6256BB4D2535550400C497AD /* AVAudioSpliter.swift in Sources */,
 				6256BB7C2535550500C497AD /* TagFileDetailListImageCell.swift in Sources */,
 				6256BB682535550500C497AD /* SearchView.swift in Sources */,
 				6256BB6C2535550500C497AD /* CustomAlertView.swift in Sources */,
 				6256BB822535550500C497AD /* TagViewModel.swift in Sources */,
-				6256BB6D2535550500C497AD /* macOS_DocumentPicker.swift in Sources */,
 				6256BB552535550400C497AD /* CueDetailTrackViewModel.swift in Sources */,
-				6256BB5D2535550400C497AD /* CueSheetInfoView.swift in Sources */,
-				6256BB4E2535550400C497AD /* CueMainViewModel.swift in Sources */,
+				6256BB5D2535550400C497AD /* CueSheetView.swift in Sources */,
+				6256BB4E2535550400C497AD /* CueViewModel.swift in Sources */,
 				6256BB722535550500C497AD /* TagNavigationTraillingView.swift in Sources */,
 				6256BB562535550400C497AD /* CueDetailTrackView+Extension.swift in Sources */,
 				6256BB7B2535550500C497AD /* TagFileDetailViewModel.swift in Sources */,
-				6256BB5C2535550400C497AD /* CueInfoNavigationBarLeading.swift in Sources */,
-				6256BB592535550400C497AD /* CueDetailListInfoDescriptionSection.swift in Sources */,
-				6256BB542535550400C497AD /* CueSheetListInfoViewModel.swift in Sources */,
+				6256BB5C2535550400C497AD /* CueSheetNavigationBarLeading.swift in Sources */,
+				6256BB592535550400C497AD /* CueDetailTrackDescriptionCell.swift in Sources */,
+				6256BB542535550400C497AD /* CueSheetListViewModel.swift in Sources */,
 				6256BB602535550400C497AD /* CueMainModel.swift in Sources */,
-				6256BB502535550400C497AD /* macOS_SplitMusicView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +761,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -890,7 +816,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -905,18 +831,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Audio2Tag/Audio2Tag.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Audio2Tag/Preview Content\"";
 				DEVELOPMENT_TEAM = 5Q488G86T2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Audio2Tag/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -927,18 +855,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Audio2Tag/Audio2Tag.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Audio2Tag/Preview Content\"";
 				DEVELOPMENT_TEAM = 5Q488G86T2;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Audio2Tag/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aoikazto.Audio2Tag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
