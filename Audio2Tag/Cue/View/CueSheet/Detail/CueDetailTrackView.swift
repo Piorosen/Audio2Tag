@@ -8,6 +8,17 @@
 
 import SwiftUI
 
+enum CueDetailTrack : Identifiable {
+    var id: Int {
+        return self.hashValue
+    }
+    
+    case AddRem
+    case EditRem
+    case EditTime
+    case EditDescription
+}
+
 
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
@@ -15,6 +26,9 @@ struct CueDetailTrackView: View {
     @State var key = String()
     @State var value = String()
     @State var openSheet = false
+    @State var openAlert = false
+    @State var alertType: CueDetailTrack? = nil
+    
     
     // MARK: - 이벤트
     var changeMeta = { (_:[MetaModel]) in }
@@ -39,15 +53,37 @@ struct CueDetailTrackView: View {
     
     // MARK: - View
     var body: some View {
-        List {
-            CueDetailTrackDescriptionCell(track: viewModel.item)
-            CueDetailTrackRemCell(rem: viewModel.rem)
-            CueDetailTrackTimeCell(startTime: viewModel.startTime
-                                         , endTime: viewModel.endTime
-                                         , waitTime: viewModel.waitTime
-                                         , durationTime: viewModel.durTime)
+        ZStack {
+            List {
+                CueDetailTrackDescriptionCell(track: viewModel.item)
+                CueDetailTrackRemCell(rem: $viewModel.rem)
+                    .onRequestAddRem {
+                        openAlert = true
+                    }.onRequestEditRem { idx, rem in
+                        print("edit")
+                    }
+                CueDetailTrackTimeCell(startTime: viewModel.startTime
+                                       , endTime: viewModel.endTime
+                                       , waitTime: viewModel.waitTime
+                                       , durationTime: viewModel.durTime)
+                
+                
+            }
+            .navigationBarTitle("Track Info")
+            .sheet(isPresented: $openSheet, content: makeSheet)
+            
+            CustomAlertView(isPresent: $openAlert, title: "Rem 추가", state: .okCancel) {
+                VStack(alignment: .leading) {
+                    Text("제목")
+                    TextField("hint", text: $key)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text("내용")
+                    TextField("hint", text: $value)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }.padding()
+            }.onOk {
+                viewModel.rem.append(RemModel(value: (key, value)))
+            }
         }
-        .navigationBarTitle("Track Info")
-        .sheet(isPresented: $openSheet, content: makeSheet)
     }
 }

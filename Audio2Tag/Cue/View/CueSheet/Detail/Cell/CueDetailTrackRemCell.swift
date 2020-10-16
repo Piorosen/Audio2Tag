@@ -9,91 +9,61 @@
 import SwiftUI
 
 class CueDetailTrackRemCellViewModel : ObservableObject {
-    @State var openSheet = false
+    @Binding var rem: [RemModel]
+    @Published var openAlert = false
     
-    @State var sheetKey = ""
-    @State var sheetValue = ""
+    var addRem: () -> Void = { }
+    var editRem: (_ idx:Int, _ rem:RemModel) -> Void = { _, _ in }
     
-    private var _rem = [RemModel]()
-    var remChanged = { (_:[RemModel]) -> Void in }
-    
-    var rem: [RemModel] {
-        get {
-            return _rem
-        }
-        set {
-            _rem = newValue
-            remChanged(newValue)
-        }
+    init(rem: Binding<[RemModel]>) {
+        self._rem = rem
     }
     
-    init(_ rem: [RemModel]) {
-        self.rem = rem
-    }
     
-    func add() {
-        rem.append(RemModel(value: (sheetKey, sheetValue)))
-    }
     
     
 }
 
 struct CueDetailTrackRemCell: View {
     @ObservedObject var viewModel: CueDetailTrackRemCellViewModel
+    @State var key = ""
+    @State var value = ""
     
-    init(rem: [RemModel]) {
-        viewModel = CueDetailTrackRemCellViewModel(rem)
+    init(rem: Binding<[RemModel]>) {
+        viewModel = CueDetailTrackRemCellViewModel(rem: rem)
     }
-    
-    func makeSheet() -> some View {
-        NavigationView {
-            VStack {
-                GroupBox {
-                    VStack(alignment: .leading) {
-                        Text("Key 값")
-                        TextField("Key 값", text: $viewModel.sheetKey)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                }
-                GroupBox {
-                    VStack(alignment: .leading) {
-                        Text("Value 값")
-                        TextField("Value 값", text: $viewModel.sheetValue)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                }
-                Spacer()
-            }
-            .padding()
-            .navigationTitle("Rem 추가")
-        }.onDisappear(perform: viewModel.add)
-    }
-    
     
     // MARK: - Handler
     
-    
-    func onRemChanged(_ action: @escaping ([RemModel]) -> Void) -> CueDetailTrackRemCell {
+    func onRequestAddRem(_ action: @escaping () -> Void) -> CueDetailTrackRemCell {
         let copy = self
-        copy.viewModel.remChanged = action
+        copy.viewModel.addRem = action
         return copy
     }
-    
+    func onRequestEditRem(_ action: @escaping (_ idx:Int, _ rem:RemModel) -> Void) -> CueDetailTrackRemCell {
+        let copy = self
+        copy.viewModel.editRem = action
+        return copy
+    }
     
     // MARK: - BODY
     var body: some View {
         Section(header: Text("Rem")) {
-            ForEach (self.viewModel.rem) { item in
-                HStack {
-                    Text("\(item.value.key)")
-                    Spacer()
-                    Text("\(item.value.value)")
+            ForEach (self.viewModel.rem.indices) { idx in
+                Button(action: {
+                    viewModel.editRem(idx, viewModel.rem[idx])
+                }) {
+                    HStack {
+                        Text("\(viewModel.rem[idx].value.key)")
+                        Spacer()
+                        Text("\(viewModel.rem[idx].value.value)")
+                    }
                 }
             }
             AddButton("REM 추가") {
-                viewModel.openSheet = true
+                viewModel.openAlert = true
+                viewModel.addRem()
             }
         }
-        .alert(isPresented: $viewModel.openSheet) { Alert(title: Text("미구현 데이터 입니다")) }
     }
 }

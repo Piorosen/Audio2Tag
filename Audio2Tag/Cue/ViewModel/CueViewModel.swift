@@ -56,8 +56,7 @@ class CueViewModel : ObservableObject {
                     }
                 }
             }
-        }
-        
+        }   
     }
     
     func musicOfSplit(url: URL, sheet:CueSheetModel) -> [URL]? {
