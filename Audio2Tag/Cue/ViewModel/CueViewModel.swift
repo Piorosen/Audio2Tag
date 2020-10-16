@@ -43,25 +43,30 @@ class CueViewModel : ObservableObject {
         if let _ = p {
             _ = musicOfSplit(url: url, sheet: sheet)
         }else {
-            openAlert = true
-            sem = DispatchSemaphore(value: 0)
-            sem.wait()
-            
-            
-            if request {
-                _ = musicOfSplit(url: url, sheet: sheet)
+            DispatchQueue.global().async {
+                self.sem = DispatchSemaphore(value: 0)
+                DispatchQueue.main.async {
+                    self.openAlert = true
+                }
+                
+                self.sem.wait()
+                if self.request {
+                    DispatchQueue.main.sync {
+                        _ = self.musicOfSplit(url: url, sheet: sheet)
+                    }
+                }
             }
         }
         
     }
     
-    func musicOfSplit(url: URL, sheet:CueSheetModel) -> Bool {
+    func musicOfSplit(url: URL, sheet:CueSheetModel) -> [URL]? {
         // 1번 더 체크 함.
         guard let musicUrl = sheet.musicUrl else {
-            return false
+            return nil
         }
         guard let cueSheet = sheet.cueSheet else {
-            return false
+            return nil
         }
         
         isShowing = true
@@ -100,6 +105,9 @@ class CueViewModel : ObservableObject {
             }
         }
         
-        return true
+        return data.map { $0.0 }
     }
+    
+    
+    
 }

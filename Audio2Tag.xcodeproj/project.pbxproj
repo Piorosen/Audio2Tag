@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6226913B25358FC4003040C4 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6226913A25358FC4003040C4 /* AddButton.swift */; };
-		624594E525359F42006964A1 /* MYTH&ROID - HYDRA 2.cue in Resources */ = {isa = PBXBuildFile; fileRef = 624594E425359F42006964A1 /* MYTH&ROID - HYDRA 2.cue */; };
 		6256BAC22535549300C497AD /* Audio2TagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BAC12535549300C497AD /* Audio2TagApp.swift */; };
 		6256BAC62535549400C497AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6256BAC52535549400C497AD /* Assets.xcassets */; };
 		6256BAC92535549400C497AD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6256BAC82535549400C497AD /* Preview Assets.xcassets */; };
@@ -34,10 +33,7 @@
 		6256BB5E2535550400C497AD /* CueSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB162535550400C497AD /* CueSheetViewModel.swift */; };
 		6256BB602535550400C497AD /* CueMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB182535550400C497AD /* CueMainModel.swift */; };
 		6256BB612535550400C497AD /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB192535550400C497AD /* CueView.swift */; };
-		6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */; };
 		6256BB642535550500C497AD /* cue.png in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1D2535550400C497AD /* cue.png */; };
-		6256BB652535550500C497AD /* Faithless - Live in Berlin.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */; };
-		6256BB662535550500C497AD /* RADWIMPS - 君の名は。.cue in Resources */ = {isa = PBXBuildFile; fileRef = 6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */; };
 		6256BB672535550500C497AD /* FileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB222535550400C497AD /* FileView.swift */; };
 		6256BB682535550500C497AD /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB242535550400C497AD /* SearchView.swift */; };
 		6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB252535550400C497AD /* ActivityIndicator.swift */; };
@@ -67,7 +63,6 @@
 		6256BB8E253558A000C497AD /* ID3TagEditor in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB8D253558A000C497AD /* ID3TagEditor */; };
 		6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */ = {isa = PBXBuildFile; productRef = 6256BB93253558D200C497AD /* SwiftVgmdb */; };
 		628B40D92536A4E000439485 /* CueAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628B40D82536A4E000439485 /* CueAudio.swift */; };
-		62B57846253583E100839A92 /* MYTH&ROID - HYDRA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +84,6 @@
 
 /* Begin PBXFileReference section */
 		6226913A25358FC4003040C4 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
-		624594E425359F42006964A1 /* MYTH&ROID - HYDRA 2.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MYTH&ROID - HYDRA 2.cue"; sourceTree = "<group>"; };
 		6256BABE2535549300C497AD /* Audio2Tag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Audio2Tag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6256BAC12535549300C497AD /* Audio2TagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio2TagApp.swift; sourceTree = "<group>"; };
 		6256BAC52535549400C497AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,10 +115,7 @@
 		6256BB162535550400C497AD /* CueSheetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetViewModel.swift; sourceTree = "<group>"; };
 		6256BB182535550400C497AD /* CueMainModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueMainModel.swift; sourceTree = "<group>"; };
 		6256BB192535550400C497AD /* CueView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
-		6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue"; sourceTree = "<group>"; };
 		6256BB1D2535550400C497AD /* cue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cue.png; sourceTree = "<group>"; };
-		6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Faithless - Live in Berlin.cue"; sourceTree = "<group>"; };
-		6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "RADWIMPS - 君の名は。.cue"; sourceTree = "<group>"; };
 		6256BB222535550400C497AD /* FileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileView.swift; sourceTree = "<group>"; };
 		6256BB242535550400C497AD /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		6256BB252535550400C497AD /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -152,7 +143,6 @@
 		6256BB4B2535550400C497AD /* TagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagViewModel.swift; sourceTree = "<group>"; };
 		628B40D82536A4E000439485 /* CueAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueAudio.swift; sourceTree = "<group>"; };
 		62B57838253581AF00839A92 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
-		62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "MYTH&ROID - HYDRA.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,12 +294,7 @@
 		6256BB1A2535550400C497AD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				62B57845253583E100839A92 /* MYTH&ROID - HYDRA.wav */,
-				6256BB1B2535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue */,
 				6256BB1D2535550400C497AD /* cue.png */,
-				6256BB1E2535550400C497AD /* Faithless - Live in Berlin.cue */,
-				624594E425359F42006964A1 /* MYTH&ROID - HYDRA 2.cue */,
-				6256BB1F2535550400C497AD /* RADWIMPS - 君の名は。.cue */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -616,13 +601,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6256BB642535550500C497AD /* cue.png in Resources */,
-				6256BB662535550500C497AD /* RADWIMPS - 君の名は。.cue in Resources */,
-				6256BB622535550400C497AD /* 3年E組うた担(渚&茅野&業&磯貝&前原)  - QUESTION.cue in Resources */,
-				6256BB652535550500C497AD /* Faithless - Live in Berlin.cue in Resources */,
-				62B57846253583E100839A92 /* MYTH&ROID - HYDRA.wav in Resources */,
 				6256BAC92535549400C497AD /* Preview Assets.xcassets in Resources */,
 				6256BAC62535549400C497AD /* Assets.xcassets in Resources */,
-				624594E525359F42006964A1 /* MYTH&ROID - HYDRA 2.cue in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
