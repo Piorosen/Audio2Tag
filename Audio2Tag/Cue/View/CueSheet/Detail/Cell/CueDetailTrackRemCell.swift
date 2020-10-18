@@ -61,7 +61,6 @@ struct CueDetailTrackRemCell: View {
                 }
             }
             AddButton("REM 추가") {
-                viewModel.openAlert = true
                 viewModel.addRem()
             }
         }

@@ -48,13 +48,13 @@ struct TagFileDetailView: View {
                         })
                 
             
-            CustomAlertView(isPresent: $viewModel.openCustomAlert, title: "추가 태그 선택", state: .cancel) {
+            CustomAlertView(isPresent: $viewModel.openCustomAlert, title: "추가 태그 선택") {
                 TagFileDetailCustomAlertView(tag: $viewModel.addableTag)
                     .onSelectedTag(viewModel.tagAddRequest)
             }
-            CustomAlertView(isPresent: $viewModel.openCustomEditAlert, title: "태그 편집", state: .okCancel) {
+            CustomAlertView(isPresent: $viewModel.openCustomEditAlert, title: "태그 편집", ok: viewModel.editTag) {
                 TagFileDetailEditCustomAlertView(title: viewModel.selectTitle, hint: viewModel.selectHint, text: $viewModel.selectText)
-            }.onOk(viewModel.editTag)
+            }
         }.alert(isPresented: $viewModel.openAlert, content: makeAlert)
     }
 }
