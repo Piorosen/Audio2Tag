@@ -72,7 +72,9 @@ struct CueDetailTrackView: View {
             .navigationBarTitle("Track Info")
             .sheet(isPresented: $openSheet, content: makeSheet)
             
-            CustomAlertView(isPresent: $openAlert, title: "Rem 추가", state: .okCancel) {
+            CustomAlertView(isPresent: $openAlert, title: "Rem 추가", ok: {
+                viewModel.rem.append(RemModel(value: (key, value)))
+            }) {
                 VStack(alignment: .leading) {
                     Text("제목")
                     TextField("hint", text: $key)
@@ -81,8 +83,6 @@ struct CueDetailTrackView: View {
                     TextField("hint", text: $value)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
-            }.onOk {
-                viewModel.rem.append(RemModel(value: (key, value)))
             }
         }
     }
