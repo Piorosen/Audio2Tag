@@ -23,6 +23,8 @@ extension Double {
 class CueDetailTrackViewModel : ObservableObject {
     @Binding var item: TrackModel
     @Published var rem: [RemModel]
+    @Published var key = String()
+    @Published var value = String()
     
     let startTime: String
     let endTime:String
@@ -53,17 +55,28 @@ class CueDetailTrackViewModel : ObservableObject {
         }
     }
     
-    var passData: (TrackModel) -> Void = { _ in }
-    
-    func onDisappear() {
-        item.track.rem = self.rem.reduce([String:String](), { result, item in
-            var dic = result
-            dic[item.value.key] = item.value.value
-            return dic
-        })
-        
-        passData(item)
-        
+    func editDescription(type: CueDetailTrackDescription?) {
+        if let type = type, value != "" {
+            switch type {
+            case .title:
+                item.track.title = value
+                print("\(value)")
+            case .trackNum:
+                item.track.trackNum = Int(value) ?? -1
+                
+            case .isrc:
+                item.track.isrc = value
+                
+            case .performer:
+                item.track.performer = value
+                
+            case .trackType:
+                item.track.trackType = value
+                
+            case .songWriter:
+                item.track.songWriter = value
+            }
+        }
     }
     
 }

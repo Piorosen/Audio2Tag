@@ -22,7 +22,6 @@
 		6256BB532535550400C497AD /* CueSheetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB062535550400C497AD /* CueSheetListView.swift */; };
 		6256BB542535550400C497AD /* CueSheetListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB072535550400C497AD /* CueSheetListViewModel.swift */; };
 		6256BB552535550400C497AD /* CueDetailTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */; };
-		6256BB562535550400C497AD /* CueDetailTrackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */; };
 		6256BB572535550400C497AD /* CueDetailTrackRemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0D2535550400C497AD /* CueDetailTrackRemCell.swift */; };
 		6256BB582535550400C497AD /* CueDetailTrackTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0E2535550400C497AD /* CueDetailTrackTimeCell.swift */; };
 		6256BB592535550400C497AD /* CueDetailTrackDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6256BB0F2535550400C497AD /* CueDetailTrackDescriptionCell.swift */; };
@@ -104,7 +103,6 @@
 		6256BB062535550400C497AD /* CueSheetListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListView.swift; sourceTree = "<group>"; };
 		6256BB072535550400C497AD /* CueSheetListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueSheetListViewModel.swift; sourceTree = "<group>"; };
 		6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackViewModel.swift; sourceTree = "<group>"; };
-		6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CueDetailTrackView+Extension.swift"; sourceTree = "<group>"; };
 		6256BB0D2535550400C497AD /* CueDetailTrackRemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackRemCell.swift; sourceTree = "<group>"; };
 		6256BB0E2535550400C497AD /* CueDetailTrackTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackTimeCell.swift; sourceTree = "<group>"; };
 		6256BB0F2535550400C497AD /* CueDetailTrackDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CueDetailTrackDescriptionCell.swift; sourceTree = "<group>"; };
@@ -393,7 +391,6 @@
 				6256BAFC2535550400C497AD /* CueViewModel.swift */,
 				6256BB072535550400C497AD /* CueSheetListViewModel.swift */,
 				6256BB0A2535550400C497AD /* CueDetailTrackViewModel.swift */,
-				6256BB0B2535550400C497AD /* CueDetailTrackView+Extension.swift */,
 				6256BB162535550400C497AD /* CueSheetViewModel.swift */,
 			);
 			path = ViewModel;
@@ -669,7 +666,6 @@
 				6256BB5D2535550400C497AD /* CueSheetView.swift in Sources */,
 				6256BB4E2535550400C497AD /* CueViewModel.swift in Sources */,
 				6256BB722535550500C497AD /* TagNavigationTraillingView.swift in Sources */,
-				6256BB562535550400C497AD /* CueDetailTrackView+Extension.swift in Sources */,
 				6256BB7B2535550500C497AD /* TagFileDetailViewModel.swift in Sources */,
 				6256BB5C2535550400C497AD /* CueSheetNavigationBarLeading.swift in Sources */,
 				6256BB592535550400C497AD /* CueDetailTrackDescriptionCell.swift in Sources */,

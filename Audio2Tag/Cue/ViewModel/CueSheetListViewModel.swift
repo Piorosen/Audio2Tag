@@ -87,6 +87,7 @@ class CueSheetListViewModel : ObservableObject {
         }
     }
     
+    
     // MARK: - 초기화 코드
     init(_ fileInfo: Binding<CueSheetModel>) {
         self._fileInfo = fileInfo

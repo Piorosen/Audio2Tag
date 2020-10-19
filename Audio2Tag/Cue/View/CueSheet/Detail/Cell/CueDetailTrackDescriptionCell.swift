@@ -7,15 +7,35 @@
 //
 
 import SwiftUI
+import SwiftCueSheet
+
+enum CueDetailTrackDescription : Identifiable {
+    var id: Int {
+        self.hashValue
+    }
+    
+    case title
+    case trackNum
+    case isrc
+    case performer
+    case trackType
+    case songWriter
+}
 
 struct CueDetailTrackDescriptionCell: View {
-    var track: TrackModel
-    @State var openAlert = false
+    @Binding var track: TrackModel
+    
+    var edit: (CueDetailTrackDescription) -> Void = { _ in }
+    func onEdit(_ action: @escaping (CueDetailTrackDescription) -> Void) -> CueDetailTrackDescriptionCell {
+        var copy = self
+        copy.edit = action
+        return copy
+    }
     
     var body: some View {
         Section(header: Text("Description")) {
             Button(action: {
-                openAlert = true
+                edit(.title)
             }) {
                 HStack {
                     Text("Title")
@@ -24,7 +44,7 @@ struct CueDetailTrackDescriptionCell: View {
                 }
             }
             Button(action: {
-                openAlert = true
+                edit(.trackNum)
             }) {
                 HStack {
                     Text("Track Num")
@@ -33,7 +53,7 @@ struct CueDetailTrackDescriptionCell: View {
                 }
             }
             Button(action: {
-                openAlert = true
+                edit(.isrc)
             }) {
                 HStack {
                     Text("ISRC")
@@ -42,7 +62,7 @@ struct CueDetailTrackDescriptionCell: View {
                 }
             }
             Button(action: {
-                openAlert = true
+                edit(.performer)
             }) {
                 HStack {
                     Text("Performer")
@@ -51,7 +71,7 @@ struct CueDetailTrackDescriptionCell: View {
                 }
             }
             Button(action: {
-                openAlert = true
+                edit(.trackType)
             }) {
                 HStack {
                     Text("Track Type")
@@ -60,7 +80,7 @@ struct CueDetailTrackDescriptionCell: View {
                 }
             }
             Button(action: {
-                openAlert = true
+                edit(.songWriter)
             }) {
                 HStack {
                     Text("Song Writer")
@@ -68,11 +88,6 @@ struct CueDetailTrackDescriptionCell: View {
                     Text("\(track.track.songWriter)")
                 }
             }
-            
-            
-            
-            
-            
         }
     }
 }

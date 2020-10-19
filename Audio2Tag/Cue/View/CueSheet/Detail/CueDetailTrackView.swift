@@ -23,13 +23,12 @@ enum CueDetailTrack : Identifiable {
 struct CueDetailTrackView: View {
     @ObservedObject var viewModel: CueDetailTrackViewModel
     //    @State var sheetType = CueSheetChangeType.None
-    @State var key = String()
-    @State var value = String()
-    @State var openSheet = false
+    
+    @State var descType: CueDetailTrackDescription?
     @State var openAlert = false
     @State var alertType: CueDetailTrack? = nil
     
-
+    
     init(_ item: Binding<TrackModel>) {
         viewModel = CueDetailTrackViewModel(items: item)
     }
@@ -38,16 +37,23 @@ struct CueDetailTrackView: View {
     var body: some View {
         ZStack {
             List {
-                CueDetailTrackDescriptionCell(track: viewModel.item)
+                CueDetailTrackDescriptionCell(track: $viewModel.item)
+                    .onEdit { item in
+                        self.viewModel.value = ""
+                        descType = item
+                        openAlert = false
+                    }
                 CueDetailTrackRemCell(rem: $viewModel.rem)
                     .onRequestAddRem {
-                        self.key = ""
-                        self.value = ""
+                        self.viewModel.key = ""
+                        self.viewModel.value = ""
+                        descType = nil
                         openAlert = true
                     }.onRequestEditRem { idx, rem in
-                        self.key = viewModel.rem[idx].value.key
-                        self.key = viewModel.rem[idx].value.value
-                        openAlert = true   
+                        self.viewModel.key = viewModel.rem[idx].value.key
+                        self.viewModel.value = viewModel.rem[idx].value.value
+                        descType = nil
+                        openAlert = true
                     }
                 CueDetailTrackTimeCell(startTime: viewModel.startTime
                                        , endTime: viewModel.endTime
@@ -55,17 +61,28 @@ struct CueDetailTrackView: View {
                                        , durationTime: viewModel.durTime)
             }
             .navigationBarTitle("Track Info")
-            .sheet(isPresented: $openSheet, content: makeSheet)
+            
             
             CustomAlertView(isPresent: $openAlert, title: "Rem 추가", ok: {
-                viewModel.rem.append(RemModel(value: (key, value)))
+                if viewModel.key != "" && viewModel.value != "" {
+                    viewModel.rem.append(RemModel(value: (viewModel.key, viewModel.value)))
+                }
             }) {
                 VStack(alignment: .leading) {
                     Text("제목")
-                    TextField("hint", text: $key)
+                    TextField("", text: $viewModel.key)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text("내용")
-                    TextField("hint", text: $value)
+                    TextField("", text: $viewModel.value)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }.padding()
+            }
+            CustomAlertView(item: $descType, title: "Desc 수정", ok: {
+                viewModel.editDescription(type: descType)
+            }) { _ in
+                VStack(alignment: .leading) {
+                    Text("내용")
+                    TextField("", text: $viewModel.value)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
             }
