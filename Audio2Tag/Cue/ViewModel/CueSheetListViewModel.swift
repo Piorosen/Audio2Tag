@@ -22,7 +22,7 @@ enum CueSheetList : Identifiable {
 
 
 class CueSheetListViewModel : ObservableObject {
-    @Binding private  var fileInfo: CueSheetModel
+    @Binding var fileInfo: CueSheetModel
     
     @Published var sheetType: CueSheetList? = nil
     
@@ -51,7 +51,6 @@ class CueSheetListViewModel : ObservableObject {
     var title: String {
         get { return fileInfo.cueSheet?.file.fileName ?? "" }
     }
-    
     
     // MARK: - View의 이벤트 처리 함수
     

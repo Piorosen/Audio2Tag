@@ -81,11 +81,6 @@ struct CueSheetView: View {
     var body: some View {
         NavigationView {
             CueSheetListView(fileInfo: self.$viewModel.cueSheetModel)
-                .onChangedRem { r in
-                    viewModel.cueSheetModel.rem = r
-                }.onChangedMeta { m in
-                    viewModel.cueSheetModel.meta = m
-                }
                 .navigationBarTitle("Cue Info")
                 .navigationBarItems(
                     leading:

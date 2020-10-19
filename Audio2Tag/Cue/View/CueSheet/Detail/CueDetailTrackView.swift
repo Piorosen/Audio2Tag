@@ -29,25 +29,8 @@ struct CueDetailTrackView: View {
     @State var openAlert = false
     @State var alertType: CueDetailTrack? = nil
     
-    
-    // MARK: - 이벤트
-    var changeMeta = { (_:[MetaModel]) in }
-    var changeRem = { (_:[RemModel]) in }
-    
-    // MARK: - 이벤트 처리하는 함수
-    func onChangedMeta(action: @escaping ([MetaModel]) -> Void) -> CueDetailTrackView {
-        var copy = self
-        copy.changeMeta = action
-        return copy
-    }
-    
-    func onChangedRem(action: @escaping ([RemModel]) -> Void) -> CueDetailTrackView {
-        var copy = self
-        copy.changeRem = action
-        return copy
-    }
-    
-    init(_ item: TrackModel) {
+
+    init(_ item: Binding<TrackModel>) {
         viewModel = CueDetailTrackViewModel(items: item)
     }
     
@@ -58,16 +41,18 @@ struct CueDetailTrackView: View {
                 CueDetailTrackDescriptionCell(track: viewModel.item)
                 CueDetailTrackRemCell(rem: $viewModel.rem)
                     .onRequestAddRem {
+                        self.key = ""
+                        self.value = ""
                         openAlert = true
                     }.onRequestEditRem { idx, rem in
-                        print("edit")
+                        self.key = viewModel.rem[idx].value.key
+                        self.key = viewModel.rem[idx].value.value
+                        openAlert = true   
                     }
                 CueDetailTrackTimeCell(startTime: viewModel.startTime
                                        , endTime: viewModel.endTime
                                        , waitTime: viewModel.waitTime
                                        , durationTime: viewModel.durTime)
-                
-                
             }
             .navigationBarTitle("Track Info")
             .sheet(isPresented: $openSheet, content: makeSheet)

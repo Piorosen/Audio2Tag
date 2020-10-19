@@ -18,10 +18,6 @@ class CueDetailTrackRemCellViewModel : ObservableObject {
     init(rem: Binding<[RemModel]>) {
         self._rem = rem
     }
-    
-    
-    
-    
 }
 
 struct CueDetailTrackRemCell: View {
@@ -49,7 +45,7 @@ struct CueDetailTrackRemCell: View {
     // MARK: - BODY
     var body: some View {
         Section(header: Text("Rem")) {
-            ForEach (self.viewModel.rem.indices) { idx in
+            ForEach (self.viewModel.rem.indices, id: \.self) { idx in
                 Button(action: {
                     viewModel.editRem(idx, viewModel.rem[idx])
                 }) {
