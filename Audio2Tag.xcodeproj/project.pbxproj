@@ -318,7 +318,7 @@
 		6256BB232535550400C497AD /* UI Library */ = {
 			isa = PBXGroup;
 			children = (
-				62F2CB4E253AECEF007984FA /* CustomAlertView */,
+				62F2CB57253AEE99007984FA /* CustomAlertView.swift */,
 				6256BB242535550400C497AD /* SearchView.swift */,
 				6256BB252535550400C497AD /* ActivityIndicator.swift */,
 				6256BB262535550400C497AD /* ImagePicker.swift */,
@@ -485,14 +485,6 @@
 				6256BB432535550400C497AD /* Cell */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		62F2CB4E253AECEF007984FA /* CustomAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				62F2CB57253AEE99007984FA /* CustomAlertView.swift */,
-			);
-			path = CustomAlertView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
