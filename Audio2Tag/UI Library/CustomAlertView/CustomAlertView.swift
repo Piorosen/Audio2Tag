@@ -127,51 +127,53 @@ fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView 
             VStack{
                 Text(title).padding(.top, 15)
                 Divider()
-                content()
+                if isPresent {
+                    content()
+                }
                 Divider()
                 HStack {
                     if (state == .cancel) {
                         Button(action: {
+                            funcCancel()
                             withAnimation {
                                 isPresent.toggle()
                             }
-                            funcCancel()
                         }) {
                             Text("취소").padding(10).frame(maxWidth: .infinity)
                         }
                     }else if (state == .okCancel) {
                         Button(action: {
+                            funcCancel()
                             withAnimation {
                                 isPresent.toggle()
                             }
-                            funcCancel()
                         }) {
                             Text("취소").padding(10).frame(maxWidth: .infinity)
                         }
                         Divider()
                         Button(action: {
+                            funcOk()
                             withAnimation {
                                 isPresent.toggle()
                             }
-                            funcOk()
                         }) {
                             Text("확인").padding(10).frame(maxWidth: .infinity)
                         }
                     }else {
                         Button(action: {
+                            funcNo()
                             withAnimation {
                                 isPresent.toggle()
                             }
-                            funcNo()
                         }) {
                             Text("아니요").padding(10).frame(maxWidth: .infinity)
                         }
                         Divider()
                         Button(action: {
+                            funcYes()
                             withAnimation {
                                 isPresent.toggle()
                             }
-                            funcYes()
                         }) {
                             Text("예").padding(10).frame(maxWidth: .infinity)
                         }
@@ -251,46 +253,46 @@ fileprivate struct CustomAlertView_Any<Content: View, Item: Identifiable & Equat
                 HStack {
                     if (state == .cancel) {
                         Button(action: {
+                            funcCancel()
                             withAnimation {
                                 item = nil
                             }
-                            funcCancel()
                         }) {
                             Text("취소").padding(10).frame(maxWidth: .infinity)
                         }
                     }else if (state == .okCancel) {
                         Button(action: {
+                            funcCancel()
                             withAnimation {
                                 item = nil
                             }
-                            funcCancel()
                         }) {
                             Text("취소").padding(10).frame(maxWidth: .infinity)
                         }
                         Divider()
                         Button(action: {
+                            funcOk()
                             withAnimation {
                                 item = nil
                             }
-                            funcOk()
                         }) {
                             Text("확인").padding(10).frame(maxWidth: .infinity)
                         }
                     }else {
                         Button(action: {
+                            funcNo()
                             withAnimation {
                                 item = nil
                             }
-                            funcNo()
                         }) {
                             Text("아니요").padding(10).frame(maxWidth: .infinity)
                         }
                         Divider()
                         Button(action: {
+                            funcYes()
                             withAnimation {
                                 item = nil
                             }
-                            funcYes()
                         }) {
                             Text("예").padding(10).frame(maxWidth: .infinity)
                         }
