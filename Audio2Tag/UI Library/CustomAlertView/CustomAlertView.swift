@@ -52,7 +52,7 @@ struct CustomAlertView: View {
     }
     
     
-    init<Content: View, Item: Identifiable>(item: Binding<Item?>, title: String,
+    init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
                         ok: (() -> Void)?,
                         cancel: (() -> Void)?,
                         @ViewBuilder content: @escaping (Item) -> Content) {
@@ -61,14 +61,14 @@ struct CustomAlertView: View {
                 .onOk(ok ?? { })
                 .onCancel(cancel ?? { }))
     }
-    init<Content: View, Item: Identifiable>(item: Binding<Item?>, title: String,
+    init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
                         cancel: (() -> Void)?,
                         @ViewBuilder content: @escaping (Item) -> Content) {
         body = AnyView(
             CustomAlertView_Any(item: item, title: title, state: .cancel, content: content)
                 .onCancel(cancel ?? { }))
     }
-    init<Content: View, Item: Identifiable>(item: Binding<Item?>, title: String,
+    init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
                         yes: (() -> Void)?,
                         no: (() -> Void)?,
                         @ViewBuilder content: @escaping (Item) -> Content) {
@@ -183,6 +183,11 @@ fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView 
             .cornerRadius(15)
             .shadow(radius: 100)
             .opacity(isPresent ? 1 : 0)
+            .onChange(of: isPresent) { newValue in
+                if !newValue {
+                    UIApplication.shared.endEditing(true)
+                }
+            }
         }
         .frame(maxWidth: UIScreen.main.bounds.width * 0.8)
         .animation(.spring())
@@ -191,7 +196,7 @@ fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView 
 
 
 // MARK: - AnyType
-fileprivate struct CustomAlertView_Any<Content: View, Item: Identifiable>: ProtocolCustomAlertView {
+fileprivate struct CustomAlertView_Any<Content: View, Item: Identifiable & Equatable>: ProtocolCustomAlertView {
     @Binding var item: Item?
 
     var content: ((Item) -> Content)
@@ -297,6 +302,11 @@ fileprivate struct CustomAlertView_Any<Content: View, Item: Identifiable>: Proto
             .cornerRadius(15)
             .shadow(radius: 100)
             .opacity(item != nil ? 1 : 0)
+            .onChange(of: item) { newValue in
+                if newValue == nil {
+                    UIApplication.shared.endEditing(true)
+                }
+            }
         }
         .frame(maxWidth: UIScreen.main.bounds.width * 0.8)
         .animation(.spring())
