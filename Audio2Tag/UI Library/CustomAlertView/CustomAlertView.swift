@@ -53,8 +53,8 @@ struct CustomAlertView: View {
     
     
     init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
-                        ok: (() -> Void)?,
-                        cancel: (() -> Void)?,
+                        ok: (() -> Void)? = nil,
+                        cancel: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping (Item) -> Content) {
         body = AnyView(
             CustomAlertView_Any(item: item, title: title, state: .okCancel, content: content)
@@ -62,15 +62,15 @@ struct CustomAlertView: View {
                 .onCancel(cancel ?? { }))
     }
     init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
-                        cancel: (() -> Void)?,
+                        cancel: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping (Item) -> Content) {
         body = AnyView(
             CustomAlertView_Any(item: item, title: title, state: .cancel, content: content)
                 .onCancel(cancel ?? { }))
     }
     init<Content: View, Item: Identifiable & Equatable>(item: Binding<Item?>, title: String,
-                        yes: (() -> Void)?,
-                        no: (() -> Void)?,
+                        yes: (() -> Void)? = nil,
+                        no: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping (Item) -> Content) {
         body = AnyView(
             CustomAlertView_Any(item: item, title: title, state: .yesNo, content: content)
