@@ -75,7 +75,7 @@ struct CueSheetListView: View {
                 
             }
             CustomAlertView(item: $viewModel.sheetType, title: "Rem 추가", ok: {
-                print("haha")
+                viewModel.addItem(type: self.viewModel.sheetType)
             }) { item in
                 VStack(alignment: .leading) {
                     switch item {
