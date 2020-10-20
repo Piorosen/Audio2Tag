@@ -45,21 +45,29 @@ struct CueSheetListView: View {
                 }
                 Section(header: Text("Meta")) {
                     ForEach (self.viewModel.meta) { meta in
-                        HStack {
-                            Text(meta.value.key)
-                            Spacer()
-                            Text(meta.value.value)
-                        }
+                        Button(action: {
+                            
+                        }, label: {
+                            HStack {
+                                Text(meta.value.key)
+                                Spacer()
+                                Text(meta.value.value)
+                            }
+                        })
                     }
                     AddButton("META 추가", viewModel.addMeta)
                 }
                 Section(header: Text("Rem")) {
-                    ForEach (self.viewModel.rem) { meta in
-                        HStack {
-                            Text(meta.value.key)
-                            Spacer()
-                            Text(meta.value.value)
-                        }
+                    ForEach (self.viewModel.rem) { rem in
+                        Button(action: {
+                            
+                        }, label: {
+                            HStack {
+                                Text(rem.value.key)
+                                Spacer()
+                                Text(rem.value.value)
+                            }
+                        })
                     }
                     AddButton("REM 추가", viewModel.addRem)
                 }
@@ -74,7 +82,7 @@ struct CueSheetListView: View {
                 }
                 
             }
-            CustomAlertView(item: $viewModel.sheetType, title: "Rem 추가", ok: {
+            CustomAlertView(item: $viewModel.sheetType, title: "데이터 추가", ok: {
                 viewModel.addItem(type: self.viewModel.sheetType)
             }) { item in
                 VStack(alignment: .leading) {
@@ -87,13 +95,14 @@ struct CueSheetListView: View {
                         Text("track")
                     }
                     
-                    TextField("hint", text: $viewModel.sheetKey)
+                    TextField("", text: $viewModel.sheetKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text("내용")
-                    TextField("hint", text: $viewModel.sheetValue)
+                    TextField("", text: $viewModel.sheetValue)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
             }
+            
         }
     }
 }
