@@ -37,7 +37,7 @@ struct CueDetailTrackView: View {
     var body: some View {
         ZStack {
             List {
-                CueDetailTrackDescriptionCell(track: $viewModel.item)
+                CueDetailTrackDescriptionCell(track: $viewModel.track)
                     .onEdit { item in
                         self.viewModel.value = ""
                         descType = item
@@ -86,6 +86,7 @@ struct CueDetailTrackView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
             }
-        }
+            
+        }.onDisappear(perform: viewModel.disappear)
     }
 }

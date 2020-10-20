@@ -23,7 +23,7 @@ enum CueDetailTrackDescription : Identifiable {
 }
 
 struct CueDetailTrackDescriptionCell: View {
-    @Binding var track: TrackModel
+    @Binding var track: Track
     
     var edit: (CueDetailTrackDescription) -> Void = { _ in }
     func onEdit(_ action: @escaping (CueDetailTrackDescription) -> Void) -> CueDetailTrackDescriptionCell {
@@ -40,7 +40,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Title")
                     Spacer()
-                    Text("\(track.track.title)")
+                    Text("\(track.title)")
                 }
             }
             Button(action: {
@@ -49,7 +49,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Track Num")
                     Spacer()
-                    Text("\(track.track.trackNum)")
+                    Text("\(track.trackNum)")
                 }
             }
             Button(action: {
@@ -58,7 +58,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("ISRC")
                     Spacer()
-                    Text("\(track.track.isrc)")
+                    Text("\(track.isrc)")
                 }
             }
             Button(action: {
@@ -67,7 +67,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Performer")
                     Spacer()
-                    Text("\(track.track.performer)")
+                    Text("\(track.performer)")
                 }
             }
             Button(action: {
@@ -76,7 +76,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Track Type")
                     Spacer()
-                    Text("\(track.track.trackType)")
+                    Text("\(track.trackType)")
                 }
             }
             Button(action: {
@@ -85,7 +85,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Song Writer")
                     Spacer()
-                    Text("\(track.track.songWriter)")
+                    Text("\(track.songWriter)")
                 }
             }
         }

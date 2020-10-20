@@ -23,6 +23,8 @@ extension Double {
 class CueDetailTrackViewModel : ObservableObject {
     @Binding var item: TrackModel
     @Published var rem: [RemModel]
+    @Published var track: Track
+    
     @Published var key = String()
     @Published var value = String()
     
@@ -33,7 +35,10 @@ class CueDetailTrackViewModel : ObservableObject {
     
     init(items: Binding<TrackModel>) {
         self._item = items
+        
         let wrap = _item.wrappedValue
+        track = wrap.track
+        
         rem = self._item.wrappedValue.track.rem.filter({ _, v in v != String() }).map({ k, v in RemModel(value: (k, v))})
         
         if let cmStartTime = wrap.track.startTime,
@@ -59,24 +64,34 @@ class CueDetailTrackViewModel : ObservableObject {
         if let type = type, value != "" {
             switch type {
             case .title:
-                item.track.title = value
-                print("\(value)")
+                track.title = value
+                
             case .trackNum:
-                item.track.trackNum = Int(value) ?? -1
+                track.trackNum = Int(value) ?? -1
                 
             case .isrc:
-                item.track.isrc = value
+                track.isrc = value
                 
             case .performer:
-                item.track.performer = value
+                track.performer = value
                 
             case .trackType:
-                item.track.trackType = value
+                track.trackType = value
                 
             case .songWriter:
-                item.track.songWriter = value
+                track.songWriter = value
             }
         }
+    }
+    
+    func disappear() {
+        item.track = track
+        item.track.rem = rem.filter { $0.value.key != "" && $0.value.value != "" }.reduce([String:String](), {
+            result, item in
+            var r = result
+            r[item.value.key] = item.value.value
+            return r
+        })
     }
     
 }
