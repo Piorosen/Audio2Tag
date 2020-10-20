@@ -44,28 +44,26 @@ struct CueSheetListView: View {
                     }
                 }
                 Section(header: Text("Meta")) {
-                    ForEach (self.viewModel.meta) { meta in
-                        Button(action: {
-                            
-                        }, label: {
+                    ForEach (self.viewModel.meta.indices, id: \.self) { idx in
+                        Button(action: { viewModel.editMeta(idx) },
+                               label: {
                             HStack {
-                                Text(meta.value.key)
+                                Text(viewModel.meta[idx].value.key)
                                 Spacer()
-                                Text(meta.value.value)
+                                Text(viewModel.meta[idx].value.value)
                             }
                         })
                     }
                     AddButton("META 추가", viewModel.addMeta)
                 }
                 Section(header: Text("Rem")) {
-                    ForEach (self.viewModel.rem) { rem in
-                        Button(action: {
-                            
-                        }, label: {
+                    ForEach (self.viewModel.rem.indices, id: \.self) { idx in
+                        Button(action: { viewModel.editRem(idx) },
+                               label: {
                             HStack {
-                                Text(rem.value.key)
+                                Text(viewModel.rem[idx].value.key)
                                 Spacer()
-                                Text(rem.value.value)
+                                Text(viewModel.rem[idx].value.value)
                             }
                         })
                     }
@@ -78,12 +76,11 @@ struct CueSheetListView: View {
                             Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.title)")
                         }
                     }
-                    //                AddButton("File 추가", viewModel.addTrack)
                 }
                 
             }
-            CustomAlertView(item: $viewModel.sheetType, title: "데이터 추가", ok: {
-                viewModel.addItem(type: self.viewModel.sheetType)
+            CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {
+                viewModel.addItem(type: self.viewModel.addSheetType)
             }) { item in
                 VStack(alignment: .leading) {
                     switch item {
@@ -98,6 +95,16 @@ struct CueSheetListView: View {
                     TextField("", text: $viewModel.sheetKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text("내용")
+                    TextField("", text: $viewModel.sheetValue)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }.padding()
+            }
+            
+            CustomAlertView(item: $viewModel.editSheetType, title: "데이터 수정", ok: {
+                viewModel.editItem(type: self.viewModel.editSheetType)
+            }) { item in
+                VStack(alignment: .leading) {
+                    Text("\(viewModel.sheetKey)")
                     TextField("", text: $viewModel.sheetValue)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()

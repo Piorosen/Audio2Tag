@@ -24,10 +24,13 @@ enum CueSheetList : Identifiable {
 class CueSheetListViewModel : ObservableObject {
     @Binding var fileInfo: CueSheetModel
     
-    @Published var sheetType: CueSheetList? = nil
+    @Published var addSheetType: CueSheetList? = nil
+    @Published var editSheetType: CueSheetList? = nil
     
     @Published var sheetKey = String()
     @Published var sheetValue = String()
+    
+    var editIndex: Int = -1
     
     // MARK: - View와 Binding이 된 데이터들
     var audio:CueAudio {
@@ -52,24 +55,29 @@ class CueSheetListViewModel : ObservableObject {
         get { return fileInfo.cueSheet?.file.fileName ?? "" }
     }
     
-    // MARK: - View의 이벤트 처리 함수
     
+    // MARK: - CustomAlertView 초기화
+    func resetSheet() {
+        addSheetType = nil
+        editSheetType = nil
+        sheetKey = ""
+        sheetValue = ""
+    }
+    
+    // MARK: - View에서 Add 이벤트 처리
     func addMeta() {
-        self.sheetKey = String()
-        self.sheetValue = String()
-        sheetType = .meta
+        resetSheet()
+        addSheetType = .meta
     }
     
     func addRem() {
-        self.sheetKey = String()
-        self.sheetValue = String()
-        sheetType = .rem
+        resetSheet()
+        addSheetType = .rem
     }
     
     func addTrack() {
-        self.sheetKey = String()
-        self.sheetValue = String()
-        sheetType = .track
+        resetSheet()
+        addSheetType = .track
     }
     
     func addItem(type: CueSheetList?) {
@@ -86,6 +94,37 @@ class CueSheetListViewModel : ObservableObject {
             }
         }
     }
+    
+    // MARK: - View에서 Edit 이벤트 처리
+    
+    func editMeta(_ idx: Int) {
+        resetSheet()
+        sheetKey = meta[idx].value.key
+        editIndex = idx
+        editSheetType = .meta
+    }
+    func editRem(_ idx: Int) {
+        resetSheet()
+        sheetKey = rem[idx].value.key
+        editIndex = idx
+        editSheetType = .rem
+    }
+    
+    func editItem(type: CueSheetList?) {
+        if sheetKey == "" || sheetValue == "" {
+            // 실패 창 보여주기
+        }else if let sheetType = type {
+            switch sheetType {
+            case .meta:
+                fileInfo.meta[editIndex] = MetaModel(value: (sheetKey, sheetValue))
+            case .rem:
+                fileInfo.rem[editIndex] = RemModel(value: (sheetKey, sheetValue))
+            case .track:
+                print("not implements")
+            }
+        }
+    }
+    
     
     
     // MARK: - 초기화 코드
