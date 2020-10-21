@@ -32,7 +32,7 @@ class CueViewModel : ObservableObject {
         request = b
     }
     
-    func splitStart(url:URL, sheet:CueSheetModel) {
+    func splitStart(url:URL, sheet:CueSheetModel, callBack: @escaping () -> Void) {
         request = false
         
         guard let musicUrl = sheet.musicUrl else {
@@ -41,7 +41,7 @@ class CueViewModel : ObservableObject {
         let p = try? ID3TagEditor().read(from: musicUrl.path)
         
         if let _ = p {
-            _ = musicOfSplit(url: url, sheet: sheet)
+            _ = musicOfSplit(url: url, sheet: sheet, callBack: callBack)
         }else {
             DispatchQueue.global().async {
                 self.sem = DispatchSemaphore(value: 0)
@@ -51,15 +51,15 @@ class CueViewModel : ObservableObject {
                 
                 self.sem.wait()
                 if self.request {
-                    DispatchQueue.main.sync {
-                        _ = self.musicOfSplit(url: url, sheet: sheet)
+                    DispatchQueue.global().sync {
+                        _ = self.musicOfSplit(url: url, sheet: sheet, callBack: callBack)
                     }
                 }
             }
         }   
     }
     
-    func musicOfSplit(url: URL, sheet:CueSheetModel) -> [URL]? {
+    func musicOfSplit(url: URL, sheet:CueSheetModel, callBack: @escaping () -> Void) -> [URL]? {
         // 1번 더 체크 함.
         guard let musicUrl = sheet.musicUrl else {
             return nil
@@ -101,6 +101,9 @@ class CueViewModel : ObservableObject {
                 let o = Int(total * 100)
                 if o / count > self.splitState[0].status / count {
                     self.splitState[0].status = o
+                }
+                if total == 1 {
+                    callBack()
                 }
             }
         }
