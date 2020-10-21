@@ -20,6 +20,10 @@ enum CueDetailTrackDescription : Identifiable {
     case performer
     case trackType
     case songWriter
+    
+    var caseName: String {
+        return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
+    }
 }
 
 struct CueDetailTrackDescriptionCell: View {

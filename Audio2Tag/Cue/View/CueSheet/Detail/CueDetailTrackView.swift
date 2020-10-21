@@ -39,6 +39,7 @@ struct CueDetailTrackView: View {
             List {
                 CueDetailTrackDescriptionCell(track: $viewModel.track)
                     .onEdit { item in
+                        self.viewModel.key = item.caseName.uppercased()
                         self.viewModel.value = ""
                         descType = item
                         openAlert = false
@@ -77,11 +78,11 @@ struct CueDetailTrackView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
             }
-            CustomAlertView(item: $descType, title: "Desc 수정", ok: {
+            CustomAlertView(item: $descType, title: "데이터 수정", ok: {
                 viewModel.editDescription(type: descType)
             }) { _ in
                 VStack(alignment: .leading) {
-                    Text("내용")
+                    Text(self.viewModel.key)
                     TextField("", text: $viewModel.value)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
