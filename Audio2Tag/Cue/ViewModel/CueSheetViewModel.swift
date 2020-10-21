@@ -16,21 +16,23 @@ class CueSheetViewModel : ObservableObject {
     // 메인 화면의 List에 출력할 데이터.
     @Published var cueSheetModel = CueSheetModel()
     
-    @Published var openAlert = false
-    @Published var openSheet = false
-    
-    var showFolderSelection = false
-    var showFilesSelection = false
-    var showLeadingAlert = false
-    
+    @Published var sheetType: SheetModelCueSheet? = nil
+    @Published var alertType: AlertModelCueSheet? = nil
+//
+//    var showLeadingAlert = false
+//
     // MARK: - UI Interaction
     func onStartSplit() {
-        openAlert = true
+        if cueSheetModel.musicUrl != nil {
+            alertType = .splitRequest
+        }else if cueSheetModel.cueUrl != nil {
+            alertType = .cueSaveRequest
+        }else {
+            alertType = .failLoad
+        }
     }
     func onBadgePlus() {
-        showFolderSelection = false
-        showFilesSelection = true
-        openSheet = true
+        sheetType = .fileSelect
     }
     
     // UI 와 인터렉션 담당.
@@ -38,12 +40,35 @@ class CueSheetViewModel : ObservableObject {
     func selectFiles(_ urls: [URL]) -> CueSheetModel? {
         guard let sheet = getCueSheet(urls) else {
             // 만약 nil 일 경우 처리를 하지 않도록 진행함.
-            openAlert = true
+//            openAlert = true
             return nil
         }
         
         cueSheetModel = sheet
         return sheet
+    }
+    
+    func saveCueSheet(url: URL) {
+        if var sheet = cueSheetModel.cueSheet, let name = cueSheetModel.cueUrl?.lastPathComponent {
+            sheet.rem = cueSheetModel.rem.reduce(CSRem(), { result, item in
+                var copy = result
+                copy[item.value.key] = item.value.value
+                return copy
+            })
+            
+            sheet.meta = cueSheetModel.meta.reduce(CSMeta(), { result, item in
+                var copy = result
+                copy[item.value.key] = item.value.value
+                return copy
+            })
+            sheet.file.tracks = cueSheetModel.tracks.map { $0.track }
+            
+            _ = sheet.save(url: url.appendingPathComponent(name))
+            
+            DispatchQueue.main.async {
+                self.alertType = .success
+            }
+        }
     }
     
     // MARK: - CueSheet 정보 가져오기.
@@ -53,12 +78,11 @@ class CueSheetViewModel : ObservableObject {
         let parser = CueSheetParser()
         // url이 1개 일 경우 Cue Sheet 파일 분리 기능을 이용함.
         if urls.count == 1 {
-            guard let item = parser.loadFile(cue: urls[0]) else {
+            guard let item = parser.load(path: urls[0]) else {
                 return nil
             }
-            let sheet = parser.calcTime(sheet: item, lengthOfMusic: 0)
             
-            return CueSheetModel(cueSheet: sheet, cueUrl: urls[0], musicUrl: nil)
+            return CueSheetModel(cueSheet: item, cueUrl: urls[0], musicUrl: nil)
         }
         // url이 2개 인 경우 Cue Sheet와 음원이 같이 있다고 판단함.
         else if urls.count == 2 {
@@ -83,9 +107,9 @@ class CueSheetViewModel : ObservableObject {
             // 다른 파일이 곧 cue Sheet라 파악이 가능함.
             let musicUrl = urls[abs(cueIndex - 1)]
             let cueUrl = urls[cueIndex]
-            guard let sheet = parser.loadFile(pathOfMusic: musicUrl, pathOfCue: cueUrl) else {
-                return nil
-            }
+            
+            let sheet = parser.load(path: cueUrl)
+//            let audio = sheet.getInfoOfAudio(music: musicUrl)
             
             return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
         }

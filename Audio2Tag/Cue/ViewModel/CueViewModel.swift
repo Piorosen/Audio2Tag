@@ -32,7 +32,7 @@ class CueViewModel : ObservableObject {
         request = b
     }
     
-    func splitStart(url:URL, sheet:CueSheetModel) {
+    func splitStart(url:URL, sheet:CueSheetModel, callBack: @escaping () -> Void) {
         request = false
         
         guard let musicUrl = sheet.musicUrl else {
@@ -41,7 +41,7 @@ class CueViewModel : ObservableObject {
         let p = try? ID3TagEditor().read(from: musicUrl.path)
         
         if let _ = p {
-            _ = musicOfSplit(url: url, sheet: sheet)
+            _ = musicOfSplit(url: url, sheet: sheet, callBack: callBack)
         }else {
             DispatchQueue.global().async {
                 self.sem = DispatchSemaphore(value: 0)
@@ -51,15 +51,15 @@ class CueViewModel : ObservableObject {
                 
                 self.sem.wait()
                 if self.request {
-                    DispatchQueue.main.sync {
-                        _ = self.musicOfSplit(url: url, sheet: sheet)
+                    DispatchQueue.global().sync {
+                        _ = self.musicOfSplit(url: url, sheet: sheet, callBack: callBack)
                     }
                 }
             }
         }   
     }
     
-    func musicOfSplit(url: URL, sheet:CueSheetModel) -> [URL]? {
+    func musicOfSplit(url: URL, sheet:CueSheetModel, callBack: @escaping () -> Void) -> [URL]? {
         // 1번 더 체크 함.
         guard let musicUrl = sheet.musicUrl else {
             return nil
@@ -74,18 +74,19 @@ class CueViewModel : ObservableObject {
         splitState.append(.init(name: "전체 진행률", status: 0))
         
         var data = [(URL, CMTimeRange)]()
-        for item in cueSheet.file.tracks {
-            let u = url.appendingPathComponent("\(item.trackNum). \(item.title).wav")
+        for idx in sheet.tracks.indices {
+            
+            let u = url.appendingPathComponent("\(cueSheet.file.tracks[idx].trackNum). \(cueSheet.file.tracks[idx].title).wav")
             
             // 기존에 이미 있는 파일 지움.
             if FileManager.default.fileExists(atPath: u.path) {
                 try? FileManager.default.removeItem(at: u)
             }
             
-            let r = CMTimeRange(start: item.startTime!, duration: CMTime(seconds: item.duration!, preferredTimescale: 1000))
+            let r = CMTimeRange(start: CMTime(seconds: sheet.tracks[idx].time.startTime, preferredTimescale: 1000), duration: CMTime(seconds: sheet.tracks[idx].time.duration, preferredTimescale: 1000))
             
             data.append((u, r))
-            splitState.append(.init(name: item.title, status: 0))
+            splitState.append(.init(name: cueSheet.file.tracks[idx].title, status: 0))
         }
         
         let count = 1
@@ -100,6 +101,9 @@ class CueViewModel : ObservableObject {
                 let o = Int(total * 100)
                 if o / count > self.splitState[0].status / count {
                     self.splitState[0].status = o
+                }
+                if total == 1 {
+                    callBack()
                 }
             }
         }

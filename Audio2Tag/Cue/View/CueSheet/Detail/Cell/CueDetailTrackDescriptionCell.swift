@@ -23,7 +23,7 @@ enum CueDetailTrackDescription : Identifiable {
 }
 
 struct CueDetailTrackDescriptionCell: View {
-    @Binding var track: Track
+    @Binding var track: CSTrack
     
     var edit: (CueDetailTrackDescription) -> Void = { _ in }
     func onEdit(_ action: @escaping (CueDetailTrackDescription) -> Void) -> CueDetailTrackDescriptionCell {

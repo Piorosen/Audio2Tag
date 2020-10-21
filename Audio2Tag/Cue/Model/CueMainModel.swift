@@ -11,7 +11,8 @@ import SwiftCueSheet
 
 struct TrackModel : Identifiable {
     let id = UUID()
-    var track: Track
+    var track: CSTrack
+    let time: CSLengthOfAudio
 }
 
 struct RemModel : Identifiable {
@@ -33,10 +34,15 @@ struct CueSheetModel : Identifiable {
         self.cueUrl = cueUrl
         self.musicUrl = musicUrl
         
-        if let sheet = self.cueSheet {
+        if var sheet = self.cueSheet {
+            if let musicUrl = musicUrl {
+                let _ = sheet.getInfoOfAudio(music: musicUrl)
+            }
+            
             rem = sheet.rem.map { k, v in RemModel(value: (k,v))}
             meta = sheet.meta.map { k, v in MetaModel(value: (k,v))}
-            tracks = sheet.file.tracks.map { t in TrackModel(track: t) }
+            let time = sheet.calcTime()
+            tracks = sheet.file.tracks.indices.map { idx in TrackModel(track: sheet.file.tracks[idx], time: time[idx]) }
         }
         else {
             rem = [RemModel]()
