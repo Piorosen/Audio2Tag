@@ -10,15 +10,28 @@ import SwiftCueSheet
 
 struct CueAudio {
     let isAudio:Bool
-    let audio:InfoOfAudio?
+    let audio:CSAudio?
     
     init(model: CueSheetModel) {
-        if let audio = model.cueSheet?.info {
+        guard let url = model.musicUrl else {
+            self.audio = nil
+            isAudio = false
+            return
+        }
+        guard var sheet = model.cueSheet else {
+            self.audio = nil
+            isAudio = false
+            return
+        }
+        
+        
+        if let audio = sheet.getInfoOfAudio(music: url) {
             self.audio = audio
             isAudio = true
         }else {
             self.audio = nil
             isAudio = false
         }
+        
     }
 }

@@ -53,12 +53,11 @@ class CueSheetViewModel : ObservableObject {
         let parser = CueSheetParser()
         // url이 1개 일 경우 Cue Sheet 파일 분리 기능을 이용함.
         if urls.count == 1 {
-            guard let item = parser.loadFile(cue: urls[0]) else {
+            guard let item = parser.load(path: urls[0]) else {
                 return nil
             }
-            let sheet = parser.calcTime(sheet: item, lengthOfMusic: 0)
             
-            return CueSheetModel(cueSheet: sheet, cueUrl: urls[0], musicUrl: nil)
+            return CueSheetModel(cueSheet: item, cueUrl: urls[0], musicUrl: nil)
         }
         // url이 2개 인 경우 Cue Sheet와 음원이 같이 있다고 판단함.
         else if urls.count == 2 {
@@ -83,9 +82,9 @@ class CueSheetViewModel : ObservableObject {
             // 다른 파일이 곧 cue Sheet라 파악이 가능함.
             let musicUrl = urls[abs(cueIndex - 1)]
             let cueUrl = urls[cueIndex]
-            guard let sheet = parser.loadFile(pathOfMusic: musicUrl, pathOfCue: cueUrl) else {
-                return nil
-            }
+            
+            let sheet = parser.load(path: cueUrl)
+//            let audio = sheet.getInfoOfAudio(music: musicUrl)
             
             return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
         }

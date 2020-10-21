@@ -26,25 +26,30 @@ struct CustomAlertView: View {
     var body: AnyView
     
     init<Content: View>(isPresent: Binding<Bool>, title: String,
+                        cancel: (() -> Void)? = nil,
+                        @ViewBuilder content: @escaping () -> Content) {
+        print("2")
+        body = AnyView(
+            CustomAlertView_Bool(isPresent: isPresent, title: title, state: .cancel, content: content)
+                .onCancel(cancel ?? { }))
+    }
+    
+    init<Content: View>(isPresent: Binding<Bool>, title: String,
                         ok: (() -> Void)? = nil,
                         cancel: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping () -> Content) {
+        print("1")
         body = AnyView(
             CustomAlertView_Bool(isPresent: isPresent, title: title, state: .okCancel, content: content)
                 .onOk(ok ?? { })
                 .onCancel(cancel ?? { }))
     }
+    
     init<Content: View>(isPresent: Binding<Bool>, title: String,
-                        cancel: (() -> Void)?,
+                        yes: (() -> Void)? = nil,
+                        no: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping () -> Content) {
-        body = AnyView(
-            CustomAlertView_Bool(isPresent: isPresent, title: title, state: .cancel, content: content)
-                .onCancel(cancel ?? { }))
-    }
-    init<Content: View>(isPresent: Binding<Bool>, title: String,
-                        yes: (() -> Void)?,
-                        no: (() -> Void)?,
-                        @ViewBuilder content: @escaping () -> Content) {
+        print("3")
         body = AnyView(
             CustomAlertView_Bool(isPresent: isPresent, title: title, state: .yesNo, content: content)
                 .onYes(yes ?? { })

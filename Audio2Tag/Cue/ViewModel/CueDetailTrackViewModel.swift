@@ -23,7 +23,7 @@ extension Double {
 class CueDetailTrackViewModel : ObservableObject {
     @Binding var item: TrackModel
     @Published var rem: [RemModel]
-    @Published var track: Track
+    @Published var track: CSTrack
     
     @Published var key = String()
     @Published var value = String()
@@ -41,23 +41,12 @@ class CueDetailTrackViewModel : ObservableObject {
         
         rem = self._item.wrappedValue.track.rem.filter({ _, v in v != String() }).map({ k, v in RemModel(value: (k, v))})
         
-        if let cmStartTime = wrap.track.startTime,
-            let cmDuration = wrap.track.duration,
-            let cmInterval = wrap.track.interval
-        {
-            let s = CMTimeGetSeconds(cmStartTime)
-            
-            startTime = s.makeTime()
-            endTime = (s + cmDuration).makeTime()
-            waitTime = cmInterval.makeTime()
-            durTime = cmDuration.makeTime()
-        }
-        else {
-            startTime = 0.makeTime()
-            endTime = 0.makeTime()
-            waitTime = 0.makeTime()
-            durTime = 0.makeTime()
-        }
+        startTime = wrap.time.startTime.makeTime()
+        durTime = wrap.time.duration.makeTime()
+        waitTime = wrap.time.interval.makeTime()
+        endTime = (wrap.time.startTime + wrap.time.duration).makeTime()
+        
+        
     }
     
     func editDescription(type: CueDetailTrackDescription?) {
