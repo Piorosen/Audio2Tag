@@ -78,20 +78,13 @@ struct CueSheetListView: View {
                     }
                     AddButton("Track 추가", viewModel.addTrack)
                 }
+                
             }
             CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {
                 viewModel.addItem(type: self.viewModel.addSheetType)
             }) { item in
                 VStack(alignment: .leading) {
-                    switch item {
-                    case .meta:
-                        Text("meta")
-                    case .rem:
-                        Text("rem")
-                    case .track:
-                        Text("track")
-                    }
-                    
+                    Text("제목")
                     TextField("", text: $viewModel.sheetKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text("내용")
@@ -105,8 +98,19 @@ struct CueSheetListView: View {
             }) { item in
                 VStack(alignment: .leading) {
                     Text("\(viewModel.sheetKey)")
-                    TextField("", text: $viewModel.sheetValue)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    switch item {
+                    case .meta:
+                        TextField(viewModel.meta[viewModel.editIndex].value.value, text: $viewModel.sheetValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                    case .rem:
+                        TextField(viewModel.rem[viewModel.editIndex].value.value, text: $viewModel.sheetValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    default:
+                        TextField("", text: $viewModel.sheetValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    
                 }.padding()
             }
             

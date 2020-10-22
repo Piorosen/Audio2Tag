@@ -48,10 +48,11 @@ class CueDetailTrackViewModel : ObservableObject {
     }
     
     var remIdx: Int = -1
+    var hint: String = String()
     func setRemEdit(idx: Int) {
         remIdx = idx
         self.key = rem[idx].value.key
-        self.value = rem[idx].value.value
+        self.hint = rem[idx].value.value
 //        descType = nil
 //        openAlert = true
     }
@@ -60,6 +61,23 @@ class CueDetailTrackViewModel : ObservableObject {
         rem[remIdx] = RemModel(value: (key, value))
     }
     
+    
+    func getDescript(item: CueDetailTrackDescription) -> String {
+        switch item {
+        case .isrc:
+            return track.isrc
+        case .performer:
+            return track.performer
+        case .songWriter:
+            return track.songWriter
+        case .title:
+            return track.title
+        case .trackNum:
+            return String(track.trackNum)
+        case .trackType:
+            return track.trackType
+        }
+    }
     
     func editDescription(type: CueDetailTrackDescription?) {
         if let type = type, value != "" {

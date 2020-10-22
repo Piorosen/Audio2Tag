@@ -40,6 +40,7 @@ struct CueDetailTrackView: View {
                     .onEdit { item in
                         self.viewModel.key = item.caseName.uppercased()
                         self.viewModel.value = ""
+                        self.viewModel.hint = viewModel.getDescript(item: item)
                         alertType = .description
                         descType = item
                         openAlert = false
@@ -48,6 +49,7 @@ struct CueDetailTrackView: View {
                     .onRequestAddRem {
                         self.viewModel.key = ""
                         self.viewModel.value = ""
+                        self.viewModel.hint = ""
                         descType = nil
                         openAlert = true
                     }.onRequestEditRem { idx, rem in
@@ -98,7 +100,7 @@ struct CueDetailTrackView: View {
             }) { _ in
                 VStack(alignment: .leading) {
                     Text(self.viewModel.key)
-                    TextField("", text: $viewModel.value)
+                    TextField(viewModel.hint, text: $viewModel.value)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }.padding()
             }
