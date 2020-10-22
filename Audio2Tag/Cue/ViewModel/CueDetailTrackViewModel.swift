@@ -45,9 +45,21 @@ class CueDetailTrackViewModel : ObservableObject {
         durTime = wrap.time.duration.makeTime()
         waitTime = wrap.time.interval.makeTime()
         endTime = (wrap.time.startTime + wrap.time.duration).makeTime()
-        
-        
     }
+    
+    var remIdx: Int = -1
+    func setRemEdit(idx: Int) {
+        remIdx = idx
+        self.key = rem[idx].value.key
+        self.value = rem[idx].value.value
+//        descType = nil
+//        openAlert = true
+    }
+    
+    func editRem() {
+        rem[remIdx] = RemModel(value: (key, value))
+    }
+    
     
     func editDescription(type: CueDetailTrackDescription?) {
         if let type = type, value != "" {
