@@ -76,6 +76,7 @@ struct CueSheetListView: View {
                             Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.title)")
                         }
                     }
+                    AddButton("Track 추가", viewModel.addTrack)
                 }
                 
             }

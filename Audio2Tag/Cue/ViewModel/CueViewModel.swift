@@ -68,10 +68,11 @@ class CueViewModel : ObservableObject {
             return nil
         }
         
-        isShowing = true
-        
-        splitState.removeAll()
-        splitState.append(.init(name: "전체 진행률", status: 0))
+        DispatchQueue.main.sync {
+            isShowing = true
+            splitState.removeAll()
+            splitState.append(.init(name: "전체 진행률", status: 0))
+        }
         
         var data = [(URL, CMTimeRange)]()
         for idx in sheet.tracks.indices {

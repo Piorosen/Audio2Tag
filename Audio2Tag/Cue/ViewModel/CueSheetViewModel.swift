@@ -41,6 +41,7 @@ class CueSheetViewModel : ObservableObject {
         guard let sheet = getCueSheet(urls) else {
             // 만약 nil 일 경우 처리를 하지 않도록 진행함.
 //            openAlert = true
+            alertType = .failLoad
             return nil
         }
         
