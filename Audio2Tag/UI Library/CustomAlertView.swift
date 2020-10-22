@@ -28,7 +28,6 @@ struct CustomAlertView: View {
     init<Content: View>(isPresent: Binding<Bool>, title: String,
                         cancel: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping () -> Content) {
-        print("2")
         body = AnyView(
             CustomAlertView_Bool(isPresent: isPresent, title: title, state: .cancel, content: content)
                 .onCancel(cancel ?? { }))
@@ -38,7 +37,6 @@ struct CustomAlertView: View {
                         ok: (() -> Void)? = nil,
                         cancel: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping () -> Content) {
-        print("1")
         body = AnyView(
             CustomAlertView_Bool(isPresent: isPresent, title: title, state: .okCancel, content: content)
                 .onOk(ok ?? { })
@@ -49,7 +47,6 @@ struct CustomAlertView: View {
                         yes: (() -> Void)? = nil,
                         no: (() -> Void)? = nil,
                         @ViewBuilder content: @escaping () -> Content) {
-        print("3")
         body = AnyView(
             CustomAlertView_Bool(isPresent: isPresent, title: title, state: .yesNo, content: content)
                 .onYes(yes ?? { })

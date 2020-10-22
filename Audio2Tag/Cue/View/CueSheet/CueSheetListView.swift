@@ -78,7 +78,6 @@ struct CueSheetListView: View {
                     }
                     AddButton("Track 추가", viewModel.addTrack)
                 }
-                
             }
             CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {
                 viewModel.addItem(type: self.viewModel.addSheetType)
