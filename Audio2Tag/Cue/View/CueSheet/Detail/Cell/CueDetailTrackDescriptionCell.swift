@@ -21,6 +21,8 @@ enum CueDetailTrackDescription : Identifiable {
     case trackType
     case songWriter
     
+    
+    
     var caseName: String {
         return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }

@@ -53,7 +53,9 @@ struct CueSheetListView: View {
                                 Text(viewModel.meta[idx].value.value)
                             }
                         })
-                    }
+                    }.onDelete(perform: { indexSet in
+                        viewModel.fileInfo.meta.remove(atOffsets: indexSet)
+                    })
                     AddButton("META 추가", viewModel.addMeta)
                 }
                 Section(header: Text("Rem")) {
@@ -66,7 +68,9 @@ struct CueSheetListView: View {
                                 Text(viewModel.rem[idx].value.value)
                             }
                         })
-                    }
+                    }.onDelete(perform: { indexSet in
+                        viewModel.fileInfo.rem.remove(atOffsets: indexSet)
+                    })
                     AddButton("REM 추가", viewModel.addRem)
                 }
                 Section(header: Text("File : \(viewModel.title)")) {
@@ -75,7 +79,9 @@ struct CueSheetListView: View {
                         ) {
                             Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.title)")
                         }
-                    }
+                    }.onDelete(perform: { indexSet in
+                        viewModel.fileInfo.tracks.remove(atOffsets: indexSet)
+                    })
                     AddButton("Track 추가", viewModel.addTrack)
                 }
                 

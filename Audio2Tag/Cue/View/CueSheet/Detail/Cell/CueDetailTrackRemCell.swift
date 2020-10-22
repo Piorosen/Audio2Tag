@@ -55,7 +55,9 @@ struct CueDetailTrackRemCell: View {
                         Text("\(viewModel.rem[idx].value.value)")
                     }
                 }
-            }
+            }.onDelete(perform: { indexSet in
+                viewModel.rem.remove(atOffsets: indexSet)
+            })
             AddButton("REM 추가") {
                 viewModel.addRem()
             }
