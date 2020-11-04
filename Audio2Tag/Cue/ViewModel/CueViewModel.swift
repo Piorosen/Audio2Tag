@@ -77,7 +77,7 @@ class CueViewModel : ObservableObject {
         var data = [(URL, CMTimeRange)]()
         for idx in sheet.tracks.indices {
             
-            let u = url.appendingPathComponent("\(cueSheet.file.tracks[idx].trackNum). \(cueSheet.file.tracks[idx].title).wav")
+            let u = url.appendingPathComponent("\(cueSheet.file.tracks[idx].trackNum). \(cueSheet.file.tracks[idx].meta[.title] ?? "").wav")
             
             // 기존에 이미 있는 파일 지움.
             if FileManager.default.fileExists(atPath: u.path) {
@@ -87,7 +87,7 @@ class CueViewModel : ObservableObject {
             let r = CMTimeRange(start: CMTime(seconds: sheet.tracks[idx].time.startTime, preferredTimescale: 1000), duration: CMTime(seconds: sheet.tracks[idx].time.duration, preferredTimescale: 1000))
             
             data.append((u, r))
-            splitState.append(.init(name: cueSheet.file.tracks[idx].title, status: 0))
+            splitState.append(.init(name: cueSheet.file.tracks[idx].meta[.title] ?? "", status: 0))
         }
         
         let count = 1

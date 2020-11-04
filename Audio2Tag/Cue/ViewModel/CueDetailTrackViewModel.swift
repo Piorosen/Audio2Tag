@@ -39,7 +39,7 @@ class CueDetailTrackViewModel : ObservableObject {
         let wrap = _item.wrappedValue
         track = wrap.track
         
-        rem = self._item.wrappedValue.track.rem.filter({ _, v in v != String() }).map({ k, v in RemModel(value: (k, v))})
+        rem = self._item.wrappedValue.track.rem.filter({ _, v in v != String() }).map({ k, v in RemModel(value: (k.toString.uppercased(), v))})
         
         startTime = wrap.time.startTime.makeTime()
         durTime = wrap.time.duration.makeTime()
@@ -63,15 +63,16 @@ class CueDetailTrackViewModel : ObservableObject {
     
     
     func getDescript(item: CueDetailTrackDescription) -> String {
+        
         switch item {
         case .isrc:
-            return track.isrc
+            return track.meta[.isrc] ?? ""
         case .performer:
-            return track.performer
+            return track.meta[.performer] ?? ""
         case .songWriter:
-            return track.songWriter
+            return track.meta[.songWriter] ?? ""
         case .title:
-            return track.title
+            return track.meta[.isrc] ?? ""
         case .trackNum:
             return String(track.trackNum)
         case .trackType:
@@ -83,32 +84,31 @@ class CueDetailTrackViewModel : ObservableObject {
         if let type = type, value != "" {
             switch type {
             case .title:
-                track.title = value
-                
+                track.meta[.title] = value
             case .trackNum:
                 track.trackNum = Int(value) ?? -1
                 
             case .isrc:
-                track.isrc = value
+                track.meta[.isrc] = value
                 
             case .performer:
-                track.performer = value
+                track.meta[.performer] = value
                 
             case .trackType:
                 track.trackType = value
                 
             case .songWriter:
-                track.songWriter = value
+                track.meta[.songWriter] = value
             }
         }
     }
     
     func disappear() {
         item.track = track
-        item.track.rem = rem.filter { $0.value.key != "" && $0.value.value != "" }.reduce([String:String](), {
+        item.track.rem = rem.filter { $0.value.key != "" && $0.value.value != "" }.reduce([CSRemKey:String](), {
             result, item in
             var r = result
-            r[item.value.key] = item.value.value
+            r[.init(item.value.key)] = item.value.value
             return r
         })
     }

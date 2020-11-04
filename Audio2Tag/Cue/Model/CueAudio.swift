@@ -25,7 +25,7 @@ struct CueAudio {
         }
         
         
-        if let audio = sheet.getInfoOfAudio(music: url) {
+        if let audio = (try? sheet.getInfoOfAudio(music: url)) {
             self.audio = audio
             isAudio = true
         }else {

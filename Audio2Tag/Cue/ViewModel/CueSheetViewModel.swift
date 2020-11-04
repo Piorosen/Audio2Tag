@@ -53,13 +53,13 @@ class CueSheetViewModel : ObservableObject {
         if var sheet = cueSheetModel.cueSheet, let name = cueSheetModel.cueUrl?.lastPathComponent {
             sheet.rem = cueSheetModel.rem.reduce(CSRem(), { result, item in
                 var copy = result
-                copy[item.value.key] = item.value.value
+                copy[.init(item.value.key)] = item.value.value
                 return copy
             })
             
             sheet.meta = cueSheetModel.meta.reduce(CSMeta(), { result, item in
                 var copy = result
-                copy[item.value.key] = item.value.value
+                copy[.init(item.value.key)] = item.value.value
                 return copy
             })
             sheet.file.tracks = cueSheetModel.tracks.map { $0.track }
@@ -79,7 +79,7 @@ class CueSheetViewModel : ObservableObject {
         let parser = CueSheetParser()
         // url이 1개 일 경우 Cue Sheet 파일 분리 기능을 이용함.
         if urls.count == 1 {
-            guard let item = parser.load(path: urls[0]) else {
+            guard let item = try? parser.load(path: urls[0]) else {
                 return nil
             }
             
@@ -109,10 +109,14 @@ class CueSheetViewModel : ObservableObject {
             let musicUrl = urls[abs(cueIndex - 1)]
             let cueUrl = urls[cueIndex]
             
-            let sheet = parser.load(path: cueUrl)
+            if let sheet = try? parser.load(path: cueUrl) {
+                return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
+            }else {
+                return nil
+            }
 //            let audio = sheet.getInfoOfAudio(music: musicUrl)
             
-            return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
+
         }
         // 그 외에는 오류로 처리를 하지 않음.
         else {

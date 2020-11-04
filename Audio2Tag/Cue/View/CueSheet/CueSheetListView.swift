@@ -77,7 +77,7 @@ struct CueSheetListView: View {
                     ForEach (self.viewModel.tracks.indices, id: \.self) { trackIndex in
                         NavigationLink(destination: CueDetailTrackView($viewModel.fileInfo.tracks[trackIndex])
                         ) {
-                            Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.title)")
+                            Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.meta[.title] ?? "")")
                         }
                     }.onDelete(perform: { indexSet in
                         viewModel.fileInfo.tracks.remove(atOffsets: indexSet)

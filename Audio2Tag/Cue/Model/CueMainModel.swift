@@ -9,6 +9,31 @@
 import Foundation
 import SwiftCueSheet
 
+
+extension CSRemKey {
+    var toString:String {
+        switch self {
+        case .others(let p):
+            return p
+        default:
+            return self.caseName
+        }
+        
+    }
+}
+
+extension CSMetaKey {
+    var toString:String {
+        switch self {
+        case .others(let p):
+            return p
+        default:
+            return self.caseName
+        }
+        
+    }
+}
+
 struct TrackModel : Identifiable {
     let id = UUID()
     var track: CSTrack
@@ -36,11 +61,11 @@ struct CueSheetModel : Identifiable {
         
         if var sheet = self.cueSheet {
             if let musicUrl = musicUrl {
-                let _ = sheet.getInfoOfAudio(music: musicUrl)
+                let _ = try? sheet.getInfoOfAudio(music: musicUrl)
             }
             
-            rem = sheet.rem.map { k, v in RemModel(value: (k,v))}
-            meta = sheet.meta.map { k, v in MetaModel(value: (k,v))}
+            rem = sheet.rem.map { k, v in RemModel(value: (k.toString.uppercased(),v))}
+            meta = sheet.meta.map { k, v in MetaModel(value: (k.toString.uppercased(),v))}
             let time = sheet.calcTime()
             tracks = sheet.file.tracks.indices.map { idx in TrackModel(track: sheet.file.tracks[idx], time: time[idx]) }
         }

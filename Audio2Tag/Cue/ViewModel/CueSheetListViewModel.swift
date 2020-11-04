@@ -86,9 +86,9 @@ class CueSheetListViewModel : ObservableObject {
         }else if let sheetType = type {
             switch sheetType {
             case .meta:
-                fileInfo.meta.append(MetaModel(value: (sheetKey, sheetValue)))
+                fileInfo.meta.append(MetaModel(value: (sheetKey.uppercased(), sheetValue)))
             case .rem:
-                fileInfo.rem.append(RemModel(value: (sheetKey, sheetValue)))
+                fileInfo.rem.append(RemModel(value: (sheetKey.uppercased(), sheetValue)))
             case .track:
                 print("not implements")
             }
