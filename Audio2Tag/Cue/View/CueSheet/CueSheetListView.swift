@@ -19,6 +19,7 @@ struct CueSheetListView: View {
     init(fileInfo: Binding<CueSheetModel>) {
         viewModel = CueSheetListViewModel(fileInfo)
     }
+    @State var test = ""
     
     // MARK: - 이벤트 처리하는 함수
     var body: some View {
@@ -87,16 +88,52 @@ struct CueSheetListView: View {
                 
             }
             CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {
-                viewModel.addItem(type: self.viewModel.addSheetType)
+                                viewModel.addItem(type: self.viewModel.addSheetType)
             }) { item in
-                VStack(alignment: .leading) {
-                    Text("제목")
-                    TextField("", text: $viewModel.sheetKey)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Text("내용")
-                    TextField("", text: $viewModel.sheetValue)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }.padding()
+                switch item {
+                case .track:
+                    AnyView(VStack(alignment: .leading) {
+//                        TabView {
+                        ScrollView {
+                            GroupBox {
+                                Text("시작 시간")
+                                HStack {
+                                    TextField("분", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    TextField("초", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    TextField("프레임", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                }
+                            }.tabItem { Text("시작 시간") }
+                            
+                            GroupBox {
+                                Text("종료 시간")
+                                HStack {
+                                    TextField("분", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    TextField("초", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    TextField("프레임", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                }
+                                
+                            }.tabItem { Text("종료 시간") }
+                            GroupBox {
+                                Text("추가할 트랙 위치")
+                                Picker("삽입할 인덱스", selection: $viewModel.selectTrackIndex) {
+                                    ForEach(0..<(viewModel.fileInfo.cueSheet?.file.tracks.count ?? 1), id: \.self) { i in
+                                        Text("\(i)")
+                                    }
+                                }
+                            }.tabItem { Text("위치") }
+                        }.scaledToFit()
+                    })
+                default:
+                    AnyView(VStack(alignment: .leading) {
+                        Text("제목")
+                        TextField("", text: $viewModel.sheetKey)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("내용")
+                        TextField("", text: $viewModel.sheetValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }.padding())
+                }
+                
             }
             
             CustomAlertView(item: $viewModel.editSheetType, title: "데이터 수정", ok: {
@@ -121,5 +158,6 @@ struct CueSheetListView: View {
             }
             
         }
+        
     }
 }

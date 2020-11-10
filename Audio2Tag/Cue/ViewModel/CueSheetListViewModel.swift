@@ -30,6 +30,8 @@ class CueSheetListViewModel : ObservableObject {
     @Published var sheetKey = String()
     @Published var sheetValue = String()
     
+    @Published var selectTrackIndex: Int = 0
+    
     var editIndex: Int = -1
     
     // MARK: - View와 Binding이 된 데이터들
@@ -129,6 +131,7 @@ class CueSheetListViewModel : ObservableObject {
     
     // MARK: - 초기화 코드
     init(_ fileInfo: Binding<CueSheetModel>) {
+        
         self._fileInfo = fileInfo
         
         

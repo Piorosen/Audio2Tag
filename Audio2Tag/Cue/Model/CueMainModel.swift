@@ -50,7 +50,11 @@ struct MetaModel : Identifiable {
     let value: (key:String, value:String)
 }
 
-struct CueSheetModel : Identifiable {
+struct CueSheetModel : Identifiable, Equatable {
+    static func == (lhs: CueSheetModel, rhs: CueSheetModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     init(_ copy: CueSheetModel) {
         self.init(cueSheet: copy.cueSheet, cueUrl: copy.cueUrl, musicUrl: copy.musicUrl)
     }
