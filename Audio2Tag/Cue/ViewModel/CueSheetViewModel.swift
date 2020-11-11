@@ -27,6 +27,8 @@ class CueSheetViewModel : ObservableObject {
             alertType = .splitRequest
         }else if cueSheetModel.cueUrl != nil {
             alertType = .cueSaveRequest
+        }else if cueSheetModel.cueSheet != nil {
+            alertType = .cueSaveRequest
         }else {
             alertType = .failLoad
         }
@@ -50,7 +52,9 @@ class CueSheetViewModel : ObservableObject {
     }
     
     func saveCueSheet(url: URL) {
-        if var sheet = cueSheetModel.cueSheet, let name = cueSheetModel.cueUrl?.lastPathComponent {
+        if var sheet = cueSheetModel.cueSheet {
+            let name = cueSheetModel.cueUrl?.lastPathComponent ?? "temp.cue"
+            
             sheet.rem = cueSheetModel.rem.reduce(CSRem(), { result, item in
                 var copy = result
                 copy[.init(item.value.key)] = item.value.value
@@ -64,12 +68,24 @@ class CueSheetViewModel : ObservableObject {
             })
             sheet.file.tracks = cueSheetModel.tracks.map { $0.track }
             
-            _ = sheet.save(url: url.appendingPathComponent(name))
-            
+            do {
+                let r = url.appendingPathComponent(name)
+                print(r)
+                try sheet.save().write(to: url.appendingPathComponent(name), atomically:  false, encoding: .utf8)
+                DispatchQueue.main.async {
+                    self.alertType = .success
+                }
+            }catch {
+                DispatchQueue.main.async {
+                    self.alertType = .failLoad
+                }
+            }
+        }else {
             DispatchQueue.main.async {
-                self.alertType = .success
+                self.alertType = .failLoad
             }
         }
+        
     }
     
     // MARK: - CueSheet 정보 가져오기.
