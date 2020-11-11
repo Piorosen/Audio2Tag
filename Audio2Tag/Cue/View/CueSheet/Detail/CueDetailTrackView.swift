@@ -68,7 +68,7 @@ struct CueDetailTrackView: View {
             // REM 데이터만 추가가 가능하므로 REM만 추가함.
             CustomAlertView(isPresent: $openAlert, title: "데이터 추가", ok: {
                 if viewModel.key != "" && viewModel.value != "" {
-                    viewModel.rem.append(RemModel(value: (viewModel.key, viewModel.value)))
+                    viewModel.rem.append(RemModel(value: (viewModel.key.uppercased(), viewModel.value)))
                 }
             }) {
                 VStack(alignment: .leading) {

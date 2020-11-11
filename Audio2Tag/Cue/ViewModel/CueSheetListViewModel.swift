@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-
+import SwiftCueSheet
 
 enum CueSheetList : Identifiable {
     var id: Int {
@@ -29,6 +29,8 @@ class CueSheetListViewModel : ObservableObject {
     
     @Published var sheetKey = String()
     @Published var sheetValue = String()
+    
+    @Published var selectTrackIndex: Int = 0
     
     var editIndex: Int = -1
     
@@ -81,16 +83,32 @@ class CueSheetListViewModel : ObservableObject {
     }
     
     func addItem(type: CueSheetList?) {
-        if sheetKey == "" || sheetValue == "" {
-            // 실패 창 보여주기
-        }else if let sheetType = type {
+        if let sheetType = type {
+            if sheetType != .track {
+                if sheetKey == "" || sheetValue == "" {
+                    // 실패 창 보여주기
+                    return
+                }
+            }
+            
+            if fileInfo.cueSheet == nil {
+                fileInfo = CueSheetModel(cueSheet: CueSheet(meta: CSMeta(), rem: CSRem(), file: CSFile(tracks: [CSTrack](), fileName: "", fileType: "")), cueUrl: nil, musicUrl: nil)
+            }
+//
+//            if fileInfo.cueSheet == nil {
+//                return
+//            }
+            
             switch sheetType {
             case .meta:
-                fileInfo.meta.append(MetaModel(value: (sheetKey, sheetValue)))
+                fileInfo.meta.append(MetaModel(value: (sheetKey.uppercased(), sheetValue)))
             case .rem:
-                fileInfo.rem.append(RemModel(value: (sheetKey, sheetValue)))
+                fileInfo.rem.append(RemModel(value: (sheetKey.uppercased(), sheetValue)))
             case .track:
-                print("not implements")
+                var p = CueSheet(meta: fileInfo.cueSheet!.meta, rem: fileInfo.cueSheet!.rem, file: fileInfo.cueSheet!.file)
+                p.makeTrack(self.selectTrackIndex, time: CSLengthOfAudio(startTime: 20, endTime: 40), track: CSTrack(trackNum: Int.random(in: 0...1000), trackType: String("hahahaaaa"), index: [CSIndex](), rem: CSRem(), meta: CSMeta()))
+                fileInfo = CueSheetModel(cueSheet: p, cueUrl: fileInfo.cueUrl, musicUrl: fileInfo.musicUrl)
+                
             }
         }
     }
@@ -129,6 +147,7 @@ class CueSheetListViewModel : ObservableObject {
     
     // MARK: - 초기화 코드
     init(_ fileInfo: Binding<CueSheetModel>) {
+        
         self._fileInfo = fileInfo
         
         

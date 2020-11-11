@@ -27,6 +27,8 @@ class CueSheetViewModel : ObservableObject {
             alertType = .splitRequest
         }else if cueSheetModel.cueUrl != nil {
             alertType = .cueSaveRequest
+        }else if cueSheetModel.cueSheet != nil {
+            alertType = .cueSaveRequest
         }else {
             alertType = .failLoad
         }
@@ -50,26 +52,40 @@ class CueSheetViewModel : ObservableObject {
     }
     
     func saveCueSheet(url: URL) {
-        if var sheet = cueSheetModel.cueSheet, let name = cueSheetModel.cueUrl?.lastPathComponent {
+        if var sheet = cueSheetModel.cueSheet {
+            let name = cueSheetModel.cueUrl?.lastPathComponent ?? "temp.cue"
+            
             sheet.rem = cueSheetModel.rem.reduce(CSRem(), { result, item in
                 var copy = result
-                copy[item.value.key] = item.value.value
+                copy[.init(item.value.key)] = item.value.value
                 return copy
             })
             
             sheet.meta = cueSheetModel.meta.reduce(CSMeta(), { result, item in
                 var copy = result
-                copy[item.value.key] = item.value.value
+                copy[.init(item.value.key)] = item.value.value
                 return copy
             })
             sheet.file.tracks = cueSheetModel.tracks.map { $0.track }
             
-            _ = sheet.save(url: url.appendingPathComponent(name))
-            
+            do {
+                let r = url.appendingPathComponent(name)
+                print(r)
+                try sheet.save().write(to: url.appendingPathComponent(name), atomically:  false, encoding: .utf8)
+                DispatchQueue.main.async {
+                    self.alertType = .success
+                }
+            }catch {
+                DispatchQueue.main.async {
+                    self.alertType = .failLoad
+                }
+            }
+        }else {
             DispatchQueue.main.async {
-                self.alertType = .success
+                self.alertType = .failLoad
             }
         }
+        
     }
     
     // MARK: - CueSheet 정보 가져오기.
@@ -79,7 +95,7 @@ class CueSheetViewModel : ObservableObject {
         let parser = CueSheetParser()
         // url이 1개 일 경우 Cue Sheet 파일 분리 기능을 이용함.
         if urls.count == 1 {
-            guard let item = parser.load(path: urls[0]) else {
+            guard let item = try? parser.load(path: urls[0]) else {
                 return nil
             }
             
@@ -109,10 +125,14 @@ class CueSheetViewModel : ObservableObject {
             let musicUrl = urls[abs(cueIndex - 1)]
             let cueUrl = urls[cueIndex]
             
-            let sheet = parser.load(path: cueUrl)
+            if let sheet = try? parser.load(path: cueUrl) {
+                return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
+            }else {
+                return nil
+            }
 //            let audio = sheet.getInfoOfAudio(music: musicUrl)
             
-            return CueSheetModel(cueSheet: sheet, cueUrl: cueUrl, musicUrl: musicUrl)
+
         }
         // 그 외에는 오류로 처리를 하지 않음.
         else {

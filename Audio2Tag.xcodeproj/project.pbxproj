@@ -179,6 +179,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		6236A1E0255B8AE500294EE3 /* old */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
 		624594DD25359DB7006964A1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +219,7 @@
 		6256BAC02535549300C497AD /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
+				6236A1E0255B8AE500294EE3 /* old */,
 				62B57838253581AF00839A92 /* Audio2Tag.entitlements */,
 				6256BB1A2535550400C497AD /* Resources */,
 				6256BB2D2535550400C497AD /* ContentView.swift */,
@@ -844,7 +852,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -870,7 +878,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -925,6 +933,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5Q488G86T2;
 				INFOPLIST_FILE = Audio2TagUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -945,6 +954,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5Q488G86T2;
 				INFOPLIST_FILE = Audio2TagUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1005,7 +1015,7 @@
 			repositoryURL = "https://github.com/Piorosen/SwiftCueSheet";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.1;
+				minimumVersion = 1.5.1;
 			};
 		};
 		6256BB8C253558A000C497AD /* XCRemoteSwiftPackageReference "ID3TagEditor" */ = {

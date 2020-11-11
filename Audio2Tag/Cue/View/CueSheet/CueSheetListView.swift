@@ -11,14 +11,13 @@ import SwiftUI
 import CoreMedia
 
 
-
-
 struct CueSheetListView: View {
     @ObservedObject var viewModel: CueSheetListViewModel
     
     init(fileInfo: Binding<CueSheetModel>) {
         viewModel = CueSheetListViewModel(fileInfo)
     }
+    @State var test = ""
     
     // MARK: - 이벤트 처리하는 함수
     var body: some View {
@@ -47,12 +46,12 @@ struct CueSheetListView: View {
                     ForEach (self.viewModel.meta.indices, id: \.self) { idx in
                         Button(action: { viewModel.editMeta(idx) },
                                label: {
-                            HStack {
-                                Text(viewModel.meta[idx].value.key)
-                                Spacer()
-                                Text(viewModel.meta[idx].value.value)
-                            }
-                        })
+                                HStack {
+                                    Text(viewModel.meta[idx].value.key)
+                                    Spacer()
+                                    Text(viewModel.meta[idx].value.value)
+                                }
+                               })
                     }.onDelete(perform: { indexSet in
                         viewModel.fileInfo.meta.remove(atOffsets: indexSet)
                     })
@@ -62,22 +61,22 @@ struct CueSheetListView: View {
                     ForEach (self.viewModel.rem.indices, id: \.self) { idx in
                         Button(action: { viewModel.editRem(idx) },
                                label: {
-                            HStack {
-                                Text(viewModel.rem[idx].value.key)
-                                Spacer()
-                                Text(viewModel.rem[idx].value.value)
-                            }
-                        })
+                                HStack {
+                                    Text(viewModel.rem[idx].value.key)
+                                    Spacer()
+                                    Text(viewModel.rem[idx].value.value)
+                                }
+                               })
                     }.onDelete(perform: { indexSet in
                         viewModel.fileInfo.rem.remove(atOffsets: indexSet)
                     })
                     AddButton("REM 추가", viewModel.addRem)
                 }
                 Section(header: Text("File : \(viewModel.title)")) {
-                    ForEach (self.viewModel.tracks.indices, id: \.self) { trackIndex in
+                    ForEach (self.viewModel.fileInfo.tracks.indices, id: \.self) { trackIndex in
                         NavigationLink(destination: CueDetailTrackView($viewModel.fileInfo.tracks[trackIndex])
                         ) {
-                            Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.title)")
+                            Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.meta[.title] ?? "")")
                         }
                     }.onDelete(perform: { indexSet in
                         viewModel.fileInfo.tracks.remove(atOffsets: indexSet)
@@ -89,14 +88,53 @@ struct CueSheetListView: View {
             CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {
                 viewModel.addItem(type: self.viewModel.addSheetType)
             }) { item in
-                VStack(alignment: .leading) {
-                    Text("제목")
-                    TextField("", text: $viewModel.sheetKey)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Text("내용")
-                    TextField("", text: $viewModel.sheetValue)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                }.padding()
+                switch item {
+                case .track:
+                    AnyView(ScrollView {
+                            GroupBox {
+                                VStack {
+//                                GroupBox {
+                                    Text("시작 시간")
+                                    HStack {
+                                        TextField("분", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                        TextField("초", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                        TextField("프레임", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    }
+                                }
+                                Divider()
+                                VStack {
+//                                GroupBox {
+                                    Text("종료 시간")
+                                    HStack {
+                                        TextField("분", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                        TextField("초", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                        TextField("프레임", text: $test).textFieldStyle(RoundedBorderTextFieldStyle())
+                                    }
+                                    
+                                }
+                                Divider()
+                                VStack {
+//                                GroupBox {
+                                    Text("추가할 트랙 위치")
+                                    Picker("삽입할 인덱스", selection: $viewModel.selectTrackIndex) {
+                                        ForEach(0..<((viewModel.fileInfo.cueSheet?.file.tracks.count ?? 0) + 1), id: \.self) { i in
+                                            Text("\(i) 번 위치")
+                                        }
+                                    }
+                                }
+                            }
+                        }.scaledToFit())
+                default:
+                    AnyView(VStack(alignment: .leading) {
+                        Text("제목")
+                        TextField("", text: $viewModel.sheetKey)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Text("내용")
+                        TextField("", text: $viewModel.sheetValue)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }.padding())
+                }
+                
             }
             
             CustomAlertView(item: $viewModel.editSheetType, title: "데이터 수정", ok: {
@@ -121,5 +159,6 @@ struct CueSheetListView: View {
             }
             
         }
+        
     }
 }

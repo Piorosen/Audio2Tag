@@ -21,8 +21,6 @@ enum CueDetailTrackDescription : Identifiable {
     case trackType
     case songWriter
     
-    
-    
     var caseName: String {
         return Mirror(reflecting: self).children.first?.label ?? String(describing: self)
     }
@@ -46,7 +44,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Title")
                     Spacer()
-                    Text("\(track.title)")
+                    Text("\(track.meta[.title] ?? "")")
                 }
             }
             Button(action: {
@@ -64,7 +62,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("ISRC")
                     Spacer()
-                    Text("\(track.isrc)")
+                    Text("\(track.meta[.isrc] ?? "")")
                 }
             }
             Button(action: {
@@ -73,7 +71,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Performer")
                     Spacer()
-                    Text("\(track.performer)")
+                    Text("\(track.meta[.performer] ?? "")")
                 }
             }
             Button(action: {
@@ -91,7 +89,7 @@ struct CueDetailTrackDescriptionCell: View {
                 HStack {
                     Text("Song Writer")
                     Spacer()
-                    Text("\(track.songWriter)")
+                    Text("\(track.meta[.songWriter] ?? "")")
                 }
             }
         }
