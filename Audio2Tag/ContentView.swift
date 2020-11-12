@@ -19,7 +19,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            CueView.tabItem {
+            CueView().tabItem {
                 Text("Cue")
             }
 //
