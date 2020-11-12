@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let cue = CueView()
+//    let cue = CueView()
     
     func update(_ urls:[URL]) {
 //        cue.update(urls: urls)
@@ -19,19 +19,19 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            cue.tabItem {
+            CueView.tabItem {
                 Text("Cue")
             }
-            
-            TagView().tabItem {
-                Text("Tag")
-            }
-            FileView().tabItem {
-                Text("File")
-            }
-            SettingView().tabItem {
-                Text("Setting")
-            }
+//
+//            TagView().tabItem {
+//                Text("Tag")
+//            }
+//            FileView().tabItem {
+//                Text("File")
+//            }
+//            SettingView().tabItem {
+//                Text("Setting")
+//            }
         }
     }
 }

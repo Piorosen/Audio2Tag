@@ -179,11 +179,23 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		6236A1E0255B8AE500294EE3 /* old */ = {
+		6236A28C255CE51300294EE3 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				6256BAF82535550400C497AD /* Cue */,
+				6256BB202535550400C497AD /* File */,
+				6256BAF52535550400C497AD /* Setting */,
+				6256BB2E2535550400C497AD /* Tag */,
+				6256BB232535550400C497AD /* UI Library */,
+			);
+			path = old;
+			sourceTree = "<group>";
+		};
+		6236A28D255CE51F00294EE3 /* Cue */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = old;
+			path = Cue;
 			sourceTree = "<group>";
 		};
 		624594DD25359DB7006964A1 /* Cell */ = {
@@ -219,15 +231,11 @@
 		6256BAC02535549300C497AD /* Audio2Tag */ = {
 			isa = PBXGroup;
 			children = (
-				6236A1E0255B8AE500294EE3 /* old */,
+				6236A28D255CE51F00294EE3 /* Cue */,
+				6236A28C255CE51300294EE3 /* old */,
 				62B57838253581AF00839A92 /* Audio2Tag.entitlements */,
 				6256BB1A2535550400C497AD /* Resources */,
 				6256BB2D2535550400C497AD /* ContentView.swift */,
-				6256BAF82535550400C497AD /* Cue */,
-				6256BB202535550400C497AD /* File */,
-				6256BAF52535550400C497AD /* Setting */,
-				6256BB2E2535550400C497AD /* Tag */,
-				6256BB232535550400C497AD /* UI Library */,
 				6256BAC12535549300C497AD /* Audio2TagApp.swift */,
 				6256BAC52535549400C497AD /* Assets.xcassets */,
 				6256BACA2535549400C497AD /* Info.plist */,
