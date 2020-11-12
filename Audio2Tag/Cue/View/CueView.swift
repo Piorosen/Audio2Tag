@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct CueView: View {
+    @State var show = true
+    @State var pp = [CueStatusCellModel]()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            CueEditView()
+            CueStatusView(isPresented: $show, bind: $pp)
+        }
     }
 }
 

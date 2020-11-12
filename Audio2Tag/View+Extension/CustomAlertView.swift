@@ -14,6 +14,11 @@ enum CustomAlert {
     case yesNo
 }
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
 
 protocol ProtocolCustomAlertView: View {
     func onOk(_ action: @escaping () -> Void) -> Self
@@ -189,7 +194,7 @@ fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView 
             .opacity(isPresent ? 1 : 0)
             .onChange(of: isPresent) { newValue in
                 if !newValue {
-                    UIApplication.shared.endEditing(true)
+                    UIApplication.shared.endEditing()
                 }
             }
         }
@@ -308,7 +313,7 @@ fileprivate struct CustomAlertView_Any<Content: View, Item: Identifiable & Equat
             .opacity(item != nil ? 1 : 0)
             .onChange(of: item) { newValue in
                 if newValue == nil {
-                    UIApplication.shared.endEditing(true)
+                    UIApplication.shared.endEditing()
                 }
             }
         }

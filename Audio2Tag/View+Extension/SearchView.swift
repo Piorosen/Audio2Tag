@@ -11,10 +11,6 @@ import SwiftUI
 struct SearchView: View {
     @State var text:String = ""
     
-//    init(text: Binding<String>) {
-//        _text = text
-//    }
-    
     @State private var showCancelButton: Bool = false
     private var commit = { (_:String) in }
     
@@ -49,7 +45,7 @@ struct SearchView: View {
             .animation(.spring())
             if showCancelButton  {
                 Button("Cancel") {
-                    UIApplication.shared.endEditing(true) // this must be placed before the other commands here
+                    UIApplication.shared.endEditing() // this must be placed before the other commands here
                     self.text = ""
                     self.showCancelButton = false
                 }
