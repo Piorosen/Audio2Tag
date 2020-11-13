@@ -18,7 +18,9 @@ struct CueStatusView: View {
             print("yeess")
         }) {
             List {
-                CueStatusCellView(data: CueStatusCellModel(name: "전체 진행률", value: bind.map{ $0.value }.reduce(0.0, +) / Double(bind.count)))
+                CueStatusCellView(data: CueStatusCellModel(name: "전체 진행률", value: bind.count == 0
+                                                            ? 0
+                                                            : bind.map{ $0.value }.reduce(0.0, +) / Double(bind.count)))
                 ForEach (bind) { item in
                     CueStatusCellView(data: item)
                 }

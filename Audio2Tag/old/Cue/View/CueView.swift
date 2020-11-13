@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CueView: View {
+struct CueViewa: View {
     @ObservedObject var viewModel = CueViewModel()
 
     var body: some View {
