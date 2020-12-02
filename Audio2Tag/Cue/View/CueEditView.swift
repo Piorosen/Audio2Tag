@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import SwiftCueSheet
 
 struct CueEditView: View {
-    private var requestExecute: () -> Void = { }
+    @ObservedObject var viewModel = CueEditViewModel()
+    
+    private var requestExecute: (CueSheet) -> Void = { _ in }
     private var requestStatus: () -> Void = { }
     
     
-    func onRequestExecute(_ action: @escaping () -> Void) -> CueEditView {
+    func onRequestExecute(_ action: @escaping (CueSheet) -> Void) -> CueEditView {
         var copy = self
         copy.requestExecute = action
         return copy
@@ -27,21 +30,39 @@ struct CueEditView: View {
     var body: some View {
         NavigationView {
             List {
+                Section(header: Text("Music")) {
+                    HStack {
+                        Text("음원 길이")
+                        Spacer()
+                        Text("")
+                    }
+                    HStack {
+                        Text("채널 수")
+                        Spacer()
+                        Text("")
+                    }
+                    HStack {
+                        Text("샘플 레이트")
+                        Spacer()
+                        Text("")
+                    }
+                }
+                
                 Section(header: Text("Meta")) {
-                    EmptyView()
+                    AddButton("META 추가", viewModel.add.meta)
                 }
-                Section(header: Text("Meta")) {
-                    EmptyView()
+                
+                Section(header: Text("Rem")) {
+                    AddButton("REM 추가", viewModel.add.rem)
                 }
-                Section(header: Text("REM")) {
-                    EmptyView()
+                Section(header: Text("File : ")) {
+                    AddButton("Track 추가", viewModel.add.track)
                 }
-                Section(header: Text("FILE")) {
-                    EmptyView()
-                }
+                
+                
             }.navigationTitle("큐 편집기")
             .navigationBarItems(leading: HStack {
-                Button(action: requestExecute) {
+                Button(action: { }) {
                     Image(systemName: "play")
                 }
                 Button(action: requestStatus) {
@@ -54,6 +75,7 @@ struct CueEditView: View {
                     Image(systemName: "folder.badge.plus")
                 }
             })
+//            .customAlertView(C
         }
     }
 }

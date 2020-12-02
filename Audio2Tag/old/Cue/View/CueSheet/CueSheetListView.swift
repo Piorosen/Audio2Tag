@@ -42,47 +42,7 @@ struct CueSheetListView: View {
                         }
                     }
                 }
-                Section(header: Text("Meta")) {
-                    ForEach (self.viewModel.meta.indices, id: \.self) { idx in
-                        Button(action: { viewModel.editMeta(idx) },
-                               label: {
-                                HStack {
-                                    Text(viewModel.meta[idx].value.key)
-                                    Spacer()
-                                    Text(viewModel.meta[idx].value.value)
-                                }
-                               })
-                    }.onDelete(perform: { indexSet in
-                        viewModel.fileInfo.meta.remove(atOffsets: indexSet)
-                    })
-                    AddButton("META 추가", viewModel.addMeta)
-                }
-                Section(header: Text("Rem")) {
-                    ForEach (self.viewModel.rem.indices, id: \.self) { idx in
-                        Button(action: { viewModel.editRem(idx) },
-                               label: {
-                                HStack {
-                                    Text(viewModel.rem[idx].value.key)
-                                    Spacer()
-                                    Text(viewModel.rem[idx].value.value)
-                                }
-                               })
-                    }.onDelete(perform: { indexSet in
-                        viewModel.fileInfo.rem.remove(atOffsets: indexSet)
-                    })
-                    AddButton("REM 추가", viewModel.addRem)
-                }
-                Section(header: Text("File : \(viewModel.title)")) {
-                    ForEach (self.viewModel.fileInfo.tracks.indices, id: \.self) { trackIndex in
-                        NavigationLink(destination: CueDetailTrackView($viewModel.fileInfo.tracks[trackIndex])
-                        ) {
-                            Text("\(viewModel.tracks[trackIndex].track.trackNum) : \(viewModel.tracks[trackIndex].track.meta[.title] ?? "")")
-                        }
-                    }.onDelete(perform: { indexSet in
-                        viewModel.fileInfo.tracks.remove(atOffsets: indexSet)
-                    })
-                    AddButton("Track 추가", viewModel.addTrack)
-                }
+                
                 
             }
             CustomAlertView(item: $viewModel.addSheetType, title: "데이터 추가", ok: {

@@ -27,7 +27,7 @@ struct CueView: View {
     var body: some View {
         ZStack {
             CueEditView()
-                .onRequestExecute {
+                .onRequestExecute {_ in 
                     pp.append(CueStatusCellModel(name: String.random(length: 8), value: Double.random(in: 0...1)))
                 }.onRequestStatus {
                     show.toggle()

@@ -87,6 +87,15 @@ struct CustomAlertView: View {
     
 }
 
+extension View {
+    func customAlertView(_ view: CustomAlertView) -> some View {
+        ZStack {
+            self;
+            view
+        }
+    }
+}
+
 // MARK: - Bool Type
 fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView {
     @Binding var isPresent: Bool
