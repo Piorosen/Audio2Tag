@@ -8,8 +8,47 @@
 import SwiftUI
 import SwiftCueSheet
 
+enum CueEditSheetEvent : Identifiable {
+    var id: Int {
+        self.hashValue
+    }
+    case fileSelect
+    case splitFolderSelect
+    case saveCueFolder
+}
+
+extension CueEditView {
+    func makeSheet(item: CueEditSheetEvent) -> some View {
+        return Group {
+            switch item {
+            case .fileSelect:
+                DocumentPicker()
+                    .setConfig(folderPicker: false, allowMultiple: true)
+                    .onSelectFiles { urls in
+//                        _ = self.viewModel.selectFiles(urls)
+                    }
+            case .splitFolderSelect:
+                DocumentPicker()
+                    .setConfig(folderPicker: true, allowMultiple: false)
+                    .onSelectFile { url in
+//                        self.splitStartAction(url, self.viewModel.cueSheetModel, { viewModel.alertType = .success })
+                    }
+            case .saveCueFolder:
+                DocumentPicker()
+                    .setConfig(folderPicker: true, allowMultiple: false)
+                    .onSelectFile { url in
+//                        self.viewModel.saveCueSheet(url: url)
+                    }
+            }
+        }
+    }
+}
+
+
 struct CueEditView: View {
     @ObservedObject var viewModel = CueEditViewModel()
+    
+    @State var sheet: CueEditSheetEvent? = nil
     
     private var requestExecute: (CueSheet) -> Void = { _ in }
     private var requestStatus: () -> Void = { }
@@ -53,6 +92,7 @@ struct CueEditView: View {
                 }
                 
                 Section(header: Text("Rem")) {
+                    
                     AddButton("REM 추가", viewModel.add.rem)
                 }
                 Section(header: Text("File : ")) {
@@ -77,6 +117,7 @@ struct CueEditView: View {
             })
 //            .customAlertView(C
         }
+//        }.sheet(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
     }
 }
 

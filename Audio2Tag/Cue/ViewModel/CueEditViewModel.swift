@@ -7,13 +7,13 @@
 
 import Foundation
 import SwiftUI
+import SwiftCueSheet
 
 protocol ChangeEvent {
     func request(_ action: @escaping (CueEditViewModel.Event) -> Void) -> Self
     func meta()
     func rem()
     func track()
-    
 }
 
 
@@ -21,6 +21,11 @@ class CueEditViewModel : ObservableObject {
     var edit: Edit
     var remove: Remove
     var add: Add
+    
+    @Published var rem = [CueSheetRem]()
+    @Published var meta = [CueSheetRem]()
+    @Published var track = [CueSheetRem]()
+    
     
     public init() {
         edit = Edit().request({ e in })
@@ -70,7 +75,6 @@ class CueEditViewModel : ObservableObject {
             request(.track)
         }
     }
-    
     struct Add : ChangeEvent {
         private var request: (Event) -> Void = { _ in }
         func request(_ action: @escaping (Event) -> Void) -> Add {
@@ -89,6 +93,5 @@ class CueEditViewModel : ObservableObject {
             request(.track)
         }
     }
-    
     
 }
