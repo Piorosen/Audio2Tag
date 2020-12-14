@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import SwiftCueSheet
+
+struct CueSheetMeta : Identifiable {
+    var id = UUID()
+    var key: CSMetaKey
+    var value: String
+}

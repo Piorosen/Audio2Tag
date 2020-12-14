@@ -10,5 +10,6 @@ import SwiftCueSheet
 
 struct CueSheetRem : Identifiable {
     var id = UUID()
-    
+    var key: CSRemKey
+    var value: String
 }

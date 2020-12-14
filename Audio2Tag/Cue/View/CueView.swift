@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CueView: View {
-    @State var show = true
+    @State var show = false
     @State var pp = [CueStatusCellModel]()
     var body: some View {
         ZStack {
             CueEditView()
-                .onRequestExecute {_ in 
+                .onRequestExecute {_, _ in 
 
                 }.onRequestStatus {
                     show.toggle()
