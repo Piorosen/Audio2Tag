@@ -22,9 +22,9 @@ class CueEditViewModel : ObservableObject {
     var remove: Remove = Remove()
     var add: Add = Add()
     
-    var requestExecute: (CueSheet, URL) -> Void = { _, _ in }
+    var requestExecute: (CueSheet, URL, URL) -> Void = { _, _, _ in }
     var requestStatus: () -> Void = { }
-    var requestSaveCueSheet: (CueSheet) -> Void = { _ in }
+    var requestSaveCueSheet: (CueSheet, URL) -> Void = { _, _ in }
     
     @Published var editEvent: CueEditViewModel.Event?
     @Published var addEvent: CueEditViewModel.Event?
@@ -37,6 +37,9 @@ class CueEditViewModel : ObservableObject {
     @Published var track = [CueSheetTrack]()
     @Published var file = CueSheetFile(fileName: "", fileType: "")
     @Published var audio = CueSheetAudio()
+    
+    @Published var cueUrl: URL? = nil
+    @Published var audioUrl: URL? = nil
     
     func getCueSheet() -> CueSheet {
         let meta = self.meta.reduce(CSMeta()) { r, item in
@@ -81,6 +84,10 @@ class CueEditViewModel : ObservableObject {
             return
         }
         
+        cueUrl = cue.first
+        audioUrl = audio.first
+        
+        
         do {
             var p = try CueSheetParser().load(path: cue[0])
             
@@ -106,17 +113,22 @@ class CueEditViewModel : ObservableObject {
             }else {
                 self.audio = CueSheetAudio(audio: nil)
             }
+            
         }catch {
             print(error.localizedDescription)
         }
     }
     
     func saveCueSheet(url: URL) {
-        requestSaveCueSheet(getCueSheet())
+        requestSaveCueSheet(getCueSheet(), url)
     }
     
     func splitCueSheet(url: URL) {
-        requestExecute(getCueSheet(), url)
+        // 큐 정보와 저장할 곳
+        guard let audioUrl = audioUrl else {
+            return
+        }
+        requestExecute(getCueSheet(), url, audioUrl)
     }
     
     // MARK: - Navigation Button Event

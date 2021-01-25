@@ -13,8 +13,15 @@ struct CueView: View {
     var body: some View {
         ZStack {
             CueEditView()
-                .onRequestExecute {_, _ in 
-
+                // CueSheet, Save Directory, Audio Directory
+                .onRequestExecute {
+                    print("\($0) : \($1) : \($2)")
+                }
+                // CueSheet, Save Directory
+                // Need : FileName
+                .onRequestSaveCueSheet { _, _ in
+                    print("ddd")
+                    
                 }.onRequestStatus {
                     show.toggle()
                 }

@@ -96,12 +96,12 @@ struct CueEditView: View {
     @State var title: String = ""
     @State var value: String = ""
     
-    func onRequestExecute(_ action: @escaping (CueSheet, URL) -> Void) -> CueEditView {
+    func onRequestExecute(_ action: @escaping (CueSheet, URL, URL) -> Void) -> CueEditView {
         //        let copy = self
         self.viewModel.requestExecute = action
         return self
     }
-    func onRequestSaveCueSheet(_ action: @escaping (CueSheet) -> Void) -> CueEditView {
+    func onRequestSaveCueSheet(_ action: @escaping (CueSheet, URL) -> Void) -> CueEditView {
         //        var copy = self
         self.viewModel.requestSaveCueSheet = action
         return self
