@@ -11,21 +11,24 @@ import SwiftCueSheet
 
 protocol ChangeEvent {
     func request(_ action: @escaping (CueEditViewModel.Event) -> Void) -> Self
-    func meta()
-    func rem()
-    func track()
+    func meta(_ uuid:UUID)
+    func rem(_ uuid:UUID)
+    func track(_ uuid:UUID)
 }
 
 
 class CueEditViewModel : ObservableObject {
-    var edit: Edit
-    var remove: Remove
-    var add: Add
-    
+    var edit: Edit = Edit()
+    var remove: Remove = Remove()
+    var add: Add = Add()
     
     var requestExecute: (CueSheet, URL) -> Void = { _, _ in }
     var requestStatus: () -> Void = { }
     var requestSaveCueSheet: (CueSheet) -> Void = { _ in }
+    
+    @Published var editEvent: CueEditViewModel.Event?
+    @Published var addEvent: CueEditViewModel.Event?
+    @Published var removeEvent: CueEditViewModel.Event?
     
     
     @Published var sheetEvent: CueEditSheetEvent?
@@ -47,6 +50,7 @@ class CueEditViewModel : ObservableObject {
             copy[item.key] = item.value
             return copy
         }
+        
         
         let track = self.track.map { CSTrack(trackNum: $0.trackNum, trackType: $0.trackType, index: $0.index,
                                              rem: $0.rem.reduce(CSRem()) { r, item in
@@ -80,13 +84,20 @@ class CueEditViewModel : ObservableObject {
         do {
             var p = try CueSheetParser().load(path: cue[0])
             
-            rem = p.rem.map { CueSheetRem(key: $0.key, value: $0.value) }.sorted(by: { $0.value < $1.value })
-            meta = p.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }.sorted(by: { $0.value < $1.value })
-            track = p.file.tracks.map { CueSheetTrack(meta: $0.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }.sorted(by: { $0.value < $1.value }),
-                                                      rem: $0.rem.map { CueSheetRem(key: $0.key, value: $0.value) }.sorted(by: { $0.value < $1.value }),
-                                                      trackNum: $0.trackNum,
-                                                      trackType: $0.trackType,
-                                                      index: $0.index )}
+            rem = p.rem.map { CueSheetRem(key: $0.key, value: $0.value) }
+                .sorted(by: { $0.key.caseName < $1.key.caseName  })
+            
+            meta = p.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }
+                .sorted(by: { $0.key.caseName  < $1.key.caseName  })
+            
+            track = p.file.tracks.map {
+                CueSheetTrack(title: $0.meta[.title] ?? "",
+                              meta: $0.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }.sorted { $0.key.caseName  < $1.key.caseName  },
+                              rem: $0.rem.map { CueSheetRem(key: $0.key, value: $0.value) }.sorted(by: { $0.key.caseName  < $1.key.caseName  }),
+                              trackNum: $0.trackNum,
+                              trackType: $0.trackType,
+                              index: $0.index )}
+            
             file.fileName = p.file.fileName
             file.fileType = p.file.fileType
             
@@ -96,16 +107,16 @@ class CueEditViewModel : ObservableObject {
                 self.audio = CueSheetAudio(audio: nil)
             }
         }catch {
-            
+            print(error.localizedDescription)
         }
     }
     
-    func saveCueSheet(url: URL) -> Bool {
-        return getCueSheet().save(url: url)
+    func saveCueSheet(url: URL) {
+        requestSaveCueSheet(getCueSheet())
     }
     
     func splitCueSheet(url: URL) {
-        
+        requestExecute(getCueSheet(), url)
     }
     
     // MARK: - Navigation Button Event
@@ -123,20 +134,58 @@ class CueEditViewModel : ObservableObject {
     }
     
     
+    // MARK: - CustomViewAlert Event
+    
+    // Add
+    func addItems(event:Event?, key: String, value: String) {
+        guard let e = event else {
+            return
+        }
+        
+        switch e {
+        case .meta(let uuid):
+            meta.append(CueSheetMeta(id: uuid, key: .init(key), value: value))
+        case .rem(let uuid):
+            rem.append(.init(id: uuid, key: .init(key), value: value))
+        default:
+            break
+        }
+        
+    }
+    
+    // Edit
+    func editItems(event:Event?, key: String, value: String) {
+        
+    }
+    // Remove
+    func removeItems(event:Event?, key: String, value: String) {
+        
+    }
     // MARK: -
     
     
     public init() {
         sheetEvent = nil
-        edit = Edit().request({ e in })
-        remove = Remove().request({ e in })
-        add = Add().request({ e in })
+        edit = Edit().request { self.editEvent = $0 }
+        remove = Remove().request { self.removeEvent = $0 }
+        add = Add().request { self.addEvent = $0 }
     }
     
-    enum Event {
-        case meta
-        case rem
-        case track
+    enum Event : Identifiable, Equatable {
+        var id: Int {
+            switch self {
+            case .meta(_):
+                return 1
+            case .rem(_):
+                return 2
+            case .track(_):
+                return 3
+            }
+        }
+        
+        case meta(_ uuid:UUID)
+        case rem(_ uuid:UUID)
+        case track(_ uuid:UUID)
     }
     
     struct Edit : ChangeEvent {
@@ -147,14 +196,14 @@ class CueEditViewModel : ObservableObject {
             return copy
         }
         
-        func meta() {
-            request(.meta)
+        func meta(_ uuid: UUID) {
+            request(.meta(uuid))
         }
-        func rem() {
-            request(.rem)
+        func rem(_ uuid: UUID) {
+            request(.rem(uuid))
         }
-        func track() {
-            request(.track)
+        func track(_ uuid: UUID) {
+            request(.track(uuid))
         }
     }
     struct Remove : ChangeEvent {
@@ -165,16 +214,17 @@ class CueEditViewModel : ObservableObject {
             return copy
         }
         
-        func meta() {
-            request(.meta)
+        func meta(_ uuid: UUID) {
+            request(.meta(uuid))
         }
-        func rem() {
-            request(.rem)
+        func rem(_ uuid: UUID) {
+            request(.rem(uuid))
         }
-        func track() {
-            request(.track)
+        func track(_ uuid: UUID) {
+            request(.track(uuid))
         }
     }
+    
     struct Add : ChangeEvent {
         private var request: (Event) -> Void = { _ in }
         func request(_ action: @escaping (Event) -> Void) -> Add {
@@ -183,14 +233,14 @@ class CueEditViewModel : ObservableObject {
             return copy
         }
         
-        func meta() {
-            request(.meta)
+        func meta(_ uuid: UUID) {
+            request(.meta(uuid))
         }
-        func rem() {
-            request(.rem)
+        func rem(_ uuid: UUID) {
+            request(.rem(uuid))
         }
-        func track() {
-            request(.track)
+        func track(_ uuid: UUID) {
+            request(.track(uuid))
         }
     }
 }

@@ -27,6 +27,25 @@ protocol ProtocolCustomAlertView: View {
     func onNo(_ action: @escaping () -> Void) -> Self
 }
 
+
+extension View {
+    func customAlertView(_ view: CustomAlertView) -> some View {
+        ZStack {
+            self;
+            view
+        }
+    }
+    
+    func customAlertView(_ viewList: [CustomAlertView]) -> some View {
+        ZStack {
+            self;
+            ForEach(viewList.indices, id: \.self) { index in
+                viewList[index]
+            }
+        }
+    }
+}
+
 struct CustomAlertView: View {
     var body: AnyView
     
@@ -87,14 +106,6 @@ struct CustomAlertView: View {
     
 }
 
-extension View {
-    func customAlertView(_ view: CustomAlertView) -> some View {
-        ZStack {
-            self;
-            view
-        }
-    }
-}
 
 // MARK: - Bool Type
 fileprivate struct CustomAlertView_Bool<Content: View>: ProtocolCustomAlertView {

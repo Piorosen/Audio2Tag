@@ -17,6 +17,8 @@ enum CueEditSheetEvent : Identifiable {
     case saveCueFolder
 }
 
+
+// MARK: - Sheet 관련 (파일 선택창 및 파일 저장 하는 선택창 관련)
 extension CueEditView {
     func makeSheet(item: CueEditSheetEvent) -> some View {
         return Group {
@@ -45,24 +47,68 @@ extension CueEditView {
 }
 
 
+// MARK: - CustomAlertView와 관련하여 META 및 REM 데이터 수정 및 추가 기능
+extension CueEditView {
+    func AddCustomAlert() -> CustomAlertView {
+        return CustomAlertView(item: self.$viewModel.addEvent, title: "추가",
+                        ok: { viewModel.addItems(event: currentType, key: title, value: value); title = ""; value = ""  },
+                        cancel: { title = ""; value = "" }) { i in
+            VStack(alignment: .leading) {
+                Text("Key")
+                TextField("\(title)", text: $title)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("Value")
+                TextField("\(value)", text: $value)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }.padding()
+        }
+    }
+    
+    func EditCustomAlert() -> CustomAlertView {
+        return CustomAlertView(item: self.$viewModel.editEvent, title: "수정", ok: { title = ""; value = "" }, cancel: { title = ""; value = "" }) { i in
+            VStack(alignment: .leading) {
+                Text("Key")
+                switch i {
+                case .meta(let p):
+                    Text("\(viewModel.meta.first(where: { item in item.id == p })?.key.caseName ?? "Error")")
+                case .rem(let p):
+                    Text("\(viewModel.rem.first(where: { item in item.id == p })?.key.caseName ?? "Error")")
+
+                case .track(let p):
+                    Text("\(viewModel.track.first(where: { item in item.id == p })?.title ?? "Error")")
+                }
+                Text("Value")
+                TextField("\(value)", text: $value)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }.padding()
+        }
+    }
+}
+
+
+
+// MARK: -
 struct CueEditView: View {
     @ObservedObject var viewModel = CueEditViewModel()
     
-    @State var sheet: CueEditSheetEvent? = nil
+    @State var currentType: CueEditViewModel.Event? = nil
+    
+    @State var title: String = ""
+    @State var value: String = ""
     
     func onRequestExecute(_ action: @escaping (CueSheet, URL) -> Void) -> CueEditView {
-//        let copy = self
+        //        let copy = self
         self.viewModel.requestExecute = action
         return self
     }
     func onRequestSaveCueSheet(_ action: @escaping (CueSheet) -> Void) -> CueEditView {
-//        var copy = self
+        //        var copy = self
         self.viewModel.requestSaveCueSheet = action
         return self
     }
     
     func onRequestStatus(_ action: @escaping () -> Void) -> CueEditView {
-//        var copy = self
+        //        var copy = self
         self.viewModel.requestStatus = action
         return self
     }
@@ -70,68 +116,13 @@ struct CueEditView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Music")) {
-                    HStack {
-                        Text("음원 길이")
-                        Spacer()
-                        Text("")
-                    }
-                    HStack {
-                        Text("채널 수")
-                        Spacer()
-                        Text("")
-                    }
-                    HStack {
-                        Text("샘플 레이트")
-                        Spacer()
-                        Text("")
-                    }
-                }
-                
-                Section(header: Text("Meta")) {
-                    ForEach(self.viewModel.meta) { item in
-                        Button(action: {
-                            
-                        }) {
-                            HStack {
-                                Text("\(item.key.caseName)")
-                                Spacer()
-                                Text("\(item.value)")
-                            }
-                        }
-                    }
-                    AddButton("META 추가", viewModel.add.meta)
-                }
-                
-                Section(header: Text("Rem")) {
-                    ForEach(self.viewModel.rem) { item in
-                        Button(action: {
-                            
-                        }) {
-                            HStack {
-                                Text("\(item.key.caseName)")
-                                Spacer()
-                                Text("\(item.value)")
-                            }
-                        }
-                    }
-                    AddButton("REM 추가", viewModel.add.rem)
-                }
-                Section(header: Text("File : ")) {
-//                    ForEach(self.viewModel.track) { item in
-//                        Button(action: {
-//
-//                        }) {
-//                            HStack {
-//                                Text("\(item.key.caseName)")
-//                                Spacer()
-//                                Text("\(item.value)")
-//                            }
-//                        }
-//                    }
-                    AddButton("Track 추가", viewModel.add.track)
-                }
-                
+                EditSection(meta: $viewModel.meta, rem: $viewModel.rem, track: $viewModel.track)
+                    .addMeta(   { uuid in currentType = .meta(uuid); viewModel.add.meta  (uuid) } )
+                    .addRem(    { uuid in currentType = .rem(uuid); viewModel.add.rem   (uuid) } )
+                    .addTrack(  { uuid in currentType = .track(uuid); viewModel.add.track (uuid) } )
+                    .editMeta(  { uuid in currentType = .meta(uuid); viewModel.edit.meta (uuid) } )
+                    .editRem(   { uuid in currentType = .rem(uuid); viewModel.edit.rem  (uuid) } )
+                    .editTrack( { uuid in currentType = .track(uuid); viewModel.edit.track(uuid) } )
                 
             }.navigationTitle("큐 편집기")
             .navigationBarItems(leading: HStack {
@@ -146,8 +137,11 @@ struct CueEditView: View {
                     Image(systemName: "folder.badge.plus")
                 }
             })
+            .customAlertView([
+                self.AddCustomAlert(),
+                self.EditCustomAlert()
+            ])
         }.sheet(item: self.$viewModel.sheetEvent, content: makeSheet)
-        
     }
 }
 

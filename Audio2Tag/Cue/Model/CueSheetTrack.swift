@@ -11,6 +11,7 @@ import SwiftCueSheet
 struct CueSheetTrack : Identifiable {
     var id = UUID()
     
+    public var title: String
     public var meta: [CueSheetMeta]
     public var rem: [CueSheetRem]
     public var trackNum:Int
