@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6236A299255CF54000294EE3 /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A298255CF54000294EE3 /* CueView.swift */; };
+		6236A299255CF54000294EE3 /* CueView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A298255CF54000294EE3 /* CueView2.swift */; };
 		6236A2A2255CF66300294EE3 /* CueEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2A1255CF66300294EE3 /* CueEditView.swift */; };
 		6236A2A7255CF67A00294EE3 /* CueStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2A6255CF67A00294EE3 /* CueStatusView.swift */; };
 		6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */; };
@@ -34,6 +34,10 @@
 		62A2004A258282780005BD9F /* CueSheetRem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A20049258282780005BD9F /* CueSheetRem.swift */; };
 		62A2004F258282850005BD9F /* CueSheetMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2004E258282850005BD9F /* CueSheetMeta.swift */; };
 		62A20054258282910005BD9F /* CueSheetTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A20053258282910005BD9F /* CueSheetTrack.swift */; };
+		62DCC3F42660E51A00384D59 /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F32660E51A00384D59 /* CueView.swift */; };
+		62DCC3F72660E56F00384D59 /* CueSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F62660E56F00384D59 /* CueSelectView.swift */; };
+		62DCC3F926612C1700384D59 /* CueAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F826612C1700384D59 /* CueAudioView.swift */; };
+		62DCC3FD26612C2A00384D59 /* CueSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3FC26612C2A00384D59 /* CueSheetView.swift */; };
 		62EDC92225BB3446007F6EAB /* MusicSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EDC92125BB3446007F6EAB /* MusicSection.swift */; };
 		62EDC92725BD44B1007F6EAB /* ItemSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EDC92625BD44B1007F6EAB /* ItemSection.swift */; };
 		62EDC93725BD502E007F6EAB /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EDC93625BD502E007F6EAB /* NavigationSection.swift */; };
@@ -59,7 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6236A298255CF54000294EE3 /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		6236A298255CF54000294EE3 /* CueView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView2.swift; sourceTree = "<group>"; };
 		6236A2A1255CF66300294EE3 /* CueEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueEditView.swift; sourceTree = "<group>"; };
 		6236A2A6255CF67A00294EE3 /* CueStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusView.swift; sourceTree = "<group>"; };
 		6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusCellView.swift; sourceTree = "<group>"; };
@@ -90,6 +94,10 @@
 		62A2004E258282850005BD9F /* CueSheetMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetMeta.swift; sourceTree = "<group>"; };
 		62A20053258282910005BD9F /* CueSheetTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetTrack.swift; sourceTree = "<group>"; };
 		62B57838253581AF00839A92 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
+		62DCC3F32660E51A00384D59 /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
+		62DCC3F62660E56F00384D59 /* CueSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSelectView.swift; sourceTree = "<group>"; };
+		62DCC3F826612C1700384D59 /* CueAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueAudioView.swift; sourceTree = "<group>"; };
+		62DCC3FC26612C2A00384D59 /* CueSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetView.swift; sourceTree = "<group>"; };
 		62EDC92125BB3446007F6EAB /* MusicSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSection.swift; sourceTree = "<group>"; };
 		62EDC92625BD44B1007F6EAB /* ItemSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSection.swift; sourceTree = "<group>"; };
 		62EDC93625BD502E007F6EAB /* NavigationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
@@ -138,8 +146,9 @@
 		6236A292255CF1A500294EE3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				62DCC3F52660E55A00384D59 /* Migrate */,
 				62EDC92025BB3430007F6EAB /* Edit */,
-				6236A298255CF54000294EE3 /* CueView.swift */,
+				6236A298255CF54000294EE3 /* CueView2.swift */,
 				6236A2A1255CF66300294EE3 /* CueEditView.swift */,
 				6236A2A6255CF67A00294EE3 /* CueStatusView.swift */,
 				6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */,
@@ -250,6 +259,17 @@
 				6278AF8A25773D51002C2110 /* CueEditViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		62DCC3F52660E55A00384D59 /* Migrate */ = {
+			isa = PBXGroup;
+			children = (
+				62DCC3F32660E51A00384D59 /* CueView.swift */,
+				62DCC3F62660E56F00384D59 /* CueSelectView.swift */,
+				62DCC3F826612C1700384D59 /* CueAudioView.swift */,
+				62DCC3FC26612C2A00384D59 /* CueSheetView.swift */,
+			);
+			path = Migrate;
 			sourceTree = "<group>";
 		};
 		62EDC92025BB3430007F6EAB /* Edit */ = {
@@ -411,15 +431,19 @@
 				6236A2A7255CF67A00294EE3 /* CueStatusView.swift in Sources */,
 				62F2CB58253AEE99007984FA /* CustomAlertView.swift in Sources */,
 				6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */,
+				62DCC3FD26612C2A00384D59 /* CueSheetView.swift in Sources */,
+				62DCC3F926612C1700384D59 /* CueAudioView.swift in Sources */,
 				6236A2A2255CF66300294EE3 /* CueEditView.swift in Sources */,
 				62859D8A25870CC3003878B2 /* CueSheetFile.swift in Sources */,
 				6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */,
 				6278AF8B25773D51002C2110 /* CueEditViewModel.swift in Sources */,
-				6236A299255CF54000294EE3 /* CueView.swift in Sources */,
+				6236A299255CF54000294EE3 /* CueView2.swift in Sources */,
 				62EDC92725BD44B1007F6EAB /* ItemSection.swift in Sources */,
 				62EDC92225BB3446007F6EAB /* MusicSection.swift in Sources */,
 				62A2004F258282850005BD9F /* CueSheetMeta.swift in Sources */,
 				6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */,
+				62DCC3F42660E51A00384D59 /* CueView.swift in Sources */,
+				62DCC3F72660E56F00384D59 /* CueSelectView.swift in Sources */,
 				62859D8F2587145F003878B2 /* CueSheetAudio.swift in Sources */,
 				62A2004A258282780005BD9F /* CueSheetRem.swift in Sources */,
 				62EDC93C25BD5095007F6EAB /* EditSection.swift in Sources */,

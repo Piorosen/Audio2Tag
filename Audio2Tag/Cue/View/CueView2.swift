@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CueView: View {
+struct CueView2: View {
     @State var show = false
     @State var pp = [CueStatusCellModel]()
     var body: some View {
@@ -30,8 +30,8 @@ struct CueView: View {
     }
 }
 
-struct CueView_Previews: PreviewProvider {
+struct CueView2_Previews: PreviewProvider {
     static var previews: some View {
-        CueView()
+        CueView2()
     }
 }
