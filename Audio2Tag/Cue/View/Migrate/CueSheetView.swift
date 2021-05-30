@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftCueSheet
 
 struct CueSheetView: View {
-    @Binding var cueSheet: URL?
+    @Binding var cueSheet: CueSheet?
     @Binding var mode: CueSheetDocument
     
     var newEvent: (() -> Void) = { }
+    var discardEvent: (() -> Void) = { }
     
     func onNew(_ action: @escaping () -> Void) -> CueSheetView {
         var copy = self
@@ -26,21 +28,46 @@ struct CueSheetView: View {
         return copy
     }
     
+    func onDisacrd(_ action: @escaping () -> Void) -> CueSheetView {
+        var copy = self
+        copy.discardEvent = action
+        return copy
+    }
+    
     var body: some View {
-        Section(header: Text("Cue Sheet")) {
-            if mode == .none {
-                Button(action: newEvent, label: {
-                    Text("New File")
-                })
-                Button(action: editEvent, label: {
-                    Text("Edit File")
-                })
+        Group {
+            if cueSheet == nil && (mode == .none || mode == .editCueSheet) {
+                Section(header: Text("Cue Sheet")) {
+                    Button(action: newEvent, label: {
+                        Text("New File")
+                    })
+                    Button(action: editEvent, label: {
+                        Text("Edit File")
+                    })
+                }
             }else {
-                Button(action: editEvent, label: {
+                Section(header: Text("Meta")) {
+                    AddButton("New") {
+                        
+                    }
+                }
+                Section(header: Text("Rem")) {
+                    AddButton("New") {
+                        
+                    }
+                }
+                Section(header: Text("Tracks")) {
+                    AddButton("New") {
+                        
+                    }
+                }
+                
+                Button(action: discardEvent, label: {
                     Text("Discard")
                 })
             }
             
         }
+        
     }
 }

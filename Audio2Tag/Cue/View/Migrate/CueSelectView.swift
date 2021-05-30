@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftCueSheet
 
 enum CueSheetDocument {
     case none
@@ -23,8 +24,8 @@ enum CueSelectMode : Identifiable {
 }
 
 struct CueSelectView: View {
-    @State var audio: URL? = nil
-    @State var cueSheet: URL? = nil
+    @State var audio: AudioFilesModel? = nil
+    @State var cueSheet: CueSheet? = nil
     @State var documentMode: CueSelectMode? = nil
     
     @State var cueSheetMode: CueSheetDocument = .none
@@ -33,18 +34,25 @@ struct CueSelectView: View {
     
     var body: some View {
         NavigationView {
-            List {
+            Form {
                 CueAudioView(audio: $audio)
                     .onLoad {
                         documentMode = .audio
+                    }
+                    .onDisacrd {
+                        audio = nil
                     }
                 CueSheetView(cueSheet: $cueSheet, mode: $cueSheetMode)
                     .onNew {
                         cueSheetMode = .newCueSheet
                     }
                     .onEdit {
-                        cueSheetMode = .newCueSheet
+                        cueSheetMode = .editCueSheet
                         documentMode = .cueSheet
+                    }
+                    .onDisacrd {
+                        cueSheet = nil
+                        cueSheetMode = .none
                     }
             }.navigationTitle(Text("Cue Sheet"))
             .navigationBarItems(leading: HStack {
@@ -62,22 +70,22 @@ struct CueSelectView: View {
                             .setConfig(folderPicker: false, allowMultiple: false)
                             .setUTType(type: [.audio])
                             .onSelectFile { url in
-                                audio = url
+                                audio = AudioFilesModel(url: url)
                             }
                     case .cueSheet:
                         DocumentPicker()
                             .setConfig(folderPicker: false, allowMultiple: false)
                             .setUTType(type: [.cue])
                             .onSelectFile { url in
-                                cueSheet = url
+                                do {
+                                    cueSheet = try CueSheetParser().load(path: url)
+                                }catch {
+                                    
+                                }
                             }
                     }
-                    
                 }
-                
             }
         }
-        
-        
     }
 }
