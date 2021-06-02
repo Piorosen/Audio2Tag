@@ -29,6 +29,9 @@ class DocumentPickerCoordinator : NSObject, UIDocumentPickerDelegate {
     init(_ parent:DocumentPicker){
         self.parent = parent
     }
+    func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+        parent.cancel()
+    }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         if urls.count != 0 {
@@ -49,9 +52,15 @@ struct DocumentPicker : UIViewControllerRepresentable {
     
     fileprivate var oneFile: ((URL) -> Void) = { _ in }
     fileprivate var multiFile: (([URL]) -> Void) = { _ in }
+    fileprivate var cancel: (() -> Void) = { }
     
 //  r  public var picker: UIDocumentPickerViewController
     
+    func onCancel(completeHanlder: @escaping () -> Void) -> DocumentPicker {
+        var copy = self
+        copy.cancel = completeHanlder
+        return copy
+    }
     
     func onSelectFile(completeHanlder: @escaping (URL) -> Void) -> DocumentPicker {
         var copy = self

@@ -10,17 +10,6 @@ import Foundation
 import SwiftUI
 import SwiftCueSheet
 
-enum CueSheetList : Identifiable {
-    var id: Int {
-        self.hashValue
-    }
-    
-    case meta
-    case rem
-    case track
-}
-
-
 class CueSheetListViewModel : ObservableObject {
     @Binding var fileInfo: CueSheetModel
     

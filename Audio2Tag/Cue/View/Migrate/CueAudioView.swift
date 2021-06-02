@@ -35,13 +35,11 @@ class CueAudioViewModel : ObservableObject {
     @Published var playDuration: TimeInterval = 0
     @Published var play = false
     
-    
+    var player: AVAudioPlayer? = nil
     
     init(audio: Binding<AudioFilesModel?>) {
         self._audio = audio
     }
-    
-    
 }
 
 struct CueAudioView: View {
@@ -89,18 +87,18 @@ struct CueAudioView: View {
                     HStack(alignment: .center) {
                         Spacer()
                         Button(action: {
-                            viewModel.player.currentTime -= 15
+//                            viewModel.player.currentTime -= 15
                         }) {
                             Image(systemName: "gobackward.15").padding(20)
                         }
                         Button(action: {
-                            if viewModel.player.isPlaying {
-                                viewModel.player.stop()
-                                viewModel.play = false
-                            }else {
-                                viewModel.player.play()
-                                viewModel.play = true
-                            }
+//                            if viewModel.player.isPlaying {
+//                                viewModel.player.stop()
+//                                viewModel.play = false
+//                            }else {
+//                                viewModel.player.play()
+//                                viewModel.play = true
+//                            }
                         }) {
                             if viewModel.play {
                                 Image(systemName: "pause.fill").padding(20)
@@ -110,7 +108,7 @@ struct CueAudioView: View {
                         }
                         
                         Button(action: {
-                            viewModel.player.currentTime += 15
+//                            viewModel.player.currentTime += 15
                         }) {
                             Image(systemName: "goforward.15").padding(20)
                         }
