@@ -85,8 +85,8 @@ struct CueSelectView: View {
             .sheet(item: $documentMode) { mode in
                 Group {
                     switch mode {
-                    case .cueSheetEvent(let itemss):
-                        Text(String(describing: itemss))
+                    case .cueSheetEvent(let item):
+                        CueSheetEditorView(item: item, cueRem: $cueRem, cueMeta: $cueMeta, cueTrack: $cueTrack, cueFile: $cueFile, present: $documentMode)
                         
                     case .audio:
                         DocumentPicker()
@@ -105,15 +105,19 @@ struct CueSelectView: View {
                             .onSelectFile { url in
                                 do {
                                     let sheet = try CueSheetParser().load(path: url)
-                                    cueRem = sheet.rem.map { CueSheetRem(key: $0, value: $1 )}.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }
-                                    cueMeta = sheet.meta.map { CueSheetMeta(key: $0, value: $1 )}.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }
-                                    cueTrack = sheet.file.tracks.map {
-                                        CueSheetTrack(title: $0.meta[.title] ?? String(),
-                                                      meta: $0.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
-                                                      rem: $0.rem.map { CueSheetRem(key: $0.key, value: $0.value) },
-                                                      trackNum: $0.trackNum,
-                                                      trackType: $0.trackType,
-                                                      index: $0.index)
+                                    cueRem = sheet.rem.map { CueSheetRem(key: $0, value: $1 )}
+                                    cueMeta = sheet.meta.map { CueSheetMeta(key: $0, value: $1 )}
+                                    
+                                    cueTrack = zip(sheet.file.tracks, sheet.calcTime()).map { (track, audio) in
+                                        CueSheetTrack(title: track.meta[.title] ?? String(),
+                                                      meta: track.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
+                                                      rem: track.rem.map { CueSheetRem(key: $0.key, value: $0.value) },
+                                                      trackNum: track.trackNum,
+                                                      trackType: track.trackType,
+                                                      index: track.index,
+                                                      startTime: audio.startTime,
+                                                      endTime: audio.endTime)
+                                        
                                     }
                                     cueFile = CueSheetFile(fileName: sheet.file.fileName, fileType: sheet.file.fileType)
                                     cueSheetMode = .editCueSheet

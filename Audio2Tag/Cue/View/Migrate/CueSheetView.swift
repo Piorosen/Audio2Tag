@@ -98,7 +98,7 @@ struct CueSheetView: View {
                 }
             }else {
                 Section(header: Text("Meta")) {
-                    ForEach(self.meta) { meta in
+                    ForEach(self.meta.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { meta in
                         HStack {
                             Text(meta.key.caseName.uppercased())
                             Spacer()
@@ -112,7 +112,7 @@ struct CueSheetView: View {
                     }
                 }
                 Section(header: Text("Rem")) {
-                    ForEach(self.rem) { rem in
+                    ForEach(self.rem.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { rem in
                         HStack {
                             Text(rem.key.caseName.uppercased())
                             Spacer()

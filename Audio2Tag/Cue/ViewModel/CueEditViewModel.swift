@@ -97,13 +97,13 @@ class CueEditViewModel : ObservableObject {
             meta = p.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }
                 .sorted(by: { $0.key.caseName  < $1.key.caseName  })
             
-            track = p.file.tracks.map {
-                CueSheetTrack(title: $0.meta[.title] ?? "",
-                              meta: $0.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }.sorted { $0.key.caseName  < $1.key.caseName  },
-                              rem: $0.rem.map { CueSheetRem(key: $0.key, value: $0.value) }.sorted(by: { $0.key.caseName  < $1.key.caseName  }),
-                              trackNum: $0.trackNum,
-                              trackType: $0.trackType,
-                              index: $0.index )}
+//            track = p.file.tracks.map {
+//                CueSheetTrack(title: $0.meta[.title] ?? "",
+//                              meta: $0.meta.map { CueSheetMeta(key: $0.key, value: $0.value) }.sorted { $0.key.caseName  < $1.key.caseName  },
+//                              rem: $0.rem.map { CueSheetRem(key: $0.key, value: $0.value) }.sorted(by: { $0.key.caseName  < $1.key.caseName  }),
+//                              trackNum: $0.trackNum,
+//                              trackType: $0.trackType,
+//                              index: $0.index )}
             
             file.fileName = p.file.fileName
             file.fileType = p.file.fileType

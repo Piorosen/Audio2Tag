@@ -17,6 +17,6 @@ struct CueSheetTrack : Identifiable {
     public var trackNum:Int
     public var trackType:String
     public var index:[CSIndex]
-    public var startTime: Double?
-    public var endTime: Double?
+    public var startTime: Double
+    public var endTime: Double
 }
