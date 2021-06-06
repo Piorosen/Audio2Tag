@@ -38,6 +38,8 @@
 		62AD1E0C266CF29800E5C249 /* CueSheetEditorAddTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD1E0B266CF29800E5C249 /* CueSheetEditorAddTrack.swift */; };
 		62AD1E0E266CF29F00E5C249 /* CueSheetEditorEditFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */; };
 		62AD1E10266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD1E0F266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift */; };
+		62AD1E12266D078C00E5C249 /* CueSheetTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD1E11266D078C00E5C249 /* CueSheetTrackView.swift */; };
+		62AD1E14266D0C5C00E5C249 /* CueSheetEditorEditRem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AD1E13266D0C5C00E5C249 /* CueSheetEditorEditRem.swift */; };
 		62DCC3F42660E51A00384D59 /* CueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F32660E51A00384D59 /* CueView.swift */; };
 		62DCC3F72660E56F00384D59 /* CueSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F62660E56F00384D59 /* CueSelectView.swift */; };
 		62DCC3F926612C1700384D59 /* CueAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCC3F826612C1700384D59 /* CueAudioView.swift */; };
@@ -96,6 +98,8 @@
 		62AD1E0B266CF29800E5C249 /* CueSheetEditorAddTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorAddTrack.swift; sourceTree = "<group>"; };
 		62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorEditFile.swift; sourceTree = "<group>"; };
 		62AD1E0F266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorEditMeta.swift; sourceTree = "<group>"; };
+		62AD1E11266D078C00E5C249 /* CueSheetTrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetTrackView.swift; sourceTree = "<group>"; };
+		62AD1E13266D0C5C00E5C249 /* CueSheetEditorEditRem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorEditRem.swift; sourceTree = "<group>"; };
 		62B57838253581AF00839A92 /* Audio2Tag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Audio2Tag.entitlements; sourceTree = "<group>"; };
 		62DCC3F32660E51A00384D59 /* CueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueView.swift; sourceTree = "<group>"; };
 		62DCC3F62660E56F00384D59 /* CueSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSelectView.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 			children = (
 				62961ADC266CAFF200B56C45 /* CueSheetEditorAddMeta.swift */,
 				62AD1E0F266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift */,
+				62AD1E13266D0C5C00E5C249 /* CueSheetEditorEditRem.swift */,
 				62AD1E09266CF29000E5C249 /* CueSheetEditorAddRem.swift */,
 				62AD1E0B266CF29800E5C249 /* CueSheetEditorAddTrack.swift */,
 				62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */,
@@ -270,6 +275,7 @@
 				62DCC3F826612C1700384D59 /* CueAudioView.swift */,
 				62DCC3FC26612C2A00384D59 /* CueSheetView.swift */,
 				6287B30926687E0700BC6384 /* CueSheetEditorView.swift */,
+				62AD1E11266D078C00E5C249 /* CueSheetTrackView.swift */,
 			);
 			path = Migrate;
 			sourceTree = "<group>";
@@ -430,6 +436,7 @@
 				6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */,
 				62A2004F258282850005BD9F /* CueSheetMeta.swift in Sources */,
 				6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */,
+				62AD1E14266D0C5C00E5C249 /* CueSheetEditorEditRem.swift in Sources */,
 				62DCC3F42660E51A00384D59 /* CueView.swift in Sources */,
 				62DCC3F72660E56F00384D59 /* CueSelectView.swift in Sources */,
 				62AD1E10266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift in Sources */,
@@ -442,6 +449,7 @@
 				6278AF8325773C9B002C2110 /* AddButton.swift in Sources */,
 				6256BB682535550500C497AD /* SearchView.swift in Sources */,
 				62AD1E0E266CF29F00E5C249 /* CueSheetEditorEditFile.swift in Sources */,
+				62AD1E12266D078C00E5C249 /* CueSheetTrackView.swift in Sources */,
 				62A20054258282910005BD9F /* CueSheetTrack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

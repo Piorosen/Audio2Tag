@@ -34,7 +34,6 @@ extension TextField {
 struct CueSheetEditorView: View {
     let item: CueSheetList
     
-    
     @Binding var cueRem:[CueSheetRem]
     @Binding var cueMeta:[CueSheetMeta]
     @Binding var cueTrack:[CueSheetTrack]
@@ -59,9 +58,12 @@ struct CueSheetEditorView: View {
                 case .metaEdit(let uuid):
                     CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
                     
+                case .remEdit(let uuid):
+                    CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
+                    
                 case .trackMetaAdd:
                     EmptyView()
-                    
+                
                 case .trackRemAdd:
                     EmptyView()
                     

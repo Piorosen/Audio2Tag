@@ -143,7 +143,7 @@ struct CueSheetView: View {
                     }
                 }) {
                     ForEach(self.track) { track in
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: CueSheetTrackView()) {
                             HStack {
                                 Text(String(track.trackNum))
                                 Spacer()

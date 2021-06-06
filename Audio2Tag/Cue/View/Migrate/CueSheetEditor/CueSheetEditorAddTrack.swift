@@ -9,6 +9,26 @@ import SwiftUI
 import SwiftCueSheet
 import Combine
 
+struct CueSheetTime {
+    init(min: Int, sec: Int, frame: Int) {
+        self.min = String(min)
+        self.sec = String(sec)
+        self.frame = String(frame)
+    }
+    
+    var min: String
+    var sec: String
+    var frame: String
+    
+    var totalSeconds: Double {
+        if let m = Int(min), let s = Int(sec), let f = Int(frame) {
+            return CSIndexTime(min: m, sec: s, frame: f).totalSeconds
+        }else {
+            return 0
+        }
+    }
+}
+
 struct CueSheetEditorAddTrack: View {
     @Binding var cueTrack:[CueSheetTrack]
     @Binding var present: CueSelectMode?
@@ -18,9 +38,8 @@ struct CueSheetEditorAddTrack: View {
     @State var trackInsertPositionPrivous = false
     @State var trackAudioToggle = true
     @State var trackNum = String()
-    @State var trackStartTime = CSIndexTime(min: 0, sec: 0, frame: 0)
-    @State var trackEndTime = CSIndexTime(min: 0, sec: 0, frame: 0)
-    
+    @State var trackStartTime = CueSheetTime(min: 0, sec: 0, frame: 0)
+    @State var trackEndTime = CueSheetTime(min: 0, sec: 0, frame: 0)
     
     
     var body: some View {
@@ -81,16 +100,16 @@ struct CueSheetEditorAddTrack: View {
                         }
                         
                         HStack{
-                            TextField("min", text: $trackTitle)
+                            TextField("min", text: $trackStartTime.min)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                             
-                            TextField("sec", text: $trackTitle)
+                            TextField("sec", text: $trackStartTime.sec)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
-                            TextField("frame", text: $trackTitle)
+                            TextField("frame", text: $trackStartTime.frame)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
@@ -104,19 +123,37 @@ struct CueSheetEditorAddTrack: View {
                         }
                         
                         HStack{
-                            TextField("min", text: $trackTitle)
+                            TextField("min", text: $trackEndTime.min)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
+                                .onReceive(Just(trackNum)) { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    if filtered != newValue {
+                                        trackNum = filtered
+                                    }
+                                }
                             
-                            TextField("sec", text: $trackTitle)
+                            TextField("sec", text: $trackEndTime.sec)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
-                            TextField("frame", text: $trackTitle)
+                                .onReceive(Just(trackNum)) { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    if filtered != newValue {
+                                        trackNum = filtered
+                                    }
+                                }
+                            TextField("frame", text: $trackEndTime.frame)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
+                                .onReceive(Just(trackNum)) { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    if filtered != newValue {
+                                        trackNum = filtered
+                                    }
+                                }
                         }
                     }.padding()
                     
