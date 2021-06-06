@@ -99,10 +99,14 @@ struct CueSheetView: View {
             }else {
                 Section(header: Text("Meta")) {
                     ForEach(self.meta.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { meta in
-                        HStack {
-                            Text(meta.key.caseName.uppercased())
-                            Spacer()
-                            Text(meta.value)
+                        Button(action: {
+                            newEvent(.metaEdit(meta.id))
+                        }) {
+                            HStack {
+                                Text(meta.key.caseName.uppercased())
+                                Spacer()
+                                Text(meta.value)
+                            }.foregroundColor(Color(UIColor.label))
                         }
                     }.onDelete {
                         meta.remove(atOffsets: $0)
@@ -113,10 +117,14 @@ struct CueSheetView: View {
                 }
                 Section(header: Text("Rem")) {
                     ForEach(self.rem.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { rem in
-                        HStack {
-                            Text(rem.key.caseName.uppercased())
-                            Spacer()
-                            Text(rem.value)
+                        Button(action: {
+                            newEvent(.remEdit(rem.id))
+                        }) {
+                            HStack {
+                                Text(rem.key.caseName.uppercased())
+                                Spacer()
+                                Text(rem.value)
+                            }.foregroundColor(Color(UIColor.label))
                         }
                     }.onDelete {
                         rem.remove(atOffsets: $0)
@@ -135,10 +143,12 @@ struct CueSheetView: View {
                     }
                 }) {
                     ForEach(self.track) { track in
-                        HStack {
-                            Text(String(track.trackNum))
-                            Spacer()
-                            Text(track.title)
+                        NavigationLink(destination: EmptyView()) {
+                            HStack {
+                                Text(String(track.trackNum))
+                                Spacer()
+                                Text(track.title)
+                            }.foregroundColor(Color(UIColor.label))
                         }
                     }.onDelete {
                         track.remove(atOffsets: $0)
