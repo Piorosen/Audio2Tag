@@ -63,14 +63,16 @@ struct CueSheetEditorView: View {
                     
                 case .trackMetaAdd:
                     EmptyView()
-                
+                 
                 case .trackRemAdd:
                     EmptyView()
+                    
                     
                 default:
                     EmptyView()
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

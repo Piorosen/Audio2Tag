@@ -74,6 +74,7 @@ struct CueSelectView: View {
                     }
             }
             .navigationTitle(Text("Cue Sheet"))
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: HStack {
                 Button(action: {  }) {
                     Image(systemName: "play")

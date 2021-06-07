@@ -142,12 +142,12 @@ struct CueSheetView: View {
                         Text("Edit")
                     }
                 }) {
-                    ForEach(self.track) { track in
-                        NavigationLink(destination: CueSheetTrackView()) {
+                    ForEach(self.track.indices, id: \.self) { idx in
+                        NavigationLink(destination: CueSheetTrackView(track: $track[idx])) {
                             HStack {
-                                Text(String(track.trackNum))
+                                Text(String(track[idx].trackNum))
                                 Spacer()
-                                Text(track.title)
+                                Text(track[idx].title)
                             }.foregroundColor(Color(UIColor.label))
                         }
                     }.onDelete {
