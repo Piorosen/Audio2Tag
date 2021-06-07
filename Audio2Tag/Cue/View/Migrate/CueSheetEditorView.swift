@@ -39,7 +39,6 @@ struct CueSheetEditorView: View {
     @Binding var cueTrack:[CueSheetTrack]
     
     @Binding var cueFile: CueSheetFile
-    
     @Binding var present: CueSelectMode?
         
     var body: some View {
@@ -52,6 +51,8 @@ struct CueSheetEditorView: View {
                     CueSheetEditorAddRem(cueRem: $cueRem, present: $present)
                 case .trackAdd:
                     CueSheetEditorAddTrack(cueTrack: $cueTrack, present: $present)
+                    
+                    
                 case .file:
                     CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
                     
@@ -61,12 +62,21 @@ struct CueSheetEditorView: View {
                 case .remEdit(let uuid):
                     CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
                     
-                case .trackMetaAdd:
-                    EmptyView()
-                 
-                case .trackRemAdd:
+                case .trackMetaAdd(let trackUUID):
                     EmptyView()
                     
+                 
+                case .trackRemAdd(let trackUUID):
+                    EmptyView()
+                    
+                case .trackEdit(_):
+                    EmptyView()
+                    
+                case .trackRemEdit(let track, let rem):
+                    EmptyView()
+                    
+                case .trackMetaEdit(let track, let meta):
+                    EmptyView()
                     
                 default:
                     EmptyView()

@@ -23,13 +23,13 @@ enum CueSheetList : Identifiable {
             return 4
         case .trackEdit(_):
             return 5
-        case .trackRemAdd:
+        case .trackRemAdd(_):
             return 6
-        case .trackMetaAdd:
+        case .trackMetaAdd(_):
             return 7
-        case .trackRemEdit(_):
+        case .trackRemEdit(_, _):
             return 8
-        case .trackMetaEdit(_):
+        case .trackMetaEdit(_, _):
             return 9
         case .indexChange(_):
             return 10
@@ -48,8 +48,8 @@ enum CueSheetList : Identifiable {
     case metaEdit(UUID), remEdit(UUID), trackEdit(UUID)
     case file
     
-    case trackRemAdd, trackMetaAdd
-    case trackRemEdit(UUID), trackMetaEdit(UUID)
+    case trackRemAdd(UUID), trackMetaAdd(UUID)
+    case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
     case indexChange(UUID)
 }
 
@@ -143,7 +143,12 @@ struct CueSheetView: View {
                     }
                 }) {
                     ForEach(self.track.indices, id: \.self) { idx in
-                        NavigationLink(destination: CueSheetTrackView(track: $track[idx])) {
+                        NavigationLink(destination: CueSheetTrackView(track: $track[idx])
+                                        .onMetaAdd { newEvent(.trackMetaAdd($0)) }
+                                        .onMetaEdit { newEvent(.trackMetaEdit($0, $1)) }
+                                        .onRemAdd { newEvent(.trackRemAdd($0)) }
+                                        .onRemEdit { newEvent(.trackRemEdit($0, $1)) }
+                        ) {
                             HStack {
                                 Text(String(track[idx].trackNum))
                                 Spacer()
