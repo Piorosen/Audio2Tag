@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		621B392D266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B392C266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift */; };
+		621B392F266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B392E266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift */; };
+		621B3931266F1656001B12DA /* CueSheetEditorTrackAddRem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B3930266F1656001B12DA /* CueSheetEditorTrackAddRem.swift */; };
+		621B3933266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */; };
+		621B3935266F1CF7001B12DA /* CueSheetEditorEditTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */; };
 		621BD036266C8D8E00FEE924 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 621BD035266C8D8E00FEE924 /* Introspect */; };
 		6236A2A7255CF67A00294EE3 /* CueStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2A6255CF67A00294EE3 /* CueStatusView.swift */; };
 		6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */; };
@@ -65,6 +70,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		621B392C266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackEditRem.swift; sourceTree = "<group>"; };
+		621B392E266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackEditMeta.swift; sourceTree = "<group>"; };
+		621B3930266F1656001B12DA /* CueSheetEditorTrackAddRem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackAddRem.swift; sourceTree = "<group>"; };
+		621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackAddMeta.swift; sourceTree = "<group>"; };
+		621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorEditTime.swift; sourceTree = "<group>"; };
 		6236A2A6255CF67A00294EE3 /* CueStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusView.swift; sourceTree = "<group>"; };
 		6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusCellView.swift; sourceTree = "<group>"; };
 		6236A2B3255CF78900294EE3 /* CueStatusCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusCellModel.swift; sourceTree = "<group>"; };
@@ -262,6 +272,11 @@
 				62AD1E09266CF29000E5C249 /* CueSheetEditorAddRem.swift */,
 				62AD1E0B266CF29800E5C249 /* CueSheetEditorAddTrack.swift */,
 				62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */,
+				621B3930266F1656001B12DA /* CueSheetEditorTrackAddRem.swift */,
+				621B392C266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift */,
+				621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */,
+				621B392E266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift */,
+				621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */,
 			);
 			path = CueSheetEditor;
 			sourceTree = "<group>";
@@ -426,6 +441,8 @@
 				6256BAC22535549300C497AD /* Audio2TagApp.swift in Sources */,
 				6256BB6F2535550500C497AD /* ContentView.swift in Sources */,
 				6256BB6A2535550500C497AD /* ImagePicker.swift in Sources */,
+				621B3935266F1CF7001B12DA /* CueSheetEditorEditTime.swift in Sources */,
+				621B392D266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift in Sources */,
 				6236A2A7255CF67A00294EE3 /* CueStatusView.swift in Sources */,
 				62F2CB58253AEE99007984FA /* CustomAlertView.swift in Sources */,
 				6256BB692535550500C497AD /* ActivityIndicator.swift in Sources */,
@@ -436,9 +453,11 @@
 				6256BB6E2535550500C497AD /* DocumentPicker.swift in Sources */,
 				62A2004F258282850005BD9F /* CueSheetMeta.swift in Sources */,
 				6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */,
+				621B3931266F1656001B12DA /* CueSheetEditorTrackAddRem.swift in Sources */,
 				62AD1E14266D0C5C00E5C249 /* CueSheetEditorEditRem.swift in Sources */,
 				62DCC3F42660E51A00384D59 /* CueView.swift in Sources */,
 				62DCC3F72660E56F00384D59 /* CueSelectView.swift in Sources */,
+				621B392F266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift in Sources */,
 				62AD1E10266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift in Sources */,
 				62AD1E0A266CF29000E5C249 /* CueSheetEditorAddRem.swift in Sources */,
 				62859D8F2587145F003878B2 /* CueSheetAudio.swift in Sources */,
@@ -446,6 +465,7 @@
 				62AD1E0C266CF29800E5C249 /* CueSheetEditorAddTrack.swift in Sources */,
 				62961ADD266CAFF200B56C45 /* CueSheetEditorAddMeta.swift in Sources */,
 				6236A2B4255CF78900294EE3 /* CueStatusCellModel.swift in Sources */,
+				621B3933266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift in Sources */,
 				6278AF8325773C9B002C2110 /* AddButton.swift in Sources */,
 				6256BB682535550500C497AD /* SearchView.swift in Sources */,
 				62AD1E0E266CF29F00E5C249 /* CueSheetEditorEditFile.swift in Sources */,

@@ -54,12 +54,6 @@ struct CueSheetEditorAddTrack: View {
                         .customToolBar()
                         .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onReceive(Just(trackNum)) { newValue in
-                            let filtered = newValue.filter { "0123456789".contains($0) }
-                            if filtered != newValue {
-                                trackNum = filtered
-                            }
-                        }
                     
                 }
                 GroupBox(label: Text("Track Type")) {
@@ -114,7 +108,7 @@ struct CueSheetEditorAddTrack: View {
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
                         }
-                    }.padding()
+                    }.padding([.top])
                     
                     VStack {
                         HStack {
@@ -127,35 +121,19 @@ struct CueSheetEditorAddTrack: View {
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
-                                .onReceive(Just(trackNum)) { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    if filtered != newValue {
-                                        trackNum = filtered
-                                    }
-                                }
                             
                             TextField("sec", text: $trackEndTime.sec)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
-                                .onReceive(Just(trackNum)) { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    if filtered != newValue {
-                                        trackNum = filtered
-                                    }
-                                }
+
                             TextField("frame", text: $trackEndTime.frame)
                                 .customToolBar()
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                                 .keyboardType(.numberPad)
-                                .onReceive(Just(trackNum)) { newValue in
-                                    let filtered = newValue.filter { "0123456789".contains($0) }
-                                    if filtered != newValue {
-                                        trackNum = filtered
-                                    }
-                                }
+
                         }
-                    }.padding()
+                    }
                     
                 }
                 
@@ -196,8 +174,6 @@ struct CueSheetEditorAddTrack: View {
                         .padding([.top])
                     }
                 }
-                
-                //                CSTrack(trackNum: <#T##Int#>, trackType: <#T##String#>, index: <#T##[CSIndex]#>, rem: <#T##CSRem#>, meta: <#T##CSMeta#>)
             }.padding()
         }
         .navigationTitle("Appending")
@@ -243,8 +219,7 @@ struct CueSheetEditorAddTrack: View {
                             at: index)
             
             cueTrack = zip(CueSheet.makeTrack(data: newTrack), newTrack.map { $0.0 }).map { (track, audio) in
-                CueSheetTrack(title: (track.meta[.title] ?? String()),
-                              meta: track.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
+                CueSheetTrack(meta: track.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
                               rem: track.rem.map { CueSheetRem(key: $0.key, value: $0.value) },
                               trackNum: track.trackNum,
                               trackType: track.trackType,

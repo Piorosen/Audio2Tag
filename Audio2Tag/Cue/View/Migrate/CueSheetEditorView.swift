@@ -52,7 +52,6 @@ struct CueSheetEditorView: View {
                 case .trackAdd:
                     CueSheetEditorAddTrack(cueTrack: $cueTrack, present: $present)
                     
-                    
                 case .file:
                     CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
                     
@@ -63,21 +62,21 @@ struct CueSheetEditorView: View {
                     CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
                     
                 case .trackMetaAdd(let trackUUID):
-                    EmptyView()
+                    CueSheetEditorTrackAddMeta(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
-                 
                 case .trackRemAdd(let trackUUID):
-                    EmptyView()
-                    
-                case .trackEdit(_):
-                    EmptyView()
+                    CueSheetEditorTrackAddRem(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
                 case .trackRemEdit(let track, let rem):
-                    EmptyView()
+                    CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
+                    
                     
                 case .trackMetaEdit(let track, let meta):
-                    EmptyView()
+                    CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
                     
+                case .trackTimeEdit(let track):
+                    CueSheetEditorEditTime(cueTrack: $cueTrack, present: $present, trackUUID: track)
+                
                 default:
                     EmptyView()
                 }

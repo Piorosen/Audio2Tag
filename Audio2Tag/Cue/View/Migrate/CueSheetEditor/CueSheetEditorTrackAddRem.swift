@@ -1,22 +1,20 @@
 //
-//  CueSheetEditorAddRem.swift
+//  CueSheetEditorTrackAddRem.swift
 //  Audio2Tag
 //
-//  Created by aoikazto on 2021/06/06.
+//  Created by aoikazto on 2021/06/08.
 //
 
 import SwiftUI
 import SwiftCueSheet
 
-extension CSRemKey : CaseIterable {
-    public static var allCases: [CSRemKey] = {
-        [.comment, .composer, .date, .discId, .genre, .title]
-    }()
-}
-
-struct CueSheetEditorAddRem: View {
-    @Binding var cueRem:[CueSheetRem]
+struct CueSheetEditorTrackAddRem: View {
+    @Binding var cueTrack:[CueSheetTrack]
     @Binding var present: CueSelectMode?
+    
+    let uuid: UUID
+    
+    var trackIndex: Int { cueTrack.firstIndex { $0.id == uuid } ?? 0 }
     
     @State var key = String()
     @State var otherKey = String()
@@ -25,6 +23,7 @@ struct CueSheetEditorAddRem: View {
     static let itemList = CSRemKey.allCases.map { $0.caseName } + ["other"]
     
     var body: some View {
+        
         VStack {
             GroupBox(label: Text("Rem Key")) {
                 Picker("Key", selection: $key) {
@@ -46,15 +45,16 @@ struct CueSheetEditorAddRem: View {
             }
             Spacer()
         }.padding()
+        
         .navigationTitle("Appending")
         .navigationBarItems(trailing: Button(action: {
             if key == "other" {
                 if otherKey == "" {
                     return
                 }
-                cueRem.append(.init(key: .init(otherKey), value: value))
+                cueTrack[trackIndex].rem.append(.init(key: .init(otherKey), value: value))
             }else {
-                cueRem.append(.init(key: .init(key), value: value))
+                cueTrack[trackIndex].rem.append(.init(key: .init(key), value: value))
             }
             present = nil
         }) {

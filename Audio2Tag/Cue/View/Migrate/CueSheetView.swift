@@ -21,36 +21,32 @@ enum CueSheetList : Identifiable {
             return 3
         case .remEdit(_):
             return 4
-        case .trackEdit(_):
-            return 5
         case .trackRemAdd(_):
-            return 6
+            return 5
         case .trackMetaAdd(_):
-            return 7
+            return 6
         case .trackRemEdit(_, _):
-            return 8
+            return 7
         case .trackMetaEdit(_, _):
+            return 8
+        case .trackTimeEdit(_):
             return 9
-        case .indexChange(_):
-            return 10
         case .file:
-            return 11
+            return 10
         case .cueSheet:
-            return 12
+            return 11
         }
-        
-        
     }
     
     case cueSheet
     
     case metaAdd, remAdd, trackAdd
-    case metaEdit(UUID), remEdit(UUID), trackEdit(UUID)
+    case metaEdit(UUID), remEdit(UUID)
     case file
     
     case trackRemAdd(UUID), trackMetaAdd(UUID)
     case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
-    case indexChange(UUID)
+    case trackTimeEdit(UUID)
 }
 
 struct CueSheetView: View {
@@ -148,6 +144,7 @@ struct CueSheetView: View {
                                         .onMetaEdit { newEvent(.trackMetaEdit($0, $1)) }
                                         .onRemAdd { newEvent(.trackRemAdd($0)) }
                                         .onRemEdit { newEvent(.trackRemEdit($0, $1)) }
+                                        .onTimeEdit { newEvent(.trackTimeEdit($0)) }
                         ) {
                             HStack {
                                 Text(String(track[idx].trackNum))

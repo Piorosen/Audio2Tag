@@ -15,6 +15,7 @@ struct CueSheetTrackView: View {
     var metaAdd: (UUID) -> Void = { _ in }
     var remEdit: (UUID, UUID) -> Void = { _, _ in }
     var remAdd: (UUID) -> Void = { _ in }
+    var timeEdit: (UUID) -> Void = { _ in }
     
     func onMetaEdit(_ callback: @escaping (UUID, UUID) -> Void) -> Self {
         var copy = self
@@ -36,6 +37,11 @@ struct CueSheetTrackView: View {
         copy.remAdd = callback
         return copy
     }
+    func onTimeEdit(_ callback: @escaping (UUID) -> Void) -> Self {
+        var copy = self
+        copy.timeEdit = callback
+        return copy
+    }
     
     
     var body: some View {
@@ -44,7 +50,7 @@ struct CueSheetTrackView: View {
                 HStack {
                     Text("Title")
                     Spacer()
-                    Text(String(track.trackNum))
+                    Text(String(track.title))
                 }
                 
                 HStack {
@@ -70,6 +76,8 @@ struct CueSheetTrackView: View {
                             Text(meta.value)
                         }.foregroundColor(Color(UIColor.label))
                     }
+                }.onDelete {
+                    self.track.meta.remove(atOffsets: $0)
                 }
                 AddButton("New") {
                     metaAdd(track.id)
@@ -86,6 +94,8 @@ struct CueSheetTrackView: View {
                             Text(rem.value)
                         }.foregroundColor(Color(UIColor.label))
                     }
+                }.onDelete {
+                    self.track.rem.remove(atOffsets: $0)
                 }
                 AddButton("New") {
                     remAdd(track.id)
@@ -93,7 +103,7 @@ struct CueSheetTrackView: View {
             }
             
             Section(header: Button(action: {
-                
+                timeEdit(track.id)
             }) {
                 HStack {
                     Text("Time")

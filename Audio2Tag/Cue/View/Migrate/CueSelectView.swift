@@ -110,8 +110,7 @@ struct CueSelectView: View {
                                     cueMeta = sheet.meta.map { CueSheetMeta(key: $0, value: $1 )}
                                     
                                     cueTrack = zip(sheet.file.tracks, sheet.calcTime()).map { (track, audio) in
-                                        CueSheetTrack(title: track.meta[.title] ?? String(),
-                                                      meta: track.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
+                                        CueSheetTrack(meta: track.meta.map { CueSheetMeta(key: $0.key, value: $0.value) },
                                                       rem: track.rem.map { CueSheetRem(key: $0.key, value: $0.value) },
                                                       trackNum: track.trackNum,
                                                       trackType: track.trackType,
