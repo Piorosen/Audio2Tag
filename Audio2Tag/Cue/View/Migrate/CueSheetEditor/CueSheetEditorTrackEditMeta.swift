@@ -10,7 +10,7 @@ import SwiftCueSheet
 
 struct CueSheetEditorTrackEditMeta: View {
     @Binding var cueTrack: [CueSheetTrack]
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
     let trackUUID: UUID
     let metaUUID: UUID
@@ -39,9 +39,7 @@ struct CueSheetEditorTrackEditMeta: View {
                 TextField(meta.value.isEmpty ? "Empty Data" : meta.value, text: $value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            Spacer()
         }.padding()
-        .navigationTitle("Editting")
         .navigationBarItems(trailing: Button(action: {
             cueTrack[trackIndex].meta[metaIndex].value = value
             

@@ -12,7 +12,7 @@ struct CueSheetEditorTrackEditRem: View {
 //    (cueTrack: $cueTrack, present: $present, track: track, rem: rem)
     
     @Binding var cueTrack: [CueSheetTrack]
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
     let trackUUID: UUID
     let remUUID: UUID
@@ -41,9 +41,7 @@ struct CueSheetEditorTrackEditRem: View {
                 TextField(rem.value.isEmpty ? "Empty Data" : rem.value, text: $value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            Spacer()
         }.padding()
-        .navigationTitle("Editting")
         .navigationBarItems(trailing: Button(action: {
             cueTrack[trackIndex].rem[remIndex].value = value
             present = nil

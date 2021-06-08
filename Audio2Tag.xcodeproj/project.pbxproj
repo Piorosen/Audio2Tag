@@ -266,16 +266,16 @@
 		62961ADB266CAFD900B56C45 /* CueSheetEditor */ = {
 			isa = PBXGroup;
 			children = (
-				62961ADC266CAFF200B56C45 /* CueSheetEditorAddMeta.swift */,
 				62AD1E0F266CF5FB00E5C249 /* CueSheetEditorEditMeta.swift */,
 				62AD1E13266D0C5C00E5C249 /* CueSheetEditorEditRem.swift */,
+				62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */,
+				621B392C266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift */,
+				621B392E266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift */,
+				62961ADC266CAFF200B56C45 /* CueSheetEditorAddMeta.swift */,
 				62AD1E09266CF29000E5C249 /* CueSheetEditorAddRem.swift */,
 				62AD1E0B266CF29800E5C249 /* CueSheetEditorAddTrack.swift */,
-				62AD1E0D266CF29F00E5C249 /* CueSheetEditorEditFile.swift */,
 				621B3930266F1656001B12DA /* CueSheetEditorTrackAddRem.swift */,
-				621B392C266F15EF001B12DA /* CueSheetEditorTrackEditRem.swift */,
 				621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */,
-				621B392E266F15F7001B12DA /* CueSheetEditorTrackEditMeta.swift */,
 				621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */,
 			);
 			path = CueSheetEditor;

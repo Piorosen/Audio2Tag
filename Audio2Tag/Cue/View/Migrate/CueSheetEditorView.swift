@@ -32,7 +32,7 @@ extension TextField {
 }
 
 struct CueSheetEditorView: View {
-    let item: CueSheetList
+    let item: CueSheetSheetList
     
     @Binding var cueRem:[CueSheetRem]
     @Binding var cueMeta:[CueSheetMeta]
@@ -40,7 +40,7 @@ struct CueSheetEditorView: View {
     
     @Binding var cueFile: CueSheetFile
     @Binding var present: CueSelectMode?
-        
+    
     var body: some View {
         NavigationView {
             Group {
@@ -52,31 +52,31 @@ struct CueSheetEditorView: View {
                 case .trackAdd:
                     CueSheetEditorAddTrack(cueTrack: $cueTrack, present: $present)
                     
-                case .file:
-                    CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
-                    
-                case .metaEdit(let uuid):
-                    CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
-                    
-                case .remEdit(let uuid):
-                    CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
-                    
                 case .trackMetaAdd(let trackUUID):
                     CueSheetEditorTrackAddMeta(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
                 case .trackRemAdd(let trackUUID):
                     CueSheetEditorTrackAddRem(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
-                case .trackRemEdit(let track, let rem):
-                    CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
-                    
-                    
-                case .trackMetaEdit(let track, let meta):
-                    CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
-                    
+                //                case .file:
+                //                    CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
+                //
+                //                case .metaEdit(let uuid):
+                //                    CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
+                //
+                //                case .remEdit(let uuid):
+                //                    CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
+                
+                //                case .trackRemEdit(let track, let rem):
+                //                    CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
+                //
+                //
+                //                case .trackMetaEdit(let track, let meta):
+                //                    CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
+                
                 case .trackTimeEdit(let track):
                     CueSheetEditorEditTime(cueTrack: $cueTrack, present: $present, trackUUID: track)
-                
+                    
                 default:
                     EmptyView()
                 }
@@ -85,3 +85,64 @@ struct CueSheetEditorView: View {
         }
     }
 }
+
+
+struct CueSheetAlertView: View {
+    init(item: CueSheetAlertList,
+         cueRem: Binding<[CueSheetRem]>,
+         cueMeta: Binding<[CueSheetMeta]>,
+         cueTrack: Binding<[CueSheetTrack]>,
+         cueFile: Binding<CueSheetFile>,
+         present: Binding<CueSheetAlertList?>,
+         _ callback: @escaping (@escaping () -> Void, @escaping () -> Void) -> Void) {
+        self.item = item
+        self._cueRem = cueRem
+        self._cueMeta = cueMeta
+        self._cueTrack = cueTrack
+        self._cueFile = cueFile
+        self._present = present
+        
+        callback(okCallEvent, cancelCallEvent)
+    }
+    
+    let item: CueSheetAlertList
+    
+    @Binding var cueRem:[CueSheetRem]
+    @Binding var cueMeta:[CueSheetMeta]
+    @Binding var cueTrack:[CueSheetTrack]
+    
+    @Binding var cueFile: CueSheetFile
+    @Binding var present: CueSheetAlertList?
+    
+    func okCallEvent() -> Void {
+        print("!!!!!!!")
+    }
+    
+    func cancelCallEvent() -> Void {
+        print("@@@@@@")
+    }
+    
+    var body: some View {
+        Group {
+            switch item {
+            
+            case .file:
+                CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
+                
+            case .metaEdit(let uuid):
+                CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
+                
+            case .remEdit(let uuid):
+                CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
+                
+            case .trackRemEdit(let track, let rem):
+                CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
+                
+            case .trackMetaEdit(let track, let meta):
+                CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
+                
+            }
+        }
+    }
+}
+

@@ -28,13 +28,26 @@ enum CueSelectMode : Identifiable {
     
     case audio
     case cueSheet
-    case cueSheetEvent(CueSheetList)
+    case cueSheetEvent(CueSheetSheetList)
+}
+
+class CueSelectViewModel : ObservableObject {
+    var okPass: () -> Void = { }
+    var cancelPass: () -> Void = { }
+    
+    func childEventGet(o: @escaping () -> Void, c: @escaping () -> Void) {
+        okPass = o
+        cancelPass = c
+    }
 }
 
 struct CueSelectView: View {
+    @ObservedObject var viewModel = CueSelectViewModel()
+    
     @State var audio: AudioFilesModel? = nil
     @State var documentMode: CueSelectMode? = nil
     
+    @State var cueSheetAlert: CueSheetAlertList? = nil
     @State var cueSheetMode: CueSheetDocument = .none
     
     @State var cueRem = [CueSheetRem]()
@@ -53,17 +66,18 @@ struct CueSelectView: View {
                         audio = nil
                     }
                 CueSheetView(rem: $cueRem, meta: $cueMeta, track: $cueTrack, file: $cueFile, mode: $cueSheetMode)
-                    .onNew { event in
-                        switch event {
-                        case .cueSheet:
-                            cueSheetMode = .newCueSheet
-                        default:
-                            documentMode = .cueSheetEvent(event)
-                        }
+                    .onNew {
+                        cueSheetMode = .newCueSheet
                     }
                     .onEdit {
                         documentMode = .cueSheet
                     }
+                    .onSheet { e in
+                        documentMode = .cueSheetEvent(e)
+                    }.onAlert { e in
+                        cueSheetAlert = e
+                    }
+                    
                     .onDisacrd {
                         cueRem = [CueSheetRem]()
                         cueMeta = [CueSheetMeta]()
@@ -128,6 +142,13 @@ struct CueSelectView: View {
                     }
                 }
             }
-        }
+        }.customAlertView(CustomAlertView(item: $cueSheetAlert, title: "Edit", yes: { viewModel.okPass() }, no: { viewModel.cancelPass() }) { item in
+            Group {
+                CueSheetAlertView(item: item, cueRem: $cueRem, cueMeta: $cueMeta, cueTrack: $cueTrack, cueFile: $cueFile, present: $cueSheetAlert) { ok, cancel in
+                    viewModel.childEventGet(o: ok, c: cancel)
+                }
+                
+            }
+        })
     }
 }

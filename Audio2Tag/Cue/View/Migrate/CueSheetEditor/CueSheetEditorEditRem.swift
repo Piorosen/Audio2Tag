@@ -10,7 +10,7 @@ import SwiftCueSheet
 
 struct CueSheetEditorEditRem: View {
     @Binding var cueRem: [CueSheetRem]
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
     let uuid: UUID
     
@@ -38,9 +38,7 @@ struct CueSheetEditorEditRem: View {
                 TextField(rem.value.isEmpty ? "Empty Data" : rem.value, text: $value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            Spacer()
         }.padding()
-        .navigationTitle("Editting")
         .navigationBarItems(trailing: Button(action: {
             cueRem[remIndex].value = value
             

@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftCueSheet
 
-enum CueSheetList : Identifiable {
+enum CueSheetSheetList : Identifiable {
     var id: Int {
         switch self {
         case .metaAdd:
@@ -17,36 +17,45 @@ enum CueSheetList : Identifiable {
             return 1
         case .trackAdd:
             return 2
-        case .metaEdit(_):
-            return 3
-        case .remEdit(_):
-            return 4
         case .trackRemAdd(_):
-            return 5
+            return 3
         case .trackMetaAdd(_):
-            return 6
-        case .trackRemEdit(_, _):
-            return 7
-        case .trackMetaEdit(_, _):
-            return 8
+            return 4
         case .trackTimeEdit(_):
-            return 9
-        case .file:
-            return 10
+            return 5
         case .cueSheet:
-            return 11
+            return 6
         }
     }
     
     case cueSheet
     
     case metaAdd, remAdd, trackAdd
-    case metaEdit(UUID), remEdit(UUID)
-    case file
     
     case trackRemAdd(UUID), trackMetaAdd(UUID)
-    case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
     case trackTimeEdit(UUID)
+}
+
+enum CueSheetAlertList : Identifiable, Equatable {
+    var id: Int {
+        switch self {
+        case .metaEdit(_):
+            return 0
+        case .remEdit(_):
+            return 1
+        case .trackRemEdit(_, _):
+            return 2
+        case .trackMetaEdit(_, _):
+            return 3
+        case .file:
+            return 4
+        }
+    }
+    
+    case file
+    case metaEdit(UUID), remEdit(UUID)
+    case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
+    
 }
 
 struct CueSheetView: View {
@@ -57,12 +66,18 @@ struct CueSheetView: View {
     @Binding var mode: CueSheetDocument
     
     
-    @State var pickerText: String = String()
-    
-    var newEvent: ((CueSheetList) -> Void) = { _ in }
+    var sheetEvent: ((CueSheetSheetList) -> Void) = { _ in }
     var discardEvent: (() -> Void) = { }
     
-    func onNew(_ action: @escaping (CueSheetList) -> Void) -> CueSheetView {
+    func onSheet(_ action: @escaping (CueSheetSheetList) -> Void) -> CueSheetView {
+        var copy = self
+        copy.sheetEvent = action
+        return copy
+    }
+    
+    
+    var newEvent: (() -> Void) = { }
+    func onNew(_ action: @escaping () -> Void) -> CueSheetView {
         var copy = self
         copy.newEvent = action
         return copy
@@ -72,6 +87,13 @@ struct CueSheetView: View {
     func onEdit(_ action: @escaping () -> Void) -> CueSheetView {
         var copy = self
         copy.editEvent = action
+        return copy
+    }
+    
+    var alertEvent: ((CueSheetAlertList) -> Void) = { _ in }
+    func onAlert(_ action: @escaping (CueSheetAlertList) -> Void) -> CueSheetView {
+        var copy = self
+        copy.alertEvent = action
         return copy
     }
     
@@ -85,10 +107,10 @@ struct CueSheetView: View {
         Group {
             if let mode = mode, mode == .none {
                 Section(header: Text("Cue Sheet")) {
-                    Button(action: { newEvent(.cueSheet) }, label: {
+                    Button(action: { newEvent() }, label: {
                         Text("New File")
                     })
-                    Button(action: editEvent, label: {
+                    Button(action: { editEvent() }, label: {
                         Text("Edit File")
                     })
                 }
@@ -96,7 +118,7 @@ struct CueSheetView: View {
                 Section(header: Text("Meta")) {
                     ForEach(self.meta.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { meta in
                         Button(action: {
-                            newEvent(.metaEdit(meta.id))
+                            alertEvent(.metaEdit(meta.id))
                         }) {
                             HStack {
                                 Text(meta.key.caseName.uppercased())
@@ -108,13 +130,13 @@ struct CueSheetView: View {
                         meta.remove(atOffsets: $0)
                     }
                     AddButton("New") {
-                        newEvent(.metaAdd)
+                        sheetEvent(.metaAdd)
                     }
                 }
                 Section(header: Text("Rem")) {
                     ForEach(self.rem.sorted { $0.key.caseName.uppercased() < $1.key.caseName.uppercased() }) { rem in
                         Button(action: {
-                            newEvent(.remEdit(rem.id))
+                            alertEvent(.remEdit(rem.id))
                         }) {
                             HStack {
                                 Text(rem.key.caseName.uppercased())
@@ -126,11 +148,11 @@ struct CueSheetView: View {
                         rem.remove(atOffsets: $0)
                     }
                     AddButton("New") {
-                        newEvent(.remAdd)
+                        sheetEvent(.remAdd)
                     }
                 }
                 Section(header: Button(action: {
-                    newEvent(.file)
+                    alertEvent(.file)
                 }) {
                     HStack {
                         Text("Track : \(file.fileName)")
@@ -140,11 +162,11 @@ struct CueSheetView: View {
                 }) {
                     ForEach(self.track.indices, id: \.self) { idx in
                         NavigationLink(destination: CueSheetTrackView(track: $track[idx])
-                                        .onMetaAdd { newEvent(.trackMetaAdd($0)) }
-                                        .onMetaEdit { newEvent(.trackMetaEdit($0, $1)) }
-                                        .onRemAdd { newEvent(.trackRemAdd($0)) }
-                                        .onRemEdit { newEvent(.trackRemEdit($0, $1)) }
-                                        .onTimeEdit { newEvent(.trackTimeEdit($0)) }
+                                        .onMetaAdd { sheetEvent(.trackMetaAdd($0)) }
+                                        .onMetaEdit { alertEvent(.trackMetaEdit($0, $1)) }
+                                        .onRemAdd { sheetEvent(.trackRemAdd($0)) }
+                                        .onRemEdit { alertEvent(.trackRemEdit($0, $1)) }
+                                        .onTimeEdit { sheetEvent(.trackTimeEdit($0)) }
                         ) {
                             HStack {
                                 Text(String(track[idx].trackNum))
@@ -156,7 +178,7 @@ struct CueSheetView: View {
                         track.remove(atOffsets: $0)
                     }
                     AddButton("New") {
-                        newEvent(.trackAdd)
+                        sheetEvent(.trackAdd)
                     }
                 }
                 

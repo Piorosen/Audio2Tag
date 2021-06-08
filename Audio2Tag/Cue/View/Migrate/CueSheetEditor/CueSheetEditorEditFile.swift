@@ -12,7 +12,7 @@ struct CueSheetEditorEditFile: View {
     @State var fileType = String()
     
     @Binding var cueFile: CueSheetFile
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
     var body: some View {
         VStack {
@@ -33,11 +33,8 @@ struct CueSheetEditorEditFile: View {
                 TextField(cueFile.fileType.isEmpty ? "Empty Data" : cueFile.fileType, text: $fileType)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            
-            Spacer()
         }
         .padding()
-        .navigationTitle("Editting")
         .navigationBarItems(trailing: Button(action: {
             if !fileTitle.isEmpty {
                 cueFile.fileName = fileTitle

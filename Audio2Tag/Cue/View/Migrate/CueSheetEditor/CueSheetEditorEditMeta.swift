@@ -10,7 +10,7 @@ import SwiftCueSheet
 
 struct CueSheetEditorEditMeta: View {
     @Binding var cueMeta:[CueSheetMeta]
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
     let uuid: UUID
     
@@ -38,9 +38,7 @@ struct CueSheetEditorEditMeta: View {
                 TextField(meta.value.isEmpty ? "Empty Data" : meta.value, text: $value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-            Spacer()
         }.padding()
-        .navigationTitle("Editting")
         .navigationBarItems(trailing: Button(action: {
             cueMeta[metaIndex].value = value
             
