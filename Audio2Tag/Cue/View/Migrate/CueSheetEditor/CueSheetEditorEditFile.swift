@@ -7,44 +7,71 @@
 
 import SwiftUI
 
-struct CueSheetEditorEditFile: View {
-    @State var fileTitle = String()
-    @State var fileType = String()
+class CueSheetEditorEditFileViewModel : ObservableObject {
+    @Published var fileTitle = String()
+    @Published var fileType = String()
     
     @Binding var cueFile: CueSheetFile
     @Binding var present: CueSheetAlertList?
+    
+    init(cueFile: Binding<CueSheetFile>, present: Binding<CueSheetAlertList?>) {
+        self._cueFile = cueFile
+        self._present = present
+    }
+    
+    func okCallEvent() -> Void {
+        print(fileTitle)
+        print(fileType)
+        if !fileTitle.isEmpty {
+            cueFile.fileName = fileTitle
+        }
+        if !fileType.isEmpty {
+            cueFile.fileType = fileType
+        }
+        
+        cancelCallEvent()
+    }
+    
+    func cancelCallEvent() -> Void {
+        present = nil
+        fileTitle = String()
+        fileType = String()
+    }
+}
+
+struct CueSheetEditorEditFile: View {
+    @ObservedObject var viewModel: CueSheetEditorEditFileViewModel
+    
+    func getMe(_ callback: (Self) -> Void) -> Self {
+        callback(self)
+        return self
+    }
+    
+    
+    init(cueFile: Binding<CueSheetFile>, present: Binding<CueSheetAlertList?>) {
+        viewModel = CueSheetEditorEditFileViewModel(cueFile: cueFile, present: present)
+    }
     
     var body: some View {
         VStack {
             VStack {
                 HStack {
-                    Text(fileTitle.isEmpty ? "File Name" : "File Name : \(cueFile.fileName)")
+                    Text(viewModel.fileTitle.isEmpty ? "File Name" : "File Name : \(viewModel.cueFile.fileName)")
                     Spacer()
                 }
-                TextField(cueFile.fileName.isEmpty ? "Empty Data" : cueFile.fileName, text: $fileTitle)
+                TextField(viewModel.cueFile.fileName.isEmpty ? "Empty Data" : viewModel.cueFile.fileName, text: $viewModel.fileTitle)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }.padding([.top])
             
             VStack {
                 HStack {
-                    Text(fileType.isEmpty ? "File Type" : "File Type : \(cueFile.fileType)")
+                    Text(viewModel.fileType.isEmpty ? "File Type" : "File Type : \(viewModel.cueFile.fileType)")
                     Spacer()
                 }
-                TextField(cueFile.fileType.isEmpty ? "Empty Data" : cueFile.fileType, text: $fileType)
+                TextField(viewModel.cueFile.fileType.isEmpty ? "Empty Data" : viewModel.cueFile.fileType, text: $viewModel.fileType)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }
         .padding()
-        .navigationBarItems(trailing: Button(action: {
-            if !fileTitle.isEmpty {
-                cueFile.fileName = fileTitle
-            }
-            if !fileType.isEmpty {
-                cueFile.fileType = fileType
-            }
-            present = nil
-        }) {
-            Text("Edit")
-        })
     }
 }

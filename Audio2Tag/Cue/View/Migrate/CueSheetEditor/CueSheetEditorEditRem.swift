@@ -8,16 +8,46 @@
 import SwiftUI
 import SwiftCueSheet
 
-struct CueSheetEditorEditRem: View {
+class CueSheetEditorEditRemViewModel : ObservableObject {
+    init(cueRem: Binding<[CueSheetRem]>, present: Binding<CueSheetAlertList?>, uuid: UUID) {
+        self._cueRem = cueRem
+        self._present = present
+        self.uuid = uuid
+        self.remIndex = cueRem.wrappedValue.firstIndex { $0.id == uuid } ?? 0
+    }
+    
     @Binding var cueRem: [CueSheetRem]
     @Binding var present: CueSheetAlertList?
     
     let uuid: UUID
     
-    var remIndex: Int { cueRem.firstIndex { $0.id == uuid } ?? 0 }
+    let remIndex: Int
     var rem: CueSheetRem { cueRem[remIndex] }
     
-    @State var value = String()
+    @Published var value = String()
+    
+    func okCallEvent() -> Void {
+        cueRem[remIndex].value = value
+        cancelCallEvent()
+    }
+    
+    func cancelCallEvent() -> Void {
+        present = nil
+        value = String()
+    }
+}
+
+struct CueSheetEditorEditRem: View {
+    @ObservedObject var viewModel: CueSheetEditorEditRemViewModel
+    
+    func getMe(_ callback: (Self) -> Void) -> Self {
+        callback(self)
+        return self
+    }
+    
+    init(cueRem: Binding<[CueSheetRem]>, present: Binding<CueSheetAlertList?>, uuid: UUID) {
+        viewModel = CueSheetEditorEditRemViewModel(cueRem: cueRem, present: present, uuid: uuid)
+    }
     
     private static let itemList = CSRemKey.allCases.map { $0.caseName } + ["other"]
     
@@ -25,26 +55,19 @@ struct CueSheetEditorEditRem: View {
         VStack {
             VStack {
                 HStack {
-                    Text("Meta key : \(rem.key.caseName)")
+                    Text("Meta key : \(viewModel.rem.key.caseName)")
                     Spacer()
                 }
             }.padding([.top])
             
             VStack {
                 HStack {
-                    Text(value.isEmpty ? "Meta Value" : "Meta Value : \(rem.value)")
+                    Text(viewModel.value.isEmpty ? "Meta Value" : "Meta Value : \(viewModel.rem.value)")
                     Spacer()
                 }
-                TextField(rem.value.isEmpty ? "Empty Data" : rem.value, text: $value)
+                TextField(viewModel.rem.value.isEmpty ? "Empty Data" : viewModel.rem.value, text: $viewModel.value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
         }.padding()
-        .navigationBarItems(trailing: Button(action: {
-            cueRem[remIndex].value = value
-            
-            present = nil
-        }) {
-            Text("Edit")
-        })
     }
 }

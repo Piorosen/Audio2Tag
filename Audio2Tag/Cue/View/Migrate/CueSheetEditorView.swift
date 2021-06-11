@@ -17,7 +17,6 @@ fileprivate extension  UITextField {
     }
 }
 
-
 extension TextField {
     func customToolBar() -> some View {
         return self.introspectTextField { (textField) in
@@ -47,6 +46,7 @@ struct CueSheetEditorView: View {
                 switch item {
                 case .metaAdd:
                     CueSheetEditorAddMeta(cueMeta: $cueMeta, present: $present)
+                    
                 case .remAdd:
                     CueSheetEditorAddRem(cueRem: $cueRem, present: $present)
                 case .trackAdd:
@@ -58,22 +58,6 @@ struct CueSheetEditorView: View {
                 case .trackRemAdd(let trackUUID):
                     CueSheetEditorTrackAddRem(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
-                //                case .file:
-                //                    CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
-                //
-                //                case .metaEdit(let uuid):
-                //                    CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
-                //
-                //                case .remEdit(let uuid):
-                //                    CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
-                
-                //                case .trackRemEdit(let track, let rem):
-                //                    CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
-                //
-                //
-                //                case .trackMetaEdit(let track, let meta):
-                //                    CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
-                
                 case .trackTimeEdit(let track):
                     CueSheetEditorEditTime(cueTrack: $cueTrack, present: $present, trackUUID: track)
                     
@@ -86,23 +70,38 @@ struct CueSheetEditorView: View {
     }
 }
 
+class CueSheetAlertViewModel : ObservableObject {
+    var okPass: () -> Void = { }
+    var cancelPass: () -> Void = { }
+}
 
 struct CueSheetAlertView: View {
+    @ObservedObject var viewModel = CueSheetAlertViewModel()
+    
+    func getMe(_ callback: (Self) -> Void) -> Self {
+        callback(self)
+        return self
+    }
+    
+    func okCallEvent() {
+        viewModel.okPass()
+    }
+    func cancelCallEvent() {
+        viewModel.cancelPass()
+    }
+    
     init(item: CueSheetAlertList,
          cueRem: Binding<[CueSheetRem]>,
          cueMeta: Binding<[CueSheetMeta]>,
          cueTrack: Binding<[CueSheetTrack]>,
          cueFile: Binding<CueSheetFile>,
-         present: Binding<CueSheetAlertList?>,
-         _ callback: @escaping (@escaping () -> Void, @escaping () -> Void) -> Void) {
+         present: Binding<CueSheetAlertList?>) {
         self.item = item
         self._cueRem = cueRem
         self._cueMeta = cueMeta
         self._cueTrack = cueTrack
         self._cueFile = cueFile
         self._present = present
-        
-        callback(okCallEvent, cancelCallEvent)
     }
     
     let item: CueSheetAlertList
@@ -114,32 +113,43 @@ struct CueSheetAlertView: View {
     @Binding var cueFile: CueSheetFile
     @Binding var present: CueSheetAlertList?
     
-    func okCallEvent() -> Void {
-        print("!!!!!!!")
-    }
-    
-    func cancelCallEvent() -> Void {
-        print("@@@@@@")
-    }
-    
     var body: some View {
         Group {
             switch item {
-            
             case .file:
                 CueSheetEditorEditFile(cueFile: $cueFile, present: $present)
+                    .getMe { item in
+                        viewModel.okPass = item.viewModel.okCallEvent
+                        viewModel.cancelPass = item.viewModel.cancelCallEvent
+                    }
                 
             case .metaEdit(let uuid):
                 CueSheetEditorEditMeta(cueMeta: $cueMeta, present: $present, uuid: uuid)
+                    .getMe { item in
+                        viewModel.okPass = item.viewModel.okCallEvent
+                        viewModel.cancelPass = item.viewModel.cancelCallEvent
+                    }
                 
             case .remEdit(let uuid):
                 CueSheetEditorEditRem(cueRem: $cueRem, present: $present, uuid: uuid)
+                    .getMe { item in
+                        viewModel.okPass = item.viewModel.okCallEvent
+                        viewModel.cancelPass = item.viewModel.cancelCallEvent
+                    }
                 
             case .trackRemEdit(let track, let rem):
                 CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
+                    .getMe { item in
+                        viewModel.okPass = item.viewModel.okCallEvent
+                        viewModel.cancelPass = item.viewModel.cancelCallEvent
+                    }
                 
             case .trackMetaEdit(let track, let meta):
                 CueSheetEditorTrackEditMeta(cueTrack: $cueTrack, present: $present, trackUUID: track, metaUUID: meta)
+                    .getMe { item in
+                        viewModel.okPass = item.viewModel.okCallEvent
+                        viewModel.cancelPass = item.viewModel.cancelCallEvent
+                    }
                 
             }
         }

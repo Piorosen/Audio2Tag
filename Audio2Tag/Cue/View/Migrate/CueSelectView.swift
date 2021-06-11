@@ -31,14 +31,10 @@ enum CueSelectMode : Identifiable {
     case cueSheetEvent(CueSheetSheetList)
 }
 
+
 class CueSelectViewModel : ObservableObject {
-    var okPass: () -> Void = { }
-    var cancelPass: () -> Void = { }
-    
-    func childEventGet(o: @escaping () -> Void, c: @escaping () -> Void) {
-        okPass = o
-        cancelPass = c
-    }
+    var ok: () -> Void = { }
+    var cancel: () -> Void = { }
 }
 
 struct CueSelectView: View {
@@ -142,12 +138,13 @@ struct CueSelectView: View {
                     }
                 }
             }
-        }.customAlertView(CustomAlertView(item: $cueSheetAlert, title: "Edit", yes: { viewModel.okPass() }, no: { viewModel.cancelPass() }) { item in
+        }.customAlertView(CustomAlertView(item: $cueSheetAlert, title: "Edit", yes: { viewModel.ok() }, no: { viewModel.cancel() }) { item in
             Group {
-                CueSheetAlertView(item: item, cueRem: $cueRem, cueMeta: $cueMeta, cueTrack: $cueTrack, cueFile: $cueFile, present: $cueSheetAlert) { ok, cancel in
-                    viewModel.childEventGet(o: ok, c: cancel)
+                CueSheetAlertView(item: item, cueRem: $cueRem, cueMeta: $cueMeta, cueTrack: $cueTrack, cueFile: $cueFile, present: $cueSheetAlert)
+                    .getMe { own in
+                    viewModel.ok = own.okCallEvent
+                    viewModel.cancel = own.cancelCallEvent
                 }
-                
             }
         })
     }

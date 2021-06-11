@@ -131,10 +131,7 @@ struct CueSheetTrackView: View {
                     }
                     
                 }
-                
-                
             }
-            
         }.navigationTitle(track.title)
     }
 }
