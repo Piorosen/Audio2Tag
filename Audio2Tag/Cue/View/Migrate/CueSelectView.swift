@@ -23,12 +23,15 @@ enum CueSelectMode : Identifiable {
             return 1
         case .cueSheetEvent(_):
             return 2
+        case .cueSheetSave(_):
+            return 3
         }
     }
     
     case audio
     case cueSheet
     case cueSheetEvent(CueSheetSheetList)
+    case cueSheetSave(CueSheet)
 }
 
 
@@ -64,17 +67,15 @@ struct CueSelectView: View {
                 CueSheetView(rem: $cueRem, meta: $cueMeta, track: $cueTrack, file: $cueFile, mode: $cueSheetMode)
                     .onNew {
                         cueSheetMode = .newCueSheet
-                    }
-                    .onEdit {
+                    }.onEdit {
                         documentMode = .cueSheet
-                    }
-                    .onSheet { e in
+                    }.onSheet { e in
                         documentMode = .cueSheetEvent(e)
                     }.onAlert { e in
                         cueSheetAlert = e
-                    }
-                    
-                    .onDisacrd {
+                    }.onSave { cue in
+                        documentMode = .cueSheetSave(cue)
+                    }.onDisacrd {
                         cueRem = [CueSheetRem]()
                         cueMeta = [CueSheetMeta]()
                         cueTrack = [CueSheetTrack]()
@@ -96,6 +97,45 @@ struct CueSelectView: View {
             .sheet(item: $documentMode) { mode in
                 Group {
                     switch mode {
+                    case .cueSheetSave(let cue):
+                        DocumentPicker()
+                            .setConfig(folderPicker: true)
+                            .onSelectFile { url in
+                                let getName = String(cue.file.fileName.split(separator: ".")[0])
+                                if let fileList = (try? FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: [])) {
+                                    let list = fileList.filter { $0.pathExtension.lowercased() == "cue" }
+                                        .map { $0.deletingPathExtension().lastPathComponent }
+                                    
+                                    if list.contains(getName) {
+                                        var index = 1
+                                        while true {
+                                            if !list.contains("\(getName)_(\(index))") {
+                                                if cue.save(url: url.appendingPathComponent("\(getName)_(\(index)).cue")) {
+                                                    print("success")
+                                                }else {
+                                                    print("fail")
+                                                }
+                                                return
+                                            }
+                                            index += 1
+                                        }
+                                    }else {
+                                        if cue.save(url: url.appendingPathComponent("\(getName).cue")) {
+                                            print("success")
+                                        }else {
+                                            print("fail")
+                                        }
+                                        return
+                                    }
+                                    
+                                }
+//                                if cue.save(url: url.appendPathComponent("\(cue.file.fileName).cue")) {
+//                                    print("success")
+//                                }else {
+//                                    print("fail!")
+//                                }
+                            }
+                    
                     case .cueSheetEvent(let item):
                         CueSheetEditorView(item: item, cueRem: $cueRem, cueMeta: $cueMeta, cueTrack: $cueTrack, cueFile: $cueFile, present: $documentMode)
                         
