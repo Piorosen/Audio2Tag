@@ -61,7 +61,7 @@ struct CueSheetEditorEditFile: View {
                 }
                 TextField(viewModel.cueFile.fileName.isEmpty ? "Empty Data" : viewModel.cueFile.fileName, text: $viewModel.fileTitle)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-            }.padding([.top])
+            }
             
             VStack {
                 HStack {

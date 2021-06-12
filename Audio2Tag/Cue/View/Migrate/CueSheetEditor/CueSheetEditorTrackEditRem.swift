@@ -62,10 +62,10 @@ struct CueSheetEditorTrackEditRem: View {
         VStack {
             VStack {
                 HStack {
-                    Text("Meta key : \(viewModel.rem.key.caseName)")
+                    Text("Meta key : \(viewModel.rem.key.caseName.uppercased())")
                     Spacer()
                 }
-            }.padding([.top])
+            }
             
             VStack {
                 HStack {

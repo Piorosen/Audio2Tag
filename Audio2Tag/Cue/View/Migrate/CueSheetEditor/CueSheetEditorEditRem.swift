@@ -55,10 +55,10 @@ struct CueSheetEditorEditRem: View {
         VStack {
             VStack {
                 HStack {
-                    Text("Meta key : \(viewModel.rem.key.caseName)")
+                    Text("Meta key : \(viewModel.rem.key.caseName.uppercased())")
                     Spacer()
                 }
-            }.padding([.top])
+            }
             
             VStack {
                 HStack {
@@ -68,6 +68,7 @@ struct CueSheetEditorEditRem: View {
                 TextField(viewModel.rem.value.isEmpty ? "Empty Data" : viewModel.rem.value, text: $viewModel.value)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }
-        }.padding()
+        }
+        .padding()
     }
 }

@@ -58,9 +58,6 @@ struct CueSheetEditorView: View {
                 case .trackRemAdd(let trackUUID):
                     CueSheetEditorTrackAddRem(cueTrack: $cueTrack, present: $present, uuid: trackUUID)
                     
-                case .trackTimeEdit(let track):
-                    CueSheetEditorEditTime(cueTrack: $cueTrack, present: $present, trackUUID: track)
-                    
                 default:
                     EmptyView()
                 }
@@ -135,7 +132,7 @@ struct CueSheetAlertView: View {
                     .getMe { item in
                         viewModel.okPass = item.viewModel.okCallEvent
                         viewModel.cancelPass = item.viewModel.cancelCallEvent
-                    }
+                    }                   
                 
             case .trackRemEdit(let track, let rem):
                 CueSheetEditorTrackEditRem(cueTrack: $cueTrack, present: $present, trackUUID: track, remUUID: rem)
@@ -150,6 +147,9 @@ struct CueSheetAlertView: View {
                         viewModel.okPass = item.viewModel.okCallEvent
                         viewModel.cancelPass = item.viewModel.cancelCallEvent
                     }
+                
+            case .trackTimeEdit(let track):
+                CueSheetEditorEditTime(cueTrack: $cueTrack, present: $present, trackUUID: track)
                 
             }
         }

@@ -11,9 +11,9 @@ import SwiftCueSheet
 
 struct CueSheetEditorEditTime: View {
     @Binding var cueTrack: [CueSheetTrack]
-    @Binding var present: CueSelectMode?
+    @Binding var present: CueSheetAlertList?
     
-    init(cueTrack: Binding<[CueSheetTrack]>, present: Binding<CueSelectMode?>, trackUUID: UUID) {
+    init(cueTrack: Binding<[CueSheetTrack]>, present: Binding<CueSheetAlertList?>, trackUUID: UUID) {
         self._cueTrack = cueTrack
         self._present = present
         self.trackUUID = trackUUID
@@ -34,59 +34,58 @@ struct CueSheetEditorEditTime: View {
     
     var body: some View {
         VStack {
-            GroupBox(label: Text("Track Play-Time")) {
-                VStack {
-                    HStack {
-                        Text("Start Time")
-                        Spacer()
-                    }
-                    
-                    HStack{
-                        TextField("\(startTime.minutes) min", text: $trackStartTime.min)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                        
-                        TextField("\(startTime.seconds) sec", text: $trackStartTime.sec)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                        TextField("\(startTime.frames)", text: $trackStartTime.frame)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                    }
-                }
-                .padding([.top])
-                
-                VStack {
-                    HStack {
-                        Text("End Time")
-                        Spacer()
-                    }
-                    
-                    HStack{
-                        TextField("\(endTime.minutes) min", text: $trackEndTime.min)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                            
-                        TextField("\(endTime.seconds) sec", text: $trackEndTime.sec)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                        
-                        TextField("\(endTime.frames) frame", text: $trackEndTime.frame)
-                            .customToolBar()
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .keyboardType(.numberPad)
-                    }
+            VStack {
+                HStack {
+                    Text("Start Time")
+                    Spacer()
                 }
                 
-            }.padding()
-            Spacer()
+                HStack{
+                    TextField("\(startTime.minutes) min", text: $trackStartTime.min)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                    
+                    TextField("\(startTime.seconds) sec", text: $trackStartTime.sec)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                    TextField("\(startTime.frameBySecond)", text: $trackStartTime.frame)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                }
+            }
+            
+            VStack {
+                HStack {
+                    Text("End Time")
+                    Spacer()
+                }
+                
+                HStack{
+                    TextField("\(endTime.minutes) min", text: $trackEndTime.min)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                    
+                    TextField("\(endTime.seconds) sec", text: $trackEndTime.sec)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                    
+                    TextField("\(endTime.frames) frame", text: $trackEndTime.frame)
+                        .customToolBar()
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .keyboardType(.numberPad)
+                }
+            }
         }
-        
+        .padding()
+        .onAppear {
+            trackStartTime = .init(min: startTime.minutes, sec: startTime.seconds, frame: startTime.frameBySecond)
+            trackEndTime = .init(min: endTime.minutes, sec: endTime.seconds, frame: endTime.frameBySecond)
+        }
         .navigationTitle("Appending")
         .navigationBarItems(trailing: Button(action: {
             var time = cueTrack.map { CSLengthOfAudio(startTime: $0.startTime, endTime: $0.endTime )}
@@ -117,7 +116,5 @@ struct CueSheetEditorEditTime: View {
         }) {
             Text("Add")
         })
-        
-        Spacer()
     }
 }

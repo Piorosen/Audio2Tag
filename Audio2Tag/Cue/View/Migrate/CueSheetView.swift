@@ -21,19 +21,15 @@ enum CueSheetSheetList : Identifiable {
             return 3
         case .trackMetaAdd(_):
             return 4
-        case .trackTimeEdit(_):
-            return 5
+        
         case .cueSheet:
-            return 6
+            return 5
         }
     }
     
     case cueSheet
-    
     case metaAdd, remAdd, trackAdd
-    
     case trackRemAdd(UUID), trackMetaAdd(UUID)
-    case trackTimeEdit(UUID)
 }
 
 enum CueSheetAlertList : Identifiable, Equatable {
@@ -49,14 +45,20 @@ enum CueSheetAlertList : Identifiable, Equatable {
             return 3
         case .file:
             return 4
+        case .trackTimeEdit(_):
+            return 5
         }
     }
     
     case file
     case metaEdit(UUID), remEdit(UUID)
     case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
-    
+    case trackTimeEdit(UUID)
 }
+
+//enum SaveList {
+//    case overwrite
+//}
 
 struct CueSheetView: View {
     @Binding var rem: [CueSheetRem]
@@ -67,8 +69,6 @@ struct CueSheetView: View {
     
     
     var sheetEvent: ((CueSheetSheetList) -> Void) = { _ in }
-    var discardEvent: (() -> Void) = { }
-    
     func onSheet(_ action: @escaping (CueSheetSheetList) -> Void) -> CueSheetView {
         var copy = self
         copy.sheetEvent = action
@@ -97,15 +97,67 @@ struct CueSheetView: View {
         return copy
     }
     
+    var discardEvent: (() -> Void) = { }
     func onDisacrd(_ action: @escaping () -> Void) -> CueSheetView {
         var copy = self
         copy.discardEvent = action
         return copy
     }
     
+    var saveEvent: (CueSheet) -> Void = { _ in }
+    func onSave(_ action: @escaping (CueSheet) -> Void) -> CueSheetView {
+        var copy = self
+        copy.saveEvent = action
+        return copy
+    }
+    
+    @State var saveState = false
+    @State var discardState = false
+    
+    func makeCueSheet() -> CueSheet {
+        let m = meta.reduce(CSMeta(), { r, n in
+            var copy = r
+            copy[n.key] = n.value
+            return copy
+        })
+        let r = rem.reduce(CSRem(), { r, n in
+            var copy = r
+            copy[n.key] = n.value
+            return copy
+        })
+        
+        let trackS = track.map {
+            CSTrack(trackNum: $0.trackNum,
+                    trackType: $0.trackType,
+                    index: [CSIndex](),
+                    rem: $0.rem.reduce(CSRem(), { r, n in
+                        var copy = r
+                        copy[n.key] = n.value
+                        return copy
+                    }),
+                    meta: $0.meta.reduce(CSMeta(), { r, n in
+                        var copy = r
+                        copy[n.key] = n.value
+                        return copy
+                    }))
+        }
+        let t = track.map { CSLengthOfAudio(startTime: $0.startTime, endTime: $0.endTime) }
+        
+        let mt = CueSheet.makeTrack(time: t, tracks: trackS)
+        
+        let f = CSFile(tracks: mt,
+                       fileName: file.fileName,
+                       fileType: file.fileType)
+        
+        
+        
+        return CueSheet(meta: m, rem: r, file: f)
+    }
+    
+    
     var body: some View {
         Group {
-            if let mode = mode, mode == .none {
+            if mode == .none {
                 Section(header: Text("Cue Sheet")) {
                     Button(action: { newEvent() }, label: {
                         Text("New File")
@@ -166,7 +218,7 @@ struct CueSheetView: View {
                                         .onMetaEdit { alertEvent(.trackMetaEdit($0, $1)) }
                                         .onRemAdd { sheetEvent(.trackRemAdd($0)) }
                                         .onRemEdit { alertEvent(.trackRemEdit($0, $1)) }
-                                        .onTimeEdit { sheetEvent(.trackTimeEdit($0)) }
+                                        .onTimeEdit { alertEvent(.trackTimeEdit($0)) }
                         ) {
                             HStack {
                                 Text(String(track[idx].trackNum))
@@ -182,15 +234,23 @@ struct CueSheetView: View {
                     }
                 }
                 
-                
                 Section(header: Text("File Manager")) {
-                    Button(action: { }) {
+                    Button(action: { saveState = true }) {
                         Text("Save")
-                    }
+                    }.actionSheet(isPresented: $saveState, content: {
+                        ActionSheet(title: Text("저장"), message: nil, buttons: [.default(Text("Yes"), action: {
+                            saveEvent(makeCueSheet())
+                        }), .cancel(Text("Cancel"))])
+                    })
                     
-                    Button(action: discardEvent) {
+                    Button(action: { discardState = true }) {
                         Text("Discard")
-                    }
+                    }.actionSheet(isPresented: $discardState, content: {
+                        ActionSheet(title: Text("초기화"), message: nil, buttons: [.default(Text("Yes"), action: {
+                                                                                                DispatchQueue.main.async {
+                                                                                                    discardEvent()
+                                                                                                }}), .cancel(Text("Cancel"))])
+                    })
                 }
             }
             
