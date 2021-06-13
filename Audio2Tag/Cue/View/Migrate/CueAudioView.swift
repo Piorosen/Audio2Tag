@@ -14,31 +14,28 @@ struct AudioFilesModel : Identifiable, Equatable {
     
     init(url: URL) {
         self.url = url
-        self.image = nil
-        self.title = url.lastPathComponent
+//        self.image = nil
+//        self.title =
         self.player = try! AVAudioPlayer(contentsOf: url)
         
-        for item in AVAsset(url: url).commonMetadata {
-            if item.commonKey == .commonKeyArtwork {
-                image = item.dataValue
-            }
-            else if item.commonKey == .commonKeyTitle {
-                title = item.stringValue ?? title
-            }
-        }
+        let list = AVAsset(url: url).commonMetadata
+        
+        image = list.first { $0.commonKey == .commonKeyArtwork }?.dataValue
+        title = list.first { $0.commonKey == .commonKeyTitle }?.stringValue ?? url.lastPathComponent
+        
     }
-    public var url: URL
-    public var image: Data?
-    public var title: String
+    public let url: URL
+    public let image: Data?
+    public let title: String
     
-    public var player: AVAudioPlayer
+    public let player: AVAudioPlayer
 }
 
 class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Binding var audio: AudioFilesModel?
     @Published var play = false
-    var currentTime = CSIndexTime(time: 0)
-    var endTime = CSIndexTime(time: 0)
+    @Published var currentTime = CSIndexTime(time: 0)
+    @Published var endTime = CSIndexTime(time: 0)
     @Published var percent: Double = 0
     
     func update() {
@@ -75,6 +72,8 @@ struct CueAudioView: View {
     init(audio: Binding<AudioFilesModel?>) {
         viewModel = CueAudioViewModel(audio: audio)
     }
+    
+    let timer = Timer.publish(every: 0.16, on: .main, in: .common).autoconnect()
     
     var loadEvent: (() -> Void) = { }
     var discardEvent: (() -> Void) = { }
@@ -119,16 +118,16 @@ struct CueAudioView: View {
                     HStack(alignment: .center) {
                         Spacer()
                         Button(action: {
-                            viewModel.audio?.player.currentTime -= 15
+                            audioItem.player.currentTime -= 15
                         }) {
                             Image(systemName: "gobackward.15").padding(20)
                         }
                         Button(action: {
-                            if let b = viewModel.audio?.player, b.isPlaying {
-                                viewModel.audio?.player.stop()
+                            if audioItem.player.isPlaying {
+                                audioItem.player.stop()
                                 viewModel.play = false
                             }else {
-                                viewModel.audio?.player.play()
+                                audioItem.player.play()
                                 viewModel.play = true
                             }
                         }) {
@@ -140,21 +139,19 @@ struct CueAudioView: View {
                         }
                         
                         Button(action: {
-                            viewModel.audio?.player.currentTime += 15
+                            audioItem.player.currentTime += 15
                         }) {
                             Image(systemName: "goforward.15").padding(20)
                         }
                         Spacer()
                     }.buttonStyle(BorderlessButtonStyle())
                 }
-                .onAppear {
-                    Timer.scheduledTimer(withTimeInterval: 0.16, repeats: true) { timer in
-                        viewModel.update()
-                    }
+                .onReceive(timer) { t in
+                    viewModel.update()
                 }
                 
                 Button(action: {
-                    viewModel.audio?.player.stop()
+                    audioItem.player.stop()
                     discardEvent()
                 }, label: {
                     Text("Discard")

@@ -25,6 +25,8 @@ enum CueSelectMode : Identifiable {
             return 2
         case .cueSheetSave(_):
             return 3
+        case .saveDirectory(_, _):
+            return 4
         }
     }
     
@@ -32,6 +34,7 @@ enum CueSelectMode : Identifiable {
     case cueSheet
     case cueSheetEvent(CueSheetSheetList)
     case cueSheetSave(CueSheet)
+    case saveDirectory(URL, CueSheet)
 }
 
 
@@ -44,6 +47,9 @@ struct CueSelectView: View {
     @ObservedObject var viewModel = CueSelectViewModel()
     
     @State var audio: AudioFilesModel? = nil
+    @State var cueSheet: CueSheet? = nil
+    
+    
     @State var documentMode: CueSelectMode? = nil
     
     @State var cueSheetAlert: CueSheetAlertList? = nil
@@ -53,6 +59,31 @@ struct CueSelectView: View {
     @State var cueMeta = [CueSheetMeta]()
     @State var cueTrack = [CueSheetTrack]()
     @State var cueFile = CueSheetFile(fileName: String(), fileType: String())
+    
+    @State var actionSheetExecute = false
+    
+    var execute: (URL, CueSheet, URL) -> Void = { _, _, _ in }
+    func onExecute(_ callback: @escaping (URL, CueSheet, URL) -> Void) -> Self {
+        var copy = self
+        copy.execute = callback
+        return copy
+    }
+    
+    var preview: (URL, CueSheet) -> Void = { _, _ in }
+    func onPreview(_ callback: @escaping (URL, CueSheet) -> Void) -> Self {
+        var copy = self
+        copy.preview = callback
+        return copy
+    }
+    
+    var status: () -> Void = { }
+    func onStatus(_ callback: @escaping () -> Void) -> Self {
+        var copy = self
+        copy.status = callback
+        return copy
+    }
+    
+    
     
     var body: some View {
         NavigationView {
@@ -67,15 +98,20 @@ struct CueSelectView: View {
                 CueSheetView(rem: $cueRem, meta: $cueMeta, track: $cueTrack, file: $cueFile, mode: $cueSheetMode)
                     .onNew {
                         cueSheetMode = .newCueSheet
-                    }.onEdit {
+                    }
+                    .onEdit {
                         documentMode = .cueSheet
-                    }.onSheet { e in
+                    }
+                    .onSheet { e in
                         documentMode = .cueSheetEvent(e)
-                    }.onAlert { e in
+                    }
+                    .onAlert { e in
                         cueSheetAlert = e
-                    }.onSave { cue in
+                    }
+                    .onSave { cue in
                         documentMode = .cueSheetSave(cue)
-                    }.onDisacrd {
+                    }
+                    .onDisacrd {
                         cueRem = [CueSheetRem]()
                         cueMeta = [CueSheetMeta]()
                         cueTrack = [CueSheetTrack]()
@@ -87,16 +123,33 @@ struct CueSelectView: View {
             .navigationTitle(Text("Cue Sheet"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: HStack {
-                Button(action: {  }) {
+                Button(action: { self.actionSheetExecute.toggle() }) {
                     Image(systemName: "play")
+                }.actionSheet(isPresented: $actionSheetExecute) {
+                    ActionSheet(title: Text("Execute Type"), message: nil, buttons: [.default(Text("Execute"), action: {
+                        if let u = audio?.url, let sheet = cueSheet {
+                            documentMode = .saveDirectory(u, sheet)
+                        }
+                    }), .default(Text("Preview"), action: {
+                        if let u = audio?.url, let sheet = cueSheet {
+                            preview(u, sheet)
+                        }
+                    }), .cancel(Text("Cancel"))])
                 }
-                Button(action: { }) {
+                Button(action: status) {
                     Image(systemName: "doc.on.doc")
                 }
             }) 
             .sheet(item: $documentMode) { mode in
                 Group {
                     switch mode {
+                    case .saveDirectory(let u, let c):
+                        DocumentPicker()
+                            .setConfig(folderPicker: true)
+                            .onSelectFile { url in
+                                self.execute(u, c, url)
+                            }
+                    
                     case .cueSheetSave(let cue):
                         DocumentPicker()
                             .setConfig(folderPicker: true)

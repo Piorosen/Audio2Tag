@@ -22,6 +22,7 @@ struct ContentView: View {
             CueView().tabItem {
                 Text("Cue")
             }
+            
 //
 //            TagView().tabItem {
 //                Text("Tag")
