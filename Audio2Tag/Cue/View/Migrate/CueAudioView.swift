@@ -12,11 +12,15 @@ import SwiftCueSheet
 struct AudioFilesModel : Identifiable {
     let id: UUID = UUID()
     
-    init(url: URL) {
+    init?(url: URL) {
         self.url = url
 //        self.image = nil
 //        self.title =
-        self.player = try! AVAudioPlayer(contentsOf: url)
+        do {
+            self.player = try AVAudioPlayer(contentsOf: url)
+        }catch {
+            return nil
+        }
         
         let list = AVAsset(url: url).commonMetadata
         

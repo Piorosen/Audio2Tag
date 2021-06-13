@@ -55,8 +55,8 @@ enum CueSheetAlertList : Identifiable, Equatable {
     case trackRemEdit(UUID, UUID), trackMetaEdit(UUID, UUID)
     case trackTimeEdit(UUID)
 }
-
-//enum SaveList {
+//
+//enum CueSheet {
 //    case overwrite
 //}
 
@@ -154,6 +154,7 @@ struct CueSheetView: View {
         return CueSheet(meta: m, rem: r, file: f)
     }
     
+    @State var alertPresent = false
     
     var body: some View {
         Group {
@@ -235,13 +236,22 @@ struct CueSheetView: View {
                 }
                 
                 Section(header: Text("File Manager")) {
-                    Button(action: { saveState = true }) {
+                    Button(action: {
+                        if file.fileName == "" {
+                            alertPresent = true
+                        }else {
+                            saveState = true
+                        }
+                    }) {
                         Text("Save")
                     }.actionSheet(isPresented: $saveState, content: {
                         ActionSheet(title: Text("저장"), message: nil, buttons: [.default(Text("Yes"), action: {
                             saveEvent(makeCueSheet())
                         }), .cancel(Text("Cancel"))])
                     })
+                    .alert(isPresented: $alertPresent) {
+                        Alert(title: Text("Error"), message: Text("Not Found File Name"), dismissButton: .cancel())
+                    }
                     
                     Button(action: { discardState = true }) {
                         Text("Discard")

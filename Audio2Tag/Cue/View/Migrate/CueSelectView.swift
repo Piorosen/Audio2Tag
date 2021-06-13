@@ -43,14 +43,24 @@ class CueSelectViewModel : ObservableObject {
     var cancel: () -> Void = { }
 }
 
+enum CueSelectAlert : Identifiable {
+    var id: Int {
+        return self.hashValue
+    }
+    
+    case emptyCueSheet
+    case emptyAudio
+    case errorAudio
+    case errorCueSheet
+    
+}
+
 struct CueSelectView: View {
     @ObservedObject var viewModel = CueSelectViewModel()
     
     @State var audio: AudioFilesModel? = nil
-    @State var cueSheet: CueSheet? = nil
     
     @State var documentMode: CueSelectMode? = nil
-    
     @State var cueSheetAlert: CueSheetAlertList? = nil
     @State var cueSheetMode: CueSheetDocument = .none
     
@@ -60,6 +70,7 @@ struct CueSelectView: View {
     @State var cueFile = CueSheetFile(fileName: String(), fileType: String())
     
     @State var actionSheetExecute = false
+    @State var alertEvent: CueSelectAlert? = nil
     
     var execute: (URL, CueSheet, URL) -> Void = { _, _, _ in }
     func onExecute(_ callback: @escaping (URL, CueSheet, URL) -> Void) -> Self {
@@ -133,6 +144,19 @@ struct CueSelectView: View {
                     .onDisacrd {
                         audio = nil
                     }
+                    .alert(item: $alertEvent) { item in
+                        switch item {
+                        case .emptyAudio:
+                            return Alert(title: Text("HI!"))
+                        case .emptyCueSheet:
+                            return Alert(title: Text("HI!"))
+                        case .errorAudio:
+                            return Alert(title: Text("HI!"))
+                        case .errorCueSheet:
+                            return Alert(title: Text("HI!"))
+                        }
+                        
+                    }
                 CueSheetView(rem: $cueRem, meta: $cueMeta, track: $cueTrack, file: $cueFile, mode: $cueSheetMode)
                     .onNew {
                         cueSheetMode = .newCueSheet
@@ -161,7 +185,17 @@ struct CueSelectView: View {
             .navigationTitle(Text("Cue Sheet"))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: HStack {
-                Button(action: { self.actionSheetExecute.toggle() }) {
+                Button(action: {
+                    if cueSheetMode == .none {
+                        alertEvent = .emptyCueSheet
+                        return
+                    }
+                    else if audio == nil {
+                        alertEvent = .emptyAudio
+                        return
+                    }
+                    self.actionSheetExecute.toggle()
+                }) {
                     Image(systemName: "play")
                 }.actionSheet(isPresented: $actionSheetExecute) {
                     ActionSheet(title: Text("Execute Type"), message: nil, buttons: [.default(Text("Execute"), action: {
@@ -235,7 +269,11 @@ struct CueSelectView: View {
                             .setConfig(folderPicker: false, allowMultiple: false)
                             .setUTType(type: [.audio])
                             .onSelectFile { url in
-                                audio = AudioFilesModel(url: url)
+                                if let model = AudioFilesModel(url: url) {
+                                    audio = model
+                                }else {
+                                    alertEvent = .errorAudio
+                                }
                             }
                         
                     case .cueSheet:
@@ -264,7 +302,7 @@ struct CueSelectView: View {
                                     cueFile = CueSheetFile(fileName: sheet.file.fileName, fileType: sheet.file.fileType)
                                     cueSheetMode = .editCueSheet
                                 }catch {
-                                    
+                                    alertEvent = .errorCueSheet
                                 }
                             }
                     }
