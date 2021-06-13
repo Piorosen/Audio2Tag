@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct CueStatusCellView: View {
-    var data: CueStatusCellModel
+    let data: CueStatusCellModel
     
     var body: some View {
         VStack {
-            Text("\(data.name)")
-                .frame(maxWidth: .infinity, alignment: .leading)
+            ScrollView(.horizontal, showsIndicators: false) {
+                Text("\(data.name)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             ProgressView(value: Float(data.value), total: 1)
-        }.padding(10)
+        }
+        .padding(10)
+        
     }
 }
 

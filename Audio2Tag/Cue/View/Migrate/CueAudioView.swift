@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 import SwiftCueSheet
 
-struct AudioFilesModel : Identifiable, Equatable {
+struct AudioFilesModel : Identifiable {
     let id: UUID = UUID()
     
     init(url: URL) {
@@ -22,26 +22,27 @@ struct AudioFilesModel : Identifiable, Equatable {
         
         image = list.first { $0.commonKey == .commonKeyArtwork }?.dataValue
         title = list.first { $0.commonKey == .commonKeyTitle }?.stringValue ?? url.lastPathComponent
-        
+        endTime = CSIndexTime(time: player.duration)
     }
+    
     public let url: URL
     public let image: Data?
     public let title: String
     
     public let player: AVAudioPlayer
+    public let endTime: CSIndexTime
 }
 
 class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Binding var audio: AudioFilesModel?
     @Published var play = false
     @Published var currentTime = CSIndexTime(time: 0)
-    @Published var endTime = CSIndexTime(time: 0)
+    
     @Published var percent: Double = 0
     
     func update() {
         guard let p = audio?.player else {
             currentTime = CSIndexTime(time: 0)
-            endTime = CSIndexTime(time: 0)
             return
         }
         if audio?.player.delegate == nil {
@@ -49,9 +50,8 @@ class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
         
         currentTime = CSIndexTime(time: p.currentTime)
-        endTime = CSIndexTime(time: p.duration)
-        if endTime.frames != 0 {
-            percent = currentTime.totalSeconds / endTime.totalSeconds
+        if let a = audio, a.endTime.frames != 0 {
+            percent = currentTime.totalSeconds / a.endTime.totalSeconds
         }
         
     }
@@ -111,7 +111,7 @@ struct CueAudioView: View {
                         HStack {
                             Text(self.viewModel.currentTime.description)
                             Spacer()
-                            Text(self.viewModel.endTime.description)
+                            Text(audioItem.endTime.description)
                         }
                     }
                     
@@ -147,7 +147,9 @@ struct CueAudioView: View {
                     }.buttonStyle(BorderlessButtonStyle())
                 }
                 .onReceive(timer) { t in
-                    viewModel.update()
+                    if viewModel.play {
+                        viewModel.update()
+                    }
                 }
                 
                 Button(action: {

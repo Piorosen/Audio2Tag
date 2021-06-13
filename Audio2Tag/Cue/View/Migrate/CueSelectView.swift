@@ -84,6 +84,45 @@ struct CueSelectView: View {
     }
     
     
+    func makeCueSheet() -> CueSheet {
+        let m = cueMeta.reduce(CSMeta(), { r, n in
+            var copy = r
+            copy[n.key] = n.value
+            return copy
+        })
+        let r = cueRem.reduce(CSRem(), { r, n in
+            var copy = r
+            copy[n.key] = n.value
+            return copy
+        })
+        
+        let trackS = cueTrack.map {
+            CSTrack(trackNum: $0.trackNum,
+                    trackType: $0.trackType,
+                    index: [CSIndex](),
+                    rem: $0.rem.reduce(CSRem(), { r, n in
+                        var copy = r
+                        copy[n.key] = n.value
+                        return copy
+                    }),
+                    meta: $0.meta.reduce(CSMeta(), { r, n in
+                        var copy = r
+                        copy[n.key] = n.value
+                        return copy
+                    }))
+        }
+        let t = cueTrack.map { CSLengthOfAudio(startTime: $0.startTime, endTime: $0.endTime) }
+        
+        let mt = CueSheet.makeTrack(time: t, tracks: trackS)
+        
+        let f = CSFile(tracks: mt,
+                       fileName: cueFile.fileName,
+                       fileType: cueFile.fileType)
+        
+        
+        
+        return CueSheet(meta: m, rem: r, file: f)
+    }
     
     var body: some View {
         NavigationView {
@@ -127,12 +166,12 @@ struct CueSelectView: View {
                     Image(systemName: "play")
                 }.actionSheet(isPresented: $actionSheetExecute) {
                     ActionSheet(title: Text("Execute Type"), message: nil, buttons: [.default(Text("Execute"), action: {
-                        if let u = audio?.url, let sheet = cueSheet {
-                            documentMode = .saveDirectory(u, sheet)
+                        if let u = audio?.url {
+                            documentMode = .saveDirectory(u, makeCueSheet())
                         }
                     }), .default(Text("Preview"), action: {
-                        if let u = audio?.url, let sheet = cueSheet {
-                            preview(u, sheet)
+                        if let u = audio?.url {
+                            preview(u, makeCueSheet())
                         }
                     }), .cancel(Text("Cancel"))])
                 }
@@ -199,6 +238,7 @@ struct CueSelectView: View {
                             .onSelectFile { url in
                                 audio = AudioFilesModel(url: url)
                             }
+                        
                     case .cueSheet:
                         DocumentPicker()
                             .setConfig(folderPicker: false, allowMultiple: false)
