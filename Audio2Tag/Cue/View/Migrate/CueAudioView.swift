@@ -7,14 +7,16 @@
 
 import SwiftUI
 import AVFoundation
+import SwiftCueSheet
 
-struct AudioFilesModel : Identifiable {
+struct AudioFilesModel : Identifiable, Equatable {
     let id: UUID = UUID()
     
     init(url: URL) {
         self.url = url
         self.image = nil
         self.title = url.lastPathComponent
+        self.player = try! AVAudioPlayer(contentsOf: url)
         
         for item in AVAsset(url: url).commonMetadata {
             if item.commonKey == .commonKeyArtwork {
@@ -28,15 +30,40 @@ struct AudioFilesModel : Identifiable {
     public var url: URL
     public var image: Data?
     public var title: String
+    
+    public var player: AVAudioPlayer
 }
 
-class CueAudioViewModel : ObservableObject {
+class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Binding var audio: AudioFilesModel?
-    @Published var playDuration: TimeInterval = 0
     @Published var play = false
+    var currentTime = CSIndexTime(time: 0)
+    var endTime = CSIndexTime(time: 0)
+    @Published var percent: Double = 0
     
-    var player: AVAudioPlayer? = nil
+    func update() {
+        guard let p = audio?.player else {
+            currentTime = CSIndexTime(time: 0)
+            endTime = CSIndexTime(time: 0)
+            return
+        }
+        if audio?.player.delegate == nil {
+            audio?.player.delegate = self
+        }
+        
+        currentTime = CSIndexTime(time: p.currentTime)
+        endTime = CSIndexTime(time: p.duration)
+        if endTime.frames != 0 {
+            percent = currentTime.totalSeconds / endTime.totalSeconds
+        }
+        
+    }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        player.pause()
+        play = false
+    }
+
     init(audio: Binding<AudioFilesModel?>) {
         self._audio = audio
     }
@@ -81,24 +108,29 @@ struct CueAudioView: View {
                     }.padding()
                     
                     VStack {
-                        ProgressView("", value: self.viewModel.playDuration)
+                        ProgressView("", value: self.viewModel.percent)
+                        HStack {
+                            Text(self.viewModel.currentTime.description)
+                            Spacer()
+                            Text(self.viewModel.endTime.description)
+                        }
                     }
                     
                     HStack(alignment: .center) {
                         Spacer()
                         Button(action: {
-//                            viewModel.player.currentTime -= 15
+                            viewModel.audio?.player.currentTime -= 15
                         }) {
                             Image(systemName: "gobackward.15").padding(20)
                         }
                         Button(action: {
-//                            if viewModel.player.isPlaying {
-//                                viewModel.player.stop()
-//                                viewModel.play = false
-//                            }else {
-//                                viewModel.player.play()
-//                                viewModel.play = true
-//                            }
+                            if let b = viewModel.audio?.player, b.isPlaying {
+                                viewModel.audio?.player.stop()
+                                viewModel.play = false
+                            }else {
+                                viewModel.audio?.player.play()
+                                viewModel.play = true
+                            }
                         }) {
                             if viewModel.play {
                                 Image(systemName: "pause.fill").padding(20)
@@ -108,17 +140,23 @@ struct CueAudioView: View {
                         }
                         
                         Button(action: {
-//                            viewModel.player.currentTime += 15
+                            viewModel.audio?.player.currentTime += 15
                         }) {
                             Image(systemName: "goforward.15").padding(20)
                         }
                         Spacer()
                     }.buttonStyle(BorderlessButtonStyle())
                 }
+                .onAppear {
+                    Timer.scheduledTimer(withTimeInterval: 0.16, repeats: true) { timer in
+                        viewModel.update()
+                    }
+                }
                 
-                
-                
-                Button(action: discardEvent, label: {
+                Button(action: {
+                    viewModel.audio?.player.stop()
+                    discardEvent()
+                }, label: {
                     Text("Discard")
                 })
             } else {
