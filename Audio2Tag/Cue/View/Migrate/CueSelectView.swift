@@ -49,7 +49,6 @@ struct CueSelectView: View {
     @State var audio: AudioFilesModel? = nil
     @State var cueSheet: CueSheet? = nil
     
-    
     @State var documentMode: CueSelectMode? = nil
     
     @State var cueSheetAlert: CueSheetAlertList? = nil

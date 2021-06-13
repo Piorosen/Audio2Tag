@@ -7,14 +7,16 @@
 
 import SwiftUI
 import CoreMedia
+import AVFoundation
 import SwiftCueSheet
+import ID3TagEditor
 
 struct CueView: View {
     @State var statusPresent = false
     @State var cellModel = [CueStatusCellModel]()
     
     func makeData(u: URL, c: CueSheet, removeFile: Bool = true) -> [(URL, CMTimeRange)] {
-        let time = zip(c.calcTime(), c.file.tracks)
+        let time = zip(c.calcTime(lengthOfMusic: AVAsset(url: u).duration.seconds), c.file.tracks)
         
         let ext = String(c.file.fileName.split(separator: ".").last!)
         
@@ -45,8 +47,17 @@ struct CueView: View {
                         cellModel.append(CueStatusCellModel(name: name.lastPathComponent, value: 0))
                     }
                     
+                    statusPresent = true
                     
-                    
+                    DispatchQueue.global().async {
+                        AVAudioSpliter(inputFileURL: audioUrl, outputFileURL: list)?.convert { idx, percent, totalPercent in
+                            if Double(percent) > cellModel[idx].value {
+                                DispatchQueue.main.async {
+                                    cellModel[idx].value = Double(percent)
+                                }
+                            }
+                        }
+                    }
                 }
                 .onPreview { u, c in
                     
