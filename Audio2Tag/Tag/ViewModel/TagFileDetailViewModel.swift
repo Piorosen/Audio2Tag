@@ -45,7 +45,7 @@ class TagFileDetailViewModel : ObservableObject {
     
     
     @Published var selectText = ""
-    var selectTitle: FrameName = FrameName.Title
+    var selectTitle: FrameName = FrameName.title
     var selectHint = ""
     
     func tagEditRequest(item: TagFileDetailListTextCell) {
@@ -83,11 +83,12 @@ class TagFileDetailViewModel : ObservableObject {
         }
         
         if let data = tagModel.image.jpegData(compressionQuality: 1.0) {
-            a[.AttachedPicture(.FrontCover)] = ID3FrameAttachedPicture(picture: data, type: .FrontCover, format: .Jpeg)
+            a[.attachedPicture(.frontCover)] = ID3FrameAttachedPicture(picture: data, type: .frontCover, format: .jpeg)
         }
         
         do {
-            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: self.parentModel.deviceFilePath.path)
+            
+//            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: self.parentModel.deviceFilePath.path)
             
             
         }catch {
@@ -131,7 +132,7 @@ class TagFileDetailViewModel : ObservableObject {
                 return
             }
             
-            let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.AttachedPicture(type)] as? ID3FrameAttachedPicture)})
+            let getAllImage = ID3PictureType.allCases.compactMap({ type in (tag.frames[.attachedPicture(type)] as? ID3FrameAttachedPicture)})
             
             let frontImage = getAllImage.count > 0 ? UIImage(data: getAllImage[0].picture)! : UIImage()
 

@@ -39,7 +39,7 @@ public final class AVAudioSpliter {
 //                    let _ = Float(i) / Float(self.outputURL.count)
                     sum[i] = Float(1) / Float(self.outputURL.count) * p
                     callback(i, p, sum.reduce(0, +))
-                }   
+                }
             }
         }
     }
