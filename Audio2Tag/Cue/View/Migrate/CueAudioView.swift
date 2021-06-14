@@ -43,19 +43,27 @@ class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var currentTime = CSIndexTime(time: 0)
     
     @Published var percent: Double = 0
+    @Published var actionSheet: Bool = false
     
     func update() {
-        guard let p = audio?.player else {
-            currentTime = CSIndexTime(time: 0)
-            return
-        }
-        if audio?.player.delegate == nil {
-            audio?.player.delegate = self
-        }
-        
-        currentTime = CSIndexTime(time: p.currentTime)
-        if let a = audio, a.endTime.frames != 0 {
-            percent = currentTime.totalSeconds / a.endTime.totalSeconds
+        if !actionSheet && play {
+            guard let p = audio?.player else {
+                currentTime = CSIndexTime(time: 0)
+                return
+            }
+            if audio?.player.delegate == nil {
+                audio?.player.delegate = self
+            }
+
+            currentTime = CSIndexTime(time: p.currentTime)
+            if let a = audio, a.endTime.frames != 0 {
+                percent = currentTime.totalSeconds / a.endTime.totalSeconds
+            }
+        }else if actionSheet && play {
+            play = false
+            audio?.player.stop()
+        }else if !play {
+            audio?.player.stop()
         }
         
     }
@@ -72,6 +80,8 @@ class CueAudioViewModel : NSObject, ObservableObject, AVAudioPlayerDelegate {
 
 struct CueAudioView: View {
     @ObservedObject var viewModel: CueAudioViewModel
+    
+    
     
     init(audio: Binding<AudioFilesModel?>) {
         viewModel = CueAudioViewModel(audio: audio)
@@ -113,7 +123,7 @@ struct CueAudioView: View {
                     VStack {
                         ProgressView("", value: self.viewModel.percent)
                         HStack {
-                            Text(self.viewModel.currentTime.description)
+                            Text(CSIndexTime(time: audioItem.player.currentTime).description)
                             Spacer()
                             Text(audioItem.endTime.description)
                         }
@@ -151,17 +161,21 @@ struct CueAudioView: View {
                     }.buttonStyle(BorderlessButtonStyle())
                 }
                 .onReceive(timer) { t in
-                    if viewModel.play {
-                        viewModel.update()
-                    }
+                    viewModel.update()
                 }
                 
                 Button(action: {
-                    audioItem.player.stop()
-                    discardEvent()
+                    viewModel.actionSheet.toggle()
                 }, label: {
                     Text("Discard")
-                })
+                }).actionSheet(isPresented: $viewModel.actionSheet) {
+                    ActionSheet(title: Text("초기화"), message: nil, buttons: [.default(Text("Yes"), action: {
+                        audioItem.player.stop()
+                        DispatchQueue.main.async {
+                            discardEvent()
+                        }
+                    }), .cancel(Text("Cancel"))])
+                }
             } else {
                 Button(action: loadEvent, label: {
                     Text("Load File")

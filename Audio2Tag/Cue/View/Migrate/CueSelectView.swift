@@ -52,7 +52,10 @@ enum CueSelectAlert : Identifiable {
     case emptyAudio
     case errorAudio
     case errorCueSheet
+    case notFoundTrack
     
+    case saveSuccessCueSheet
+    case saveFailCueSheet
 }
 
 struct CueSelectView: View {
@@ -147,13 +150,19 @@ struct CueSelectView: View {
                     .alert(item: $alertEvent) { item in
                         switch item {
                         case .emptyAudio:
-                            return Alert(title: Text("HI!"))
+                            return Alert(title: Text("Empty Audio"))
                         case .emptyCueSheet:
-                            return Alert(title: Text("HI!"))
+                            return Alert(title: Text("Empty CueSheet"))
                         case .errorAudio:
-                            return Alert(title: Text("HI!"))
+                            return Alert(title: Text("Load Fail : Audio"))
                         case .errorCueSheet:
-                            return Alert(title: Text("HI!"))
+                            return Alert(title: Text("Load Fail : CueSheet"))
+                        case .notFoundTrack:
+                            return Alert(title: Text("Not Found : Track Data"))
+                        case .saveSuccessCueSheet:
+                            return Alert(title: Text("Save Success"))
+                        case .saveFailCueSheet:
+                            return Alert(title: Text("Save Fail"))
                         }
                         
                     }
@@ -199,12 +208,21 @@ struct CueSelectView: View {
                     Image(systemName: "play")
                 }.actionSheet(isPresented: $actionSheetExecute) {
                     ActionSheet(title: Text("Execute Type"), message: nil, buttons: [.default(Text("Execute"), action: {
-                        if let u = audio?.url {
-                            documentMode = .saveDirectory(u, makeCueSheet())
+                        if cueTrack.count == 0 {
+                            alertEvent = .notFoundTrack
+                        }else {
+                            if let u = audio?.url {
+                                documentMode = .saveDirectory(u, makeCueSheet())
+                            }
                         }
+                        
                     }), .default(Text("Preview"), action: {
-                        if let u = audio?.url {
-                            preview(u, makeCueSheet())
+                        if cueTrack.count == 0 {
+                            alertEvent = .notFoundTrack
+                        }else {
+                            if let u = audio?.url {
+                                preview(u, makeCueSheet())
+                            }
                         }
                     }), .cancel(Text("Cancel"))])
                 }
