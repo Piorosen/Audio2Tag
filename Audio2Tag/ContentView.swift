@@ -23,6 +23,14 @@ struct ContentView: View {
                 Text("Cue")
             }
             
+            TagView().tabItem {
+                Text("Tag")
+            }
+            
+            SettingView().tabItem {
+                Text("Setting")
+            }
+            
 //
 //            TagView().tabItem {
 //                Text("Tag")
