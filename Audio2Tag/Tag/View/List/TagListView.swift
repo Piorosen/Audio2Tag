@@ -7,14 +7,15 @@
 //
 
 import SwiftUI
+import SwiftUIListSeparator
 
 struct TagListView: View {
     @Binding var models: [TagModel]
     
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach (models.indices, id: \.self) { item in
+        List {
+            ForEach (models.indices, id: \.self) { item in
+                Group {
                     if models[item].haveID3Tag {
                         NavigationLink(destination: TagFileDetailView(bind: models[item])) {
                             TagListCellView(item: models[item])
@@ -23,8 +24,18 @@ struct TagListView: View {
                         TagListCellView(item: models[item])
                     }
                 }
+//                .frame(maxWidth: .infinity, maxHeight: <#T##CGFloat?#>)
+//                .listRowInsets(EdgeInsets(top: -20, leading: -20, bottom: 20, trailing: 20))
             }
+            .onMove {
+                models.move(fromOffsets: $0, toOffset: $1)
+            }
+            .onDelete {
+                models.remove(atOffsets: $0)
+            }
+            
+//            .listRowBackground(Color(UIColor.systemGroupedBackground))
         }
-        
+//        .listSeparatorStyle(.none)
     }
 }

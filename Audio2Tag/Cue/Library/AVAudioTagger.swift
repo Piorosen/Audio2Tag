@@ -18,16 +18,16 @@ struct CueSheetAudioTagger {
 
 final class AVAudioTagger {
     init(audio: [URL], cueSheet: CueSheet) {
-        let item = audio.indices.map {
-            CueSheetAudioTagger(audio: audio[$0],
-                                meta: cueSheet.meta,
-                                rem: cueSheet.rem,
-                                track: cueSheet.file.tracks[$0])
-        }
-        
+//        let item = audio.indices.map {
+//            CueSheetAudioTagger(audio: audio[$0],
+//                                meta: cueSheet.meta,
+//                                rem: cueSheet.rem,
+//                                track: cueSheet.file.tracks[$0])
+//        }
+//        
 //        item.forEach {
 //            ID32v4TagBuilder()
-////                .album(frame: ID3FrameWithStringContent(content: $0.meta[.]))
+//                .album(frame: ID3FrameWithStringContent(content: $0.meta[.]))
 //                .title(frame: ID3FrameWithStringContent(content: $0.track.meta[.title] ?? ""))
 //                .albumArtist(frame: <#T##ID3FrameWithStringContent#>)
 //                .build()

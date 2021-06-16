@@ -85,15 +85,15 @@ class TagFileDetailViewModel : ObservableObject {
         if let data = tagModel.image.jpegData(compressionQuality: 1.0) {
             a[.attachedPicture(.frontCover)] = ID3FrameAttachedPicture(picture: data, type: .frontCover, format: .jpeg)
         }
-        
-        do {
-            
-//            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: self.parentModel.deviceFilePath.path)
-            
-            
-        }catch {
-            print(error)
-        }
+//
+//        do {
+//
+////            try ID3TagEditor().write(tag: ID3Tag(version: .version4, frames: a), to: parentModel.deviceFilePath.path, andSaveTo: self.parentModel.deviceFilePath.path)
+//
+//
+//        }catch {
+//            print(error)
+//        }
         DispatchQueue.main.async {
             self.tagSavedRequest()
         }

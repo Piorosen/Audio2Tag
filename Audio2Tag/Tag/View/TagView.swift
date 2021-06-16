@@ -44,10 +44,13 @@ struct TagView: View {
     var body: some View {
         NavigationView {
             TagListView(models: $viewModel.fileInfo)
-                .navigationTitle("Tag Info")
-                .navigationBarItems(trailing: TagNavigationTraillingView()
+                .navigationTitle("Tag Editor")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading: TagNavigationTraillingView()
                                     .onTagReuqest(self.viewModel.tagRequest)
-                                    .onAudioRequest(self.viewModel.audioRequest))
+                                    .onAudioRequest(self.viewModel.audioRequest),
+                                    trailing: EditButton())
+                
         }
         // 음악 파일 선택 및 태그 검색 하기 위하 시트
         .sheet(isPresented: $viewModel.openSheet, content: makeSheet)

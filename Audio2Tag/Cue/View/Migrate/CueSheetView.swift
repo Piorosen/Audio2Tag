@@ -166,6 +166,7 @@ struct CueSheetView: View {
                     Button(action: { editEvent() }, label: {
                         Text("Edit File")
                     })
+                    
                 }
             }else {
                 Section(header: Text("Meta")) {
@@ -226,6 +227,7 @@ struct CueSheetView: View {
                                 Spacer()
                                 Text(track[idx].title)
                             }.foregroundColor(Color(UIColor.label))
+//                            .introspect(selector: <#T##(IntrospectionUIView) -> TargetView?#>, customize: <#T##(TargetView) -> ()#>)
                         }
                     }.onDelete {
                         track.remove(atOffsets: $0)

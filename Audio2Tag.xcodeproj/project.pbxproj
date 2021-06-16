@@ -13,6 +13,7 @@
 		621B3933266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */; };
 		621B3935266F1CF7001B12DA /* CueSheetEditorEditTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */; };
 		621BD036266C8D8E00FEE924 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 621BD035266C8D8E00FEE924 /* Introspect */; };
+		622B83952679A08D00D9DB9F /* OnDeleteAlternative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622B83942679A08D00D9DB9F /* OnDeleteAlternative.swift */; };
 		6236A2A7255CF67A00294EE3 /* CueStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2A6255CF67A00294EE3 /* CueStatusView.swift */; };
 		6236A2AC255CF74E00294EE3 /* CueStatusCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */; };
 		6236A2B4255CF78900294EE3 /* CueStatusCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236A2B3255CF78900294EE3 /* CueStatusCellModel.swift */; };
@@ -56,6 +57,7 @@
 		629E030F2677907B0059277F /* TagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02FB2677907B0059277F /* TagViewModel.swift */; };
 		629E03102677907B0059277F /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02FD2677907B0059277F /* TagModel.swift */; };
 		629E03112677907B0059277F /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02FF2677907B0059277F /* Keyboard+Extension.swift */; };
+		629E0314267901E80059277F /* SwiftUIListSeparator in Frameworks */ = {isa = PBXBuildFile; productRef = 629E0313267901E80059277F /* SwiftUIListSeparator */; };
 		62A2004A258282780005BD9F /* CueSheetRem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A20049258282780005BD9F /* CueSheetRem.swift */; };
 		62A2004F258282850005BD9F /* CueSheetMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A2004E258282850005BD9F /* CueSheetMeta.swift */; };
 		62A20054258282910005BD9F /* CueSheetTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62A20053258282910005BD9F /* CueSheetTrack.swift */; };
@@ -95,6 +97,7 @@
 		621B3930266F1656001B12DA /* CueSheetEditorTrackAddRem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackAddRem.swift; sourceTree = "<group>"; };
 		621B3932266F165A001B12DA /* CueSheetEditorTrackAddMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorTrackAddMeta.swift; sourceTree = "<group>"; };
 		621B3934266F1CF7001B12DA /* CueSheetEditorEditTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorEditTime.swift; sourceTree = "<group>"; };
+		622B83942679A08D00D9DB9F /* OnDeleteAlternative.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeleteAlternative.swift; sourceTree = "<group>"; };
 		6236A2A6255CF67A00294EE3 /* CueStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusView.swift; sourceTree = "<group>"; };
 		6236A2AB255CF74E00294EE3 /* CueStatusCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusCellView.swift; sourceTree = "<group>"; };
 		6236A2B3255CF78900294EE3 /* CueStatusCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueStatusCellModel.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 				6256BB94253558D200C497AD /* SwiftVgmdb in Frameworks */,
 				621BD036266C8D8E00FEE924 /* Introspect in Frameworks */,
 				6256BB882535589800C497AD /* SwiftCueSheet in Frameworks */,
+				629E0314267901E80059277F /* SwiftUIListSeparator in Frameworks */,
 				625D2FB526762E9000567E67 /* ID3TagEditor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +233,7 @@
 				6256BB2C2535550400C497AD /* DocumentPicker.swift */,
 				62F2CB57253AEE99007984FA /* CustomAlertView.swift */,
 				6278AF8225773C9B002C2110 /* AddButton.swift */,
+				622B83942679A08D00D9DB9F /* OnDeleteAlternative.swift */,
 			);
 			path = "View+Extension";
 			sourceTree = "<group>";
@@ -362,8 +367,8 @@
 		629E02E52677907B0059277F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				629E02E62677907B0059277F /* TagNavigationTraillingView.swift */,
 				629E02E72677907B0059277F /* Search */,
+				629E02E62677907B0059277F /* TagNavigationTraillingView.swift */,
 				629E02EA2677907B0059277F /* TagView.swift */,
 				629E02EB2677907B0059277F /* List */,
 			);
@@ -480,6 +485,7 @@
 				6256BB93253558D200C497AD /* SwiftVgmdb */,
 				621BD035266C8D8E00FEE924 /* Introspect */,
 				625D2FB426762E9000567E67 /* ID3TagEditor */,
+				629E0313267901E80059277F /* SwiftUIListSeparator */,
 			);
 			productName = Audio2Tag;
 			productReference = 6256BABE2535549300C497AD /* Audio2Tag.app */;
@@ -557,6 +563,7 @@
 				6256BB92253558D200C497AD /* XCRemoteSwiftPackageReference "SwiftVgmdb" */,
 				621BD034266C8D8E00FEE924 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				625D2FB326762E9000567E67 /* XCRemoteSwiftPackageReference "ID3TagEditor" */,
+				629E0312267901E80059277F /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */,
 			);
 			productRefGroup = 6256BABF2535549300C497AD /* Products */;
 			projectDirPath = "";
@@ -635,6 +642,7 @@
 				62AD1E0A266CF29000E5C249 /* CueSheetEditorAddRem.swift in Sources */,
 				62859D8F2587145F003878B2 /* CueSheetAudio.swift in Sources */,
 				629E030E2677907B0059277F /* TagSearchTrackViewModel.swift in Sources */,
+				622B83952679A08D00D9DB9F /* OnDeleteAlternative.swift in Sources */,
 				62A2004A258282780005BD9F /* CueSheetRem.swift in Sources */,
 				629E030A2677907B0059277F /* TagListCellView.swift in Sources */,
 				629E030B2677907B0059277F /* TagListView.swift in Sources */,
@@ -1018,6 +1026,14 @@
 				minimumVersion = 4.1.2;
 			};
 		};
+		629E0312267901E80059277F /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SchmidtyApps/SwiftUIListSeparator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1040,6 +1056,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 625D2FB326762E9000567E67 /* XCRemoteSwiftPackageReference "ID3TagEditor" */;
 			productName = ID3TagEditor;
+		};
+		629E0313267901E80059277F /* SwiftUIListSeparator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 629E0312267901E80059277F /* XCRemoteSwiftPackageReference "SwiftUIListSeparator" */;
+			productName = SwiftUIListSeparator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
