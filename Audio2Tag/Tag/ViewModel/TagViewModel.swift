@@ -12,22 +12,26 @@ import ID3TagEditor
 
 import SwiftVgmdb
 
-enum TagSheetEnum {
-    case tagRequest
+enum TagSheetEnum : Identifiable {
+    var id: Int {
+        switch self {
+        case .documentAudio:
+            return 0
+        case .tagRequest(_):
+            return 1
+        }
+    }
+    
+    case tagRequest(TagSearchKind)
     case documentAudio
 }
 
 
 class TagViewModel : ObservableObject {
-//    @Published var tagInfo = TagModel(tagVersion: .version2, tagFrame: .init())
-//
-    @Published var fileInfo = [TagModel]()
+    @Published var trackAudio = [[TagModel]]()
     
-    @Published var openSheet = false
-    var tagSheetEnum:TagSheetEnum = .tagRequest
-    var searchEnum: TagSearchKind = .vgmDb
+    @Published var openSheet: TagSheetEnum? = nil
     
-    @Published var openAlert = false
     @Published var openActionSheet = false
     
     // MARK: - Sheet Request
@@ -38,22 +42,20 @@ class TagViewModel : ObservableObject {
     
     // MARK: - View Action
     func tagRequest() {
-        tagSheetEnum = .tagRequest
+//        openSheet = .tagRequest
         openActionSheet = true
     }
     
     func audioRequest() {
-        tagSheetEnum = .documentAudio
-        openSheet = true
+        openSheet = .documentAudio
+        
     }
     
     func selectMusicBrainz() {
-        searchEnum = .musicBrainz
-        openSheet = true
+        openSheet = .tagRequest(.musicBrainz)
     }
     func selectVgmDb() {
-        searchEnum = .vgmDb
-        openSheet = true
+        openSheet = .tagRequest(.vgmDb)
     }
     
     // DocumentPicker 응답.
@@ -64,31 +66,24 @@ class TagViewModel : ObservableObject {
         // 파일명 순서로 체크 할 필요?
         // 사용자에게 떠넘기자.
         
-        
+        self.trackAudio.append([TagModel]())
         for item in urls {
             var id3: Bool = false
             do {
                 _ = try ID3TagEditor().read(from: item.path)
                 id3 = true
             }catch {
-                
+
             }
-            fileInfo.append(TagModel(deviceFilePath: item,
-                                     haveID3Tag: id3))
             
-        }
+            trackAudio[trackAudio.endIndex - 1].append(TagModel(deviceFilePath: item,
+                                     haveID3Tag: id3))
+    }
         
-        fileInfo.sort { $0.fileName < $1.fileName }        
+//        fileInfo.sort { $0.fileName < $1.fileName }
     }
     
     func loadAudio(url: URL) {
-        
-//        guard let tag = (try? ID3TagEditor().read(from: url.path)) else {
-//            openAlert = true
-//            return
-//        }
-        
-//        tagInfo = TagModel(tagVersion: .version2, tagFrame: tag.frames.map({ v in TagFrameModel(key: v.key, value: v.value)}))
         
     }
     

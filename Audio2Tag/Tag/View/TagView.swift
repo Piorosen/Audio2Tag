@@ -10,19 +10,17 @@ import SwiftUI
 
 extension TagView {
     
-    func makeSheet() -> some View {
-        return VStack {
-            if viewModel.tagSheetEnum == .tagRequest {
-                TagSearchView(kind: viewModel.searchEnum)
-                    .onSelectTag(viewModel.searchTagResult)
-                
-            }else if viewModel.tagSheetEnum == .documentAudio {
+    func makeSheet(item: TagSheetEnum) -> some View {
+        Group {
+            switch item {
+            case TagSheetEnum.documentAudio:
                 DocumentPicker()
                     .setConfig(folderPicker: false, allowMultiple: true)
                     .setUTType(type: [.audio])
                     .onSelectFiles(completeHanlder: viewModel.selectAudioRequest)
-            }else {
-                EmptyView()
+            case TagSheetEnum.tagRequest(let kind):
+                TagSearchView(kind: kind)
+                    .onSelectTag(viewModel.searchTagResult)
             }
         }
     }
@@ -43,7 +41,7 @@ struct TagView: View {
     // 단일 파일 == 해당 파일 제목 -> 태그정보
     var body: some View {
         NavigationView {
-            TagListView(models: $viewModel.fileInfo)
+            TagListView(models: $viewModel.trackAudio)
                 .navigationTitle("Tag Editor")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading: TagNavigationTraillingView()
@@ -53,8 +51,8 @@ struct TagView: View {
                 
         }
         // 음악 파일 선택 및 태그 검색 하기 위하 시트
-        .sheet(isPresented: $viewModel.openSheet, content: makeSheet)
+        .sheet(item: $viewModel.openSheet) { makeSheet(item: $0) }
         // Tag 검색 기능을 위한 시트, 선택지 입니다.
-        .actionSheet(isPresented: $viewModel.openActionSheet, content: makeActionSheet)
+        .actionSheet(isPresented: $viewModel.openActionSheet) { makeActionSheet() }
     }
 }
