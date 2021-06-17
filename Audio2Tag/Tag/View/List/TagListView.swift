@@ -12,10 +12,23 @@ import SwiftUIListSeparator
 struct TagListView: View {
     @Binding var models: [[TagModel]]
     
+    var audioRequest: (Int) -> Void = { _ in }
+    func onAudioRequest(_ action: @escaping (Int) -> Void) -> Self {
+        var copy = self
+        copy.audioRequest = action
+        return copy
+    }
+    
     var body: some View {
         List {
+
             ForEach (models.indices, id: \.self) { trackIdx in
-                Section(header: Text("Track : \(trackIdx)")) {
+                Section(header: Button(action: { audioRequest(trackIdx) }) {
+                    HStack {
+                        Image(systemName: "plus.app")
+                        Text("Track : \(trackIdx + 1)")
+                    }
+                }) {
                     ForEach (models[trackIdx].indices, id: \.self) { audioIdx in
                         Group {
                             if models[trackIdx][audioIdx].haveID3Tag {
@@ -35,10 +48,6 @@ struct TagListView: View {
                     }
                 }
             }
-            
-            
-//            .listRowBackground(Color(UIColor.systemGroupedBackground))
         }
-//        .listSeparatorStyle(.none)
     }
 }

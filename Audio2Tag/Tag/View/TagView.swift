@@ -13,11 +13,13 @@ extension TagView {
     func makeSheet(item: TagSheetEnum) -> some View {
         Group {
             switch item {
-            case TagSheetEnum.documentAudio:
+            case TagSheetEnum.documentAudio(let index):
                 DocumentPicker()
                     .setConfig(folderPicker: false, allowMultiple: true)
                     .setUTType(type: [.audio])
-                    .onSelectFiles(completeHanlder: viewModel.selectAudioRequest)
+                    .onSelectFiles {
+                        viewModel.selectAudioRequest(urls: $0, section: index)
+                    }
             case TagSheetEnum.tagRequest(let kind):
                 TagSearchView(kind: kind)
                     .onSelectTag(viewModel.searchTagResult)
@@ -42,13 +44,15 @@ struct TagView: View {
     var body: some View {
         NavigationView {
             TagListView(models: $viewModel.trackAudio)
+                .onAudioRequest { self.viewModel.audioRequest(index: $0) } 
                 .navigationTitle("Tag Editor")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading: TagNavigationTraillingView()
-                                    .onTagReuqest(self.viewModel.tagRequest)
-                                    .onAudioRequest(self.viewModel.audioRequest),
+                                        .onTagReuqest(self.viewModel.tagRequest)
+                                        .onTrackRequest(self.viewModel.trackRequest)
+                                    ,
                                     trailing: EditButton())
-                
+            
         }
         // 음악 파일 선택 및 태그 검색 하기 위하 시트
         .sheet(item: $viewModel.openSheet) { makeSheet(item: $0) }
