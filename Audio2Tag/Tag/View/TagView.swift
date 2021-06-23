@@ -44,7 +44,7 @@ struct TagView: View {
     var body: some View {
         NavigationView {
             TagListView(models: $viewModel.trackAudio)
-                .onAudioRequest { self.viewModel.audioRequest(index: $0) } 
+                .onAudioRequest { self.viewModel.audioRequest(index: $0) }
                 .navigationTitle("Tag Editor")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(leading: TagNavigationTraillingView()

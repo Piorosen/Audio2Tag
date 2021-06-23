@@ -38,6 +38,7 @@
 		62859D8F2587145F003878B2 /* CueSheetAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62859D8E2587145F003878B2 /* CueSheetAudio.swift */; };
 		6287B30A26687E0700BC6384 /* CueSheetEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6287B30926687E0700BC6384 /* CueSheetEditorView.swift */; };
 		62961ADD266CAFF200B56C45 /* CueSheetEditorAddMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62961ADC266CAFF200B56C45 /* CueSheetEditorAddMeta.swift */; };
+		629A1CC02682DCD600A5A445 /* TagListTrackSectionlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629A1CBF2682DCD600A5A445 /* TagListTrackSectionlView.swift */; };
 		629E02DD267789C10059277F /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02DC267789C10059277F /* SettingView.swift */; };
 		629E03002677907B0059277F /* TagNavigationTraillingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02E62677907B0059277F /* TagNavigationTraillingView.swift */; };
 		629E03012677907B0059277F /* TagSearchTrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629E02E82677907B0059277F /* TagSearchTrackView.swift */; };
@@ -125,6 +126,7 @@
 		62859D8E2587145F003878B2 /* CueSheetAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetAudio.swift; sourceTree = "<group>"; };
 		6287B30926687E0700BC6384 /* CueSheetEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorView.swift; sourceTree = "<group>"; };
 		62961ADC266CAFF200B56C45 /* CueSheetEditorAddMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CueSheetEditorAddMeta.swift; sourceTree = "<group>"; };
+		629A1CBF2682DCD600A5A445 /* TagListTrackSectionlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTrackSectionlView.swift; sourceTree = "<group>"; };
 		629E02DC267789C10059277F /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		629E02E62677907B0059277F /* TagNavigationTraillingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagNavigationTraillingView.swift; sourceTree = "<group>"; };
 		629E02E82677907B0059277F /* TagSearchTrackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchTrackView.swift; sourceTree = "<group>"; };
@@ -388,8 +390,9 @@
 			isa = PBXGroup;
 			children = (
 				629E02EC2677907B0059277F /* Cell */,
-				629E02F52677907B0059277F /* TagListCellView.swift */,
 				629E02F62677907B0059277F /* TagListView.swift */,
+				629A1CBF2682DCD600A5A445 /* TagListTrackSectionlView.swift */,
+				629E02F52677907B0059277F /* TagListCellView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				622B83952679A08D00D9DB9F /* OnDeleteAlternative.swift in Sources */,
 				62A2004A258282780005BD9F /* CueSheetRem.swift in Sources */,
 				629E030A2677907B0059277F /* TagListCellView.swift in Sources */,
+				629A1CC02682DCD600A5A445 /* TagListTrackSectionlView.swift in Sources */,
 				629E030B2677907B0059277F /* TagListView.swift in Sources */,
 				629E03062677907B0059277F /* TagFileDetailListTextCell.swift in Sources */,
 				629E030D2677907B0059277F /* TagFileDetailViewModel.swift in Sources */,

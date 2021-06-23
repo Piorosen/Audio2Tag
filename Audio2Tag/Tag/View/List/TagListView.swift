@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SwiftUIListSeparator
 
 struct TagListView: View {
     @Binding var models: [[TagModel]]
@@ -21,33 +20,12 @@ struct TagListView: View {
     
     var body: some View {
         List {
-
             ForEach (models.indices, id: \.self) { trackIdx in
-                Section(header: Button(action: { audioRequest(trackIdx) }) {
-                    HStack {
-                        Image(systemName: "plus.app")
-                        Text("Track : \(trackIdx + 1)")
-                    }
-                }) {
-                    ForEach (models[trackIdx].indices, id: \.self) { audioIdx in
-                        Group {
-                            if models[trackIdx][audioIdx].haveID3Tag {
-                                NavigationLink(destination: TagFileDetailView(bind: models[trackIdx][audioIdx])) {
-                                    TagListCellView(item: models[trackIdx][audioIdx])
-                                }
-                            }else {
-                                TagListCellView(item: models[trackIdx][audioIdx])
-                            }
-                        }
-                    }
-                    .onMove {
-                        models[trackIdx].move(fromOffsets: $0, toOffset: $1)
-                    }
-                    .onDelete {
-                        models[trackIdx].remove(atOffsets: $0)
-                    }
-                }
+                TagListTrackSectionlView(index: trackIdx, models: $models[trackIdx])
+                    .onSectionTap { audioRequest($0) }
+                    .onRemoveSection { models.remove(at: $0) }
             }
         }
+        
     }
 }

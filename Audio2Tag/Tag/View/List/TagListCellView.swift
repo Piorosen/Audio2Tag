@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct TagListCellView: View {
-    let item: TagModel
+    @Binding var item: TagModel
     
-    var body: some View {
-        VStack {
+    func element() -> some View {
+        return VStack {
             HStack {
                 Text("파일 정보")
                 Spacer()
@@ -30,5 +30,17 @@ struct TagListCellView: View {
             }
         }
         .background(Color(UIColor.tertiarySystemBackground))
+    }
+    
+    var body: some View {
+        Group {
+            if item.haveID3Tag {
+                NavigationLink(destination: TagFileDetailView(bind: item)) {
+                    element()
+                }
+            }else {
+                element()
+            }
+        }
     }
 }
